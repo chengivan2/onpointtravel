@@ -1,12 +1,26 @@
+"use client";
+
 import Link from "next/link";
-import { createClient } from "@/utils/supabase/server";
+import { useEffect, useState } from "react";
+import { createClient } from "@/utils/supabase/client";
+import type { User } from "@supabase/supabase-js";
 
 export default async function HeaderAuthButton() {
-  const supabase = await createClient();
+  const [user, setUser] = useState<User | null>(null);
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  useEffect(() => {
+    async function getUser() {
+      const supabase = await createClient();
+
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      setUser(user);
+    }
+
+    getUser();
+  }, []);
 
   return user ? (
     <Link

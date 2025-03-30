@@ -1,16 +1,29 @@
 
-import { createClient } from "@/utils/supabase/server";
+ "use client"
+import { createClient } from "@/utils/supabase/client";
+import { useEffect, useState } from "react";
+import type { User } from "@supabase/supabase-js";
 import Link from "next/link";
 
 
 
 export default async function MobileAuthButton() {
 
-  const supabase = await createClient();
-
+  const [user, setUser] = useState<User | null>(null);
   
-  const { data: { user } } = await supabase.auth.getUser()
-
+    useEffect(() => {
+      async function getUser() {
+        const supabase = await createClient();
+  
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+  
+        setUser(user);
+      }
+  
+      getUser();
+    }, []);
 
 
   return user ? (
