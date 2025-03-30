@@ -1,3 +1,5 @@
+"use client";
+
 import { useTheme } from "next-themes";
 import { FaMoon } from "react-icons/fa6";
 import { IoSunny } from "react-icons/io5";
