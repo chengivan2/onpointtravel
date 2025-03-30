@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${alegreyaSans}`}>
-      <body>
+      <body className={`antialiased flex flex-col bg-lightmode-bg-color dark:bg-darkmode-bg-color`}>
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           {children}
         </ThemeProvider>
