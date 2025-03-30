@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { inter, alegreyaSans } from './fonts';
+import { inter, alegreyaSans } from "./fonts";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'OnPoint Travel',
-  description: 'Travel website',
+  title: "OnPoint Travel",
+  description: "Travel website",
 };
 
 export default function RootLayout({
@@ -14,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${alegreyaSans}`}>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider attribute="class" enableSystem defaultTheme="system">
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
