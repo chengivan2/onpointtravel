@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { inter, alegreyaSans } from "./fonts";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
+import ScrollToTop from "./rootcomponents/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "OnPoint Travel",
@@ -19,6 +20,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           {children}
         </ThemeProvider>
+        <ScrollToTop />
       </body>
     </html>
   );
