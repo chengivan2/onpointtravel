@@ -1,7 +1,9 @@
-import React from 'react'
+import HomeHero from "./herosection/Hero";
 
 export default function Main() {
   return (
-    <div className='min-h-[100vh]'>This is the main</div>
-  )
+    <>
+      <HomeHero />
+    </>
+  );
 }
