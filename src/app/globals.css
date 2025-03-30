@@ -3,17 +3,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
 /* ======================================== */
 /* === Tailwind @theme Declaration      === */
 /* ======================================== */
 @theme {
   /* --- Fonts --- */
-  --font-system: var(
-    --font-system
-  ); 
-  --font-heading: var(
-    --font-heading);
+  --font-system: var(--font-system);
+  --font-heading: var(--font-heading);
   --font-body: var(--font-inter);
 
   /* --- Core Theme Colors --- */
@@ -51,12 +47,8 @@
   --color-darkmode-scrolltotop-bg-color: var(--darkmodescrolltotopbgcolor);
   --color-lightmode-scrolltotop-color: var(--lightmodescrolltotopcolor);
   --color-darkmode-scrolltotop-color: var(--darkmodescrolltotopcolor);
-  --color-lightmode-scrolltotop-border-color: var(
-    --lightmodescrolltotopborder
-  );
-  --color-darkmode-scrolltotop-border-color: var(
-    --darkmodescrolltotopborder
-  );
+  --color-lightmode-scrolltotop-border-color: var(--lightmodescrolltotopborder);
+  --color-darkmode-scrolltotop-border-color: var(--darkmodescrolltotopborder);
 
   /* --- Standard Buttons --- */
   --color-lightmode-btn-bg-color: var(--lightmodebtnbgcolor);
@@ -140,9 +132,7 @@
   --shadow-darkmode-glass-outer: var(--darkmodeglassoutershadow);
 }
 
-
 :root {
-
   --font-body: "Inter", sans-serif;
   --font-heading: "Alegreya Sans", sans-serif;
 
@@ -284,7 +274,6 @@ h6 {
 }
 
 .dark {
-
   --background: oklch(0.145 0 0);
 
   --foreground: oklch(0.985 0 0);
@@ -349,7 +338,6 @@ h6 {
 }
 
 @theme inline {
-
   --radius-sm: calc(var(--radius) - 4px);
 
   --radius-md: calc(var(--radius) - 2px);
