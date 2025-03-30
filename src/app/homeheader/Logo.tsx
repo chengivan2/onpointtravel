@@ -1,8 +1,6 @@
-"use client";
-
 import Image from "next/image";
 
-export default function FooterLogo() {
+export default function HeaderLogo() {
   return (
     <div className="flex justify-between items-center">
       <Image
