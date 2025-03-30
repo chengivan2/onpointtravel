@@ -1,5 +1,5 @@
 
-export default function HomeFooter() {
+export default function Footer() {
   return (
     <div>HomeFooter</div>
   )
