@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Footersocials() {
+export default function FooterSocials() {
   return (
     <div className="order-first z-[999] flex flex-wrap justify-center gap-6 text-sm md:order-last">
       <Link
