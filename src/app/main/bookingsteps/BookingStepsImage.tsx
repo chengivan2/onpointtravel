@@ -1,3 +1,7 @@
+"use client";
+
+import { TypeAnimation } from "react-type-animation";
+
 export default function BookingStepsImage() {
   return (
     <div className="flex-1 w-full max-w-xl motion-preset-slide-left motion-duration-2000 delay-300">
@@ -9,7 +13,14 @@ export default function BookingStepsImage() {
                 Trip To Paris
               </h3>
 
-              <p>14-29 June 2025 | Booked by Sifa Joy</p>
+              <TypeAnimation
+                sequence={["14-29 June 2025 | Booked by Sifa Joy", 2000]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+                cursor={false}
+                className="text-green-600 dark:text-green-300"
+              />
             </div>
             <span className="relative flex items-center bg-green-100/50 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm">
               <div className="relative mr-2">
