@@ -10,7 +10,6 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, closeMenu }) => {
-  // Effect to handle body scroll lock
   React.useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';

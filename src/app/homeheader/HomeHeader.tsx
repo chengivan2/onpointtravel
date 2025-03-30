@@ -1,130 +1,122 @@
+"use client";
 
-'use client'; 
-// Keep React imports for hooks and Suspense
-import React, { useState, useEffect, useCallback, Suspense } from 'react';
-import Logo from './Logo'; // Assuming component file is Logo.tsx
-import HeaderButtons from './HeaderButtons'; // Now potentially an async Server Component
-import ThemeToggler from './ThemeToggler'; // Client Component
-import MobileMenuToggle from './MobileMenuToggle'; // Server Component (just renders icon)
-import MobileMenu from './MobileMenu'; // Client Component
+import { useState, useEffect } from "react";
+import HeaderLogo from "./Logo";
+import Menu from "./Menu";
+import HeaderThemeToggler from "./ThemeToggler";
+import HeaderButtons from "./HeaderButtons";
 
-const Header = () => {
-  
-
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Scroll handling logic (add window checks for safety)
-  const controlHeaderVisibility = useCallback(() => {
-    // Ensure window exists (runs client-side, but good practice)
-    if (typeof window === 'undefined') return;
+  const controlHeader = () => {
+    if (typeof window !== "undefined") {
+      // If we're scrolling down and we're past 100px, hide the header
+      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        setIsVisible(false);
+        // Close mobile menu when header hides
+        setIsMenuOpen(false);
+      }
+      // If we're scrolling up, show the header
+      else if (window.scrollY < lastScrollY) {
+        setIsVisible(true);
+      }
 
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY < lastScrollY || currentScrollY < 100) {
-      setIsVisible(true);
-    } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-      setIsVisible(false);
-      setIsMenuOpen(false); // Close menu when hiding header
+      // Update last scroll position
+      setLastScrollY(window.scrollY);
     }
-    setLastScrollY(currentScrollY);
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlHeader);
+
+      // Cleanup function
+      return () => {
+        window.removeEventListener("scroll", controlHeader);
+      };
+    }
   }, [lastScrollY]);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Set initial scroll position on mount
-      setLastScrollY(window.scrollY);
-      window.addEventListener('scroll', controlHeaderVisibility);
-    }
-
-    // Cleanup function
-    return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('scroll', controlHeaderVisibility);
-      }
-    };
-  }, [controlHeaderVisibility]); // Dependency array
-
-
-  // Body scroll lock logic
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    // Cleanup on unmount or when isMenuOpen changes
-    return () => {
-       document.body.style.overflow = 'unset';
-    };
-  }, [isMenuOpen]);
-
-
-  // Memoize handler functions
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen(prev => !prev);
-  }, []);
-
-  const closeMenu = useCallback(() => {
-    setIsMenuOpen(false);
-  }, []);
-
   return (
-    <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out
-                   bg-lightmode-header-bg-color dark:bg-darkmode-header-bg-color shadow-md
-                   ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
-      >
-        <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-                {/* Left: Logo */}
-                <div className="flex-shrink-0">
-                    <Logo /> {/* Use correct import name */}
-                </div>
+    <header
+      className={`
+      fixed top-0 left-0 right-0 z-50 
+      px-4 py-3 
+      bg-lightmode-header-bg-color dark:bg-darkmode-header-bg-color 
+      shadow-md
+      transition-transform duration-300 h-20
+      ${isVisible ? "translate-y-0" : "-translate-y-full"}
+      ${isMenuOpen ? "!translate-y-0" : ""}
+    `}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Logo */}
+        <HeaderLogo />
 
-                {/* Right: Buttons, Theme Toggler, Menu Toggle */}
-                <div className="flex items-center space-x-3">
-                   {/* Render HeaderButtons without isLoggedIn prop */}
-                   {/* Wrap in Suspense if HeaderButtons is async */}
-                   <Suspense fallback={
-                       // Simple placeholder for desktop buttons
-                       <div className="hidden md:flex items-center space-x-3 h-8">
-                           <div className="w-32 h-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
-                           <div className="w-20 h-full bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
-                       </div>
-                   }>
-                       <HeaderButtons />
-                   </Suspense>
+        {/* Mobile Header Buttons */}
+        <div className="flex flex-row lg:hidden gap-[1rem] justify-center items-center">
+          {/* Mobile theme toggler */}
+          <div
+            className={`flex justify-center items-center ${
+              isMenuOpen ? "hidden" : ""
+            }
+`}
+          >
+            <HeaderThemeToggler />
+          </div>
 
-                   <ThemeToggler />
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="cursor-pointer lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-6 h-6 text-gray-700 dark:text-gray-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
 
-                   {/* Interaction Button for Mobile Menu */}
-                   <div className="md:hidden">
-                     <button
-                       onClick={toggleMenu} // Attach the interaction here
-                       aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-                       aria-expanded={isMenuOpen}
-                       // Apply button styling from previous MobileMenuToggle or adjust as needed
-                       className="p-2 rounded-md text-lightmode-headertext-color hover:text-lightmode-headertext-hover-color dark:text-darkmode-headertext-color dark:hover:text-darkmode-headertext-hover-color transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lightmode-heading-color dark:focus:ring-darkmode-heading-color"
-                     >
-                       {/* Render the Server Component icon based on state */}
-                       <MobileMenuToggle isOpen={isMenuOpen} />
-                     </button>
-                   </div>
-                </div>
-            </div>
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center space-x-8">
+          <Menu />
+          <div className="flex items-center space-x-4">
+            <HeaderThemeToggler />
+            <HeaderButtons />
+          </div>
         </nav>
-      </header>
+      </div>
 
-      {/* Mobile Menu Component - Render without isLoggedIn prop */}
-      <MobileMenu isOpen={isMenuOpen} closeMenu={closeMenu} />
-
-      {/* Spacer */}
-       <div className="h-16"></div>
-    </>
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <nav className="lg:hidden py-4 px-2 space-y-3 absolute top-full left-0 right-0 bg-lightmode-header-bg-color dark:bg-darkmode-bg-color border-t dark:border-gray-700">
+          <Menu />
+          <div className="flex items-center justify-center space-x-4 pt-3 border-t dark:border-gray-700">
+            <HeaderButtons />
+          </div>
+        </nav>
+      )}
+    </header>
   );
-};
-
-export default Header;
+}
