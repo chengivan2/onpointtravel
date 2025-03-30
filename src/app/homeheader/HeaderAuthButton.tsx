@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { createClient } from "@/app/utils/supabase/server";
+import { createClient } from "@/utils/supabase/server";
 
 export default async function HeaderAuthButton() {
   const supabase = await createClient();

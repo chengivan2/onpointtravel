@@ -1,5 +1,5 @@
 
-import { createClient } from "@/app/utils/supabase/server";
+import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 
 
