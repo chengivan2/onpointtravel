@@ -1,6 +1,7 @@
 // components/Header/HeaderButtons.tsx
 import React from 'react';
 import Link from 'next/link';
+import HeaderAuthButton from './HeaderAuthButton';
 
 
 
@@ -19,6 +20,8 @@ export default function HeaderButtons () {
           Make your own trip
         </a>
       </Link>
+
+      <HeaderAuthButton />
 
       
     </div>
