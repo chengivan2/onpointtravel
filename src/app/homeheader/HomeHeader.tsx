@@ -1,6 +1,5 @@
-// components/Header/Header.tsx
-'use client'; // This component needs hooks and browser interactions
 
+'use client'; 
 // Keep React imports for hooks and Suspense
 import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import Logo from './Logo'; // Assuming component file is Logo.tsx
@@ -10,8 +9,7 @@ import MobileMenuToggle from './MobileMenuToggle'; // Server Component (just ren
 import MobileMenu from './MobileMenu'; // Client Component
 
 const Header = () => {
-  // REMOVE the local isLoggedIn state - auth state is handled in children
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
 
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);

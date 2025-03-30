@@ -50,11 +50,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, closeMenu }) => {
           
           <div onClick={closeMenu}>
              
-            <React.Suspense fallback={
-              <div className="block px-3 py-2 text-center text-sm text-gray-400 dark:text-gray-500">Loading...</div>
-            }>
+            
               <MobileHeaderAuthButton />
-            </React.Suspense>
           </div>
 
         </nav>
