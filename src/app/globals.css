@@ -50,7 +50,7 @@
   --lightmodebtntextcolor: hsl(0, 0%, 96%);
   --darkmodebtntextcolor: hsl(0, 0%, 96%);
 
-  /* === Secondary Buttons (Outline/Subtle) === */
+  /* === Secondary Buttons === */
   --lightmodesecondarybtntextcolor: hsl(0, 0%, 5%);
   --darkmodesecondarybtntextcolor: hsl(0, 0%, 96%);
   --lightmodesecondarybtntexthovercolor: hsl(0, 0%, 96%);
@@ -221,7 +221,7 @@
   --color-lightmode-glass-btn-text-color: var(--lightmodeglassbtntextcolor);
   --color-darkmode-glass-btn-text-color: var(--darkmodeglassbtntextcolor);
 
-  /* --- NEW: Glass Shadows (Optional Mapping) --- */
+  /* --- Glass Shadows --- */
   
   --shadow-lightmode-glass-inner: var(--lightmodeglassinnershadow);
   --shadow-darkmode-glass-inner: var(--darkmodeglassinnershadow);
