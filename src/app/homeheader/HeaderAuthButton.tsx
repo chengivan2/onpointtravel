@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import type { User } from "@supabase/supabase-js";
 
-export default async function HeaderAuthButton() {
+export default function HeaderAuthButton() {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
