@@ -9,7 +9,7 @@ interface Destination {
   main_image_url?: string | null;
 }
 
-export default async function Destinations() {
+export default async function DestinationCards() {
   const supabase = await createClient();
 
   const { data, error } = await supabase
