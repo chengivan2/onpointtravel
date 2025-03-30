@@ -1,9 +1,11 @@
 import HomeHero from "./hero/Hero";
+import OurServicesSection from "./ourservices/OurServices";
 
 export default function Main() {
   return (
     <>
       <HomeHero />
+      <OurServicesSection />
     </>
   );
 }
