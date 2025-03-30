@@ -3,130 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
-
-  --font-body: "Inter", sans-serif;
-  --font-heading: "Alegreya Sans", sans-serif;
-
-  /* === Core Theme Colors === */
-  --lightmodebgcolor: hsl(146, 100%, 97%);
-  --darkmodebgcolor: hsl(146, 41%, 10%);
-  --lightmodetextcolor: hsl(0, 0%, 5%);
-  --darkmodetextcolor: hsl(0, 0%, 96%);
-  --lightmodeheadingcolor: hsl(146, 41%, 10%);
-  --darkmodeheadingcolor: hsl(146, 100%, 72%);
-
-  /* === Header / Footer === */
-  --lightmodeheaderbgcolor: hsl(0, 0%, 98%);
-  --darkmodeheaderbgcolor: hsl(144, 41%, 8%);
-  --lightmodefooterbgcolor: hsl(0, 0%, 98%);
-  --darkmodefooterbgcolor: hsl(144, 41%, 8%);
-
-  --lightmodeheadertextcolor: hsl(0, 0%, 5%);
-  --darkmodeheadertextcolor: hsl(0, 0%, 96%);
-  --lightmodeheadertexthover: hsl(146, 37%, 32%);
-  --darkmodeheadertexthover: hsl(146, 100%, 72%);
-  --lightmodeheadertextactive: hsl(146, 100%, 72%);
-  --darkmodeheadertextactive: hsl(146, 100%, 85%);
-
-  /* === Footer Text === */
-  --lightmodefootertextcolor: hsl(0, 0%, 5%);
-  --darkmodefootertextcolor: hsl(0, 0%, 96%);
-  --lightmodefootertexthover: hsl(146, 37%, 32%);
-  --darkmodefootertexthover: hsl(146, 100%, 72%);
-  --lightmodefootertextactive: hsl(146, 100%, 72%);
-  --darkmodefootertextactive: hsl(146, 100%, 85%);
-
-  /* === Scroll To Top Button === */
-  --lightmodescrolltotopbgcolor: hsla(144, 38%, 5%, 0.7);
-  --darkmodescrolltotopbgcolor: hsla(146, 100%, 97%, 0.7);
-  --lightmodescrolltotopcolor: hsla(146, 100%, 97%, 0.9);
-  --darkmodescrolltotopcolor: hsla(144, 38%, 5%, 0.9);
-  --lightmodescrolltotopborder: hsla(0, 0%, 100%, 0.3);
-  --darkmodescrolltotopborder: hsla(0, 0%, 100%, 0.15);
-
-  /* === Buttons === */
-  --lightmodebtnbgcolor: hsl(0, 0%, 9%);
-  --darkmodebtnbgcolor: hsl(146, 41%, 30%);
-  --lightmodebtnbghovercolor: hsl(0, 0%, 14%);
-  --darkmodebtnbghovercolor: hsl(146, 41%, 25%);
-  --lightmodebtntextcolor: hsl(0, 0%, 96%);
-  --darkmodebtntextcolor: hsl(0, 0%, 96%);
-
-  /* === Secondary Buttons === */
-  --lightmodesecondarybtntextcolor: hsl(0, 0%, 5%);
-  --darkmodesecondarybtntextcolor: hsl(0, 0%, 96%);
-  --lightmodesecondarybtntexthovercolor: hsl(0, 0%, 96%);
-  --darkmodesecondarybtntexthovercolor: hsl(0, 0%, 96%);
-  --lightmodesecondarybtnbghovercolor: hsla(0, 0%, 10%, 0.5);
-  --darkmodesecondarybtnbghovercolor: hsla(146, 41%, 30%, 0.6);
-  --lightmodesecondarybtnbordercolor: hsl(0, 0%, 5%);
-  --darkmodesecondarybtnbordercolor: hsl(0, 0%, 96%);
-  --lightmodesecondarybtnborderhovercolor: transparent;
-  --darkmodesecondarybtnborderhovercolor: transparent;
-
-  /* === Authentication Area Background === */
-  --lightmodeauthbgcolor: hsl(0, 0%, 96%);
-  --darkmodeauthbgcolor: hsl(144, 41%, 5%);
-
-  /* --- Glass Card Variables --- */
-  --lightmodeglasscardbgcolor: hsla(0, 0%, 98%, 0.6);
-  --darkmodeglasscardbgcolor: hsla(146, 15%, 15%, 0.55);
-  --lightmodeglasscardbordercolor: hsla(0, 0%, 100%, 0.4);
-  --darkmodeglasscardbordercolor: hsla(0, 0%, 100%, 0.15);
-  --lightmodeglasscardtextcolor: var(--lightmodetextcolor);
-  --darkmodeglasscardtextcolor: var(--darkmodetextcolor);
-  --lightmodeglasscardheadingcolor: var(--lightmodeheadingcolor);
-  --darkmodeglasscardheadingcolor: var(--darkmodeheadingcolor);
-
-  /* --- Glass Button Variables --- */
-  --lightmodeglassbtnbgcolor: hsla(146, 37%, 32%, 0.6);
-  --darkmodeglassbtnbgcolor: hsla(146, 100%, 72%, 0.5);
-  --lightmodeglassbtnbghovercolor: hsla(146, 37%, 32%, 0.75);
-  --darkmodeglassbtnbghovercolor: hsla(146, 100%, 72%, 0.65);
-  --lightmodeglassbtnbordercolor: hsla(0, 0%, 100%, 0.3);
-  --darkmodeglassbtnbordercolor: hsla(0, 0%, 100%, 0.2);
-  --lightmodeglassbtntextcolor: hsl(0, 0%, 98%);
-  --darkmodeglassbtntextcolor: hsl(146, 41%, 10%);
-
-  /* --- Glass Effects--- */
-  --lightmodeglassinnershadow: inset 0 1px 3px hsla(0, 0%, 0%, 0.05);
-  --darkmodeglassinnershadow: inset 0 1px 4px hsla(0, 0%, 0%, 0.2);
-  --lightmodeglassoutershadow: 0 8px 24px hsla(146, 30%, 40%, 0.1);
-  --darkmodeglassoutershadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
 
 /* ======================================== */
 /* === Tailwind @theme Declaration      === */
@@ -264,6 +140,132 @@
   --shadow-darkmode-glass-outer: var(--darkmodeglassoutershadow);
 }
 
+
+:root {
+
+  --font-body: "Inter", sans-serif;
+  --font-heading: "Alegreya Sans", sans-serif;
+
+  /* === Core Theme Colors === */
+  --lightmodebgcolor: hsl(146, 100%, 97%);
+  --darkmodebgcolor: hsl(146, 41%, 10%);
+  --lightmodetextcolor: hsl(0, 0%, 5%);
+  --darkmodetextcolor: hsl(0, 0%, 96%);
+  --lightmodeheadingcolor: hsl(146, 41%, 10%);
+  --darkmodeheadingcolor: hsl(146, 100%, 72%);
+
+  /* === Header / Footer === */
+  --lightmodeheaderbgcolor: hsl(0, 0%, 98%);
+  --darkmodeheaderbgcolor: hsl(144, 41%, 8%);
+  --lightmodefooterbgcolor: hsl(0, 0%, 98%);
+  --darkmodefooterbgcolor: hsl(144, 41%, 8%);
+
+  --lightmodeheadertextcolor: hsl(0, 0%, 5%);
+  --darkmodeheadertextcolor: hsl(0, 0%, 96%);
+  --lightmodeheadertexthover: hsl(146, 37%, 32%);
+  --darkmodeheadertexthover: hsl(146, 100%, 72%);
+  --lightmodeheadertextactive: hsl(146, 100%, 72%);
+  --darkmodeheadertextactive: hsl(146, 100%, 85%);
+
+  /* === Footer Text === */
+  --lightmodefootertextcolor: hsl(0, 0%, 5%);
+  --darkmodefootertextcolor: hsl(0, 0%, 96%);
+  --lightmodefootertexthover: hsl(146, 37%, 32%);
+  --darkmodefootertexthover: hsl(146, 100%, 72%);
+  --lightmodefootertextactive: hsl(146, 100%, 72%);
+  --darkmodefootertextactive: hsl(146, 100%, 85%);
+
+  /* === Scroll To Top Button === */
+  --lightmodescrolltotopbgcolor: hsla(144, 38%, 5%, 0.7);
+  --darkmodescrolltotopbgcolor: hsla(146, 100%, 97%, 0.7);
+  --lightmodescrolltotopcolor: hsla(146, 100%, 97%, 0.9);
+  --darkmodescrolltotopcolor: hsla(144, 38%, 5%, 0.9);
+  --lightmodescrolltotopborder: hsla(0, 0%, 100%, 0.3);
+  --darkmodescrolltotopborder: hsla(0, 0%, 100%, 0.15);
+
+  /* === Buttons === */
+  --lightmodebtnbgcolor: hsl(0, 0%, 9%);
+  --darkmodebtnbgcolor: hsl(146, 41%, 30%);
+  --lightmodebtnbghovercolor: hsl(0, 0%, 14%);
+  --darkmodebtnbghovercolor: hsl(146, 41%, 25%);
+  --lightmodebtntextcolor: hsl(0, 0%, 96%);
+  --darkmodebtntextcolor: hsl(0, 0%, 96%);
+
+  /* === Secondary Buttons === */
+  --lightmodesecondarybtntextcolor: hsl(0, 0%, 5%);
+  --darkmodesecondarybtntextcolor: hsl(0, 0%, 96%);
+  --lightmodesecondarybtntexthovercolor: hsl(0, 0%, 96%);
+  --darkmodesecondarybtntexthovercolor: hsl(0, 0%, 96%);
+  --lightmodesecondarybtnbghovercolor: hsla(0, 0%, 10%, 0.5);
+  --darkmodesecondarybtnbghovercolor: hsla(146, 41%, 30%, 0.6);
+  --lightmodesecondarybtnbordercolor: hsl(0, 0%, 5%);
+  --darkmodesecondarybtnbordercolor: hsl(0, 0%, 96%);
+  --lightmodesecondarybtnborderhovercolor: transparent;
+  --darkmodesecondarybtnborderhovercolor: transparent;
+
+  /* === Authentication Area Background === */
+  --lightmodeauthbgcolor: hsl(0, 0%, 96%);
+  --darkmodeauthbgcolor: hsl(144, 41%, 5%);
+
+  /* --- Glass Card Variables --- */
+  --lightmodeglasscardbgcolor: hsla(0, 0%, 98%, 0.6);
+  --darkmodeglasscardbgcolor: hsla(146, 15%, 15%, 0.55);
+  --lightmodeglasscardbordercolor: hsla(0, 0%, 100%, 0.4);
+  --darkmodeglasscardbordercolor: hsla(0, 0%, 100%, 0.15);
+  --lightmodeglasscardtextcolor: var(--lightmodetextcolor);
+  --darkmodeglasscardtextcolor: var(--darkmodetextcolor);
+  --lightmodeglasscardheadingcolor: var(--lightmodeheadingcolor);
+  --darkmodeglasscardheadingcolor: var(--darkmodeheadingcolor);
+
+  /* --- Glass Button Variables --- */
+  --lightmodeglassbtnbgcolor: hsla(146, 37%, 32%, 0.6);
+  --darkmodeglassbtnbgcolor: hsla(146, 100%, 72%, 0.5);
+  --lightmodeglassbtnbghovercolor: hsla(146, 37%, 32%, 0.75);
+  --darkmodeglassbtnbghovercolor: hsla(146, 100%, 72%, 0.65);
+  --lightmodeglassbtnbordercolor: hsla(0, 0%, 100%, 0.3);
+  --darkmodeglassbtnbordercolor: hsla(0, 0%, 100%, 0.2);
+  --lightmodeglassbtntextcolor: hsl(0, 0%, 98%);
+  --darkmodeglassbtntextcolor: hsl(146, 41%, 10%);
+
+  /* --- Glass Effects--- */
+  --lightmodeglassinnershadow: inset 0 1px 3px hsla(0, 0%, 0%, 0.05);
+  --darkmodeglassinnershadow: inset 0 1px 4px hsla(0, 0%, 0%, 0.2);
+  --lightmodeglassoutershadow: 0 8px 24px hsla(146, 30%, 40%, 0.1);
+  --darkmodeglassoutershadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
 body {
   font-family: var(--font-body);
   min-height: 100vh;
@@ -278,7 +280,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading) !important;
 }
 
 .dark {
