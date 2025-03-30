@@ -1,30 +1,249 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+  --font-body: "Inter", sans-serif;
+  --font-heading: "Alegreya Sans", sans-serif;
+
+  /* === Core Theme Colors === */
+  --lightmodebgcolor: hsl(146, 100%, 97%);
+  --darkmodebgcolor: hsl(146, 41%, 10%);
+  --lightmodetextcolor: hsl(0, 0%, 5%);
+  --darkmodetextcolor: hsl(0, 0%, 96%);
+  --lightmodeheadingcolor: hsl(146, 41%, 10%);
+  --darkmodeheadingcolor: hsl(146, 100%, 72%);
+
+  /* === Header / Footer === */
+  --lightmodeheaderbgcolor: hsl(0, 0%, 98%);
+  --darkmodeheaderbgcolor: hsl(144, 41%, 8%);
+  --lightmodefooterbgcolor: hsl(0, 0%, 98%);
+  --darkmodefooterbgcolor: hsl(144, 41%, 8%);
+
+  --lightmodeheadertextcolor: hsl(0, 0%, 5%);
+  --darkmodeheadertextcolor: hsl(0, 0%, 96%);
+  --lightmodeheadertexthover: hsl(146, 37%, 32%);
+  --darkmodeheadertexthover: hsl(146, 100%, 72%);
+  --lightmodeheadertextactive: hsl(146, 100%, 72%);
+  --darkmodeheadertextactive: hsl(146, 100%, 85%);
+
+  /* === Footer Text === */
+  --lightmodefootertextcolor: hsl(0, 0%, 5%);
+  --darkmodefootertextcolor: hsl(0, 0%, 96%);
+  --lightmodefootertexthover: hsl(146, 37%, 32%);
+  --darkmodefootertexthover: hsl(146, 100%, 72%);
+  --lightmodefootertextactive: hsl(146, 100%, 72%);
+  --darkmodefootertextactive: hsl(146, 100%, 85%);
+
+  /* === Scroll To Top Button === */
+  --lightmodescrolltotopbgcolor: hsla(144, 38%, 5%, 0.7);
+  --darkmodescrolltotopbgcolor: hsla(146, 100%, 97%, 0.7);
+  --lightmodescrolltotopcolor: hsla(146, 100%, 97%, 0.9);
+  --darkmodescrolltotopcolor: hsla(144, 38%, 5%, 0.9);
+  --lightmodescrolltotopborder: hsla(0, 0%, 100%, 0.3);
+  --darkmodescrolltotopborder: hsla(0, 0%, 100%, 0.15);
+
+  /* === Buttons === */
+  --lightmodebtnbgcolor: hsl(0, 0%, 9%);
+  --darkmodebtnbgcolor: hsl(146, 41%, 30%);
+  --lightmodebtnbghovercolor: hsl(0, 0%, 14%);
+  --darkmodebtnbghovercolor: hsl(146, 41%, 25%);
+  --lightmodebtntextcolor: hsl(0, 0%, 96%);
+  --darkmodebtntextcolor: hsl(0, 0%, 96%);
+
+  /* === Secondary Buttons (Outline/Subtle) === */
+  --lightmodesecondarybtntextcolor: hsl(0, 0%, 5%);
+  --darkmodesecondarybtntextcolor: hsl(0, 0%, 96%);
+  --lightmodesecondarybtntexthovercolor: hsl(0, 0%, 96%);
+  --darkmodesecondarybtntexthovercolor: hsl(0, 0%, 96%);
+  --lightmodesecondarybtnbghovercolor: hsla(0, 0%, 10%, 0.5);
+  --darkmodesecondarybtnbghovercolor: hsla(146, 41%, 30%, 0.6);
+  --lightmodesecondarybtnbordercolor: hsl(0, 0%, 5%);
+  --darkmodesecondarybtnbordercolor: hsl(0, 0%, 96%);
+  --lightmodesecondarybtnborderhovercolor: transparent;
+  --darkmodesecondarybtnborderhovercolor: transparent;
+
+  /* === Authentication Area Background === */
+  --lightmodeauthbgcolor: hsl(0, 0%, 96%);
+  --darkmodeauthbgcolor: hsl(144, 41%, 5%);
+
+  /* --- Glass Card Variables --- */
+  --lightmodeglasscardbgcolor: hsla(0, 0%, 98%, 0.6);
+  --darkmodeglasscardbgcolor: hsla(146, 15%, 15%, 0.55);
+  --lightmodeglasscardbordercolor: hsla(0, 0%, 100%, 0.4);
+  --darkmodeglasscardbordercolor: hsla(0, 0%, 100%, 0.15);
+  --lightmodeglasscardtextcolor: var(--lightmodetextcolor);
+  --darkmodeglasscardtextcolor: var(--darkmodetextcolor);
+  --lightmodeglasscardheadingcolor: var(--lightmodeheadingcolor);
+  --darkmodeglasscardheadingcolor: var(--darkmodeheadingcolor);
+
+  /* --- Glass Button Variables --- */
+  --lightmodeglassbtnbgcolor: hsla(146, 37%, 32%, 0.6);
+  --darkmodeglassbtnbgcolor: hsla(146, 100%, 72%, 0.5);
+  --lightmodeglassbtnbghovercolor: hsla(146, 37%, 32%, 0.75);
+  --darkmodeglassbtnbghovercolor: hsla(146, 100%, 72%, 0.65);
+  --lightmodeglassbtnbordercolor: hsla(0, 0%, 100%, 0.3);
+  --darkmodeglassbtnbordercolor: hsla(0, 0%, 100%, 0.2);
+  --lightmodeglassbtntextcolor: hsl(0, 0%, 98%);
+  --darkmodeglassbtntextcolor: hsl(146, 41%, 10%);
+
+  /* --- Glass Effects--- */
+  --lightmodeglassinnershadow: inset 0 1px 3px hsla(0, 0%, 0%, 0.05);
+  --darkmodeglassinnershadow: inset 0 1px 4px hsla(0, 0%, 0%, 0.2);
+  --lightmodeglassoutershadow: 0 8px 24px hsla(146, 30%, 40%, 0.1);
+  --darkmodeglassoutershadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ======================================== */
+/* === Tailwind @theme Declaration      === */
+/* ======================================== */
+@theme {
+  /* --- Fonts --- */
+  --font-system: var(
+    --font-system
+  ); 
+  --font-heading: var(
+    --font-heading);
+  --font-body: var(--font-inter);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* --- Core Theme Colors --- */
+  --color-lightmode-bg-color: var(--lightmodebgcolor);
+  --color-darkmode-bg-color: var(--darkmodebgcolor);
+  --color-lightmode-text-color: var(--lightmodetextcolor);
+  --color-darkmode-text-color: var(--darkmodetextcolor);
+  --color-lightmode-heading-color: var(--lightmodeheadingcolor);
+  --color-darkmode-heading-color: var(--darkmodeheadingcolor);
+
+  /* --- Header / Footer Backgrounds --- */
+  --color-lightmode-header-bg-color: var(--lightmodeheaderbgcolor);
+  --color-darkmode-header-bg-color: var(--darkmodeheaderbgcolor);
+  --color-lightmode-footer-bg-color: var(--lightmodefooterbgcolor);
+  --color-darkmode-footer-bg-color: var(--darkmodefooterbgcolor);
+
+  /* --- Header Text --- */
+  --color-lightmode-headertext-color: var(--lightmodeheadertextcolor);
+  --color-darkmode-headertext-color: var(--darkmodeheadertextcolor);
+  --color-lightmode-headertext-hover-color: var(--lightmodeheadertexthover);
+  --color-darkmode-headertext-hover-color: var(--darkmodeheadertexthover);
+  --color-lightmode-headertext-active-color: var(--lightmodeheadertextactive);
+  --color-darkmode-headertext-active-color: var(--darkmodeheadertextactive);
+
+  /* --- Footer Text --- */
+  --color-lightmode-footertext-color: var(--lightmodefootertextcolor);
+  --color-darkmode-footertext-color: var(--darkmodefootertextcolor);
+  --color-lightmode-footertext-hover-color: var(--lightmodefootertexthover);
+  --color-darkmode-footertext-hover-color: var(--darkmodefootertexthover);
+  --color-lightmode-footertext-active-color: var(--lightmodefootertextactive);
+  --color-darkmode-footertext-active-color: var(--darkmodefootertextactive);
+
+  /* --- Scroll To Top Button --- */
+  --color-lightmode-scrolltotop-bg-color: var(--lightmodescrolltotopbgcolor);
+  --color-darkmode-scrolltotop-bg-color: var(--darkmodescrolltotopbgcolor);
+  --color-lightmode-scrolltotop-color: var(--lightmodescrolltotopcolor);
+  --color-darkmode-scrolltotop-color: var(--darkmodescrolltotopcolor);
+  --color-lightmode-scrolltotop-border-color: var(
+    --lightmodescrolltotopborder
+  );
+  --color-darkmode-scrolltotop-border-color: var(
+    --darkmodescrolltotopborder
+  );
+
+  /* --- Standard Buttons --- */
+  --color-lightmode-btn-bg-color: var(--lightmodebtnbgcolor);
+  --color-darkmode-btn-bg-color: var(--darkmodebtnbgcolor);
+  --color-lightmode-btn-bg-hover-color: var(--lightmodebtnbghovercolor);
+  --color-darkmode-btn-bg-hover-color: var(--darkmodebtnbghovercolor);
+  --color-lightmode-btn-text-color: var(--lightmodebtntextcolor);
+  --color-darkmode-btn-text-color: var(--darkmodebtntextcolor);
+
+  /* --- Secondary Buttons --- */
+  --color-lightmode-secondary-btn-text-color: var(
+    --lightmodesecondarybtntextcolor
+  );
+  --color-darkmode-secondary-btn-text-color: var(
+    --darkmodesecondarybtntextcolor
+  );
+  --color-lightmode-secondary-btn-text-hover-color: var(
+    --lightmodesecondarybtntexthovercolor
+  );
+  --color-darkmode-secondary-btn-text-hover-color: var(
+    --darkmodesecondarybtntexthovercolor
+  );
+  --color-lightmode-secondary-btn-bg-hover-color: var(
+    --lightmodesecondarybtnbghovercolor
+  );
+  --color-darkmode-secondary-btn-bg-hover-color: var(
+    --darkmodesecondarybtnbghovercolor
+  );
+  --color-lightmode-secondary-btn-border-color: var(
+    --lightmodesecondarybtnbordercolor
+  );
+  --color-darkmode-secondary-btn-border-color: var(
+    --darkmodesecondarybtnbordercolor
+  );
+  --color-lightmode-secondary-btn-border-hover-color: var(
+    --lightmodesecondarybtnborderhovercolor
+  );
+  --color-darkmode-secondary-btn-border-hover-color: var(
+    --darkmodesecondarybtnborderhovercolor
+  );
+
+  /* --- Authentication Area --- */
+  --color-lightmode-auth-bg-color: var(--lightmodeauthbgcolor);
+  --color-darkmode-auth-bg-color: var(--darkmodeauthbgcolor);
+
+  /* --- Glass Card Variables --- */
+  --color-lightmode-glass-card-bg-color: var(--lightmodeglasscardbgcolor);
+  --color-darkmode-glass-card-bg-color: var(--darkmodeglasscardbgcolor);
+  --color-lightmode-glass-card-border-color: var(
+    --lightmodeglasscardbordercolor
+  );
+  --color-darkmode-glass-card-border-color: var(--darkmodeglasscardbordercolor);
+  --color-lightmode-glass-card-text-color: var(--lightmodeglasscardtextcolor);
+  --color-darkmode-glass-card-text-color: var(--darkmodeglasscardtextcolor);
+  --color-lightmode-glass-card-heading-color: var(
+    --lightmodeglasscardheadingcolor
+  );
+  --color-darkmode-glass-card-heading-color: var(
+    --darkmodeglasscardheadingcolor
+  );
+
+  /* --- Glass Button Variables --- */
+  --color-lightmode-glass-btn-bg-color: var(--lightmodeglassbtnbgcolor);
+  --color-darkmode-glass-btn-bg-color: var(--darkmodeglassbtnbgcolor);
+  --color-lightmode-glass-btn-bg-hover-color: var(
+    --lightmodeglassbtnbghovercolor
+  );
+  --color-darkmode-glass-btn-bg-hover-color: var(
+    --darkmodeglassbtnbghovercolor
+  );
+  --color-lightmode-glass-btn-border-color: var(--lightmodeglassbtnbordercolor);
+  --color-darkmode-glass-btn-border-color: var(--darkmodeglassbtnbordercolor);
+  --color-lightmode-glass-btn-text-color: var(--lightmodeglassbtntextcolor);
+  --color-darkmode-glass-btn-text-color: var(--darkmodeglassbtntextcolor);
+
+  /* --- NEW: Glass Shadows (Optional Mapping) --- */
+  
+  --shadow-lightmode-glass-inner: var(--lightmodeglassinnershadow);
+  --shadow-darkmode-glass-inner: var(--darkmodeglassinnershadow);
+  --shadow-lightmode-glass-outer: var(--lightmodeglassoutershadow);
+  --shadow-darkmode-glass-outer: var(--darkmodeglassoutershadow);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }
