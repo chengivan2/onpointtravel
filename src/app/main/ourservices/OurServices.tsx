@@ -23,7 +23,7 @@ export default function OurServicesSection() {
         icon: "📝",
         title: "Make Your Own Trip",
         description:
-          "Make your own adventure by telling us your exact preferences. We'll make it happen",
+          "Build your own adventure by specifying your preferences. We'll make it happen",
       },
     ];
   
