@@ -1,0 +1,16 @@
+.glassCard {
+  position: relative;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border: 1px solid hsla(141, 84%, 93%, 0.3);
+    padding: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .glassCard {
+        border: 1px solid hsla(145, 73%, 19%, 0.3);
+    }
+}
