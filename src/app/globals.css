@@ -198,8 +198,8 @@
   --darkmodeauthbgcolor: hsl(144, 41%, 5%);
 
   /* --- Glass Card Variables --- */
-  --lightmodeglasscardbgcolor: hsla(0, 0%, 98%, 0.6);
-  --darkmodeglasscardbgcolor: hsla(146, 15%, 15%, 0.55);
+  --lightmodeglasscardbgcolor: hsla(0, 0%, 98%, 0.8);
+  --darkmodeglasscardbgcolor: hsla(146, 15%, 15%, 0.8);
   --lightmodeglasscardbordercolor: hsla(0, 0%, 100%, 0.4);
   --darkmodeglasscardbordercolor: hsla(0, 0%, 100%, 0.15);
   --lightmodeglasscardtextcolor: var(--lightmodetextcolor);
