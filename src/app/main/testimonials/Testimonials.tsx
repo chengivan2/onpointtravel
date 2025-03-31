@@ -129,7 +129,7 @@ export default function WallOfLoveTestimonials() {
             {testimonialChunks.map((chunk, chunkIndex) => (
               <div
                 key={chunkIndex}
-                className="space-y-3 *:border-none *:shadow-none"
+                className="space-y-3 *:shadow-none"
               >
                 {chunk.map(({ name, role, quote, image }, index) => (
                   <Card key={index} className="bg-lightmode-header-bg-color dark:bg-green-900/90 backdrop-blur-lg border-3 border-gray-200/80 dark:border-green-700/30">
