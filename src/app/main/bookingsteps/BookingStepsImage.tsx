@@ -1,6 +1,7 @@
 "use client";
 
 import { TypeAnimation } from "react-type-animation";
+import "./bookingImage.css";
 
 export default function BookingStepsImage() {
   return (
