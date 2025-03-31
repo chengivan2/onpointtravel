@@ -132,7 +132,7 @@ export default function WallOfLoveTestimonials() {
                 className="space-y-3 *:border-none *:shadow-none"
               >
                 {chunk.map(({ name, role, quote, image }, index) => (
-                  <Card key={index} className="bg-lightmode-header-bg-color dark:bg-green-900 backdrop-blur-lg border border-gray-200/40 dark:border-green-900/30">
+                  <Card key={index} className="bg-lightmode-header-bg-color dark:bg-green-900/90 backdrop-blur-lg border border-gray-200/40 dark:border-green-700/30">
                     <CardContent className="grid grid-cols-[auto_1fr] gap-3 pt-6">
                       <Avatar className="size-9">
                         <AvatarImage
