@@ -12,7 +12,7 @@
 .glassCardTripTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: hsl(148, 98%, 20%);
+  color: light-dark(hsl(148, 98%, 20%), hsl(141, 84%, 93%));
 }
 
 .glassCardTripInfo {
@@ -86,10 +86,6 @@
 @media (prefers-color-scheme: dark) {
   .glassCard {
     border: 1px solid hsla(145, 73%, 19%, 0.3);
-  }
-
-  .glassCardTripTitle {
-    color: hsl(141, 84%, 93%);
   }
 
   .glassCardTripInfo {
