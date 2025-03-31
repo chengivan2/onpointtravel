@@ -2,7 +2,7 @@
 
 import SlotCounter from "react-slot-counter";
 
-export default function HomeStatsSection() {
+export default function Stats() {
   return (
     <section className="py-12 md:py-20">
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
