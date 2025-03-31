@@ -2,7 +2,7 @@ import BookingSteps from "./bookingsteps/BookingSteps";
 import Destinations from "./destinations/Destinations";
 import HomeHero from "./hero/Hero";
 import OurServicesSection from "./ourservices/OurServices";
-import TripCards from "./trips/TripCards";
+import HomeTopTrips from "./trips/Trips";
 
 export default function Main() {
   return (
@@ -11,7 +11,7 @@ export default function Main() {
       <OurServicesSection />
       <Destinations />
       <BookingSteps />
-      <TripCards />
+      <HomeTopTrips />
     </>
   );
 }
