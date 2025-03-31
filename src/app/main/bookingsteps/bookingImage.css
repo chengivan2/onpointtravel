@@ -9,6 +9,12 @@
   padding: 2rem;
 }
 
+.glassCardTripTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: hsl(148, 98%, 20%);
+}
+
 .glassCardTripInfo {
   color: hsl(142, 76%, 36%);
 }
@@ -21,13 +27,13 @@
   justify-content: center;
   border-radius: calc(infinity * 1px);
   font-size: 0.875rem;
-  background: rgba(220, 252, 231, 0.5);
+  background: rgba(220, 252, 231, 0.2);
   color: hsl(142, 72%, 29%);
 }
 
 .onGoingTripDotContainer {
-    position: relative;
-    margin-right: 0.5rem;
+  position: relative;
+  margin-right: 0.5rem;
 }
 
 .onGoingTripDotPulse {
@@ -67,6 +73,10 @@
 @media (prefers-color-scheme: dark) {
   .glassCard {
     border: 1px solid hsla(145, 73%, 19%, 0.3);
+  }
+
+  .glassCardTripTitle {
+    color: hsl(141, 84%, 93%);
   }
 
   .glassCardTripInfo {

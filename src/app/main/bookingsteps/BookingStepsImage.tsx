@@ -10,7 +10,7 @@ export default function BookingStepsImage() {
         <div className="space-y-6">
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="text-2xl font-bold text-green-800 dark:text-green-100">
+              <h3 className="glassCardTripTitle">
                 Trip To Paris
               </h3>
 
