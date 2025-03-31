@@ -70,6 +70,11 @@
   background-color: hsl(145, 100%, 25%);
 }
 
+.tripParticipants {
+  font-size: 0.875rem;
+  color: hsl(142, 76%, 36%);
+}
+
 @media (prefers-color-scheme: dark) {
   .glassCard {
     border: 1px solid hsla(145, 73%, 19%, 0.3);
@@ -90,5 +95,9 @@
 
   .onGoingTripDot {
     background-color: hsl(143, 81%, 71%);
+  }
+
+  .tripParticipants {
+    color: #7bf1a8;
   }
 }
