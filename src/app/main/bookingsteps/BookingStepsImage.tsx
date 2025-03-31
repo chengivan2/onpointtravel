@@ -5,7 +5,7 @@ import { TypeAnimation } from "react-type-animation";
 export default function BookingStepsImage() {
   return (
     <div className="flex-1 w-full max-w-xl">
-      <div className="relative rounded-2xl shadow-xl border-green-100/30 dark:border-green-900/30 hover:shadow-xl p-8 border">
+      <div className="relative rounded-2xl shadow-xl sm:border-green-100/30 md:border-green-100/30 lg:border-green-100/30 dark:border-green-900/30 hover:shadow-xl p-8 border">
         <div className="space-y-6">
           <div className="flex justify-between items-start">
             <div>
@@ -14,10 +14,10 @@ export default function BookingStepsImage() {
               </h3>
 
               <TypeAnimation
-                sequence={["14-29 June 2025 | Booked by Sifa Joy", 2000]}
+                sequence={["14-29 June 2025 | Booked by Sifa Joy", 900]}
                 wrapper="span"
                 speed={50}
-                repeat={Infinity}
+                repeat={100}
                 cursor={false}
                 className="text-green-600 dark:text-green-300"
               />
