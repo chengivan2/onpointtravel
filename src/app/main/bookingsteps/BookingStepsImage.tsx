@@ -15,7 +15,7 @@ export default function BookingStepsImage() {
               </h3>
 
               <TypeAnimation
-                sequence={["14-29 June 2025 | Booked by Sifa Joy", 2000]}
+                sequence={["14-29 June 2025 | Booked by Sifa Joy", 900]}
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}
