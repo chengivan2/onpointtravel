@@ -25,7 +25,7 @@ export default function BookingStepsImage() {
             </div>
             <span className="relative flex items-center bg-green-100/50 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm">
               <div className="relative mr-2">
-                <div className="onGoingTripDot absolute animate-pulse -inset-1 bg-gradient-to-r from-green-400/60 to-green-600/60 rounded-full blur-[2px]"></div>
+                <div className="onGoingTripDot -inset-1 bg-gradient-to-r from-green-400/60 to-green-600/60 blur-[2px]"></div>
                 <div className="relative w-2 h-2 rounded-full bg-green-700 dark:bg-green-300"></div>
               </div>
               Ongoing
