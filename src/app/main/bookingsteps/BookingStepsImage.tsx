@@ -20,13 +20,13 @@ export default function BookingStepsImage() {
                 speed={50}
                 repeat={Infinity}
                 cursor={false}
-                className="text-green-600 dark:text-green-300"
+                className="glassCardTripInfo"
               />
             </div>
-            <span className="relative flex items-center bg-green-100/50 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm">
+            <span className="onGoingTripStatus">
               <div className="relative mr-2">
-                <div className="onGoingTripDot -inset-1 bg-gradient-to-r from-green-400/60 to-green-600/60 blur-[2px]"></div>
-                <div className="relative w-2 h-2 rounded-full bg-green-700 dark:bg-green-300"></div>
+                <div className="onGoingTripDotPulse"></div>
+                <div className="onGoingTripDot"></div>
               </div>
               Ongoing
             </span>

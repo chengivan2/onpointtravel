@@ -9,13 +9,39 @@
   padding: 2rem;
 }
 
-.onGoingTripDot {
-  position: absolute;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  border-radius: calc(infinity * 1px);
+.glassCardTripInfo {
+  color: hsl(142, 76%, 36%);
 }
 
-@keyframes pulse {
+.onGoingTripStatus {
+  padding: 0.25rem 0.75rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(infinity * 1px);
+  font-size: 0.875rem;
+  background: rgba(220, 252, 231, 0.5);
+  color: hsl(142, 72%, 29%);
+}
+
+.onGoingTripDotPulse {
+  position: absolute;
+  animation: onGoingTripPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-radius: 50%;
+  top: -0.25rem;
+  right: -0.25rem;
+  bottom: -0.25rem;
+  left: -0.25rem;
+  background: linear-gradient(
+    to right,
+    rgba(74, 222, 128, 0.6),
+    rgba(22, 163, 74, 0.6)
+  );
+  filter: blur(2px);
+}
+
+@keyframes onGoingTripPulse {
   0%,
   100% {
     opacity: 1;
@@ -25,8 +51,29 @@
   }
 }
 
+.onGoingTripDot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: hsl(145, 100%, 25%);
+}
+
 @media (prefers-color-scheme: dark) {
   .glassCard {
     border: 1px solid hsla(145, 73%, 19%, 0.3);
+  }
+
+  .glassCardTripInfo {
+    color: hsl(142, 77%, 73%);
+  }
+
+  .onGoingTripStatus {
+    background: rgba(20, 83, 45, 0.5);
+    color: hsl(142, 77%, 73%);
+  }
+
+  .onGoingTripDot {
+    background-color: hsl(143, 81%, 71%);
   }
 }
