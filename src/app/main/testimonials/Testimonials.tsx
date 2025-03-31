@@ -113,7 +113,7 @@ const testimonialChunks = chunkArray(
 
 export default function WallOfLoveSection() {
   return (
-    <section>
+    <section className="bg-transparent min-w-full">
       <div className="py-16 md:py-32">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
@@ -125,7 +125,7 @@ export default function WallOfLoveSection() {
               customize their trips in an instant.
             </p>
           </div>
-          <div className="mt-8 grid gap-3 [--color-card:var(--color-muted)] sm:grid-cols-2 md:mt-12 lg:grid-cols-3 dark:[--color-muted:var(--color-zinc-900)]">
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
             {testimonialChunks.map((chunk, chunkIndex) => (
               <div
                 key={chunkIndex}
@@ -133,7 +133,7 @@ export default function WallOfLoveSection() {
               >
                 {chunk.map(({ name, role, quote, image }, index) => (
                   <Card key={index}>
-                    <CardContent className="grid grid-cols-[auto_1fr] gap-3 pt-6">
+                    <CardContent className="bg-lightmode-header-bg-color/80 dark:bg-green-900/200 grid grid-cols-[auto_1fr] gap-3 pt-6">
                       <Avatar className="size-9">
                         <AvatarImage
                           alt={name}
