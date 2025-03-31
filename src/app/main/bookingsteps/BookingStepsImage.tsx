@@ -37,9 +37,9 @@ export default function BookingStepsImage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <div className="flex -space-x-3">
-                <div className="w-8 h-8 rounded-full bg-cover bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1743234421/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/booking%20steps%20faces/booking-steps-face-image-1_lsbrim.jpg)] border-2 border-white dark:border-green-900"></div>
-                <div className="w-8 h-8 rounded-full bg-cover bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1743234420/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/booking%20steps%20faces/booking-steps-face-image-2_x5heop.jpg)] border-2 border-white dark:border-green-900"></div>
-                <div className="w-8 h-8 rounded-full bg-cover bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1743234420/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/booking%20steps%20faces/booking-steps-face-image-3_qhng3y.jpg)] border-2 border-white dark:border-green-900"></div>
+                <div className="tripParticipantsFaceCard bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1743234421/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/booking%20steps%20faces/booking-steps-face-image-1_lsbrim.jpg)]"></div>
+                <div className="tripParticipantsFaceCard bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1743234420/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/booking%20steps%20faces/booking-steps-face-image-2_x5heop.jpg)]"></div>
+                <div className="tripParticipantsFaceCard bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1743234420/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/booking%20steps%20faces/booking-steps-face-image-3_qhng3y.jpg)]"></div>
               </div>
               <span className="tripParticipants">
                 5 people going
