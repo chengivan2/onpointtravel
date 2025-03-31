@@ -17,7 +17,7 @@ export default function BookingStepsImage() {
               <TypeAnimation
                 sequence={["14-29 June 2025 | Booked by Sifa Joy", 900]}
                 wrapper="span"
-                speed={50}
+                speed={20}
                 repeat={100}
                 cursor={false}
                 className="text-green-600 dark:text-green-300"
