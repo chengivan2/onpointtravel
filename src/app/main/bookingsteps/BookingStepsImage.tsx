@@ -24,7 +24,7 @@ export default function BookingStepsImage() {
               />
             </div>
             <span className="onGoingTripStatus">
-              <div className="relative mr-2">
+              <div className="onGoingTripDotContainer">
                 <div className="onGoingTripDotPulse"></div>
                 <div className="onGoingTripDot"></div>
               </div>
