@@ -3,6 +3,7 @@ import Destinations from "./destinations/Destinations";
 import HomeHero from "./hero/Hero";
 import OurServicesSection from "./ourservices/OurServices";
 import Stats from "./stats/Stats";
+import WallOfLoveTestimonials from "./testimonials/Testimonials";
 import Trips from "./trips/Trips";
 
 export default function Main() {
@@ -14,6 +15,7 @@ export default function Main() {
       <BookingSteps />
       <Trips />
       <Stats />
+      <WallOfLoveTestimonials />
     </>
   );
 }

@@ -111,7 +111,7 @@ const testimonialChunks = chunkArray(
   Math.ceil(testimonials.length / 3)
 );
 
-export default function WallOfLoveSection() {
+export default function WallOfLoveTestimonials() {
   return (
     <section className="bg-transparent min-w-full">
       <div className="py-16 md:py-32">
