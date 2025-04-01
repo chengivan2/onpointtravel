@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 export default async function DestinationPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const supabase = await createClient();
 
@@ -31,7 +31,7 @@ export default async function DestinationPage({
       main_image_url,
       slug
     `)
-    .eq("slug", params.slug)
+    .eq("slug", (await params).slug)
     .single();
 
   if (error || !destination) {
