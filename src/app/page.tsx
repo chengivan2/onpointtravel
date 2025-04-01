@@ -1,13 +1,15 @@
-import HomeHeader from "./rootcomponents/header/HomeHeader";
+import Header from "./rootcomponents/header/HomeHeader";
 import Main from "./main/Main";
-import HomeFooter from "./rootcomponents/footer/Footer";
+import Footer from "./rootcomponents/footer/Footer";
+import FooterBefore from "./rootcomponents/footerbefore/FooterBefore";
 
 export default function Home() {
   return (
     <>
-      <HomeHeader />
+      <Header />
       <Main />
-      <HomeFooter />
+      <FooterBefore />
+      <Footer />
     </>
   );
 }
