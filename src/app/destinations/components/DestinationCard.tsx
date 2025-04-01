@@ -2,12 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 interface Destination {
-  id: string;
-  name: string;
-  slug: string;
-  location: string;
-  main_image_url: string;
-}
+    id: string;
+    name: string;
+    description: string;
+    location: string;
+    main_image_url: string;
+    slug: string;
+  }
 
 export default function DestinationCard({ destination }: { destination: Destination }) {
   return (

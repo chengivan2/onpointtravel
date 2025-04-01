@@ -22,13 +22,22 @@ export default async function DestinationPage({ params }: PageProps) {
   const supabase = await createClient();
 
   // Fetch destination
-  const { data: destination, error } = await supabase
-    .from("destinations")
-    .select("*")
-    .eq("slug", params.slug)
-    .single();
+  const { data: destination } = await supabase
+  .from('destinations')
+  .select(`
+    id,
+    name,
+    description,
+    location,
+    main_image_url,
+    slug,
+    created_at,
+    updated_at
+  `)
+  .eq('slug', params.slug)
+  .single();
 
-  if (error || !destination) {
+  if (!destination) {
     return notFound();
   }
 

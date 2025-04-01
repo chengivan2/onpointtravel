@@ -8,7 +8,7 @@ export default async function DestinationsPage() {
   // Fetch all destinations
   const { data: destinations } = await supabase
     .from("destinations")
-    .select("id, name, slug, location, main_image_url");
+    .select("id, name, description, location, main_image_url, slug");
 
   // Fetch featured trips (without destination relationship)
   const { data: featuredTrips } = await supabase
@@ -39,16 +39,16 @@ export default async function DestinationsPage() {
             Explore Destinations
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            // Update the DestinationCard prop passing
             {destinations?.map((destination) => (
               <DestinationCard
                 key={destination.id}
                 destination={{
                   id: destination.id,
                   name: destination.name,
-                  slug: destination.slug,
+                  description: destination.description,
                   location: destination.location,
                   main_image_url: destination.main_image_url,
+                  slug: destination.slug
                 }}
               />
             ))}
