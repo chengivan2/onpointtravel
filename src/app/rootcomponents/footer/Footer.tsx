@@ -2,7 +2,6 @@ import Link from "next/link";
 import FooterLogo from "./FooterLogo";
 import FooterMenu from "./FooterMenu";
 import Footersocials from "./FooterSocials";
-import FooterSubscribe from "./FooterSubscribe";
 
 export default function Footer() {
   return (
