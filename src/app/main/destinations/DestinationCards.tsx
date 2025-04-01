@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { createClient } from "@/utils/supabase/server";
+import Link from "next/link";
 
 interface Destination {
   id: string;
   name: string;
+  slug: string;
   description: string;
   location: string;
   main_image_url?: string | null;
@@ -14,7 +16,7 @@ export default async function DestinationCards() {
 
   const { data, error } = await supabase
     .from("destinations")
-    .select("id, name, description, location, main_image_url");
+    .select("id, name, slug, description, location, main_image_url");
 
   if (error) {
     return <div className="text-red-500 p-4">Error loading destinations</div>;
@@ -36,7 +38,7 @@ export default async function DestinationCards() {
         return (
           <div
             key={destination.id}
-            className="group relative cursor-pointer overflow-hidden rounded-xl transition-all duration-300 transform hover:scale-[1.02]"
+            className="group flex flex-col justify-items-start relative cursor-pointer overflow-hidden rounded-xl transition-all duration-300 transform hover:scale-[1.02]"
           >
             <div className="motion-preset-slide-right relative z-10 h-full flex flex-col bg-lightmode-header-bg-color/50 dark:bg-green-900/20 backdrop-blur-md border border-gray-200/40 dark:border-green-900/30 rounded-xl p-6 transition-all duration-300 hover:bg-white/40 dark:hover:bg-green-900/30 shadow-sm hover:shadow-md">
               <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
@@ -64,6 +66,16 @@ export default async function DestinationCards() {
               <p className="text-green-700 dark:text-green-300 text-base line-clamp-3">
                 {destination.description}
               </p>
+            </div>
+            <div>
+            <Link
+            href={`/destinations/${destination.slug}`}
+                    className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
+                    aria-label={`Book ${destination.name}`}
+                  >
+                    View Destination
+                  
+            </Link>
             </div>
 
             <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-emerald-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
