@@ -2,6 +2,9 @@ import { createClient } from "@/utils/supabase/server"
 import DestinationCard from "./components/DestinationCard"
 import TripCard from "./components/TripCard"
 import { Database } from '@/types/supabase'
+import Header from "../rootcomponents/header/HomeHeader"
+import FooterBefore from "../rootcomponents/footerbefore/FooterBefore"
+import Footer from "../rootcomponents/footer/Footer"
 
 export default async function DestinationsPage() {
   const supabase = await createClient()
@@ -18,8 +21,9 @@ export default async function DestinationsPage() {
     .eq("is_featured", true)
 
   return (
-    <div className="min-h-screen bg-green-50/20 dark:bg-green-900/10">
-      <main className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+    <>
+    <Header />
+      <main className="min-h-screen max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-8">
             Featured Travel Packages
@@ -57,6 +61,8 @@ export default async function DestinationsPage() {
           </div>
         </section>
       </main>
-    </div>
+      <FooterBefore />
+      <Footer />
+    </>
   )
 }
