@@ -1,19 +1,47 @@
+import Image from "next/image";
 import FooterSubscribe from "./FooterSubscribe";
 
 export default function FooterBefore() {
   return (
-    <section className="relative flex justify-center min-h-[60vh] min-w-full px-3 py-2">
-      <div className="min-w-full h-[30vh] flex flex-col-reverse md:flex-row bg-lightmode-footer-bg-color/80 dark:bg-darkmode-footer-bg-color/80 rounded-[8px] lg:rounded-[16px] backdrop-blur-md border">
+    <section className="max-w-2xl mx-auto my-8 p-6 bg-gradient-to-r from-green-50/30 to-emerald-50/30 dark:from-green-900/20 dark:to-emerald-900/20 rounded-[2rem] border border-green-100/30 dark:border-green-900/30 shadow-sm">
+      <div className="flex items-center gap-6 flex-col md:flex-row">
+        {/* Theme-specific Images */}
+        <div className="w-32 h-32 flex-shrink-0 relative rounded-2xl overflow-hidden">
+          {/* Light Mode Image */}
+          <div className="dark:hidden">
+            <Image
+              src="https://res.cloudinary.com/doqbnfais/image/upload/v1743619051/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/before%20footer%20images/newsletter%20featured%20images/1_plilsj.png"
+              alt="onPoint Newsletter featured image"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 30vw"
+            />
+          </div>
 
-        <div className="relative min-h-full md:w-[50%] flex items-center justify-center p-2">
-          <div className="relative min-w-full min-h-full rounded-[8px] bg-[url('https://res.cloudinary.com/doqbnfais/image/upload/v1743619051/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/before%20footer%20images/newsletter%20featured%20images/1_plilsj.png')] dark:bg-[url('https://res.cloudinary.com/doqbnfais/image/upload/v1743619052/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/before%20footer%20images/newsletter%20featured%20images/2_ixo865.png')] bg-cover bg-center bg-no-repeat">
+          {/* Dark Mode Image */}
+          <div className="hidden dark:block">
+            <Image
+              src="https://res.cloudinary.com/doqbnfais/image/upload/v1743619052/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/before%20footer%20images/newsletter%20featured%20images/2_ixo865.png"
+              alt="onPoint Newsletter featured image"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 30vw"
+            />
           </div>
         </div>
 
-        <div className="relative min-w-full md:w-[50%] min-h-full p-2 flex items-center justify-center">
+        {/* Content */}
+        <div className="space-y-4 text-center md:text-left">
+          <h3 className="text-2xl font-bold text-green-800 dark:text-green-100">
+            15% SALE
+          </h3>
+
+          <p className="text-green-600 dark:text-green-300">
+            Enter your email below to get a promo code
+          </p>
+
           <FooterSubscribe />
         </div>
-
       </div>
     </section>
   );
