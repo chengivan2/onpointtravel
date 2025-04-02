@@ -1,28 +1,27 @@
-// destinations/page.tsx
-import { createClient } from "@/utils/supabase/server";
-import DestinationCard from "./components/DestinationCard";
-import TripCard from "./components/TripCard";
+import { createClient } from "@/utils/supabase/server"
+import DestinationCard from "./components/DestinationCard"
+import TripCard from "./components/TripCard"
+import { Database } from '@/types/supabase'
 
 export default async function DestinationsPage() {
-  const supabase = await createClient();
+  const supabase = await createClient()
 
-  // Fetch all destinations with error handling
-  const { data: destinations, error: destinationsError } = await supabase
+  // Fetch destinations with all required fields
+  const { data: destinations } = await supabase
     .from("destinations")
-    .select("id, name, description, location, main_image_url, slug");
+    .select("id, name, description, location, main_image_url, slug, created_at, updated_at, created_by")
 
-  // Fetch featured trips with error handling
-  const { data: featuredTrips, error: tripsError } = await supabase
+  // Fetch trips with all required fields
+  const { data: featuredTrips } = await supabase
     .from("trips")
-    .select("id, name, slug, short_description, main_featured_image_url, price, rating")
-    .eq("is_featured", true);
+    .select("id, name, short_description, main_featured_image_url, price, rating, created_at, created_by, destination_id, extra_featured_images, is_featured, description, updated_at")
+    .eq("is_featured", true)
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-green-50/20 dark:bg-green-900/10">
       <main className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* Featured Trips Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">
+          <h2 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-8">
             Featured Travel Packages
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -31,16 +30,15 @@ export default async function DestinationsPage() {
                 <TripCard key={trip.id} trip={trip} />
               ))
             ) : (
-              <p className="text-gray-500 col-span-full text-center">
+              <p className="text-green-600 col-span-full text-center">
                 No featured trips available
               </p>
             )}
           </div>
         </section>
 
-        {/* All Destinations Section */}
         <section>
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">
+          <h2 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-8">
             Explore Destinations
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -48,18 +46,11 @@ export default async function DestinationsPage() {
               destinations.map((destination) => (
                 <DestinationCard
                   key={destination.id}
-                  destination={{
-                    id: destination.id,
-                    name: destination.name,
-                    description: destination.description,
-                    location: destination.location,
-                    main_image_url: destination.main_image_url,
-                    slug: destination.slug
-                  }}
+                  destination={destination}
                 />
               ))
             ) : (
-              <p className="text-gray-500 col-span-full text-center">
+              <p className="text-green-600 col-span-full text-center">
                 No destinations found
               </p>
             )}
@@ -67,5 +58,5 @@ export default async function DestinationsPage() {
         </section>
       </main>
     </div>
-  );
+  )
 }

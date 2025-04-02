@@ -4,9 +4,10 @@ import { Database } from '@/types/supabase'
 
 type Trip = Database['public']['Tables']['trips']['Row']
 
-const renderRatingStars = (rating: number) => {
-  const fullStars = Math.floor(rating)
-  const halfStar = rating % 1 >= 0.5 ? 1 : 0
+const renderRatingStars = (rating: number | null) => {
+  const normalizedRating = rating || 0
+  const fullStars = Math.floor(normalizedRating)
+  const halfStar = normalizedRating % 1 >= 0.5 ? 1 : 0
   const emptyStars = 5 - fullStars - halfStar
 
   return (
@@ -54,7 +55,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
             ${trip.price?.toFixed(2)}
           </span>
           <div className="flex items-center gap-1">
-            {renderRatingStars(trip.rating || 0)}
+            {renderRatingStars(trip.rating)}
             <span className="text-sm text-green-600/80 dark:text-green-300/80 ml-2">
               {(trip.rating || 0).toFixed(1)}
             </span>
