@@ -1,10 +1,14 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { Database } from '@/types/supabase'
+import Link from "next/link";
+import Image from "next/image";
+import { Database } from "@/types/supabase";
 
-type Destination = Database['public']['Tables']['destinations']['Row']
+type Destination = Database["public"]["Tables"]["destinations"]["Row"];
 
-export default function DestinationCard({ destination }: { destination: Destination }) {
+export default function DestinationCard({
+  destination,
+}: {
+  destination: Destination;
+}) {
   return (
     <Link
       href={`/destinations/${destination.slug}`}
@@ -20,7 +24,7 @@ export default function DestinationCard({ destination }: { destination: Destinat
         />
         <div className="absolute inset-0 bg-gradient-to-t from-green-900/40 to-transparent" />
       </div>
-      
+
       <div className="p-4 space-y-2">
         <h3 className="text-lg font-bold text-green-800 dark:text-green-100">
           {destination.name}
@@ -28,7 +32,10 @@ export default function DestinationCard({ destination }: { destination: Destinat
         <p className="text-sm text-green-600 dark:text-green-300">
           {destination.location}
         </p>
+        <p className="text-green-700 dark:text-green-200 text-base line-clamp-3">
+          {destination.description}
+        </p>
       </div>
     </Link>
-  )
+  );
 }
