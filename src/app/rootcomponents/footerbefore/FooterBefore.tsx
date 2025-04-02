@@ -33,11 +33,11 @@ export default function FooterBefore() {
         {/* Content */}
         <div className="space-y-4 text-center md:text-left">
           <h3 className="text-2xl font-bold text-green-800 dark:text-green-100">
-            15% SALE
+            Subscribe to the onPoint Bulletin
           </h3>
 
           <p className="text-green-600 dark:text-green-300">
-            Enter your email below to get a promo code
+            Enter your email below to get weekly travel tips and exclusive offers.
           </p>
 
           <FooterSubscribe />
