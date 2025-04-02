@@ -1,28 +1,31 @@
-import { createClient } from "@/utils/supabase/server"
-import DestinationCard from "./components/DestinationCard"
-import TripCard from "./components/TripCard"
-import { Database } from '@/types/supabase'
-import Header from "../rootcomponents/header/HomeHeader"
-import FooterBefore from "../rootcomponents/footerbefore/FooterBefore"
-import Footer from "../rootcomponents/footer/Footer"
+import { createClient } from "@/utils/supabase/server";
+import DestinationCard from "./components/DestinationCard";
+import TripCard from "./components/TripCard";
+import Header from "../rootcomponents/header/HomeHeader";
+import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
+import Footer from "../rootcomponents/footer/Footer";
 
 export default async function DestinationsPage() {
-  const supabase = await createClient()
+  const supabase = await createClient();
 
   // Fetch destinations with all required fields
   const { data: destinations } = await supabase
     .from("destinations")
-    .select("id, name, description, location, main_image_url, slug, created_at, updated_at, created_by")
+    .select(
+      "id, name, description, location, main_image_url, slug, created_at, updated_at, created_by"
+    );
 
   // Fetch trips with all required fields
   const { data: featuredTrips } = await supabase
     .from("trips")
-    .select("id, name, short_description, main_featured_image_url, price, rating, created_at, created_by, destination_id, extra_featured_images, is_featured, description, updated_at")
-    .eq("is_featured", true)
+    .select(
+      "id, name, short_description, main_featured_image_url, price, rating, created_at, created_by, destination_id, extra_featured_images, is_featured, description, updated_at"
+    )
+    .eq("is_featured", true);
 
   return (
     <>
-    <Header />
+      <Header />
       <main className="min-h-screen max-w-7xl mx-auto mt-16 px-4 py-12 sm:px-6 lg:px-8">
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-8">
@@ -64,5 +67,5 @@ export default async function DestinationsPage() {
       <FooterBefore />
       <Footer />
     </>
-  )
+  );
 }
