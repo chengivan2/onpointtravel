@@ -5,7 +5,7 @@ import Footersocials from "./FooterSocials";
 
 export default function Footer() {
   return (
-    <footer className="bg-lightmode-footer-bg-color pt-20 dark:bg-darkmode-footer-bg-color">
+    <footer className="bg-lightmode-footer-bg-color pt-20 dark:bg-darkmode-footer-bg-color mt-8">
       <div className="">
         <div className="px-[2rem] grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
