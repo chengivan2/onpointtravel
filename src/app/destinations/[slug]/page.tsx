@@ -1,55 +1,59 @@
-import { createClient } from '@supabase/supabase-js'
-import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import TripCard from '../components/TripCard'
-import { Database } from '@/types/supabase'
+import { createClient } from "@supabase/supabase-js";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import TripCard from "../components/TripCard";
+import { Database } from "@/types/supabase";
+import Header from "@/app/rootcomponents/header/Header";
+import FooterBefore from "@/app/rootcomponents/footerbefore/FooterBefore";
+import Footer from "@/app/rootcomponents/footer/Footer";
 
 export async function generateStaticParams() {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  );
 
   const { data: destinations } = await supabase
     .from("destinations")
-    .select("slug")
+    .select("slug");
 
-  return (destinations ?? []).map(({ slug }) => ({ slug }))
+  return (destinations ?? []).map(({ slug }) => ({ slug }));
 }
 
 export default async function DestinationPage({
   params,
 }: {
-  params: Promise <{ slug: string }>
+  params: Promise<{ slug: string }>;
 }) {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  );
 
   const { data: destination } = await supabase
     .from("destinations")
     .select("*")
     .eq("slug", (await params).slug)
-    .single()
+    .single();
 
-  if (!destination) return notFound()
+  if (!destination) return notFound();
 
   const { data: trips } = await supabase
     .from("trips")
     .select("*")
-    .eq("destination_id", destination.id)
+    .eq("destination_id", destination.id);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-      <header className="mb-12">
+    <>
+      <Header />
+      <section className="mb-12">
         <h1 className="text-4xl font-bold text-green-800 dark:text-green-100">
           {destination.name}
         </h1>
         <p className="text-xl text-green-600 dark:text-green-300 mt-2">
           {destination.location}
         </p>
-      </header>
+      </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
         <div className="lg:col-span-2">
@@ -64,7 +68,7 @@ export default async function DestinationPage({
             />
           </div>
         </div>
-        
+
         <article className="prose dark:prose-invert max-w-none text-green-700 dark:text-green-300">
           {destination.description}
         </article>
@@ -86,6 +90,8 @@ export default async function DestinationPage({
           No trips available for this destination
         </div>
       )}
-    </div>
-  )
+      <FooterBefore />
+      <Footer />
+    </>
+  );
 }

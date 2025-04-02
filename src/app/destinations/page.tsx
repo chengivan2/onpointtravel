@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import DestinationCard from "./components/DestinationCard";
 import TripCard from "./components/TripCard";
-import Header from "../rootcomponents/header/HomeHeader";
+import Header from "../rootcomponents/header/Header";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
 
