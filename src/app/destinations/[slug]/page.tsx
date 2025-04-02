@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 export default async function DestinationPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise <{ slug: string }>
 }) {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -30,7 +30,7 @@ export default async function DestinationPage({
   const { data: destination } = await supabase
     .from("destinations")
     .select("*")
-    .eq("slug", params.slug)
+    .eq("slug", (await params).slug)
     .single()
 
   if (!destination) return notFound()
