@@ -3,11 +3,11 @@ import FooterSubscribe from "./FooterSubscribe";
 
 export default function FooterBefore() {
   return (
-    <section className="relative min-w-full">
-      <div className="w-full mx-auto my-8 p-6 bg-gradient-to-r from-green-50/30 to-emerald-50/30 dark:from-green-900/20 dark:to-emerald-900/20 rounded-[1rem] border border-green-100/30 dark:border-green-900/30 shadow-sm">
-        <div className="flex items-center gap-6 flex-col md:flex-row">
+    <section className="relative min-w-full p-8">
+      <div className="w-full p-6 bg-gradient-to-r from-green-50/30 to-emerald-50/30 dark:from-green-900/20 dark:to-emerald-900/20 rounded-[1rem] border border-green-100/30 dark:border-green-900/30 shadow-sm">
+        <div className="flex items-center justify-around gap-6 flex-col md:flex-row">
           {/* Theme-specific Images */}
-          <div className="w-32 h-32 flex-shrink-0 relative rounded-2xl overflow-hidden">
+          <div className="w-100 h-100 flex-shrink-0 relative rounded-2xl overflow-hidden">
             {/* Light Mode Image */}
             <div className="dark:hidden">
               <Image
