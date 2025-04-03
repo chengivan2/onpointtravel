@@ -35,6 +35,8 @@ export default async function TripPage({
     .eq("slug", (await params).slug)
     .single();
 
+  const mainImage = await trip?.main_featured_image_url;
+
   if (!trip) return notFound();
 
   const getRatingWord = (rating: number) => {
@@ -86,8 +88,9 @@ export default async function TripPage({
         </div>
 
         {/* Image Gallery */}
-        <div className={`relative min-w-full min-h-[100vh] bg-cover bg-center bg-[url(${trip.main_featured_image_url})] rounded-xl overflow-hidden mb-12`}>
-        </div>
+        <div
+          className={`relative min-w-full min-h-[100vh] bg-cover bg-center bg-[url(${mainImage})] rounded-xl overflow-hidden mb-12`}
+        ></div>
 
         {/* Overview Section */}
         <div className="mb-12">
