@@ -5,7 +5,7 @@ import React from "react";
 
 export default function FooterSubscribe() {
   return (
-    <form className="w-[50%] mt-12">
+    <form className="min-w-full mt-12">
       <div className="space-y-2.5">
         <Label className="block text-sm font-medium" htmlFor="email">
           Subscribe to our newsletter
