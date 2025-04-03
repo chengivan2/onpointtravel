@@ -1,11 +1,14 @@
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { RatingDisplay } from "../components/RatingDisplay";
 import { Database } from "@/types/supabase";
 
 export async function generateStaticParams() {
-  const supabase = await createClient();
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
   const { data: trips } = await supabase.from("trips").select("slug");
 
   return (trips ?? []).map((trip) => ({
@@ -18,7 +21,10 @@ export default async function TripPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const supabase = await createClient();
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
   const { data: trip } = await supabase
     .from("trips")
