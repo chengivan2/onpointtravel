@@ -1,4 +1,4 @@
-// app/trips/page.tsx
+
 import { createClient } from "@/utils/supabase/server";
 import { SearchBar } from "./components/SearchBar";
 import TripCard from "./components/TripCard";
@@ -7,10 +7,10 @@ import { Database } from "@/types/supabase";
 export default async function TripsPage({
   searchParams,
 }: {
-  searchParams?: { query?: string };
+  searchParams?: Promise<{ query?: string }>;
 }) {
   const supabase = await createClient();
-  const searchTerm = searchParams?.query || "";
+  const searchTerm = (await searchParams)?.query || "";
 
   let query = supabase
     .from("trips")
