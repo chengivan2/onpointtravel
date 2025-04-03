@@ -35,7 +35,7 @@ export default async function TripPage({
     .eq("slug", (await params).slug)
     .single();
 
-  const mainImage = (await trip).main_featured_image_url;
+  const mainImage = (await trip)?.main_featured_image_url;
 
   if (!trip) return notFound();
 
@@ -89,7 +89,7 @@ export default async function TripPage({
 
         {/* Image Gallery */}
         <div
-          className={`relative min-w-full min-h-[100vh] bg-cover bg-center bg-[url('${mainImage}')] rounded-xl overflow-hidden mb-12`}
+          className={`relative min-w-full min-h-[100vh] bg-cover bg-center bg-[url(\'${mainImage}\')] rounded-xl overflow-hidden mb-12`}
         ></div>
 
         {/* Overview Section */}
