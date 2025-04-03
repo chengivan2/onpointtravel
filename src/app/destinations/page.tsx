@@ -12,14 +12,14 @@ export default async function DestinationsPage() {
   const { data: destinations } = await supabase
     .from("destinations")
     .select(
-      "id, name, description, location, main_image_url, slug, created_at, updated_at, created_by"
+      "*"
     );
 
   // Fetch trips with all required fields
   const { data: featuredTrips } = await supabase
     .from("trips")
     .select(
-      "id, name, short_description, main_featured_image_url, price, rating, created_at, created_by, destination_id, extra_featured_images, is_featured, description, updated_at"
+      "*"
     )
     .eq("is_featured", true);
 
