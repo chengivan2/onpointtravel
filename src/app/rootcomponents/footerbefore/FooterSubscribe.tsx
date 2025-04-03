@@ -19,7 +19,7 @@ export default function FooterSubscribe() {
           name="email"
         />
       </div>
-      <Button type="submit" className="mt-3 bg-lightmode-btn-bg-color dark:bg-green-900 w-[50%] hover:bg-lightmode-btn-bg-color/80 dark:hover:bg-green-800 text-lightmode-btn-text-color rounded-lg py-2 px-4 transition-colors duration-300">
+      <Button type="submit" className="cursor-pointer mt-3 bg-lightmode-btn-bg-color dark:bg-green-900 w-[50%] hover:bg-lightmode-btn-bg-color/80 dark:hover:bg-green-800 text-lightmode-btn-text-color rounded-lg py-2 px-4 transition-colors duration-300">
         <span>Subscribe</span>
       </Button>
     </form>
