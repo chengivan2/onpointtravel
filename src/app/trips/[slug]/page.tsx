@@ -6,6 +6,8 @@ import { Database } from "@/types/supabase";
 import Header from "@/app/rootcomponents/header/Header";
 import FooterBefore from "@/app/rootcomponents/footerbefore/FooterBefore";
 import Footer from "@/app/rootcomponents/footer/Footer";
+import { FaLocationPin } from "react-icons/fa6";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   const supabase = createClient(
@@ -17,6 +19,21 @@ export async function generateStaticParams() {
   return (trips ?? []).map((trip) => ({
     slug: trip.slug,
   }));
+}
+
+interface Trip {
+  id: string;
+  name: string;
+  short_description: string;
+  description: string;
+  main_featured_image_url: string;
+  price: number;
+  destination: {
+    name: string;
+  };
+  rating: number;
+  slug: string;
+  created_at: string;
 }
 
 export default async function TripPage({
@@ -31,9 +48,21 @@ export default async function TripPage({
 
   const { data: trip } = await supabase
     .from("trips")
-    .select("*")
+    .select(
+      `
+      id,
+      name,
+      short_description,
+      main_featured_image_url,
+      price,
+      rating,
+      destination:destinations!inner(name),
+      slug
+    `
+    )
     .eq("slug", (await params).slug)
-    .single();
+    .single()
+    .returns<Trip>();
 
   const mainImage = (await trip)?.main_featured_image_url;
 
@@ -50,48 +79,63 @@ export default async function TripPage({
     <>
       <Header />
       <main className="max-w-7xl mt-16 mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold text-green-800 dark:text-green-100 mb-4">
-            {trip.name}
-          </h1>
-          <div className="flex items-center gap-4 mb-6">
-            <span className="text-green-600 dark:text-green-300">
-              {trip.location}
-            </span>
-            <RatingDisplay rating={trip.rating} />
-            <span className="text-green-600 dark:text-green-300">
-              ({trip.review_count} Reviews)
-            </span>
-          </div>
+        <div
+          style={{ backgroundImage: `url(${mainImage})` }}
+          className="flex justify-center items-center lg:items-start p-[1rem] md:p-[2rem] lg:p-[2.5rem] relative min-w-full min-h-[100vh] bg-cover bg-center rounded-xl overflow-hidden mb-12"
+        >
+          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="relative flex flex-col p-2 bg-lightmode-header-bg-color dark:bg-darkmode-header-bg-color rounded-lg z-10">
+            <div className="p-1 min-w-full">
+              <h1 className="text-4xl font-bold text-green-800 dark:text-green-100 mb-4">
+                {trip.name}
+              </h1>
+            </div>
 
-          <div className="bg-white/60 dark:bg-green-900/20 p-6 rounded-xl border border-green-100/30 dark:border-green-900/30">
-            <div className="flex justify-between items-center">
-              <div>
-                <span className="text-3xl font-bold text-green-800 dark:text-green-100">
-                  ${trip.price}
-                </span>
-                <span className="text-green-600 dark:text-green-300 ml-2">
-                  / person
-                </span>
-              </div>
-              <div className="space-x-4">
-                <button className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors">
-                  Buy Now
-                </button>
-                <button className="border-2 border-green-600 text-green-600 dark:text-green-300 px-8 py-3 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/30 transition-colors">
-                  Add to Cart
-                </button>
-              </div>
+            <div className="p-1 min-w-full">
+              <FaLocationPin
+                size={15}
+                className="text-green-600 dark:text-green-300"
+              />
+              <span>
+                <h3 className="text-sm font-bold text-green-800 dark:text-green-100 mb-4">
+                  {trip.destination.name}
+                </h3>
+              </span>
+            </div>
+
+            <div className="p-1 min-w-full">
+              <p className="text-green-700/80 dark:text-green-200/80 text-sm mb-4">
+                {trip.description}
+              </p>
+            </div>
+
+            <div className="p-1 min-w-full flex items-center gap-2 mb-3">
+              <RatingDisplay rating={trip.rating} />
+              <span className="text-green-600 dark:text-green-300">
+                {getRatingWord(trip.rating)}
+              </span>
+            </div>
+
+            <div className="p-1 min-w-full flex items-center gap-2 mb-3">
+              <span className="text-3xl font-bold text-green-800 dark:text-green-100">
+                ${trip.price}
+              </span>
+              <span className="text-green-600 dark:text-green-300 ml-2">
+                /person/night
+              </span>
+            </div>
+
+            <div className="p-1 min-w-full flex items-center gap-2 mb-3">
+              <Link
+                href={`/trips/${trip.slug}`}
+                className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
+                aria-label={`Book ${trip.name} now`}
+              >
+                Book Now
+              </Link>
             </div>
           </div>
         </div>
-
-        {/* Image Gallery */}
-        <div
-          style={{ backgroundImage: `url(${mainImage})` }}
-          className="relative min-w-full min-h-[100vh] bg-cover bg-center rounded-xl overflow-hidden mb-12"
-        ></div>
 
         {/* Overview Section */}
         <div className="mb-12">
@@ -107,7 +151,7 @@ export default async function TripPage({
         </div>
 
         {/* Facilities Section */}
-        <div className="mb-12">
+        {/* <div className="mb-12">
           <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
             Our Best Facilities
           </h2>
@@ -123,7 +167,7 @@ export default async function TripPage({
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Location Section */}
         <div className="mb-12">
@@ -132,7 +176,7 @@ export default async function TripPage({
           </h2>
           <div className="aspect-video rounded-xl overflow-hidden">
             <iframe
-              src={`https://maps.google.com/maps?q=${trip.location}&output=embed`}
+              src={`https://maps.google.com/maps?q=${trip.destination.name}&output=embed`}
               className="w-full h-full"
               loading="lazy"
             />
