@@ -4,10 +4,10 @@ import FooterSubscribe from "./FooterSubscribe";
 export default function FooterBefore() {
   return (
     <section className="relative min-w-full p-12">
-      <div className="w-full p-6 bg-gradient-to-r bg-green-200/50 dark:bg-green-900/50 rounded-[1rem] border border-green-100/30 dark:border-green-900/30 shadow-sm">
-        <div className="flex items-center justify-around gap-6 flex-col-reverse md:flex-row">
+      <div className="min-w-full p-6 bg-gradient-to-r bg-green-200/50 dark:bg-green-900/50 rounded-[1rem] border border-green-100/30 dark:border-green-900/30 shadow-sm">
+        <div className="flex items-center justify-around gap-6 flex-col-reverse lg:flex-row">
           {/* Theme-specific Images */}
-          <div className="flex min-w-full min-h-100 md:w-70 md:h-70 lg:w-100 lg:h-100 flex-shrink-0 relative rounded-2xl overflow-hidden">
+          <div className="flex min-w-full min-h-full md:w-70 md:h-70 lg:w-100 lg:h-100 flex-shrink-0 relative rounded-2xl overflow-hidden">
           <div className="absolute inset-0 bg-darkmode-bg-color opacity-30 dark:opacity-40 rounded-[2xl]"></div>
             {/* Light Mode Image */}
             <div className="dark:hidden">
