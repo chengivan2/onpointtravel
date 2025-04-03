@@ -47,7 +47,7 @@ export default async function TripPage({
   return (
     <>
       <Header />
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <main className="max-w-7xl mt-16 mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-green-800 dark:text-green-100 mb-4">
@@ -142,7 +142,7 @@ export default async function TripPage({
             />
           </div>
         </div>
-      </div>
+      </main>
       <FooterBefore />
       <Footer />
     </>

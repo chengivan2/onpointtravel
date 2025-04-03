@@ -27,7 +27,7 @@ export default async function TripsPage({
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-green-50/20 dark:bg-green-900/10">
+      <main className="mt-16 min-h-screen bg-green-50/20 dark:bg-green-900/10">
         <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
           <div className="mb-12">
             <SearchBar placeholder="Search trips..." />
@@ -39,7 +39,7 @@ export default async function TripsPage({
             ))}
           </section>
         </div>
-      </div>
+      </main>
       <FooterBefore />
       <Footer />
     </>
