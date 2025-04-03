@@ -86,7 +86,7 @@ export default async function TripPage({
           className="flex justify-center items-start lg:items-start p-[1rem] md:p-[2rem] lg:p-[2.5rem] relative min-w-full min-h-[100vh] bg-cover bg-center rounded-xl overflow-hidden mb-12"
         >
           <div className="absolute inset-0 bg-black/30"></div>
-          <div className="relative flex flex-col p-2 bg-lightmode-header-bg-color dark:bg-darkmode-header-bg-color rounded-lg z-10">
+          <div className="relative flex flex-col p-2 lg:w-[50%] bg-lightmode-header-bg-color dark:bg-darkmode-header-bg-color rounded-lg z-10">
             <div className="p-1 min-w-full">
               <h1 className="text-4xl font-bold text-green-800 dark:text-green-100 mb-4">
                 {trip.name}
