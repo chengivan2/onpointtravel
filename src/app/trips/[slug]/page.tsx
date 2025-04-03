@@ -35,7 +35,7 @@ export default async function TripPage({
     .eq("slug", (await params).slug)
     .single();
 
-  const mainImage = await trip?.main_featured_image_url;
+  const mainImage = (await trip).main_featured_image_url;
 
   if (!trip) return notFound();
 
