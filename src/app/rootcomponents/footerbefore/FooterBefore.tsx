@@ -7,7 +7,7 @@ export default function FooterBefore() {
       <div className="w-full p-6 bg-gradient-to-r bg-green-200/50 dark:bg-green-900/50 rounded-[1rem] border border-green-100/30 dark:border-green-900/30 shadow-sm">
         <div className="flex items-center justify-around gap-6 flex-col md:flex-row">
           {/* Theme-specific Images */}
-          <div className="hidden md:flex w-100 h-100 flex-shrink-0 relative rounded-2xl overflow-hidden">
+          <div className="flex min-w-full lg:w-[50%] h-100 flex-shrink-0 relative rounded-2xl overflow-hidden">
           <div className="absolute inset-0 bg-darkmode-bg-color opacity-30 dark:opacity-40 rounded-[2xl]"></div>
             {/* Light Mode Image */}
             <div className="dark:hidden">
@@ -33,7 +33,7 @@ export default function FooterBefore() {
           </div>
 
           {/* Content */}
-          <div className="space-y-4 text-center md:text-left">
+          <div className="min-w-full lg:w-[50%] space-y-4 text-center md:text-left">
             <h3 className="text-2xl font-bold text-green-800 dark:text-green-100">
               Subscribe to the onPoint Bulletin
             </h3>
