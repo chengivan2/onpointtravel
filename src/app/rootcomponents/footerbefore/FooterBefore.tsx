@@ -8,6 +8,7 @@ export default function FooterBefore() {
         <div className="flex items-center justify-around gap-6 flex-col md:flex-row">
           {/* Theme-specific Images */}
           <div className="w-100 h-100 flex-shrink-0 relative rounded-2xl overflow-hidden">
+          <div className="absolute inset-0 bg-darkmode-bg-color opacity-30 dark:opacity-40 rounded-[2xl]"></div>
             {/* Light Mode Image */}
             <div className="dark:hidden">
               <Image
