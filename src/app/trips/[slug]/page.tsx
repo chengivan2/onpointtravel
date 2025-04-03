@@ -6,7 +6,8 @@ import { Database } from "@/types/supabase";
 import Header from "@/app/rootcomponents/header/Header";
 import FooterBefore from "@/app/rootcomponents/footerbefore/FooterBefore";
 import Footer from "@/app/rootcomponents/footer/Footer";
-import { FaLocationPin } from "react-icons/fa6";
+import { ImLocation2 } from "react-icons/im";
+
 import Link from "next/link";
 
 export async function generateStaticParams() {
@@ -53,6 +54,7 @@ export default async function TripPage({
       id,
       name,
       short_description,
+      description,
       main_featured_image_url,
       price,
       rating,
@@ -78,7 +80,7 @@ export default async function TripPage({
   return (
     <>
       <Header />
-      <main className="max-w-7xl mt-16 mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <main className="mt-16 px-4 py-12 sm:px-6 lg:px-8">
         <div
           style={{ backgroundImage: `url(${mainImage})` }}
           className="flex justify-center items-center lg:items-start p-[1rem] md:p-[2rem] lg:p-[2.5rem] relative min-w-full min-h-[100vh] bg-cover bg-center rounded-xl overflow-hidden mb-12"
@@ -91,8 +93,8 @@ export default async function TripPage({
               </h1>
             </div>
 
-            <div className="p-1 min-w-full">
-              <FaLocationPin
+            <div className="flex gap-[0.5rem] p-1 min-w-full">
+              <ImLocation2
                 size={15}
                 className="text-green-600 dark:text-green-300"
               />
