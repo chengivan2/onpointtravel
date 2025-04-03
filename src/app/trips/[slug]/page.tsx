@@ -89,7 +89,7 @@ export default async function TripPage({
 
         {/* Image Gallery */}
         <div
-          className={`relative min-w-full min-h-[100vh] bg-cover bg-center bg-[url(${mainImage})] rounded-xl overflow-hidden mb-12`}
+          className={`relative min-w-full min-h-[100vh] bg-cover bg-center bg-[url(\`${mainImage}\`)] rounded-xl overflow-hidden mb-12`}
         ></div>
 
         {/* Overview Section */}
