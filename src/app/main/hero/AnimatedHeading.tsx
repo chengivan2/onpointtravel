@@ -12,7 +12,7 @@ export default function AnimatedHeading({
   restOfHeading 
 }: AnimatedHeadingProps) {
   return (
-    <div className="motion-opacity-in-0 motion-translate-y-in-100 motion-blur-in-md flex items-end justify-center text-center py-1">
+    <div className="flex items-end justify-center text-center py-1">
       <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#F8F8F8] dark:-[#F5F5F5]">
         <span className="inline-block">
           <TypeAnimation

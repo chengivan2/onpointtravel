@@ -40,7 +40,7 @@ export default async function DestinationCards() {
             key={destination.id}
             className="group flex flex-col justify-items-start relative cursor-pointer overflow-hidden rounded-xl transition-all duration-300 transform hover:scale-[1.02]"
           >
-            <div className="motion-preset-slide-right relative z-10 h-full flex flex-col bg-lightmode-header-bg-color/50 dark:bg-green-900/20 backdrop-blur-md border border-gray-200/40 dark:border-green-900/30 rounded-xl p-6 transition-all duration-300 hover:bg-white/40 dark:hover:bg-green-900/30 shadow-sm hover:shadow-md">
+            <div className="relative z-10 h-full flex flex-col bg-lightmode-header-bg-color/50 dark:bg-green-900/20 backdrop-blur-md border border-gray-200/40 dark:border-green-900/30 rounded-xl p-6 transition-all duration-300 hover:bg-white/40 dark:hover:bg-green-900/30 shadow-sm hover:shadow-md">
               <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
                 {imageUrl ? (
                   <Image
@@ -66,7 +66,7 @@ export default async function DestinationCards() {
               <p className="text-green-700 dark:text-green-300 text-base line-clamp-3">
                 {destination.description}
               </p>
-              <div>
+              <div className="mt-1 mb-1">
                 <Link
                   href={`/destinations/${destination.slug}`}
                   className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
