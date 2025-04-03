@@ -33,7 +33,7 @@ export default function FooterBefore() {
           </div>
 
           {/* Content */}
-          <div className="min-w-full lg:w-[50%] space-y-4 text-center md:text-left">
+          <div className="relative min-w-full lg:w-[50%] space-y-4 text-center md:text-left">
             <h3 className="text-2xl font-bold text-green-800 dark:text-green-100">
               Subscribe to the onPoint Bulletin
             </h3>
