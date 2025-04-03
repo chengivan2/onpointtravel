@@ -83,7 +83,7 @@ export default async function TripPage({
       <main className="mt-16 px-4 py-12 sm:px-6 lg:px-8">
         <div
           style={{ backgroundImage: `url(${mainImage})` }}
-          className="flex justify-center lg:justify-start items-start lg:items-start p-[1rem] md:p-[2rem] lg:p-[2.5rem] relative min-w-full min-h-[100vh] bg-cover bg-center rounded-xl overflow-hidden mb-12"
+          className="flex justify-center lg:justify-start items-start lg:items-start p-[2rem] md:p-[3rem] lg:p-[4rem] relative min-w-full min-h-[100vh] bg-cover bg-center rounded-xl overflow-hidden mb-12"
         >
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative flex flex-col p-2 lg:w-[50%] bg-lightmode-header-bg-color dark:bg-darkmode-header-bg-color rounded-lg z-10">
