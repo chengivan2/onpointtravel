@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Trip {
   id: string;
@@ -11,6 +12,7 @@ interface Trip {
   destination: {
     name: string;
   };
+  slug: string;
   created_at: string;
 }
 
@@ -26,7 +28,8 @@ export default async function TripCards() {
       short_description,
       main_featured_image_url,
       price,
-      destination:destinations!inner(name)
+      destination:destinations!inner(name),
+      slug
     `
     )
     .order("created_at", { ascending: false })
@@ -116,12 +119,14 @@ export default async function TripCards() {
                       per person
                     </span>
                   </div>
-                  <button
-                    className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
-                    aria-label={`Book ${trip.name}`}
-                  >
-                    Book Now
-                  </button>
+                  <Link href={`/trips/${trip.slug}`}>
+                    <button
+                      className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
+                      aria-label={`Book ${trip.name}`}
+                    >
+                      Book Now
+                    </button>
+                  </Link>
                 </div>
               </div>
 

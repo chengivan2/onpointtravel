@@ -86,15 +86,7 @@ export default async function TripPage({
         </div>
 
         {/* Image Gallery */}
-        <div className="relative aspect-video rounded-xl overflow-hidden mb-12">
-          <Image
-            src={trip.main_featured_image_url}
-            alt={trip.name}
-            fill
-            className="object-cover"
-            priority
-            sizes="(max-width: 768px) 100vw, 100vw"
-          />
+        <div className={`relative min-w-full min-h-[100vh] bg-[url(${trip.main_featured_image_url})] rounded-xl overflow-hidden mb-12`}>
         </div>
 
         {/* Overview Section */}

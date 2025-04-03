@@ -1,3 +1,4 @@
+import Link from "next/link";
 import TripCards from "./TripCards";
 
 export default function Trips() {
@@ -10,6 +11,17 @@ export default function Trips() {
       </div>
 
       <TripCards />
+
+      <div className="relative min-w-full flex justify-center items-center p-4">
+        <Link href="/trips">
+          <button
+            className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
+            aria-label="See all trips"
+          >
+            View All Trips
+          </button>
+        </Link>
+      </div>
     </section>
   );
 }
