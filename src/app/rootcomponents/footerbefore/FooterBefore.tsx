@@ -6,10 +6,9 @@ export default function FooterBefore() {
     <section className="relative min-w-full p-12">
       <div className="min-w-full p-6 bg-gradient-to-r bg-green-200/50 dark:bg-green-900/50 rounded-[1rem] border border-green-100/30 dark:border-green-900/30 shadow-sm">
         <div className="flex items-center justify-around gap-6 flex-col-reverse md:flex-row">
-          {/* Theme-specific Images */}
           <div className="flex w-70 h-70 lg:w-100 lg:h-100 flex-shrink-0 relative rounded-2xl overflow-hidden">
             <div className="absolute inset-0 bg-darkmode-bg-color opacity-30 dark:opacity-40 rounded-[2xl]"></div>
-            {/* Light Mode Image */}
+
             <div className="dark:hidden">
               <Image
                 src="https://res.cloudinary.com/doqbnfais/image/upload/v1743619051/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/before%20footer%20images/newsletter%20featured%20images/1_plilsj.png"
@@ -20,7 +19,6 @@ export default function FooterBefore() {
               />
             </div>
 
-            {/* Dark Mode Image */}
             <div className="hidden dark:block">
               <Image
                 src="https://res.cloudinary.com/doqbnfais/image/upload/v1743619052/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/before%20footer%20images/newsletter%20featured%20images/2_ixo865.png"
@@ -32,7 +30,6 @@ export default function FooterBefore() {
             </div>
           </div>
 
-          {/* Content */}
           <div className="relative flex flex-col space-y-4 text-center md:text-left">
             <h3 className="text-2xl font-bold text-green-800 dark:text-green-100">
               Subscribe to the onPoint Bulletin
