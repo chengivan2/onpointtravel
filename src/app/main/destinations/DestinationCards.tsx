@@ -66,7 +66,7 @@ export default async function DestinationCards() {
               <p className="text-green-700 dark:text-green-300 text-base line-clamp-3">
                 {destination.description}
               </p>
-              <div className="relative mt-1 mb-1 py-2">
+              <div className="relative py-[1.5rem]">
                 <Link
                   href={`/destinations/${destination.slug}`}
                   className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
