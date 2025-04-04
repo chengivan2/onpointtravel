@@ -131,8 +131,107 @@ export function BookingForm({ trip }: { trip: Database['public']['Tables']['trip
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" onChange={handleSubmit(calculateTotal)}>
-        {/* ... rest of the form remains the same ... */}
+<form onSubmit={handleSubmit(onSubmit)} className="space-y-6" onChange={handleSubmit(calculateTotal)}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Dates */}
+          <div>
+            <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
+              Travel Dates
+            </label>
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                type="date"
+                {...register('startDate', { valueAsDate: true })}
+                className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+              />
+              <input
+                type="date"
+                {...register('endDate', { valueAsDate: true })}
+                className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+              />
+            </div>
+            {errors.startDate && (
+              <p className="text-red-500 text-sm mt-1">{errors.startDate.message}</p>
+            )}
+            {errors.endDate && (
+              <p className="text-red-500 text-sm mt-1">{errors.endDate.message}</p>
+            )}
+          </div>
+
+          {/* People */}
+          <div>
+            <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
+              Number of People
+            </label>
+            <input
+              type="number"
+              {...register('people', { valueAsNumber: true })}
+              className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+              min="1"
+            />
+            {errors.people && (
+              <p className="text-red-500 text-sm mt-1">{errors.people.message}</p>
+            )}
+          </div>
+
+          {/* Addons */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
+              Additional Services
+            </label>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {['vehicle', 'accommodation', 'camera'].map((addon) => (
+                <label
+                  key={addon}
+                  className="flex items-center space-x-2 p-4 bg-white/60 dark:bg-green-900/20 rounded-lg border border-green-200/30 dark:border-green-700/30"
+                >
+                  <input
+                    type="checkbox"
+                    value={addon}
+                    {...register('addons')}
+                    className="rounded border-green-300 text-green-600 focus:ring-green-500 dark:bg-green-900/20"
+                  />
+                  <span className="text-green-700 dark:text-green-300 capitalize">
+                    {addon}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Special Requests */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
+              Special Requests
+            </label>
+            <textarea
+              {...register('specialRequests')}
+              className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+              rows={3}
+            />
+          </div>
+        </div>
+
+        {/* Total Price */}
+        <div className="border-t border-green-200 dark:border-green-700 pt-6">
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-medium text-green-800 dark:text-green-100">
+              Total Price
+            </span>
+            <span className="text-2xl font-bold text-green-700 dark:text-green-300">
+              ${(totalPrice ?? 0).toFixed(2)}
+            </span>
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg transition-colors duration-200 font-medium disabled:opacity-50"
+        >
+          {isSubmitting ? 'Processing...' : 'Book Now'}
+        </button>
       </form>
     </section>
   )
