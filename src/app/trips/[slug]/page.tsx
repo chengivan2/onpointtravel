@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import { Gallery } from "./components/TripGallery";
 import { RatingDisplay } from "../components/RatingDisplay";
 import { Database } from "@/types/supabase";
 import Header from "@/app/rootcomponents/header/Header";
@@ -28,6 +28,7 @@ interface Trip {
   short_description: string;
   description: string;
   main_featured_image_url: string;
+  extra_featured_images: string[];
   price: number;
   destination: {
     name: string;
@@ -56,6 +57,7 @@ export default async function TripPage({
       short_description,
       description,
       main_featured_image_url,
+      extra_featured_images,
       price,
       rating,
       destination:destinations!inner(name),
@@ -81,12 +83,12 @@ export default async function TripPage({
     <>
       <Header />
       <main className="mt-16 px-4 py-12 sm:px-6 lg:px-8">
-        <div
+        <section
           style={{ backgroundImage: `url(${mainImage})` }}
           className="flex justify-center lg:justify-start items-start lg:items-start p-[2rem] md:p-[3rem] lg:p-[4rem] relative min-w-full min-h-[100vh] bg-cover bg-center rounded-xl overflow-hidden mb-12"
         >
           <div className="absolute inset-0 bg-black/30"></div>
-          <div className="relative flex flex-col p-2 lg:w-[50%] bg-lightmode-header-bg-color dark:bg-darkmode-header-bg-color rounded-lg z-10">
+          <div className="relative flex flex-col p-2 md:p-3 lg:p-4 lg:w-[50%] bg-lightmode-header-bg-color dark:bg-darkmode-header-bg-color rounded-lg z-10">
             <div className="p-1 min-w-full">
               <h1 className="text-4xl font-bold text-green-800 dark:text-green-100 mb-4">
                 {trip.name}
@@ -107,7 +109,7 @@ export default async function TripPage({
 
             <div className="p-1 min-w-full">
               <p className="text-green-700/80 dark:text-green-200/80 text-sm mb-4">
-                {trip.description}
+                {trip.short_description}
               </p>
             </div>
 
@@ -137,20 +139,24 @@ export default async function TripPage({
               </Link>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Overview Section */}
-        <div className="mb-12">
+        <section className="mb-12">
           <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
             Overview
           </h2>
           <p className="text-green-700 dark:text-green-300 leading-relaxed">
             {trip.description}
-            <button className="text-green-600 dark:text-green-300 ml-2 hover:underline">
-              Read More
-            </button>
           </p>
-        </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
+            Trip Gallery
+          </h2>
+          <Gallery images={trip.extra_featured_images} />
+        </section>
 
         {/* Facilities Section */}
         {/* <div className="mb-12">
