@@ -151,7 +151,7 @@ export default async function TripPage({
           </p>
         </section>
 
-        <section className="mb-12">
+        <section className="mb-12 min-h[60vh]">
           <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
             Trip Gallery
           </h2>
