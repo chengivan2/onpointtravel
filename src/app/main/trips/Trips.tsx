@@ -15,7 +15,7 @@ export default function Trips() {
       <div className="relative min-w-full flex justify-center items-center p-4">
         <Link href="/trips">
           <button
-            className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
+            className="cursor-pointer bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
             aria-label="See all trips"
           >
             View All Trips
