@@ -7,8 +7,8 @@ import Header from "@/app/rootcomponents/header/Header";
 import FooterBefore from "@/app/rootcomponents/footerbefore/FooterBefore";
 import Footer from "@/app/rootcomponents/footer/Footer";
 import { ImLocation2 } from "react-icons/im";
-
 import Link from "next/link";
+import { BookingForm } from "./components/BookingForm";
 
 export async function generateStaticParams() {
   const supabase = createClient(
@@ -36,6 +36,10 @@ interface Trip {
   rating: number;
   slug: string;
   created_at: string;
+  created_by: string | null;
+  destination_id: string;
+  is_featured: boolean | null;
+  updated_at: string;
 }
 
 export default async function TripPage({
@@ -178,7 +182,7 @@ export default async function TripPage({
         </div> */}
 
         {/* Location Section */}
-        <div className="mb-12">
+        <section className="mb-12">
           <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
             The Location You're Going To
           </h2>
@@ -189,7 +193,11 @@ export default async function TripPage({
               loading="lazy"
             />
           </div>
-        </div>
+        </section>
+
+        <section className="mb-12">
+          <BookingForm  trip={trip} />
+        </section>
       </main>
       <FooterBefore />
       <Footer />
