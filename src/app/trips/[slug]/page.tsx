@@ -119,9 +119,6 @@ export default async function TripPage({
 
             <div className="p-1 min-w-full flex items-center gap-2 mb-3">
               <RatingDisplay rating={trip.rating} />
-              <span className="text-green-600 dark:text-green-300">
-                {getRatingWord(trip.rating)}
-              </span>
             </div>
 
             <div className="p-1 min-w-full flex items-center gap-2 mb-3">
@@ -196,7 +193,7 @@ export default async function TripPage({
         </section>
 
         <section className="mb-12">
-          <BookingForm  trip={trip} />
+          <BookingForm trip={trip} />
         </section>
       </main>
       <FooterBefore />
