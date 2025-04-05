@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import { Gallery } from "./components/TripGallery";
@@ -9,6 +10,11 @@ import Footer from "@/app/rootcomponents/footer/Footer";
 import { ImLocation2 } from "react-icons/im";
 import Link from "next/link";
 import { BookingForm } from "./components/BookingForm";
+
+export const metadata: Metadata = {
+  title: "OnPoint Travel Trips",
+  description: "Book your next trip with us",
+};
 
 export async function generateStaticParams() {
   const supabase = createClient(
