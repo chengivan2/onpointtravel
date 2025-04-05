@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { createClient } from "@/utils/supabase/server";
 import DestinationCard from "./components/DestinationCard";
 import TripCard from "./components/TripCard";
@@ -5,22 +6,23 @@ import Header from "../rootcomponents/header/Header";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
 
+export const metadata: Metadata = {
+  title: "OnPoint Travel Destinations",
+  description: "Discover different destinations",
+};
+
 export default async function DestinationsPage() {
   const supabase = await createClient();
 
   // Fetch destinations with all required fields
   const { data: destinations } = await supabase
     .from("destinations")
-    .select(
-      "*"
-    );
+    .select("*");
 
   // Fetch trips with all required fields
   const { data: featuredTrips } = await supabase
     .from("trips")
-    .select(
-      "*"
-    )
+    .select("*")
     .eq("is_featured", true);
 
   return (
