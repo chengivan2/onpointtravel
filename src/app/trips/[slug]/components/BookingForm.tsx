@@ -1,121 +1,194 @@
-'use client'
+"use client";
 
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useState, useEffect } from 'react'
-import { createClient } from '@/utils/supabase/client'
-import * as z from 'zod'
-import type { Database } from '@/types/supabase'
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useEffect } from "react";
+import { createClient } from "@/utils/supabase/client";
+import * as z from "zod";
+import type { Database } from "@/types/supabase";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { CheckCircle2, XCircle } from "lucide-react";
 
-const formSchema = z.object({
-  startDate: z.date().min(new Date(), { message: "Start date must be in the future" }),
-  endDate: z.date().min(new Date(), { message: "End date must be in the future" }),
-  people: z.number().int().min(1, "At least 1 person required"),
-  addons: z.array(z.string()).optional(),
-  specialRequests: z.string().optional(),
-}).refine(data => data.endDate > data.startDate, {
-  message: "End date must be after start date",
-  path: ["endDate"]
-})
+const vehicleTypes = [
+  "land_cruiser",
+  "safari_van",
+  "suv",
+  "taxi",
+  "personal_rental",
+  "sedan",
+] as const;
 
-export function BookingForm({ trip }: { trip: Database['public']['Tables']['trips']['Row'] }) {
-  const supabase = createClient()
-  const [totalPrice, setTotalPrice] = useState(trip.price)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [user, setUser] = useState<Database['public']['Tables']['users']['Row'] | null>(null)
-  
-  const { register, handleSubmit, watch, formState: { errors } } = useForm({
+const formSchema = z
+  .object({
+    startDate: z.date().optional(),
+    endDate: z.date().optional(),
+    people: z.number().int().min(1, "At least 1 person required"),
+    addons: z.record(z.enum(vehicleTypes), z.number().int().min(0)).optional(),
+    specialRequests: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.startDate && data.endDate) {
+      if (data.startDate < new Date()) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Start date must be in the future",
+          path: ["startDate"],
+        });
+      }
+      if (data.endDate <= data.startDate!) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "End date must be after start date",
+          path: ["endDate"],
+        });
+      }
+    }
+  });
+
+export function BookingForm({
+  trip,
+}: {
+  trip: Database["public"]["Tables"]["trips"]["Row"];
+}) {
+  const supabase = createClient();
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [showResult, setShowResult] = useState<boolean | null>(null);
+  const [processing, setProcessing] = useState(false);
+  const [user, setUser] = useState<
+    Database["public"]["Tables"]["users"]["Row"] | null
+  >(null);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       people: 1,
-      addons: []
-    }
-  })
+      addons: {},
+    },
+  });
+
+  const formData = watch();
 
   useEffect(() => {
-    const getSession = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) {
-        const { data: userData } = await supabase
-          .from('users')
-          .select('*')
-          .eq('id', user.id)
-          .single()
-        setUser(userData)
-      }
-    }
-    getSession()
-  }, [supabase])
+    const calculateTotal = async () => {
+      if (!trip.price || !formData.startDate || !formData.endDate) return;
 
-  const calculateTotal = async (formData: any) => {
-    const basePrice = (trip.price ?? 0) * formData.people
-    const days = Math.ceil((formData.endDate - formData.startDate) / (1000 * 60 * 60 * 24))
-    
-    const { data: addons } = await supabase
-      .from('addons')
-      .select('type, price')
-      .in('type', formData.addons)
+      const nights = Math.ceil(
+        (new Date(formData.endDate).getTime() -
+          new Date(formData.startDate).getTime()) /
+          (1000 * 60 * 60 * 24)
+      );
 
-    const addonTotal = addons?.reduce((acc, addon) => acc + (addon.price * days), 0) || 0
-    setTotalPrice(basePrice + addonTotal)
-  }
+      const basePrice = trip.price * formData.people * nights;
 
-  const onSubmit = async (formData: any) => {
-    setIsSubmitting(true)
+      const { data: addons } = await supabase
+        .from("addons")
+        .select("type, price");
+
+      const addonTotal = Object.entries(formData.addons || {}).reduce(
+        (acc, [type, quantity]) => {
+          const addon = addons?.find((a) => a.type === type);
+          return acc + (addon?.price || 0) * quantity * nights;
+        },
+        0
+      );
+
+      setTotalPrice(basePrice + addonTotal);
+    };
+
+    calculateTotal();
+  }, [formData, trip.price, supabase]);
+
+  const onSubmit = async (data: any) => {
+    setProcessing(true);
     try {
       if (!user) {
         await supabase.auth.signInWithOAuth({
-          provider: 'google',
+          provider: "google",
           options: {
-            redirectTo: `${location.origin}/auth/callback?next=/trips/${trip.slug}`
-          }
-        })
-        return
+            redirectTo: `${location.origin}/auth/callback?next=/trips/${trip.slug}`,
+          },
+        });
+        return;
       }
 
-      const { data: booking, error } = await supabase
-        .from('bookings')
-        .insert([{
-          user_id: user.id,
-          trip_id: trip.id,
-          start_date: formData.startDate.toISOString(),
-          end_date: formData.endDate.toISOString(),
-          number_of_people: formData.people,
-          total_price: totalPrice,
-          status: 'pending',
-          payment_status: 'unpaid',
-          special_requests: formData.specialRequests,
-        }])
+      const bookingResponse = await supabase
+        .from("bookings")
+        .insert([
+          {
+            user_id: user.id,
+            trip_id: trip.id,
+            start_date: data.startDate.toISOString(),
+            end_date: data.endDate.toISOString(),
+            number_of_people: data.people,
+            total_price: totalPrice,
+            status: "pending",
+            payment_status: "unpaid",
+            special_requests: data.specialRequests,
+          },
+        ])
         .select()
-        .single()
+        .single();
 
-      if (error) throw error
+      if (bookingResponse.error) throw bookingResponse.error;
 
-      if (formData.addons.length > 0) {
-        const { data: addons } = await supabase
-          .from('addons')
-          .select('type, price')
-          .in('type', formData.addons)
+      // Create initial payment record
+      const paymentResponse = await supabase.from("payments").insert([
+        {
+          booking_id: bookingResponse.data.id,
+          amount: totalPrice,
+          currency: "USD",
+          payment_method: "cash",
+          status: "pending",
+        },
+      ]);
 
-        const bookingAddons = addons?.map(addon => ({
-          booking_id: booking.id,
-          addon_type: addon.type,
-          description: `${addon.type} addon`,
-          price: addon.price,
-          quantity: 1
-        })) || []
+      if (paymentResponse.error) throw paymentResponse.error;
 
-        await supabase.from('booking_addons').insert(bookingAddons)
+      // Handle addons with quantity
+      const addonEntries = Object.entries(data.addons || {})
+        .filter(([_, quantity]) => Number(quantity) > 0)
+        .map(([type, quantity]) => ({
+          booking_id: bookingResponse.data.id,
+          addon_type: type,
+          description: `${type.replace("_", " ")} rental`,
+          price: 0, // Will be updated from addons table
+          quantity: Number(quantity),
+        }));
+
+      if (addonEntries.length > 0) {
+        const { data: addonPrices } = await supabase
+          .from("addons")
+          .select("type, price");
+
+        const pricedAddons = addonEntries.map((entry) => ({
+          ...entry,
+          price:
+            addonPrices?.find((a) => a.type === entry.addon_type)?.price || 0,
+        }));
+
+        await supabase.from("booking_addons").insert(pricedAddons);
       }
 
-      alert('Booking created successfully! We will contact you for payment.')
+      setShowResult(true);
+      reset();
     } catch (error) {
-      console.error('Booking error:', error)
-      alert('Error creating booking. Please try again.')
+      console.error("Booking error:", error);
+      setShowResult(false);
     } finally {
-      setIsSubmitting(false)
+      setProcessing(false);
     }
-  }
+  };
 
   return (
     <section className="bg-white/60 dark:bg-green-900/20 rounded-xl p-8 border border-green-100/30 dark:border-green-900/30 mt-12">
@@ -123,39 +196,43 @@ export function BookingForm({ trip }: { trip: Database['public']['Tables']['trip
         Book This Trip
       </h2>
 
-      {!user && (
-        <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
-          <p className="text-green-700 dark:text-green-300">
-            You need to be logged in to book this trip. You'll be redirected to login when clicking "Book Now".
-          </p>
-        </div>
-      )}
-
-<form onSubmit={handleSubmit(onSubmit)} className="space-y-6" onChange={handleSubmit(calculateTotal)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Dates */}
-          <div>
-            <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
-              Travel Dates
-            </label>
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="date"
-                {...register('startDate', { valueAsDate: true })}
-                className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
-              />
-              <input
-                type="date"
-                {...register('endDate', { valueAsDate: true })}
-                className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
-              />
+          {/* Date Fields */}
+          <div className="md:col-span-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
+                  Start Date
+                </label>
+                <input
+                  type="date"
+                  {...register("startDate", { valueAsDate: true })}
+                  className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+                />
+                {errors.startDate && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.startDate.message}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
+                  End Date
+                </label>
+                <input
+                  type="date"
+                  {...register("endDate", { valueAsDate: true })}
+                  className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+                />
+                {errors.endDate && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.endDate.message}
+                  </p>
+                )}
+              </div>
             </div>
-            {errors.startDate && (
-              <p className="text-red-500 text-sm mt-1">{errors.startDate.message}</p>
-            )}
-            {errors.endDate && (
-              <p className="text-red-500 text-sm mt-1">{errors.endDate.message}</p>
-            )}
           </div>
 
           {/* People */}
@@ -165,36 +242,42 @@ export function BookingForm({ trip }: { trip: Database['public']['Tables']['trip
             </label>
             <input
               type="number"
-              {...register('people', { valueAsNumber: true })}
+              {...register("people", { valueAsNumber: true })}
               className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
               min="1"
             />
             {errors.people && (
-              <p className="text-red-500 text-sm mt-1">{errors.people.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.people.message}
+              </p>
             )}
           </div>
 
-          {/* Addons */}
+          {/* Vehicle Addons */}
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
-              Additional Services
+              Vehicle Rentals
             </label>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {['vehicle', 'accommodation', 'camera'].map((addon) => (
-                <label
-                  key={addon}
-                  className="flex items-center space-x-2 p-4 bg-white/60 dark:bg-green-900/20 rounded-lg border border-green-200/30 dark:border-green-700/30"
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {vehicleTypes.map((vehicle) => (
+                <div
+                  key={vehicle}
+                  className="p-4 bg-white/60 dark:bg-green-900/20 rounded-lg border border-green-200/30 dark:border-green-700/30"
                 >
-                  <input
-                    type="checkbox"
-                    value={addon}
-                    {...register('addons')}
-                    className="rounded border-green-300 text-green-600 focus:ring-green-500 dark:bg-green-900/20"
-                  />
-                  <span className="text-green-700 dark:text-green-300 capitalize">
-                    {addon}
-                  </span>
-                </label>
+                  <label className="flex items-center justify-between">
+                    <span className="text-green-700 dark:text-green-300 capitalize">
+                      {vehicle.replace("_", " ")}
+                    </span>
+                    <input
+                      type="number"
+                      {...register(`addons.${vehicle}`, {
+                        valueAsNumber: true,
+                      })}
+                      className="w-20 px-3 py-1 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+                      min="0"
+                    />
+                  </label>
+                </div>
               ))}
             </div>
           </div>
@@ -205,7 +288,7 @@ export function BookingForm({ trip }: { trip: Database['public']['Tables']['trip
               Special Requests
             </label>
             <textarea
-              {...register('specialRequests')}
+              {...register("specialRequests")}
               className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
               rows={3}
             />
@@ -219,7 +302,7 @@ export function BookingForm({ trip }: { trip: Database['public']['Tables']['trip
               Total Price
             </span>
             <span className="text-2xl font-bold text-green-700 dark:text-green-300">
-              ${(totalPrice ?? 0).toFixed(2)}
+              ${totalPrice.toFixed(2)}
             </span>
           </div>
         </div>
@@ -227,12 +310,39 @@ export function BookingForm({ trip }: { trip: Database['public']['Tables']['trip
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={processing}
           className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg transition-colors duration-200 font-medium disabled:opacity-50"
         >
-          {isSubmitting ? 'Processing...' : 'Book Now'}
+          {processing ? "Processing..." : "Book Now"}
         </button>
       </form>
+
+      <Dialog
+        open={showResult !== null}
+        onOpenChange={() => setShowResult(null)}
+      >
+        <DialogContent className="bg-white dark:bg-green-900 border-green-200 dark:border-green-700">
+          <DialogHeader>
+            <DialogTitle className="text-green-800 dark:text-green-100">
+              {showResult ? "Booking Successful" : "Booking Failed"}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col items-center py-8">
+            <div>
+              {showResult ? (
+                <CheckCircle2 className="h-16 w-16 text-green-500" />
+              ) : (
+                <XCircle className="h-16 w-16 text-red-500" />
+              )}
+            </div>
+            <p className="mt-4 text-green-700 dark:text-green-300 text-center">
+              {showResult
+                ? "Your booking has been received! We will contact you for payment confirmation."
+                : "There was an error processing your booking. Please try again."}
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
-  )
+  );
 }
