@@ -165,24 +165,25 @@ export function BookingForm({
       if (paymentResponse.error) throw paymentResponse.error;
 
       // Handle addons with quantity
-      const addonEntries = Object.entries(data.booking_addons || {})
+      console.log("Form addons data:", data.addons); // Log the addons data
+      const addonEntries = Object.entries(data.addons || {})
         .filter(([_, quantity]) => Number(quantity) > 0)
         .map(([type, quantity]) => ({
           booking_id: bookingResponse.data.id,
           addon_type: type,
           description: `${type.replace("_", " ")} rental`,
-          price: 0,
+          price: addons.find((a) => a.type === type)?.price || 0, // Fetch price from the addons list
           quantity: Number(quantity),
         }));
 
-      if (addonEntries.length > 0) {
-        const pricedAddons = addonEntries.map((entry) => ({
-          ...entry,
-          price:
-            addons.find((a) => a.type === entry.addon_type)?.price || 0,
-        }));
+      console.log("Addon entries to insert:", addonEntries); // Log the addon entries
 
-        await supabase.from("booking_addons").insert(pricedAddons);
+      if (addonEntries.length > 0) {
+        const addonResponse = await supabase.from("booking_addons").insert(addonEntries);
+        if (addonResponse.error) {
+          console.error("Addon insertion error:", addonResponse.error);
+          throw addonResponse.error;
+        }
       }
 
       setShowResult(true);
