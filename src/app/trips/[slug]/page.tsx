@@ -138,9 +138,9 @@ export default async function TripPage({
 
             <div className="p-1 min-w-full flex items-center gap-2 mb-3">
               <Link
-                href={`/trips/${trip.slug}`}
+                href={`#Book ${trip.name}`}
                 className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
-                aria-label={`Book ${trip.name} now`}
+                aria-label={`Book ${trip.name} now` }
               >
                 Book Now
               </Link>

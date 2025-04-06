@@ -197,7 +197,7 @@ export function BookingForm({
   };
 
   return (
-    <section className="bg-white/60 dark:bg-green-900/20 rounded-xl p-8 border border-green-100/30 dark:border-green-900/30 mt-12">
+    <section id={`Book ${trip.name}`} className="bg-white/60 dark:bg-green-900/20 rounded-xl p-8 border border-green-100/30 dark:border-green-900/30 mt-12">
       <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
         Book This Trip
       </h2>
