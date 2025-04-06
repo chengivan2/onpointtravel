@@ -47,7 +47,7 @@ export default function Header() {
       py-3 px-[1.5rem] 
       bg-lightmode-header-bg-color dark:bg-darkmode-header-bg-color 
       shadow-lg
-      transition-transform duration-500 h-[50vh] lg:h-20
+      transition-transform duration-500 h-20
       ${isVisible ? "translate-y-0" : "-translate-y-full"}
       ${isMenuOpen ? "!translate-y-0" : ""}
     `}
@@ -110,7 +110,7 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <nav className="flex flex-col lg:hidden py-4 px-2 space-y-3 absolute top-full left-0 right-0 bg-lightmode-header-bg-color dark:bg-darkmode-bg-color border-t dark:border-gray-700">
+        <nav className="flex flex-col lg:hidden py-4 px-4 h-[50vh] space-y-3 absolute top-full left-0 right-0 bg-lightmode-header-bg-color dark:bg-darkmode-bg-color border-t dark:border-gray-700">
           <Menu />
           <div className="flex space-x-4 pt-3 border-t dark:border-gray-700">
             <HeaderButtons />
