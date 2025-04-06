@@ -35,7 +35,7 @@ export default function BookingStepsImage() {
           <div>
             <Progress
               value={70}
-              className="h-2 bg-green-100/50 dark:bg-green-700/50 rounded-full *:bg-green-500 *:dark:bg-green-900/70"
+              className="h-2 bg-green-100/50 dark:bg-green-700/50 rounded-full *:bg-green-700 *:dark:bg-green-950"
             />
           </div>
 
