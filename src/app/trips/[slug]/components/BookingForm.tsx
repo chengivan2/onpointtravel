@@ -57,9 +57,9 @@ export function BookingForm({
 }) {
   const supabase = createClient();
   const [addons, setAddons] = useState<Database["public"]["Tables"]["addons"]["Row"][]>([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [basePrice, setBasePrice] = useState(0);
-  const [addonPrice, setAddonPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0); // Initial total price set to 0
+  const [basePrice, setBasePrice] = useState(0); // Initial base price set to 0
+  const [addonPrice, setAddonPrice] = useState(0); // Initial addon price set to 0
   const [processing, setProcessing] = useState(false);
   const [showResult, setShowResult] = useState<boolean | null>(null);
 
@@ -73,7 +73,7 @@ export function BookingForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       people: 1,
-      addons: {},
+      addons: {}, // Default addons set to an empty object
     },
   });
 
