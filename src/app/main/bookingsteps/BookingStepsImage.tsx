@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 export default function BookingStepsImage() {
   return (
     <div className="flex-1 w-full max-w-xl">
-      <div className="relative rounded-2xl shadow-xl sm:border-green-100/30 md:border-green-100/30 lg:border-green-100/30 dark:border-green-900/30 hover:shadow-xl p-8 border bg-white/30 dark:bg-green-900/30 backdrop-blur-md backdrop-saturate-150">
+      <div className="relative rounded-2xl shadow-xl sm:border-green-100/30 md:border-green-100/30 lg:border-green-100/30 dark:border-green-900/30 hover:shadow-xl p-8 border bg-white/30 dark:bg-green-900/30 backdrop-blur-sm backdrop-saturate-150">
         <div className="space-y-6">
           <div className="flex justify-between items-start">
             <div>
@@ -35,7 +35,7 @@ export default function BookingStepsImage() {
           <div>
             <Progress
               value={70}
-              className="h-[1rem] bg-green-200/50 dark:bg-green-100/80 rounded-full *:bg-green-700 *:dark:bg-green-900 *:animate-pulse"
+              className="h-[1rem] bg-green-200/50 dark:bg-green-100/80 rounded-full *:bg-green-700 *:dark:bg-green-900"
             />
           </div>
 
