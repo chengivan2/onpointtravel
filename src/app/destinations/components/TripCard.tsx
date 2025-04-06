@@ -26,7 +26,7 @@ const renderRatingStars = (rating: number | null) => {
 export default function TripCard({ trip }: { trip: Trip }) {
   return (
     <Link
-      href={`/trips/${trip.id}`}
+      href={`/trips/${trip.slug}`}
       className="group block rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/60 dark:bg-green-900/20 backdrop-blur-md border border-green-100/30 dark:border-green-900/30"
     >
       <div className="relative aspect-[1.2]">
