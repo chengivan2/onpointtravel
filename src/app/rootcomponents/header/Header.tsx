@@ -112,7 +112,7 @@ export default function Header() {
       {isMenuOpen && (
         <nav className="flex flex-col lg:hidden py-4 px-2 space-y-3 absolute top-full left-0 right-0 bg-lightmode-header-bg-color dark:bg-darkmode-bg-color border-t dark:border-gray-700">
           <Menu />
-          <div className="flex items-center justify-center space-x-4 pt-3 border-t dark:border-gray-700">
+          <div className="flex space-x-4 pt-3 border-t dark:border-gray-700">
             <HeaderButtons />
           </div>
         </nav>
