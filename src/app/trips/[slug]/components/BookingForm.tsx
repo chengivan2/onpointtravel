@@ -150,7 +150,7 @@ export function BookingForm({
       if (paymentResponse.error) throw paymentResponse.error;
 
       // Handle addons with quantity
-      const addonEntries = Object.entries(data.addons || {})
+      const addonEntries = Object.entries(data.booking_addons || {})
         .filter(([_, quantity]) => Number(quantity) > 0)
         .map(([type, quantity]) => ({
           booking_id: bookingResponse.data.id,
