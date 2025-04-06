@@ -59,9 +59,6 @@ export function BookingForm({
   const [totalPrice, setTotalPrice] = useState(0);
   const [showResult, setShowResult] = useState<boolean | null>(null);
   const [processing, setProcessing] = useState(false);
-  const [user, setUser] = useState<
-    Database["public"]["Tables"]["users"]["Row"] | null
-  >(null);
 
   const {
     register,
@@ -112,6 +109,8 @@ export function BookingForm({
   const onSubmit = async (data: any) => {
     setProcessing(true);
     try {
+      const { data: userData } = await supabase.auth.getUser();
+      const user = userData.user;
       if (!user) {
         window.location.href = `/login?next=/trips/${trip.slug}`;
         return;
