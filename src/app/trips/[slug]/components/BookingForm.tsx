@@ -347,24 +347,24 @@ export function BookingForm({
         open={showResult !== null}
         onOpenChange={() => setShowResult(null)}
       >
-        <DialogContent className="bg-white dark:bg-green-900 border-green-200 dark:border-green-700">
+        <DialogContent className="bg-white/70 dark:bg-green-900/30 backdrop-blur-md border-green-200/50 dark:border-green-700/50 rounded-lg shadow-lg">
           <DialogHeader>
-            <DialogTitle className="text-green-800 dark:text-green-100">
+            <DialogTitle className="text-green-900 dark:text-green-100">
               {showResult ? "Booking Successful" : "Booking Failed"}
             </DialogTitle>
           </DialogHeader>
           <div className="flex flex-col items-center py-8">
             <div>
               {showResult ? (
-                <CheckCircle2 className="h-16 w-16 text-green-500" />
+          <CheckCircle2 className="h-16 w-16 text-green-500" />
               ) : (
-                <XCircle className="h-16 w-16 text-red-500" />
+          <XCircle className="h-16 w-16 text-red-500" />
               )}
             </div>
-            <p className="mt-4 text-green-700 dark:text-green-300 text-center">
+            <p className="mt-4 text-green-800 dark:text-green-200 text-center">
               {showResult
-                ? "Your booking has been received! We will contact you for payment confirmation."
-                : "There was an error processing your booking. Please try again."}
+          ? "Your booking has been received! We will contact you for payment confirmation."
+          : "There was an error processing your booking. Please try again."}
             </p>
           </div>
         </DialogContent>
