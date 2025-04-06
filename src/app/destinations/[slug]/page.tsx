@@ -76,7 +76,7 @@ export default async function DestinationPage({
         </section>
 
         {trips?.length ? (
-          <section>
+          <section className="px-[0.8rem] lg:px-[1rem] py-[0.8rem] lg:py-[2rem] min-w-full min-h-[100vh]">
             <h2 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-8">
               Available Trips
             </h2>
