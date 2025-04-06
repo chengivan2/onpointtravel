@@ -113,12 +113,7 @@ export function BookingForm({
     setProcessing(true);
     try {
       if (!user) {
-        await supabase.auth.signInWithOAuth({
-          provider: "google",
-          options: {
-            redirectTo: `${location.origin}/auth/callback?next=/trips/${trip.slug}`,
-          },
-        });
+        window.location.href = `/login?next=/trips/${trip.slug}`;
         return;
       }
 
