@@ -56,9 +56,12 @@ export function BookingForm({
   trip: Database["public"]["Tables"]["trips"]["Row"];
 }) {
   const supabase = createClient();
+  const [addons, setAddons] = useState<Database["public"]["Tables"]["addons"]["Row"][]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [showResult, setShowResult] = useState<boolean | null>(null);
+  const [basePrice, setBasePrice] = useState(0);
+  const [addonPrice, setAddonPrice] = useState(0);
   const [processing, setProcessing] = useState(false);
+  const [showResult, setShowResult] = useState<boolean | null>(null);
 
   const {
     register,
@@ -76,35 +79,47 @@ export function BookingForm({
 
   const formData = watch();
 
+  // Fetch addons for the trip
   useEffect(() => {
-    const calculateTotal = async () => {
+    const fetchAddons = async () => {
+      const { data, error } = await supabase.from("addons").select("*");
+      if (error) {
+        console.error("Error fetching addons:", error);
+      } else {
+        setAddons(data || []);
+      }
+    };
+
+    fetchAddons();
+  }, [supabase]);
+
+  // Calculate prices
+  useEffect(() => {
+    const calculatePrices = () => {
       if (!trip.price || !formData.startDate || !formData.endDate) return;
 
       const nights = Math.ceil(
-        (new Date(formData.endDate).getTime() -
-          new Date(formData.startDate).getTime()) /
+        (new Date(formData.endDate).getTime() - new Date(formData.startDate).getTime()) /
           (1000 * 60 * 60 * 24)
       );
 
-      const basePrice = trip.price * formData.people * nights;
+      const calculatedBasePrice = trip.price * formData.people * nights;
 
-      const { data: addons } = await supabase
-        .from("addons")
-        .select("type, price");
-
-      const addonTotal = Object.entries(formData.addons || {}).reduce(
+      const calculatedAddonPrice = Object.entries(formData.addons || {}).reduce(
         (acc, [type, quantity]) => {
-          const addon = addons?.find((a) => a.type === type);
+          const addon = addons.find((a) => a.type === type);
           return acc + (addon?.price || 0) * quantity * nights;
         },
         0
       );
 
-      setTotalPrice(basePrice + addonTotal);
+      setBasePrice(calculatedBasePrice);
+      setAddonPrice(calculatedAddonPrice);
+      setTotalPrice(calculatedBasePrice + calculatedAddonPrice);
     };
 
-    calculateTotal();
-  }, [formData, trip.price, supabase]);
+    calculatePrices();
+  }, [formData, trip.price, addons]);
 
   const onSubmit = async (data: any) => {
     setProcessing(true);
@@ -156,19 +171,15 @@ export function BookingForm({
           booking_id: bookingResponse.data.id,
           addon_type: type,
           description: `${type.replace("_", " ")} rental`,
-          price: 0, // Will be updated from addons table
+          price: 0,
           quantity: Number(quantity),
         }));
 
       if (addonEntries.length > 0) {
-        const { data: addonPrices } = await supabase
-          .from("addons")
-          .select("type, price");
-
         const pricedAddons = addonEntries.map((entry) => ({
           ...entry,
           price:
-            addonPrices?.find((a) => a.type === entry.addon_type)?.price || 0,
+            addons.find((a) => a.type === entry.addon_type)?.price || 0,
         }));
 
         await supabase.from("booking_addons").insert(pricedAddons);
@@ -290,15 +301,34 @@ export function BookingForm({
           </div>
         </div>
 
-        {/* Total Price */}
+        {/* Price Breakdown */}
         <div className="border-t border-green-200 dark:border-green-700 pt-6">
           <div className="flex justify-between items-center">
-            <span className="text-lg font-medium text-green-800 dark:text-green-100">
-              Total Price
-            </span>
-            <span className="text-2xl font-bold text-green-700 dark:text-green-300">
-              ${totalPrice.toFixed(2)}
-            </span>
+            <span className="text-sm text-green-700 dark:text-green-300">Base Price</span>
+            <span className="text-sm text-green-700 dark:text-green-300">${basePrice.toFixed(2)}</span>
+          </div>
+          <div className="flex flex-col gap-2">
+            {Object.entries(formData.addons || {}).map(([type, quantity]) => {
+              if (quantity > 0) {
+                const addon = addons.find((a) => a.type === type);
+                const addonPrice = addon ? addon.price * quantity : 0;
+                return (
+                  <div key={type} className="flex justify-between items-center">
+                    <span className="text-sm text-green-700 dark:text-green-300 capitalize">
+                      {type.replace("_", " ")} x {quantity}
+                    </span>
+                    <span className="text-sm text-green-700 dark:text-green-300">
+                      ${addonPrice.toFixed(2)}
+                    </span>
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-medium text-green-800 dark:text-green-100">Total Price</span>
+            <span className="text-2xl font-bold text-green-700 dark:text-green-300">${totalPrice.toFixed(2)}</span>
           </div>
         </div>
 
