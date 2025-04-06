@@ -1,6 +1,7 @@
 "use client";
 
 import { TypeAnimation } from "react-type-animation";
+import { Progress } from "@/components/ui/progress";
 
 export default function BookingStepsImage() {
   return (
@@ -29,6 +30,13 @@ export default function BookingStepsImage() {
               </div>
               Ongoing
             </span>
+          </div>
+
+          <div>
+            <Progress
+              value={50}
+              className="h-2 bg-green-100/70 dark:bg-green-900/70 rounded-full animte-pulse"
+            />
           </div>
 
           <div className="bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1743186817/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/friends-eiffel-tower_evy9gv.jpg)] bg-cover bg-center h-[40vh] lg:h-[50vh] rounded-xl"></div>
