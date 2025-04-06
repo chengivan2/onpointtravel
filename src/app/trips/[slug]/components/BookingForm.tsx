@@ -152,7 +152,7 @@ export function BookingForm({
       if (bookingResponse.error) throw bookingResponse.error;
 
       // Create initial payment record
-      const paymentResponse = await supabase.from("payments").insert([
+      for (const payment of [
         {
           booking_id: bookingResponse.data.id,
           amount: totalPrice,
@@ -160,9 +160,13 @@ export function BookingForm({
           payment_method: "cash",
           status: "pending",
         },
-      ]);
-
-      if (paymentResponse.error) throw paymentResponse.error;
+      ]) {
+        const paymentResponse = await supabase.from("payments").insert(payment).select().single();
+        if (paymentResponse.error) {
+          console.error("Payment insertion error:", paymentResponse.error);
+          throw paymentResponse.error;
+        }
+      }
 
       // Handle addons with quantity
       const addonEntries = Object.entries(data.booking_addons || {})
