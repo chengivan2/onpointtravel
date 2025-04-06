@@ -275,6 +275,7 @@ export function BookingForm({
                       })}
                       className="w-20 px-3 py-1 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
                       min="0"
+                      defaultValue={0}
                     />
                   </label>
                 </div>
