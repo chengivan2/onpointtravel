@@ -11,7 +11,7 @@ export default function HeaderAuthButton() {
 
   useEffect(() => {
     async function getUser() {
-      const supabase = await createClient();
+      const supabase = createClient();
 
       const {
         data: { user },
