@@ -8,7 +8,7 @@ export default async function OnPointDashboard() {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) {
-    redirect("/login?next=/dashboard");
+    redirect("/signin?next=/dashboard");
   }
 
   return <div>onPoint user dashboard</div>;

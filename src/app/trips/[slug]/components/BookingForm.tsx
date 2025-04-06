@@ -127,7 +127,7 @@ export function BookingForm({
       const { data: userData } = await supabase.auth.getUser();
       const user = userData.user;
       if (!user) {
-        window.location.href = `/login?next=/trips/${trip.slug}`;
+        window.location.href = `/signin?next=/trips/${trip.slug}`;
         return;
       }
 
