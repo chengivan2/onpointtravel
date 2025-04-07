@@ -5,7 +5,7 @@ import HeaderAuthButton from "./HeaderAuthButton";
 
 export default function HeaderButtons() {
   return (
-    <div className="hidden md:flex items-center space-x-3">
+    <div className="md:flex items-center space-x-3">
       <Link href="/">
         <a
           className="px-4 py-2 rounded-full text-sm font-medium

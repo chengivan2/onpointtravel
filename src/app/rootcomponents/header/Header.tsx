@@ -110,7 +110,7 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="flex flex-col lg:hidden py-4 px-4 h-[50vh] space-y-3 absolute top-full left-0 right-0 bg-lightmode-header-bg-color dark:bg-darkmode-bg-color border-t dark:border-gray-700">
+        <div className="flex flex-col lg:hidden py-4 px-4 h-auto space-y-3 absolute top-full left-0 right-0 bg-lightmode-header-bg-color dark:bg-darkmode-bg-color border-t dark:border-gray-700">
           <nav className="">
             <Menu />
           </nav>
