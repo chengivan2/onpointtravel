@@ -31,7 +31,7 @@ export default function SignUpPage() {
     <main>
       <Header />
       <section className="flex flex-col lg:flex-row min-h-screen mt-16">
-        <div className="relative min-h-full bg-center bg-cover bg-[url(/images/signup.jpg)] flex-1/2">
+        <div className="hidden lg:flex relative min-h-full bg-center bg-cover bg-[url(/images/signup.jpg)] flex-1/2">
           <div className="absolute inset-0 bg-darkmode-bg-color opacity-10 dark:opacity-20"></div>
         </div>
 

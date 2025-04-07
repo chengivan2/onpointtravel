@@ -7,7 +7,7 @@ import Link from "next/link";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { login, signup } from './actions/actions'
+import { login } from './actions/actions'
 import { createClient} from "@/utils/supabase/client";
 import { FaGoogle } from "react-icons/fa6";
 import Header from "../rootcomponents/header/Header";
@@ -44,7 +44,7 @@ export default function SignInPage() {
       <Header />
 
       <section className="flex flex-col lg:flex-row mt-16 min-h-screen bg-transparent">
-        <div className="relative min-h-full bg-center bg-cover bg-[url(/images/signin.jpg)] flex-1/2">
+        <div className="hidden lg:flex relative min-h-full bg-center bg-cover bg-[url(/images/signin.jpg)] flex-1/2">
           <div className="absolute inset-0 bg-darkmode-bg-color opacity-10 dark:opacity-20"></div>
         </div>
 
