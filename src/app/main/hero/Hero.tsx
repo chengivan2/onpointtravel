@@ -1,8 +1,10 @@
 import AnimatedHeading from "./AnimatedHeading";
+import HeroSlider from "./components/HeroSlider";
 
 
 export default function HomeHero() {
   return (
+    <>
     <section className="relative bg-transparent px-[0.8rem] lg:px-[1rem] mt-20 py-[0.8rem] lg:py-[2rem] min-w-full min-h-[100vh]">
       <div className="flex flex-col justify-center items-center relative px-[0.5rem] py-[0.1rem] min-w-full h-[98vh] rounded-[0.7rem] bg-cover bg-center bg-[url(/images/herobgimage.jpg)]">
         <div className="absolute inset-0 bg-darkmode-bg-color opacity-30 dark:opacity-40 rounded-[0.7rem]"></div>
@@ -21,6 +23,13 @@ export default function HomeHero() {
       </div>
     </section>
 
-    
+    <section className="px-2 py-3 fle justify-center">
+
+      <HeroSlider />
+
+    </section>
+    </>
+
+
   );
 }
