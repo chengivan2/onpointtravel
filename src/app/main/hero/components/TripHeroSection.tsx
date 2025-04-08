@@ -29,7 +29,7 @@ export default function TripHeroSection({
 
       <div
         key={selectedTrip.id}
-        className="absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out rounded-[0.7rem]"
+        className="absolute inset-0 z-0 ease-in-out rounded-[0.7rem]"
       >
         {selectedTrip.main_featured_image_url && (
           <Image
@@ -37,7 +37,6 @@ export default function TripHeroSection({
             alt={`${selectedTrip.name} background`}
             fill
             style={{ objectFit: "cover" }}
-            quality={100}
             className="rounded-[0.7rem]"
             unoptimized={selectedTrip.main_featured_image_url.endsWith(".gif")}
           />
