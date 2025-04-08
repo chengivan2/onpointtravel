@@ -1,10 +1,13 @@
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@supabase/supabase-js";
 import { Database } from "@/types/supabase";
 import TripHeroSection from "./TripHeroSection";
 
 type Trip = Database["public"]["Tables"]["trips"]["Row"];
 
-const supabase = await createClient();
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
   try {
