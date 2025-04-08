@@ -23,7 +23,6 @@ export default function Header() {
       else if (window.scrollY < lastScrollY) {
         setIsVisible(true);
       }
-
       // Update last scroll position
       setLastScrollY(window.scrollY);
     }

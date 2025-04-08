@@ -7,11 +7,14 @@ export default function FooterSubscribe() {
   return (
     <form className="relative mt-12">
       <div className="space-y-2.5">
-        <Label className="block text-sm font-medium" htmlFor="email">
+        <Label
+          className="block text-sm font-medium text-black dark:text-white"
+          htmlFor="email"
+        >
           Subscribe to our newsletter
         </Label>
         <Input
-          className="input variant-mixed sz-md"
+          className="input variant-mixed sz-md border-black dark:border-white"
           placeholder="Your email"
           type="email"
           id="email"
