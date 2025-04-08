@@ -13,13 +13,13 @@ export default function Header() {
 
   const controlHeader = () => {
     if (typeof window !== "undefined") {
-      // If we're scrolling down and we're past 100px, hide the header
-      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+      // When scrolling down and we're past 50px, hide the header
+      if (window.scrollY > lastScrollY && window.scrollY > 50) {
         setIsVisible(false);
         // Close mobile menu when header hides
         setIsMenuOpen(false);
       }
-      // If we're scrolling up, show the header
+      // When scrolling up, show the header
       else if (window.scrollY < lastScrollY) {
         setIsVisible(true);
       }
@@ -33,7 +33,7 @@ export default function Header() {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", controlHeader);
 
-      // Cleanup function
+      // Cleanup function to remove the event listener
       return () => {
         window.removeEventListener("scroll", controlHeader);
       };
