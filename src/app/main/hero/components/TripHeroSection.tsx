@@ -38,7 +38,7 @@ export default function TripHeroSection({
             fill
             style={{ objectFit: "cover" }}
             quality={85}
-            className="opacity-40" // Adjust opacity
+            className="opacity-40 rounded-[0.7rem]"
             unoptimized={selectedTrip.main_featured_image_url.endsWith(".gif")}
           />
         )}
