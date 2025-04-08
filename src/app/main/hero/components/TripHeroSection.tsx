@@ -45,7 +45,7 @@ export default function TripHeroSection({
       </div>
 
       {/* --- Content Section (Positioned above background) --- */}
-      <div className="relative z-10 flex flex-col justify-between flex-grow p-8 md:p-16 lg:p-24 rounded-[0.7rem] bg-white/70 dark:bg-green-900/20 backdrop-blur-md shadow-lg transition-all duration-300">
+      <div className="relative z-10 flex flex-col justify-between flex-grow p-8 md:p-16 lg:p-24 rounded-[0.7rem] shadow-lg transition-all duration-300">
 
         {/* Main Text Content */}
         <div className="max-w-3xl mb-12">
