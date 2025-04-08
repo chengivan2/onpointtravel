@@ -15,7 +15,7 @@ async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
     const { data, error } = await supabase
       .from("trips") // Your table name
       .select("*")
-      .order("order", { ascending: true }); // Optional ordering
+      .order("created_at", { ascending: false });
 
     if (error) {
       console.error("Supabase error:", error.message);
@@ -25,8 +25,6 @@ async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
     if (!data) {
       return { trips: [], error: "No animal data found." };
     }
-
-    // Basic validation (optional but recommended)
     const validatedData = data.filter(
       (trip) =>
         trip.id &&
@@ -66,6 +64,6 @@ export default async function HeroSlider() {
     );
   }
 
-  // Render the Client Component responsible for interactivity, passing data as props
+  // Client Component responsible for interactivity
   return <TripHeroSection initialTrips={trips} />;
 }
