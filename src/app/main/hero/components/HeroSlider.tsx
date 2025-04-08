@@ -31,7 +31,8 @@ async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
         trip.id &&
         trip.name &&
         trip.short_description &&
-        trip.main_featured_image_url
+        trip.main_featured_image_url &&
+        trip.slug
     ) as Trip[];
 
     return { trips: validatedData, error: null };

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Database } from "@/types/supabase";
+import Link from "next/link";
 
 type Trip = Database["public"]["Tables"]["trips"]["Row"];
 
@@ -34,10 +35,9 @@ export default function TripHeroSection({
           <Image
             src={selectedTrip.main_featured_image_url}
             alt={`${selectedTrip.name} background`}
-            fill // Use fill instead of layout="fill" in newer Next.js versions
-            style={{ objectFit: "cover" }} // Use style prop for objectFit with fill
+            fill
+            style={{ objectFit: "cover" }}
             quality={85}
-            priority={true} // Prioritize loading the initial main image
             className="opacity-40" // Adjust opacity
             unoptimized={selectedTrip.main_featured_image_url.endsWith(".gif")} // Example: prevent optimization for gifs
           />
@@ -55,7 +55,7 @@ export default function TripHeroSection({
         {/* Main Text Content */}
         <div className="max-w-3xl mb-12">
           <p className="text-sm uppercase tracking-widest text-gray-300 mb-2">
-            The Big Five
+            Book Our Most Popular Trips
           </p>
           {/* Animate presence or key can help text transitions if desired */}
           <h1
@@ -71,12 +71,11 @@ export default function TripHeroSection({
             {selectedTrip.short_description}
           </p>
           <div className="flex space-x-4">
-            <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded transition-colors duration-300">
-              Read More
-            </button>
-            {/* <button className="bg-transparent border border-white hover:bg-white/10 text-white font-bold py-2 px-6 rounded transition-colors duration-300">
-              Subscribe
-            </button> */}
+            <Link href={`/trips/${selectedTrip.slug}`}>
+              <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded transition-colors duration-300">
+                Read More
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -119,14 +118,3 @@ export default function TripHeroSection({
     </div>
   );
 }
-
-// Helper animation (add to your globals.css or Tailwind config)
-/* In globals.css:
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-*/
