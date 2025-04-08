@@ -15,6 +15,7 @@ async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
     const { data, error } = await supabase
       .from("trips") // Your table name
       .select("*")
+      .eq("is_featured", true)
       .order("created_at", { ascending: false });
 
     if (error) {
