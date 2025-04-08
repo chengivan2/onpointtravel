@@ -49,7 +49,7 @@ export default async function DestinationPage({
       <main className="mt-16">
         <section className="relative flex flex-col lg:flex-row items-center justify-between bg-cover bg-center rounded-lg min-h-[100vh] px-[0.8rem] lg:px-[1rem] py-[0.8rem] lg:py-[2rem]" style={{ backgroundImage: `url(${destination.main_image_url})` }}>
           {/* Title and Description */}
-          <div className="flex-1 flex flex-col justify-center items-start text-center lg:text-left bg-white/70 dark:bg-green-900/70 p-6 rounded-lg shadow-lg">
+          <div className="flex-1 flex flex-col justify-center items-start text-center lg:text-left bg-white/70 dark:bg-green-900/70 backdrop-blur-[2px] p-6 rounded-lg shadow-lg">
             <h1 className="text-4xl font-bold text-green-800 dark:text-green-100">
               {destination.name}
             </h1>
