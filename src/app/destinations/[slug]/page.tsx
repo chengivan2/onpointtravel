@@ -47,8 +47,8 @@ export default async function DestinationPage({
     <>
       <Header />
       <main className="mt-16">
-        <section className="relative min-h-[100vh] flex justify-center items-center px-[0.8rem] lg:px-[1rem] py-[0.8rem] lg:py-[2rem]">
-          <div className="min-w-full min-h-fullflex gap-0 flex-col md:flex-row items-start justify-start rounded-lg shadow-lg">
+        <section className="relative min-h-[100vh] flex justify-center px-[0.8rem] lg:px-[1rem] py-[0.8rem] lg:py-[2rem]">
+          <div className="min-w-full min-h-[98vh] flex gap-0 flex-col md:flex-row items-start justify-start rounded-lg shadow-lg">
             <div className="relative w-[60%] flex flex-col justify-center items-start text-center lg:text-left bg-white/70 dark:bg-green-900/70 backdrop-blur-[2px] p-6 rounded-lg">
               <h1 className="text-4xl font-bold text-green-800 dark:text-green-100">
                 {destination.name}
@@ -63,7 +63,7 @@ export default async function DestinationPage({
 
             {/* Image */}
             <div
-              className="relative w-[40%] rounded-lg overflow-hidden shadow-lg"
+              className="relative w-[40%] rounded-lg bg-cover bg-center shadow-lg"
               style={{ backgroundImage: `url(${destination.image_url})` }}
             ></div>
           </div>
