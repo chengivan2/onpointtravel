@@ -68,7 +68,7 @@ export default function TripHeroSection({
             key={`${selectedTrip.id}-desc`}
             className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 max-w-2xl leading-relaxed transition-all duration-300 animate-fade-in"
           >
-            {selectedTrip.description}
+            {selectedTrip.short_description}
           </p>
           <div className="flex space-x-4">
             <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded transition-colors duration-300">

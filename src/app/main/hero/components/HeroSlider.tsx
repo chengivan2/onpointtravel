@@ -23,16 +23,15 @@ async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
     }
 
     if (!data) {
-      return { trips: [], error: "No animal data found." };
+      return { trips: [], error: "No trips data found." };
     }
     const validatedData = data.filter(
       (trip) =>
         trip.id &&
         trip.name &&
         trip.title &&
-        trip.description &&
-        trip.main_image_url &&
-        trip.thumbnail_image_url
+        trip.short_description &&
+        trip.main_featured_image_url
     ) as Trip[];
 
     return { trips: validatedData, error: null };
@@ -59,7 +58,7 @@ export default async function HeroSlider() {
   if (!trips || trips.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-        No animal data available.
+        No trip data available.
       </div>
     );
   }
