@@ -37,8 +37,8 @@ export default function TripHeroSection({
             alt={`${selectedTrip.name} background`}
             fill
             style={{ objectFit: "cover" }}
-            quality={85}
-            className="opacity-40 rounded-[0.7rem]"
+            quality={100}
+            className="opacity rounded-[0.7rem]"
             unoptimized={selectedTrip.main_featured_image_url.endsWith(".gif")}
           />
         )}
@@ -46,7 +46,7 @@ export default function TripHeroSection({
       </div>
 
       {/* --- Content Section (Positioned above background) --- */}
-      <div className="relative z-10 flex flex-col justify-between flex-grow p-8 md:p-16 lg:p-24">
+      <div className="relative z-10 flex flex-col justify-between flex-grow p-8 md:p-16 lg:p-24 rounded-[0.7rem] bg-white/70 dark:bg-green-900/20 backdrop-blur-md shadow-lg transition-all duration-300">
 
         {/* Main Text Content */}
         <div className="max-w-3xl mb-12">
@@ -96,7 +96,7 @@ export default function TripHeroSection({
                     fill
                     style={{ objectFit: "cover" }}
                     quality={75}
-                    sizes="(max-width: 640px) 33vw, 20vw" // Help optimizer choose correct size
+                    sizes="(max-width: 640px) 33vw, 20vw"
                     className="transition-transform duration-300 group-hover:scale-110"
                   />
                 )}
