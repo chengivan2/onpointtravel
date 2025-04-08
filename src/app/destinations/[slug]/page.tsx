@@ -47,31 +47,30 @@ export default async function DestinationPage({
     <>
       <Header />
       <main className="mt-16">
-        <section className="relative bg-transparent px-[0.8rem] lg:px-[1rem] py-[0.8rem] lg:py-[2rem] min-w-full min-h-[100vh]">
-          <h1 className="text-4xl font-bold text-green-800 dark:text-green-100">
-            {destination.name}
-          </h1>
-          <p className="text-xl text-green-600 dark:text-green-300 mt-2">
-            {destination.location}
-          </p>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            <div className="lg:col-span-2">
-              <div className="relative aspect-video rounded-xl overflow-hidden border border-green-100/30 dark:border-green-900/30">
-                <Image
-                  src={destination.main_image_url}
-                  alt={destination.name}
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 768px) 100vw, 70vw"
-                />
-              </div>
-            </div>
-
-            <article className="prose dark:prose-invert max-w-none text-green-700 dark:text-green-300">
+        <section className="relative flex flex-col lg:flex-row items-center justify-between bg-cover bg-center rounded-lg min-h-[100vh] px-[0.8rem] lg:px-[1rem] py-[0.8rem] lg:py-[2rem]" style={{ backgroundImage: `url(${destination.main_image_url})` }}>
+          {/* Title and Description */}
+          <div className="flex-1 flex flex-col justify-center items-start text-center lg:text-left bg-white/70 dark:bg-green-900/70 p-6 rounded-lg shadow-lg">
+            <h1 className="text-4xl font-bold text-green-800 dark:text-green-100">
+              {destination.name}
+            </h1>
+            <p className="text-xl text-green-600 dark:text-green-300 mt-2">
+              {destination.location}
+            </p>
+            <p className="mt-4 text-green-700 dark:text-green-300">
               {destination.description}
-            </article>
+            </p>
+          </div>
+
+          {/* Image */}
+          <div className="flex-1 relative aspect-video lg:aspect-auto rounded-lg overflow-hidden shadow-lg lg:ml-8 mt-8 lg:mt-0">
+            <Image
+              src={destination.main_image_url}
+              alt={destination.name}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
         </section>
 
