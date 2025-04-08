@@ -20,7 +20,7 @@ async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
 
     if (error) {
       console.error("Supabase error:", error.message);
-      return { trips: [], error: `Failed to load animals: ${error.message}` };
+      return { trips: [], error: `Failed to load trips: ${error.message}` };
     }
 
     if (!data) {
@@ -30,17 +30,16 @@ async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
       (trip) =>
         trip.id &&
         trip.name &&
-        trip.title &&
         trip.short_description &&
         trip.main_featured_image_url
     ) as Trip[];
 
     return { trips: validatedData, error: null };
   } catch (error: any) {
-    console.error("Error fetching animals:", error.message);
+    console.error("Error fetching trips:", error.message);
     return {
       trips: [],
-      error: `Unexpected error fetching animals: ${error.message}`,
+      error: `Unexpected error fetching trips: ${error.message}`,
     };
   }
 }
