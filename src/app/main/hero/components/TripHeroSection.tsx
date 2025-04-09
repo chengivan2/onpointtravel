@@ -58,7 +58,7 @@ export default function TripHeroSection({
           </h1>
           <p
             key={`${selectedTrip.id}-desc`}
-            className="text-sm text-green-700/80 dark:text-green-200/80 mb-6 max-w-2xl leading-relaxed transition-all duration-300"
+            className="text-sm text-green-700/80 dark:text-green-200/80 mb-4 max-w-2xl leading-relaxed transition-all duration-300"
           >
             {selectedTrip.short_description}
           </p>
