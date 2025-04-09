@@ -102,7 +102,7 @@ export default function Header() {
           <Menu />
           <div className="flex items-center space-x-4">
             <HeaderThemeToggler />
-            <div className="flex flex-row gap-[0.5rem]">
+            <div className="relative flex flex-row gap-[0.5rem]">
               <HeaderButtons />
             </div>
           </div>
