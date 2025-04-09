@@ -34,7 +34,7 @@ export default function HeaderAuthButton() {
   ) : (
     <Link
       href="/signin"
-      className="px-4 flex flex-row gap-[0.8rem] justify-center items-center py-2 rounded-full text-sm font-medium border-none bg-transparent text-lightmode-btn-text-color hover:bg-lightmode-btn-bg-hover-color dark:bg-darkmode-btn-bg-color dark:text-darkmode-btn-text-color dark:hover:bg-darkmode-btn-bg-hover-color transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightmode-heading-color dark:focus:ring-darkmode-heading-color focus:ring-offset-lightmode-header-bg-color dark:focus:ring-offset-darkmode-header-bg-color"
+      className="min-w-full px-4 flex flex-row gap-[0.8rem] justify-center items-center py-2 rounded-full text-sm font-medium border-none bg-transparent text-lightmode-btn-text-color hover:bg-lightmode-btn-bg-hover-color dark:bg-darkmode-btn-bg-color dark:text-darkmode-btn-text-color dark:hover:bg-darkmode-btn-bg-hover-color transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightmode-heading-color dark:focus:ring-darkmode-heading-color focus:ring-offset-lightmode-header-bg-color dark:focus:ring-offset-darkmode-header-bg-color"
     >
       <FiLogIn size="18" />
       Login
