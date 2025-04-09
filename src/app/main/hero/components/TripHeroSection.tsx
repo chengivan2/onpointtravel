@@ -28,7 +28,7 @@ export default function TripHeroSection({
 
       <div
         key={selectedTrip.id}
-        className="absolute inset-0 z-0 ease-in-out rounded-[0.7rem] min-h-[98vh]"
+        className="absolute inset-0 z-0 ease-in-out rounded-[0.7rem]"
       >
         {selectedTrip.main_featured_image_url && (
           <Image
@@ -45,7 +45,7 @@ export default function TripHeroSection({
 
       <div className="relative z-10 flex flex-col justify-between gap-[3rem] flex-grow px-3 py-8 md:px-5 md:pt-12 md:pb-10 lg:px-10 lg:pt-22 lg:pb-20 rounded-[0.7rem] shadow-lg transition-all duration-300">
         {/* Main Text Content */}
-        <div className="min-w-full min-h-full flex flex-col items-start pt-[3rem] md:pt-[2rem] px-[2rem] lg:px-[3rem]">
+        <div className="min-w-full min-h-full flex flex-col items-start pt-[2rem] md:pt-[2rem] px-[2rem] lg:px-[3rem]">
           <p className="text-sm tracking-widest text-[#F5F5F5] mb-2">
             Today's Featured Trips
           </p>
@@ -71,10 +71,10 @@ export default function TripHeroSection({
           </div>
         </div>
 
-        {/* Bento Grid Section */}
+        {/* Trips thumbnails */}
         <div className="mt-auto">
           
-            <div className="w-full flex flex-wrap justify-end gap-5">
+            <div className="w-full flex flex-wrap flex-end justify-end gap-5">
               {initialTrips.map((trip) => (
                 <button
                   key={trip.id}
