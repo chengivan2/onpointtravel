@@ -102,7 +102,9 @@ export default function Header() {
           <Menu />
           <div className="flex items-center space-x-4">
             <HeaderThemeToggler />
-            <HeaderButtons />
+            <div className="flex flex-row gap-[0.5rem]">
+              <HeaderButtons />
+            </div>
           </div>
         </nav>
       </div>
@@ -113,7 +115,7 @@ export default function Header() {
           <nav className="">
             <Menu />
           </nav>
-          <div className="flex space-x-4 pt-3 border-t dark:border-gray-700">
+          <div className="flex flex-col justify-center items-center gap-[1rem] space-x-4 pt-3 border-t dark:border-gray-700">
             <HeaderButtons />
           </div>
         </div>

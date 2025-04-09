@@ -1,11 +1,11 @@
-// components/Header/HeaderButtons.tsx
+
 import React from "react";
 import Link from "next/link";
 import HeaderAuthButton from "./HeaderAuthButton";
 
 export default function HeaderButtons() {
   return (
-    <div className="min-w-full flex flex-col lg:flex-row justify-center items-center gap-[1rem] space-x-3">
+    <>
       <Link href="/" className="flex flex-row px-4 py-2 rounded-full text-sm font-medium
                      bg-lightmode-btn-bg-color text-lightmode-btn-text-color
                      hover:bg-lightmode-btn-bg-hover-color
@@ -18,6 +18,6 @@ export default function HeaderButtons() {
       </Link>
 
       <HeaderAuthButton />
-    </div>
+    </>
   );
 }
