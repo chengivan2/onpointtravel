@@ -40,7 +40,7 @@ export default function TripHeroSection({
             unoptimized={selectedTrip.main_featured_image_url.endsWith(".gif")}
           />
         )}
-        <div className="absolute inset-0 bg-darkmode-bg-color opacity-30 dark:opacity-40 rounded-[0.7rem]"></div>
+        <div className="absolute inset-0 bg-darkmode-bg-color opacity-20 dark:opacity-30 rounded-[0.7rem]"></div>
       </div>
 
       <div className="relative z-10 flex flex-col justify-between gap-[3rem] flex-grow px-3 py-8 md:px-5 md:pt-12 md:pb-10 lg:px-10 lg:pt-22 lg:pb-20 rounded-[0.7rem] shadow-lg transition-all duration-300">
