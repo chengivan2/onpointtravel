@@ -73,37 +73,39 @@ export default function TripHeroSection({
 
         {/* Bento Grid Section */}
         <div className="mt-auto">
-          <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 md:gap-4 max-w-xl lg:max-w-2xl">
-            {initialTrips.map((trip) => (
+          <div className="flex justify-end">
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 md:gap-4 max-w-xl lg:max-w-2xl">
+              {initialTrips.map((trip) => (
                 <button
-                key={trip.id}
-                onClick={() => handleThumbnailClick(trip)}
-                className={`relative aspect-square h-28 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
-                  selectedTrip.id === trip.id
-                  ? "ring-2 ring-green-400 dark:ring-green-900 opacity-100 scale-125" // Highlight selected
-                  : "opacity-70 hover:opacity-100 hover:scale-105" // Style for non-selected
-                }`}
-                aria-label={`View details for ${trip.name}`}
+                  key={trip.id}
+                  onClick={() => handleThumbnailClick(trip)}
+                  className={`relative aspect-square h-28 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
+                    selectedTrip.id === trip.id
+                      ? "ring-2 ring-green-400 dark:ring-green-900 opacity-100 scale-125" // Highlight selected
+                      : "opacity-70 hover:opacity-100 hover:scale-105" // Style for non-selected
+                  }`}
+                  aria-label={`View details for ${trip.name}`}
                 >
-                {trip.main_featured_image_url && (
-                  <Image
-                  src={trip.main_featured_image_url}
-                  alt={trip.name}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  quality={75}
-                  sizes="(max-width: 640px) 33vw, 20vw"
-                  className="transition-transform duration-300 group-hover:scale-110"
-                  />
-                )}
-                {/* Optional Name Overlay on Thumbnail */}
-                <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-black/70 via-black/40 to-transparent text-center">
-                  <span className="text-xs font-medium text-white block">
-                  {trip.name}
-                  </span>
-                </div>
+                  {trip.main_featured_image_url && (
+                    <Image
+                      src={trip.main_featured_image_url}
+                      alt={trip.name}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      quality={75}
+                      sizes="(max-width: 640px) 33vw, 20vw"
+                      className="transition-transform duration-300 group-hover:scale-110"
+                    />
+                  )}
+                  {/* Optional Name Overlay on Thumbnail */}
+                  <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-white/700 via-white/400 to-transparent text-center">
+                    <span className="text-xs font-medium text-green-950 block">
+                      {trip.name}
+                    </span>
+                  </div>
                 </button>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
