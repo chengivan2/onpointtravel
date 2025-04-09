@@ -74,7 +74,7 @@ export default function TripHeroSection({
         {/* Bento Grid Section */}
         <div className="mt-auto">
           
-            <div className="w-full flex flex-wtap justify-endgap-5">
+            <div className="w-full flex flex-wrap justify-end gap-5">
               {initialTrips.map((trip) => (
                 <button
                   key={trip.id}
