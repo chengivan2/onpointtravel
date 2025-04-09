@@ -11,9 +11,8 @@ const supabase = createClient(
 
 async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
   try {
-    // Fetch data directly on the server
     const { data, error } = await supabase
-      .from("trips") // Your table name
+      .from("trips")
       .select("*")
       .eq("is_featured", true)
       .order("created_at", { ascending: false });
