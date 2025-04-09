@@ -46,8 +46,8 @@ export default function TripHeroSection({
       <div className="relative z-10 flex flex-col justify-between flex-grow px-2 py-4 md:px-4 md:py-8 lg:px-8 lg:py-16 rounded-[0.7rem] shadow-lg transition-all duration-300">
         {/* Main Text Content */}
         <div className="min-w-full flex flex-col items-start justify-center">
-          <p className="text-sm uppercase tracking-widest text-[#F5F5F5] mb-2">
-            Book Our Most Popular Trips
+          <p className="text-sm tracking-widest text-[#F5F5F5] mb-2">
+            Today's FReatured Trips
           </p>
 
           <h1
