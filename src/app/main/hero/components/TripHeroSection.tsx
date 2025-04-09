@@ -74,7 +74,7 @@ export default function TripHeroSection({
         {/* Bento Grid Section */}
         <div className="mt-auto">
           <div className="flex justify-end">
-            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 md:gap-4 max-w-xl lg:max-w-2xl">
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 md:gap-5">
               {initialTrips.map((trip) => (
                 <button
                   key={trip.id}
@@ -93,7 +93,7 @@ export default function TripHeroSection({
                       fill
                       style={{ objectFit: "cover" }}
                       quality={75}
-                      sizes="(max-width: 640px) 35vw"
+                      sizes="32vw"
                       className="transition-transform duration-300 group-hover:scale-110"
                     />
                   )}
