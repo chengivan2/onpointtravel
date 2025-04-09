@@ -43,11 +43,11 @@ export default function TripHeroSection({
         <div className="absolute inset-0 bg-darkmode-bg-color opacity-30 dark:opacity-40 rounded-[0.7rem]"></div>
       </div>
 
-      <div className="relative z-10 flex flex-col justify-between flex-grow px-3 pt-4 pb-6 md:px-5 md:pt-12 md:pb-10 lg:px-10 lg:pt-22 lg:pb-20 rounded-[0.7rem] shadow-lg transition-all duration-300">
+      <div className="relative z-10 flex flex-col justify-between gap-[2rem] flex-grow px-3 pt-4 pb-6 md:px-5 md:pt-12 md:pb-10 lg:px-10 lg:pt-22 lg:pb-20 rounded-[0.7rem] shadow-lg transition-all duration-300">
         {/* Main Text Content */}
-        <div className="min-w-full flex flex-col items-start justify-center">
+        <div className="min-w-full flex flex-col items-start">
           <p className="text-sm tracking-widest text-[#F5F5F5] mb-2">
-            Today's FReatured Trips
+            Today's Featured Trips
           </p>
 
           <h1
@@ -58,7 +58,7 @@ export default function TripHeroSection({
           </h1>
           <p
             key={`${selectedTrip.id}-desc`}
-            className="text-sm text-green-700/80 dark:text-green-200/80 mb-6 max-w-2xl leading-relaxed transition-all duration-300"
+            className="text-sm md:text-md lg:text-lg text-green-700/80 dark:text-green-200/80 mb-6 max-w-2xl leading-relaxed transition-all duration-300"
           >
             {selectedTrip.short_description}
           </p>
@@ -74,12 +74,12 @@ export default function TripHeroSection({
         {/* Bento Grid Section */}
         <div className="mt-auto">
           
-            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 md:gap-5 place-content-end">
+            <div className="w-full flex flex-wtap justify-endgap-5">
               {initialTrips.map((trip) => (
                 <button
                   key={trip.id}
                   onClick={() => handleThumbnailClick(trip)}
-                  className={`relative aspect-2/3 h-30 md:h-40 lg:h-60 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
+                  className={`relative aspect-2/3 h-25 md:h-35 lg:h-60 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
                     selectedTrip.id === trip.id
                       ? "ring-2 ring-green-400 dark:ring-green-900 opacity-100 scale-105" // Highlight selected
                       : "opacity-80 hover:opacity-100 hover:scale-105" // Style for non-selected
