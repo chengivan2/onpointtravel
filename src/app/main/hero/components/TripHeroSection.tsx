@@ -79,7 +79,7 @@ export default function TripHeroSection({
                 <button
                   key={trip.id}
                   onClick={() => handleThumbnailClick(trip)}
-                  className={`relative aspect-video h-25vh w-25vw rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
+                  className={`relative aspect-square rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
                     selectedTrip.id === trip.id
                       ? "ring-2 ring-green-400 dark:ring-green-900 opacity-100 scale-105" // Highlight selected
                       : "opacity-70 hover:opacity-100 hover:scale-105" // Style for non-selected
@@ -93,6 +93,7 @@ export default function TripHeroSection({
                       fill
                       style={{ objectFit: "cover" }}
                       quality={75}
+                      sizes="(max-width: 640px) 35vw, 22vw"
                       className="transition-transform duration-300 group-hover:scale-110"
                     />
                   )}
