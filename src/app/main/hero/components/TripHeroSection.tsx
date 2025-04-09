@@ -22,7 +22,6 @@ export default function TripHeroSection({
     setSelectedTrip(trip);
   };
 
-
   return (
     <div className="relative flex flex-col h-[98vh]">
       {/* --- Background Image Section --- */}
@@ -44,24 +43,22 @@ export default function TripHeroSection({
         <div className="absolute inset-0 bg-darkmode-bg-color opacity-30 dark:opacity-40 rounded-[0.7rem]"></div>
       </div>
 
-      {/* --- Content Section (Positioned above background) --- */}
       <div className="relative z-10 flex flex-col justify-between flex-grow px-2 py-4 md:px-4 md:py-8 lg:px-8 lg:py-16 rounded-[0.7rem] shadow-lg transition-all duration-300">
-
         {/* Main Text Content */}
-        <div className="max-w-3xl mb-12">
-          <p className="text-sm uppercase tracking-widest text-gray-300 mb-2">
+        <div className="min-w-full flex flex-col items-start justify-center">
+          <p className="text-sm uppercase tracking-widest text-[#F5F5F5] mb-2">
             Book Our Most Popular Trips
           </p>
 
           <h1
             key={`${selectedTrip.id}-title`}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 transition-all duration-300"
+            className="text-green-800 dark:text-green-100 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 transition-all duration-300"
           >
             {selectedTrip.name}
           </h1>
           <p
             key={`${selectedTrip.id}-desc`}
-            className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 max-w-2xl leading-relaxed transition-all duration-300 animate-fade-in"
+            className="text-sm text-green-700/80 dark:text-green-200/80 mb-6 max-w-2xl leading-relaxed transition-all duration-300"
           >
             {selectedTrip.short_description}
           </p>
@@ -75,7 +72,7 @@ export default function TripHeroSection({
         </div>
 
         {/* Bento Grid Section */}
-        <div className="mt-auto mr-auto">
+        <div className="w-full flex items-end justify-end">
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 md:gap-4 max-w-xl lg:max-w-2xl">
             {initialTrips.map((trip) => (
               <button
