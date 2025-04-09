@@ -93,7 +93,7 @@ export default function TripHeroSection({
                       fill
                       style={{ objectFit: "cover" }}
                       quality={75}
-                      sizes="(max-width: 640px) 35vw, 22vw"
+                      sizes="(max-width: 640px) 35vw"
                       className="transition-transform duration-300 group-hover:scale-110"
                     />
                   )}
