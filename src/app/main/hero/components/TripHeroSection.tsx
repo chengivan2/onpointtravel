@@ -43,7 +43,7 @@ export default function TripHeroSection({
         <div className="absolute inset-0 bg-darkmode-bg-color opacity-30 dark:opacity-40 rounded-[0.7rem]"></div>
       </div>
 
-      <div className="relative z-10 flex flex-col justify-between gap-[2rem] flex-grow px-3 pt-4 pb-6 md:px-5 md:pt-12 md:pb-10 lg:px-10 lg:pt-22 lg:pb-20 rounded-[0.7rem] shadow-lg transition-all duration-300">
+      <div className="relative z-10 flex flex-col justify-between gap-[2rem] flex-grow px-3 pt-8 pb-10 md:px-5 md:pt-12 md:pb-10 lg:px-10 lg:pt-22 lg:pb-20 rounded-[0.7rem] shadow-lg transition-all duration-300">
         {/* Main Text Content */}
         <div className="min-w-full flex flex-col items-start">
           <p className="text-sm tracking-widest text-[#F5F5F5] mb-2">
