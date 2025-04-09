@@ -58,7 +58,7 @@ export default function TripHeroSection({
           </h1>
           <p
             key={`${selectedTrip.id}-desc`}
-            className="text-sm text-green-700/80 dark:text-green-200/80 mb-4 max-w-2xl leading-relaxed transition-all duration-300"
+            className="text-sm text-green-700/80 dark:text-green-200/80 mb-6 max-w-2xl leading-relaxed transition-all duration-300"
           >
             {selectedTrip.short_description}
           </p>
@@ -72,13 +72,13 @@ export default function TripHeroSection({
         </div>
 
         {/* Bento Grid Section */}
-        <div className="w-full flex items-end justify-end">
+        <div className="mt-auto">
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 md:gap-4 max-w-xl lg:max-w-2xl">
             {initialTrips.map((trip) => (
               <button
                 key={trip.id}
                 onClick={() => handleThumbnailClick(trip)}
-                className={`relative aspect-square rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 ${
+                className={`relative aspect-square rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
                   selectedTrip.id === trip.id
                     ? "ring-2 ring-green-400 dark:ring-green-900 opacity-100 scale-105" // Highlight selected
                     : "opacity-70 hover:opacity-100 hover:scale-105" // Style for non-selected
