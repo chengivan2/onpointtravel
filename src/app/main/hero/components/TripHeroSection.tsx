@@ -24,7 +24,7 @@ export default function TripHeroSection({
 
 
   return (
-    <div className="relative flex flex-col min-h-full">
+    <div className="relative flex flex-col h-[98vh]">
       {/* --- Background Image Section --- */}
 
       <div
