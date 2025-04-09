@@ -45,7 +45,7 @@ export default function TripHeroSection({
 
       <div className="relative z-10 flex flex-col justify-between gap-[2rem] flex-grow px-3 pt-8 pb-10 md:px-5 md:pt-12 md:pb-10 lg:px-10 lg:pt-22 lg:pb-20 rounded-[0.7rem] shadow-lg transition-all duration-300">
         {/* Main Text Content */}
-        <div className="min-w-full flex flex-col items-start">
+        <div className="min-w-full flex flex-col items-start pt-[3rem] md:pt-[2rem]">
           <p className="text-sm tracking-widest text-[#F5F5F5] mb-2">
             Today's Featured Trips
           </p>
