@@ -98,7 +98,7 @@ export default function TripHeroSection({
                     />
                   )}
                   {/* Optional Name Overlay on Thumbnail */}
-                  <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-white/700 via-white/400 to-transparent text-center">
+                  <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-blacik/700 via-black/400 to-transparent">
                     <span className="text-xs font-medium text-[#F8F8F8] block">
                       {trip.name}
                     </span>
