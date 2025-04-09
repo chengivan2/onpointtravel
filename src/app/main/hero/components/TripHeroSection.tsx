@@ -40,7 +40,7 @@ export default function TripHeroSection({
             unoptimized={selectedTrip.main_featured_image_url.endsWith(".gif")}
           />
         )}
-        <div className="absolute inset-0 bg-darkmode-bg-color opacity-20 dark:opacity-30 rounded-[0.7rem]"></div>
+        <div className="absolute inset-0 bg-darkmode-bg-color opacity-30 dark:opacity-40 rounded-[0.7rem]"></div>
       </div>
 
       <div className="relative z-10 flex flex-col justify-between gap-[3rem] flex-grow px-3 py-8 md:px-5 md:pt-12 md:pb-10 lg:px-10 lg:pt-22 lg:pb-20 rounded-[0.7rem] shadow-lg transition-all duration-300">
@@ -52,13 +52,13 @@ export default function TripHeroSection({
 
           <h1
             key={`${selectedTrip.id}-title`}
-            className="text-green-800 dark:text-green-100 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 transition-all duration-300"
+            className="text-green-100 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 transition-all duration-300"
           >
             {selectedTrip.name}
           </h1>
           <p
             key={`${selectedTrip.id}-desc`}
-            className="text-sm md:text-md lg:text-lg text-green-700/80 dark:text-green-200/80 mb-6 max-w-2xl leading-relaxed transition-all duration-300"
+            className="text-sm md:text-md lg:text-lg text-green-200/90 mb-6 max-w-2xl leading-relaxed transition-all duration-300"
           >
             {selectedTrip.short_description}
           </p>
