@@ -23,12 +23,12 @@ export default function TripHeroSection({
   };
 
   return (
-    <div className="relative flex flex-col h-[98vh]">
+    <div className="relative flex flex-col">
       {/* --- Background Image Section --- */}
 
       <div
         key={selectedTrip.id}
-        className="absolute inset-0 z-0 ease-in-out rounded-[0.7rem] h-[98vh]"
+        className="absolute inset-0 z-0 ease-in-out rounded-[0.7rem] min-h-[98vh]"
       >
         {selectedTrip.main_featured_image_url && (
           <Image
