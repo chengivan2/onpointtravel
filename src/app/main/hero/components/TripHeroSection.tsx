@@ -73,40 +73,40 @@ export default function TripHeroSection({
 
         {/* Trips thumbnails */}
         <div className="mt-auto">
-          
-            <div className="w-full flex flex-wrap flex-end justify-end gap-5">
-              {initialTrips.map((trip) => (
-                <button
-                  key={trip.id}
-                  onClick={() => handleThumbnailClick(trip)}
-                  className={`relative aspect-2/3 h-25 md:h-35 lg:h-60 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
-                    selectedTrip.id === trip.id
-                      ? "ring-2 ring-green-400 dark:ring-green-900 opacity-100 scale-105" // Highlight selected
-                      : "opacity-80 hover:opacity-100 hover:scale-105" // Style for non-selected
-                  }`}
-                  aria-label={`View details for ${trip.name}`}
-                >
-                  {trip.main_featured_image_url && (
-                    <Image
-                      src={trip.main_featured_image_url}
-                      alt={trip.name}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      quality={100}
-                      sizes="32vw 22vw"
-                      className="transition-transform duration-300 group-hover:scale-110"
-                    />
-                  )}
-                  {/* Optional Name Overlay on Thumbnail */}
-                  <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-blacik/700 via-black/400 to-transparent">
-                    <span className="text-xs font-medium text-[#F8F8F8] block">
-                      {trip.name}
-                    </span>
-                  </div>
-                </button>
-              ))}
-            </div>
-          
+          <div className="w-full flex flex-wrap flex-end justify-end gap-5">
+            {initialTrips.map((trip) => (
+              <button
+                key={trip.id}
+                onClick={() => handleThumbnailClick(trip)}
+                className={`relative aspect-2/3 h-25 md:h-35 lg:h-60 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
+                  selectedTrip.id === trip.id
+                    ? "ring-2 ring-green-400 dark:ring-green-900 opacity-100 scale-105" // Highlight selected
+                    : "opacity-80 hover:opacity-100 hover:scale-105" // Style for non-selected
+                }`}
+                aria-label={`View details for ${trip.name}`}
+              >
+                <div className="absolute inset-0 bg-[#181818] opacity-30 dark:opacity-40 rounded-[0.7rem]"></div>
+
+                {trip.main_featured_image_url && (
+                  <Image
+                    src={trip.main_featured_image_url}
+                    alt={trip.name}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    quality={100}
+                    sizes="32vw 22vw"
+                    className="transition-transform duration-300 group-hover:scale-110"
+                  />
+                )}
+                {/* Optional Name Overlay on Thumbnail */}
+                <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-blacik/700 via-black/400 to-transparent">
+                  <span className="text-xs font-medium text-[#F8F8F8] block">
+                    {trip.name}
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
