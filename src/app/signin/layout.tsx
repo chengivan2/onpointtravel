@@ -1,13 +1,8 @@
-import type { Metadata } from "next";
+
 import "../globals.css";
 import { ThemeProvider } from "next-themes";
 import ScrollToTop from "../rootcomponents/ScrollToTop";
 import { alegreyaSans, inter } from '@/app/fonts';
-
-export const metadata: Metadata = {
-  title: "Sign In - OnPoint",
-  description: "Sign in to manage your OnPoint account",
-};
 
 export default function RootLayout({
   children,

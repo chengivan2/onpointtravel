@@ -1,5 +1,6 @@
 "use client";
 
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,11 +8,16 @@ import Link from "next/link";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { login } from './actions/actions'
-import { createClient} from "@/utils/supabase/client";
+import { login } from "./actions/actions";
+import { createClient } from "@/utils/supabase/client";
 import { FaGoogle } from "react-icons/fa6";
 import Header from "../rootcomponents/header/Header";
 import HeaderLogo from "../rootcomponents/header/Logo";
+
+export const metadata: Metadata = {
+  title: "Sign In - OnPoint",
+  description: "Sign in to manage your OnPoint account",
+};
 
 export default function SignInPage() {
   const supabase = createClient();
@@ -127,7 +133,7 @@ export default function SignInPage() {
                 {error && <p className="text-red-500">{error}</p>}
 
                 <Button
-                formAction={login}
+                  formAction={login}
                   className="w-full cursor-pointer bg-lightmode-btn-bg-color dark:bg-darkmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color hover:dark:bg-darkmode-btn-bg-hover-color"
                   type="submit"
                   disabled={loading}
