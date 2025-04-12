@@ -38,7 +38,7 @@ export default function ForgotPasswordPage() {
     <main className="flex items-center justify-center min-h-screen bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color">
       <form
         onSubmit={handleForgotPassword}
-        className="bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color m-auto h-fit w-full max-w-sm overflow-hidden rounded-lg border shadow-md shadow-zinc-950/5"
+        className="bg-lightmode-auth-bg-color/50 dark:bg-darkmode-auth-bg-color/50 m-auto h-fit w-full max-w-sm overflow-hidden rounded-lg border shadow-md shadow-zinc-950/5"
       >
         <div className="-m-px rounded-lg] border p-8 pb-6">
           <div>
