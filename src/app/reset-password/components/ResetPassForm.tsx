@@ -102,7 +102,7 @@ export default function ResetPasswordForm() {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full bg-lightmode-btn-bg-color dark:bg-darkmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color hover:dark:bg-darkmode-btn-bg-hover-color"
+            className="cursor-pointer text-[#F5F5F5] w-full bg-lightmode-btn-bg-color dark:bg-darkmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color hover:dark:bg-darkmode-btn-bg-hover-color"
           >
             {loading ? "Resetting..." : "Reset Password"}
           </Button>
