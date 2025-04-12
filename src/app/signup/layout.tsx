@@ -4,10 +4,6 @@ import { ThemeProvider } from "next-themes";
 import ScrollToTop from "../rootcomponents/ScrollToTop";
 import { alegreyaSans, inter } from '@/app/fonts';
 
-export const metadata: Metadata = {
-  title: "Sign Up - OnPoint",
-  description: "Sign up to get great discounts from OnPoint",
-};
 
 export default function RootLayout({
   children,

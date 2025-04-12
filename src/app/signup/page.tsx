@@ -11,6 +11,13 @@ import { signup } from './actions/actions';
 import { FaGoogle, FaXTwitter } from "react-icons/fa6";
 import HeaderLogo from "../rootcomponents/header/Logo";
 import Header from "../rootcomponents/header/Header";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sign Up - OnPoint",
+  description: "Sign up to get great discounts from OnPoint",
+};
+
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
