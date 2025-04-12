@@ -38,9 +38,9 @@ export default function ForgotPasswordPage() {
     <main className="flex items-center justify-center min-h-screen bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color">
       <form
         onSubmit={handleForgotPassword}
-        className="bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color m-auto h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]"
+        className="bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color m-auto h-fit w-full max-w-sm overflow-hidden rounded-lg border shadow-md shadow-zinc-950/5"
       >
-        <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-6">
+        <div className="-m-px rounded-lg] border p-8 pb-6">
           <div>
             <Link href="/" aria-label="go home">
               <HeaderLogo />
