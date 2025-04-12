@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import Header from "../rootcomponents/header/Header";
 import SignInMain from "./components/SignInMain";
@@ -15,14 +13,13 @@ export const metadata: Metadata = {
 
 export default async function SignInPage() {
   const supabase = await createClient();
-  const router = useRouter();
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   if (user) {
-    router.push("/dashboard");
+    redirect("/dashboard");
   }
 
   return (

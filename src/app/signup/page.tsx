@@ -4,7 +4,7 @@ import SignUpMain from "./components/SignUpMain";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
 import { createClient } from "@/utils/supabase/server";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Sign Up - OnPoint",
@@ -13,14 +13,13 @@ export const metadata: Metadata = {
 
 export default async function SignUpPage() {
   const supabase = await createClient();
-  const router = useRouter();
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   if (user) {
-    router.push("/dashboard");
+    redirect("/dashboard");
   }
   return (
     <>
