@@ -1,116 +1,31 @@
-"use client";
-
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { createClient } from "@/utils/supabase/client";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import Header from "../rootcomponents/header/Header";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
+import ResetPasswordForm from "./components/ResetPassForm";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
 
-export default function ResetPasswordPage() {
-  const supabase = createClient();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
+export const metadata: Metadata = {
+  title: "Sign In - OnPoint",
+  description: "Sign in to manage your OnPoint account",
+};
 
-  const handleResetPassword = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    setMessage(null);
+export default async function ResetPasswordPage() {
+  const supabase = await createClient();
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      setLoading(false);
-      return;
-    }
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-    const accessToken = searchParams.get("access_token");
-    if (!accessToken) {
-      setError("Invalid or missing reset token.");
-      setLoading(false);
-      return;
-    }
-
-    const { error } = await supabase.auth.updateUser({
-      password,
-    });
-
-    setLoading(false);
-
-    if (error) {
-      setError(error.message);
-    } else {
-      setMessage("Your password has been reset successfully.");
-      setTimeout(() => {
-        router.push("/signin");
-      }, 3000); // Redirect to sign-in page after 3 seconds
-    }
-  };
-
+  if (!user) {
+    redirect("/signin");
+  }
   return (
     <>
       <Header />
       <main className="flex items-center justify-center min-h-screen">
-        <form
-          onSubmit={handleResetPassword}
-          className="bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color m-auto h-fit w-full max-w-sm rounded-[0.8rem] p-6 shadow-md"
-        >
-          <h1 className="text-title mb-4 text-xl font-semibold text-center">
-            Reset Password
-          </h1>
-          <p className="text-sm text-center mb-6">
-            Enter your new password below.
-          </p>
-
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="password" className="block text-sm">
-                New Password
-              </Label>
-              <Input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder="Enter your new password"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="confirm-password" className="block text-sm">
-                Confirm Password
-              </Label>
-              <Input
-                type="password"
-                id="confirm-password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-                placeholder="Confirm your new password"
-              />
-            </div>
-
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-            {message && <p className="text-green-500 text-sm">{message}</p>}
-
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-lightmode-btn-bg-color dark:bg-darkmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color hover:dark:bg-darkmode-btn-bg-hover-color"
-            >
-              {loading ? "Resetting..." : "Reset Password"}
-            </Button>
-          </div>
-        </form>
+        <ResetPasswordForm />
       </main>
       <FooterBefore />
       <Footer />
