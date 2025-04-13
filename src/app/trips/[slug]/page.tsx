@@ -10,6 +10,7 @@ import Footer from "@/app/rootcomponents/footer/Footer";
 import { ImLocation2 } from "react-icons/im";
 import Link from "next/link";
 import { BookingForm } from "./components/BookingForm";
+import FavoriteButton from "@/app/rootcomponents/trips/FavoriteButton";
 
 export const metadata: Metadata = {
   title: "OnPoint Travel Trips",
@@ -140,7 +141,7 @@ export default async function TripPage({
               <Link
                 href={`#Book ${trip.name}`}
                 className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
-                aria-label={`Book ${trip.name} now` }
+                aria-label={`Book ${trip.name} now`}
               >
                 Book Now
               </Link>
@@ -150,12 +151,21 @@ export default async function TripPage({
 
         {/* Overview Section */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
-            Overview
-          </h2>
-          <p className="text-green-700 dark:text-green-300 leading-relaxed">
-            {trip.description}
-          </p>
+          <div className="w-full flex lg:flex-row ">
+            <div>
+              <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
+                Overview
+              </h2>
+              <p className="text-green-700 dark:text-green-300 leading-relaxed">
+                {trip.description}
+              </p>
+            </div>
+
+            <div>
+              <h2>I like this trip</h2>
+              <FavoriteButton tripId={trip.id} />
+            </div>
+          </div>
         </section>
 
         <section className="mb-12 min-h[60vh]">
