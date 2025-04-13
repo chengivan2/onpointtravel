@@ -104,104 +104,116 @@ export default async function DataSectionCards() {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 px-4 *:bg-gradient-to-b *:from-white/50 *:to-white/90 dark:*:from-green-600 dark:*:to-green-400 *:backdrop-blur-[2px] *:border *:border-green-100/30 dark:*:border-green-900/30 *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 px-4 bg-gradient-to-b from-white/50 to-white/90 dark:from-green-600 dark:to-emerald-200 backdrop-blur-md border border-gray-200 dark:border-green-700 rounded-lg shadow-sm lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
       {profile?.role === "admin" && (
-        <Card className="@container/card">
-          <CardHeader>
-            <CardDescription>Total Bookings</CardDescription>
-            <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-              {totalBookings?.length || 0}
-            </CardTitle>
-            <CardAction>
-              <Badge variant="outline">
-                {isTrendingUp ? <IconTrendingUp className="text-green-400" /> : <IconTrendingDown className="text-red-400" />}
-                {isTrendingUp
-                  ? `+${trend.toFixed(2)}%`
-                  : `${trend.toFixed(2)}%`}
-              </Badge>
-            </CardAction>
-          </CardHeader>
-          <CardFooter className="flex-col items-start gap-1.5 text-sm">
-            <div className="line-clamp-1 flex gap-2 font-medium">
-              {isTrendingUp ? (
-                <span>Trending up this month</span>
-              ) : (
-                <span>Trending down this month</span>
-              )}
-              {isTrendingUp ? (
-                <IconTrendingUp className="size-4 text-green-400" />
-              ) : (
-                <IconTrendingDown className="size-4 text-red-400" />
-              )}
-            </div>
-            <div className="text-muted-foreground">
-              Bookings for the last 28 days
-            </div>
-          </CardFooter>
-        </Card>
+      <Card>
+        <CardHeader>
+        <CardDescription>Total Bookings</CardDescription>
+        <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+          {totalBookings?.length || 0}
+        </CardTitle>
+        <CardAction>
+          <Badge variant="outline">
+          {isTrendingUp ? (
+            <IconTrendingUp className="text-green-400" />
+          ) : (
+            <IconTrendingDown className="text-red-400" />
+          )}
+          {isTrendingUp
+            ? `+${trend.toFixed(2)}%`
+            : `${trend.toFixed(2)}%`}
+          </Badge>
+        </CardAction>
+        </CardHeader>
+        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <div className="line-clamp-1 flex gap-2 font-medium">
+          {isTrendingUp ? (
+          <span>Trending up this month</span>
+          ) : (
+          <span>Trending down this month</span>
+          )}
+          {isTrendingUp ? (
+          <IconTrendingUp className="size-4 text-green-400" />
+          ) : (
+          <IconTrendingDown className="size-4 text-red-400" />
+          )}
+        </div>
+        <div className="text-muted-foreground">
+          Bookings for the last 28 days
+        </div>
+        </CardFooter>
+      </Card>
       )}
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>New Customers</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            1,234
-          </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              <IconTrendingDown />
-              -20%
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            Down 20% this period <IconTrendingDown className="size-4" />
-          </div>
-          <div className="text-muted-foreground">
-            Acquisition needs attention
-          </div>
-        </CardFooter>
+      <Card>
+      <CardHeader>
+        <CardDescription>New Customers</CardDescription>
+        <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+        1,234
+        </CardTitle>
+        <CardAction>
+        <Badge variant="outline">
+          <IconTrendingDown className="text-red-400" />
+          -20%
+        </Badge>
+        </CardAction>
+      </CardHeader>
+      <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <div className="line-clamp-1 flex gap-2 font-medium">
+        Down 20% this period{" "}
+        <IconTrendingDown className="size-4 text-red-400" />
+        </div>
+        <div className="text-muted-foreground">
+        Acquisition needs attention
+        </div>
+      </CardFooter>
       </Card>
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Active Accounts</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            45,678
-          </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              <IconTrendingUp />
-              +12.5%
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            Strong user retention <IconTrendingUp className="size-4" />
-          </div>
-          <div className="text-muted-foreground">Engagement exceed targets</div>
-        </CardFooter>
+      <Card>
+      <CardHeader>
+        <CardDescription>Active Accounts</CardDescription>
+        <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+        45,678
+        </CardTitle>
+        <CardAction>
+        <Badge variant="outline">
+          <IconTrendingUp className="text-green-400" />
+          +12.5%
+        </Badge>
+        </CardAction>
+      </CardHeader>
+      <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <div className="line-clamp-1 flex gap-2 font-medium">
+        Strong user retention{" "}
+        <IconTrendingUp className="size-4 text-green-400" />
+        </div>
+        <div className="text-muted-foreground">
+        Engagement exceed targets
+        </div>
+      </CardFooter>
       </Card>
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Growth Rate</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            4.5%
-          </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              <IconTrendingUp />
-              +4.5%
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            Steady performance increase <IconTrendingUp className="size-4" />
-          </div>
-          <div className="text-muted-foreground">Meets growth projections</div>
-        </CardFooter>
+      <Card>
+      <CardHeader>
+        <CardDescription>Growth Rate</CardDescription>
+        <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+        4.5%
+        </CardTitle>
+        <CardAction>
+        <Badge variant="outline">
+          <IconTrendingUp className="text-green-400" />
+          +4.5%
+        </Badge>
+        </CardAction>
+      </CardHeader>
+      <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <div className="line-clamp-1 flex gap-2 font-medium">
+        Steady performance increase{" "}
+        <IconTrendingUp className="size-4 text-green-400" />
+        </div>
+        <div className="text-muted-foreground">
+        Meets growth projections
+        </div>
+      </CardFooter>
       </Card>
     </div>
+      
   );
 }
