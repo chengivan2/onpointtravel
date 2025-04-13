@@ -1,6 +1,6 @@
-// components/TripCard.tsx
 import Link from "next/link";
 import Image from "next/image";
+import FavoriteButton from "@/app/rootcomponents/trips/FavoriteButton";
 import { Database } from "@/types/supabase";
 
 type Trip = Database["public"]["Tables"]["trips"]["Row"];
@@ -49,6 +49,9 @@ export default function TripCard({ trip }: { trip: Trip }) {
             ))}
           </div>
         </div>
+      </div>
+      <div className="absolute top-2 right-2">
+        <FavoriteButton tripId={trip.id} />
       </div>
     </Link>
   );

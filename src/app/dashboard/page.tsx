@@ -9,8 +9,15 @@ import {
 } from "@/components/ui/sidebar"
 
 import data from "./data.json"
+import { Metadata } from "next"
 
-export default function Page() {
+export const metadata: Metadata = {
+  title: "OnPoint Dashboard",
+  description: "Manage your OnPoint account",
+};
+
+
+export default function OnPointDashboard() {
   return (
     <SidebarProvider
       style={
