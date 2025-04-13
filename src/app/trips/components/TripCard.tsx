@@ -9,8 +9,11 @@ export default function TripCard({ trip }: { trip: Trip }) {
   return (
     <Link
       href={`/trips/${trip.slug}`}
-      className="group block rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/60 dark:bg-green-900/20 backdrop-blur-md border border-green-100/30 dark:border-green-900/30"
+      className="z-20 group block rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/60 dark:bg-green-900/20 backdrop-blur-md border border-green-100/30 dark:border-green-900/30"
     >
+      <div className="z-30 absolute top-2 right-2">
+        <FavoriteButton tripId={trip.id} />
+      </div>
       <div className="relative aspect-[1.2]">
         <Image
           src={trip.main_featured_image_url}
@@ -50,9 +53,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
           </div>
         </div>
       </div>
-      <div className="absolute top-2 right-2">
-        <FavoriteButton tripId={trip.id} />
-      </div>
+      
     </Link>
   );
 }
