@@ -114,7 +114,7 @@ export default async function DataSectionCards() {
             </CardTitle>
             <CardAction>
               <Badge variant="outline">
-                {isTrendingUp ? <IconTrendingUp /> : <IconTrendingDown />}
+                {isTrendingUp ? <IconTrendingUp className="text-green-400" /> : <IconTrendingDown />}
                 {isTrendingUp
                   ? `+${trend.toFixed(2)}%`
                   : `${trend.toFixed(2)}%`}

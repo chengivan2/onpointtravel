@@ -1,8 +1,5 @@
-import { createClient } from "@/utils/supabase/server"
-import { AppSidebar } from "@/components/app-sidebar"
 import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { DataTable } from "@/components/data-table"
-import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
 import {
   SidebarInset,
@@ -12,6 +9,7 @@ import {
 import data from "./data.json"
 import { Metadata } from "next"
 import DataSectionCards from "./components/DataSectionCards"
+import { DashboardSidebar } from "./components/sidebar/DashboardSideBar"
 
 export const metadata: Metadata = {
   title: "OnPoint Dashboard",
@@ -29,7 +27,7 @@ export default async function OnPointDashboard() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar variant="inset" />
+      <DashboardSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">
