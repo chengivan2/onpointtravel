@@ -1,3 +1,4 @@
+import { createClient } from "@/utils/supabase/server"
 import { AppSidebar } from "@/components/app-sidebar"
 import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { DataTable } from "@/components/data-table"
@@ -10,6 +11,7 @@ import {
 
 import data from "./data.json"
 import { Metadata } from "next"
+import DataSectionCards from "./components/DataSectionCards"
 
 export const metadata: Metadata = {
   title: "OnPoint Dashboard",
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 
-export default function OnPointDashboard() {
+export default async function OnPointDashboard() {
   return (
     <SidebarProvider
       style={
@@ -33,7 +35,7 @@ export default function OnPointDashboard() {
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <SectionCards />
+              <DataSectionCards />
               <div className="px-4 lg:px-6">
                 <ChartAreaInteractive />
               </div>
