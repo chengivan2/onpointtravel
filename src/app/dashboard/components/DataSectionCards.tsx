@@ -104,9 +104,9 @@ export default async function DataSectionCards() {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 px-4 bg-gradient-to-b from-white/50 to-white/90 dark:from-green-600 dark:to-emerald-200 backdrop-blur-md border border-gray-200 dark:border-green-700 rounded-lg shadow-sm lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 px-4 *:bg-gradient-to-br *:from-white/50 *:to-white/90 dark:*:from-green-200 dark:*:to-emerald-200 *:backdrop-blur-md border *:border-gray-200 dark:*:border-green-400 *:rounded-lg shadow-sm lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
       {profile?.role === "admin" && (
-      <Card>
+      <Card className="@container/card">
         <CardHeader>
         <CardDescription>Total Bookings</CardDescription>
         <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
