@@ -135,7 +135,7 @@ export default async function DataSectionCards() {
               )}
             </div>
             <div className="text-muted-foreground">
-              Visitors for the last 6 months
+              Bookings for the last 28 days
             </div>
           </CardFooter>
         </Card>
