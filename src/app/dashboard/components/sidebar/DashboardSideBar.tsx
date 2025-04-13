@@ -33,6 +33,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import HeaderLogo from "@/app/rootcomponents/header/Logo"
+import Link from "next/link"
 
 const data = {
   user: {
@@ -161,10 +163,10 @@ export function DashboardSidebar({ ...props }: React.ComponentProps<typeof Sideb
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
-              </a>
+              <Link href="/">
+                <HeaderLogo />
+                <span className="text-base font-semibold">onPoint</span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
