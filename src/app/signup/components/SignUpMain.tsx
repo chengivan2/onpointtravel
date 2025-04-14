@@ -5,11 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useState } from "react";
-import { signup } from "../actions/actions";
+import { createClient } from "@/utils/supabase/client";
 import { FaGoogle, FaXTwitter } from "react-icons/fa6";
 import HeaderLogo from "../../rootcomponents/header/Logo";
 
 export default function SignUpMain() {
+  const supabase = createClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -21,6 +22,29 @@ export default function SignUpMain() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            first_name: firstName,
+            last_name: lastName,
+          },
+        },
+      });
+
+      if (error) {
+        setError(error.message);
+      } else {
+        alert("Sign-up successful! Please check your email to confirm your account.");
+      }
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -41,7 +65,7 @@ export default function SignUpMain() {
                   <HeaderLogo />
                 </Link>
                 <h1 className="text-title mb-1 mt-4 text-xl font-semibold">
-                  Create a OnPoint Account
+                  Create an OnPoint Account
                 </h1>
                 <p className="text-sm">
                   Welcome! Create an account to begin your adventure
@@ -138,8 +162,7 @@ export default function SignUpMain() {
                 <Button
                   type="submit"
                   disabled={loading}
-                  formAction={signup}
-                  className="w-full cursor-pointer bg-lightmode-btn-bg-color dark:bg-darkmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color hover:dark:bg-darkmode-btn-bg-hover-color"
+                  className="w-full cursor-pointer bg-lightmode-btn-bg-color dark:bg-darkmode-bg-color hover:bg-lightmode-btn-bg-hover-color hover:dark:bg-darkmode-btn-bg-hover-color"
                 >
                   <span>{loading ? "Signing you up..." : "Continue"}</span>
                 </Button>
