@@ -67,7 +67,7 @@ export function DashboardSidebar({
             email: profile.email,
             avatar:
               user.user_metadata?.avatar_url ||
-              "https://res.cloudinary.com/doqbnfais/image/upload/v1743234421/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/booking%20steps%20faces/booking-steps-face-image-1_lsbrim.jpg",
+              "https://res.cloudinary.com/doqbnfais/image/upload/v1743234420/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/booking%20steps%20faces/booking-steps-face-image-2_x5heop.jpg",
           });
         }
       }
@@ -185,7 +185,6 @@ export function DashboardSidebar({
           <div className="p-4">
             <p className="text-sm text-gray-500">Welcome back,</p>
             <p className="text-lg font-semibold">{userProfile.name}</p>
-            <p className="text-sm text-gray-400">{userProfile.email}</p>
           </div>
         )}
         <NavMain items={navMain} />
