@@ -67,7 +67,7 @@ export function DashboardSidebar({
             email: profile.email,
             avatar:
               user.user_metadata?.avatar_url ||
-              "https://via.placeholder.com/150", // Default avatar
+              "https://res.cloudinary.com/doqbnfais/image/upload/v1743234421/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/booking%20steps%20faces/booking-steps-face-image-1_lsbrim.jpg",
           });
         }
       }
