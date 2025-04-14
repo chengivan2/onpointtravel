@@ -124,6 +124,44 @@ export default async function AdminDataSlotCards() {
             </CardHeader>
           </Card>
 
+           <Card className="@container/card">
+                  <CardHeader>
+                  <CardDescription className="text-[#0D0D0D]">Total Bookings</CardDescription>
+                  <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+                    {totalBookings || 0}
+                  </CardTitle>
+                  <CardAction>
+                    <Badge variant="outline">
+                    {isTrendingUp ? (
+                      <IconTrendingUp className="text-green-400" />
+                    ) : (
+                      <IconTrendingDown className="text-red-400" />
+                    )}
+                    {isTrendingUp
+                      ? `+${trend.toFixed(2)}%`
+                      : `${trend.toFixed(2)}%`}
+                    </Badge>
+                  </CardAction>
+                  </CardHeader>
+                  <CardFooter className="flex-col items-start gap-1.5 text-sm">
+                  <div className="line-clamp-1 flex gap-2 font-medium">
+                    {isTrendingUp ? (
+                    <span>Trending up this month</span>
+                    ) : (
+                    <span>Trending down this month</span>
+                    )}
+                    {isTrendingUp ? (
+                    <IconTrendingUp className="size-4 text-green-400" />
+                    ) : (
+                    <IconTrendingDown className="size-4 text-red-400" />
+                    )}
+                  </div>
+                  <div className="text-muted-foreground">
+                    Bookings for the last 28 days
+                  </div>
+                  </CardFooter>
+                </Card>
+
           {/* Pending Bookings Card */}
           <Card className="@container/card">
             <CardHeader>
