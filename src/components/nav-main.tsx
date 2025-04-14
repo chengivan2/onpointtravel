@@ -27,7 +27,7 @@ export function NavMain({
           <SidebarMenuItem className="flex items-center gap-2">
             <SidebarMenuButton
               title="Create a Trip"
-              className="bg-white/30 backdrop-blur-md text-green-600 hover:bg-white/40 hover:text-green-700 active:bg-white/50 active:text-green-800 dark:bg-green-900/30 dark:hover:bg-green-800/40 dark:active:bg-green-700/50 duration-200 ease-linear min-w-8"
+              className="bg-white/30 backdrop-blur-md text-green-600 hover:bg-white/40 hover:text-green-700 active:bg-white/50 active:text-green-800 dark:bg-green-700/50 dark:hover:bg-green-600/40 dark:active:bg-green-500/50 duration-200 ease-linear min-w-8"
             >
               <IconCirclePlusFilled className="text-green-600 dark:text-green-400" />
               <span>Create a Trip</span>
