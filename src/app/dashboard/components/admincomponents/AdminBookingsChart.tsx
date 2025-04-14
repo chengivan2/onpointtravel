@@ -63,7 +63,7 @@ export default function AdminBookingsChart() {
   }, [supabase]);
 
   return (
-    <Card className="glassmorphism">
+    <Card className="bg-green-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100">
       <CardHeader>
         <CardTitle>Monthly Bookings</CardTitle>
         <CardDescription>
