@@ -183,7 +183,7 @@ export function DashboardSidebar({
       <SidebarContent>
         {userProfile && (
           <div className="p-4">
-            <p className="text-sm text-gray-500">Welcome back,</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Welcome back,</p>
             <p className="text-lg font-semibold">{userProfile.name}</p>
           </div>
         )}
