@@ -171,6 +171,23 @@ export default async function AdminDataSlotCards() {
                 </Badge>
               </CardAction>
             </CardHeader>
+            <CardFooter className="flex-col items-start gap-1.5 text-sm">
+              <div className="line-clamp-1 flex gap-2 font-medium">
+                {totalUsersTrend >= 0 ? (
+                  <span>You got more users this month</span>
+                ) : (
+                  <span>You got less users this month</span>
+                )}
+                {totalUsersTrend >= 0 ? (
+                  <IconTrendingUp className="size-4 text-green-400" />
+                ) : (
+                  <IconTrendingDown className="size-4 text-red-400" />
+                )}
+              </div>
+              <div className="text-muted-foreground">
+                Users in the last 28 days
+              </div>
+            </CardFooter>
           </Card>
 
           {/* Total Bookings Card */}
@@ -193,6 +210,23 @@ export default async function AdminDataSlotCards() {
                 </Badge>
               </CardAction>
             </CardHeader>
+            <CardFooter className="flex-col items-start gap-1.5 text-sm">
+              <div className="line-clamp-1 flex gap-2 font-medium">
+                {totalBookingsTrend >= 0 ? (
+                  <span>You created more trips this month</span>
+                ) : (
+                  <span>You created less trips this month</span>
+                )}
+                {totalBookingsTrend >= 0 ? (
+                  <IconTrendingUp className="size-4 text-green-400" />
+                ) : (
+                  <IconTrendingDown className="size-4 text-red-400" />
+                )}
+              </div>
+              <div className="text-muted-foreground">
+                Bookings in the last 28 days
+              </div>
+            </CardFooter>
           </Card>
 
           {/* Pending Bookings Card */}
@@ -215,6 +249,24 @@ export default async function AdminDataSlotCards() {
                 </Badge>
               </CardAction>
             </CardHeader>
+
+            <CardFooter className="flex-col items-start gap-1.5 text-sm">
+              <div className="line-clamp-1 flex gap-2 font-medium">
+                {pendingBookingsTrend >= 0 ? (
+                  <span>You have more pending trips this month</span>
+                ) : (
+                  <span>You have less pending trips this month</span>
+                )}
+                {pendingBookingsTrend >= 0 ? (
+                  <IconTrendingUp className="size-4 text-green-400" />
+                ) : (
+                  <IconTrendingDown className="size-4 text-red-400" />
+                )}
+              </div>
+              <div className="text-muted-foreground">
+                Pending bookings in the last 28 days
+              </div>
+            </CardFooter>
           </Card>
 
           {/* Confirmed Bookings Card */}
@@ -237,6 +289,24 @@ export default async function AdminDataSlotCards() {
                 </Badge>
               </CardAction>
             </CardHeader>
+
+            <CardFooter className="flex-col items-start gap-1.5 text-sm">
+              <div className="line-clamp-1 flex gap-2 font-medium">
+                {confirmedBookingsTrend >= 0 ? (
+                  <span>You sold more trips this month 🎉</span>
+                ) : (
+                  <span>You sold less trips this month</span>
+                )}
+                {confirmedBookingsTrend >= 0 ? (
+                  <IconTrendingUp className="size-4 text-green-400" />
+                ) : (
+                  <IconTrendingDown className="size-4 text-red-400" />
+                )}
+              </div>
+              <div className="text-muted-foreground">
+                Confirmed bookings in the last 28 days
+              </div>
+            </CardFooter>
           </Card>
 
           {/* Completed Bookings Card */}
@@ -259,6 +329,24 @@ export default async function AdminDataSlotCards() {
                 </Badge>
               </CardAction>
             </CardHeader>
+
+            <CardFooter className="flex-col items-start gap-1.5 text-sm">
+              <div className="line-clamp-1 flex gap-2 font-medium">
+                {completedBookingsTrend >= 0 ? (
+                  <span>You have completed more trips this month 🎉</span>
+                ) : (
+                  <span>You have completed less trips this month</span>
+                )}
+                {completedBookingsTrend >= 0 ? (
+                  <IconTrendingUp className="size-4 text-green-400" />
+                ) : (
+                  <IconTrendingDown className="size-4 text-red-400" />
+                )}
+              </div>
+              <div className="text-muted-foreground">
+                Successful bookings in the last 28 days
+              </div>
+            </CardFooter>
           </Card>
         </>
       )}
