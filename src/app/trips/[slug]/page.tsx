@@ -163,7 +163,7 @@ export default async function TripPage({
 
             <div>
               <h2>I like this trip</h2>
-              <FavoriteButton tripId={trip.id} />
+              <FavoriteButton tripId={trip.id} heartIconSize={100} />
             </div>
           </div>
         </section>

@@ -5,7 +5,10 @@ import { createClient } from "@/utils/supabase/client";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
-export default function FavoriteButton({ tripId }: { tripId: string }) {
+
+export default function FavoriteButton(
+  { tripId, heartIconSize }: { tripId: string; heartIconSize: number }
+) {
   const supabase = createClient();
   const [isFavorite, setIsFavorite] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -85,7 +88,7 @@ export default function FavoriteButton({ tripId }: { tripId: string }) {
       className="text-red-500 hover:text-red-700 transition-colors"
       aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
     >
-      {isFavorite ? <FaHeart size={20} /> : <FaRegHeart size={20} />}
+      {isFavorite ? <FaHeart size={heartIconSize} /> : <FaRegHeart size={heartIconSize} />}
     </button>
   );
 }
