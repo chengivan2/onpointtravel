@@ -26,11 +26,11 @@ export function NavMain({
         <SidebarMenu>
           <SidebarMenuItem className="flex items-center gap-2">
             <SidebarMenuButton
-              tooltip="Quick Create"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
+              title="Create a Trip"
+              className="bg-white/30 backdrop-blur-md text-green-600 hover:bg-white/40 hover:text-green-700 active:bg-white/50 active:text-green-800 dark:bg-black/30 dark:hover:bg-black/40 dark:active:bg-black/50 duration-200 ease-linear min-w-8"
             >
-              <IconCirclePlusFilled />
-              <span>Quick Create</span>
+              <IconCirclePlusFilled className="text-green-600 dark:text-green-400" />
+              <span>Create a Trip</span>
             </SidebarMenuButton>
             <Button
               size="icon"
