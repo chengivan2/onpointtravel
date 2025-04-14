@@ -12,7 +12,6 @@ import {
   IconFolder,
   IconHeart,
   IconHelp,
-  IconInnerShadowTop,
   IconListDetails,
   IconReport,
   IconSearch,
@@ -33,130 +32,120 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import HeaderLogo from "@/app/rootcomponents/header/Logo";
 import Link from "next/link";
 import Image from "next/image";
+import { createClient } from "@/utils/supabase/client";
 
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
+export function DashboardSidebar({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) {
+  const supabase = createClient();
+  const [userRole, setUserRole] = React.useState<string | null>(null);
+  const [userProfile, setUserProfile] = React.useState<{
+    name: string;
+    email: string;
+    avatar: string;
+  } | null>(null);
+
+  React.useEffect(() => {
+    const fetchUserData = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        const { data: profile } = await supabase
+          .from("users")
+          .select("role, first_name, last_name, email")
+          .eq("id", user.id)
+          .single();
+
+        if (profile) {
+          setUserRole(profile.role);
+          setUserProfile({
+            name: `${profile.first_name} ${profile.last_name}`,
+            email: profile.email,
+            avatar:
+              user.user_metadata?.avatar_url ||
+              "https://via.placeholder.com/150", // Default avatar
+          });
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [supabase]);
+
+  const navMain = [
     {
       title: "Dashboard",
       url: "/dashboard",
       icon: IconDashboard,
     },
-    {
-      title: "Favorites",
-      url: "#",
-      icon: IconHeart,
-    },
-    {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
-    },
-    {
-      title: "Projects",
-      url: "#",
-      icon: IconFolder,
-    },
-    {
-      title: "Team",
-      url: "#",
-      icon: IconUsers,
-    },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: IconFileAi,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: IconSettings,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
-    },
-  ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
-    },
-  ],
-};
+    ...(userRole === "admin"
+      ? [
+          {
+            title: "Analytics",
+            url: "/dashboard/analytics",
+            icon: IconChartBar,
+          },
+          {
+            title: "Manage Users",
+            url: "/dashboard/users",
+            icon: IconUsers,
+          },
+        ]
+      : [
+          {
+            title: "Favorites",
+            url: "/dashboard/favorites",
+            icon: IconHeart,
+          },
+          {
+            title: "My Trips",
+            url: "/dashboard/trips",
+            icon: IconFolder,
+          },
+        ]),
+  ];
 
-export function DashboardSidebar({
-  ...props
-}: React.ComponentProps<typeof Sidebar>) {
+  const data = {
+    documents: [
+      {
+        name: "Data Library",
+        url: "#",
+        icon: IconDatabase,
+      },
+      {
+        name: "Reports",
+        url: "#",
+        icon: IconReport,
+      },
+      {
+        name: "Word Assistant",
+        url: "#",
+        icon: IconFileWord,
+      },
+    ],
+    navSecondary: [
+      {
+        title: "Settings",
+        url: "#",
+        icon: IconSettings,
+      },
+      {
+        title: "Get Help",
+        url: "#",
+        icon: IconHelp,
+      },
+      {
+        title: "Search",
+        url: "#",
+        icon: IconSearch,
+      },
+    ],
+  };
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -192,12 +181,19 @@ export function DashboardSidebar({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        {userProfile && (
+          <div className="p-4">
+            <p className="text-sm text-gray-500">Welcome back,</p>
+            <p className="text-lg font-semibold">{userProfile.name}</p>
+            <p className="text-sm text-gray-400">{userProfile.email}</p>
+          </div>
+        )}
+        <NavMain items={navMain} />
         <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {userProfile && <NavUser user={userProfile} />}
       </SidebarFooter>
     </Sidebar>
   );
