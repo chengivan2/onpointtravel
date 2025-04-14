@@ -103,7 +103,7 @@ export function BookingForm({
           (1000 * 60 * 60 * 24)
       );
 
-      const calculatedBasePrice = trip.price * formData.people * nights;
+      const calculatedBasePrice = trip.price * formData.people;
 
       const calculatedAddonPrice = Object.entries(formData.addons || {}).reduce(
         (acc, [type, quantity]) => {
