@@ -148,7 +148,7 @@ export default async function AdminDataSlotCards() {
   }
 
   return (
-    <div className="**:[data-slot=card-description]:text-[#F0F0F0] *:rounded-lg *:shadow-xl *:border-green-100/30 *:dark:border-green-900/30 *:hover:shadow-xl *:border *:bg-white/30 *:dark:bg-green-900/30 *:backdrop-blur-sm *:backdrop-saturate-150  bg-transparent grid grid-cols-1 gap-4 px-4 lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
+    <div className="*:rounded-lg *:shadow-xl *:border-green-100/30 *:dark:border-green-900/30 *:hover:shadow-xl *:border *:bg-white/80 *:dark:bg-green-900/40 *:backdrop-blur-sm *:backdrop-saturate-150  bg-transparent grid grid-cols-1 gap-4 px-4 lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
       {profile?.role === "admin" && (
         <>
           {/* Total Users Card */}
