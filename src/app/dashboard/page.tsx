@@ -9,6 +9,7 @@ import { DashboardSidebar } from "./components/sidebar/DashboardSideBar";
 import AdminDataSlotCards from "./components/admincomponents/AdminDataSlotCards";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import AdminBookingsChart from "./components/admincomponents/AdminBookingsChart";
 
 export const metadata: Metadata = {
   title: "OnPoint Dashboard",
@@ -41,7 +42,7 @@ export default async function OnPointDashboard() {
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
               <AdminDataSlotCards />
               <div className="px-4 lg:px-6">
-                <ChartAreaInteractive />
+                <AdminBookingsChart />
               </div>
               <DataTable data={data} />
             </div>

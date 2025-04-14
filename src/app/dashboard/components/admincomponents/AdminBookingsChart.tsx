@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/card";
 import { createClient } from "@/utils/supabase/client";
 
-export default function BookingsChart() {
+export default function AdminBookingsChart() {
   const supabase = createClient();
   const [chartData, setChartData] = React.useState<any[]>([]);
   const [timeRange, setTimeRange] = React.useState("12m");
