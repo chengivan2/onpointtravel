@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   IconCamera,
   IconChartBar,
@@ -18,12 +18,12 @@ import {
   IconSearch,
   IconSettings,
   IconUsers,
-} from "@tabler/icons-react"
+} from "@tabler/icons-react";
 
-import { NavDocuments } from "@/components/nav-documents"
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
+import { NavDocuments } from "@/components/nav-documents";
+import { NavMain } from "@/components/nav-main";
+import { NavSecondary } from "@/components/nav-secondary";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -32,9 +32,10 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import HeaderLogo from "@/app/rootcomponents/header/Logo"
-import Link from "next/link"
+} from "@/components/ui/sidebar";
+import HeaderLogo from "@/app/rootcomponents/header/Logo";
+import Link from "next/link";
+import Image from "next/image";
 
 const data = {
   user: {
@@ -151,9 +152,11 @@ const data = {
       icon: IconFileWord,
     },
   ],
-}
+};
 
-export function DashboardSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function DashboardSidebar({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -164,7 +167,24 @@ export function DashboardSidebar({ ...props }: React.ComponentProps<typeof Sideb
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <Link href="/">
-                <HeaderLogo />
+                <div className="flex justify-between items-center">
+                  <Image
+                    width={50}
+                    height={30}
+                    alt="OnPoint header logo"
+                    src="/logos/onpointhflightmodelogo.png"
+                    className="flex duration-300 dark:hidden"
+                  />
+
+                  <Image
+                    width={50}
+                    height={30}
+                    alt="OnPoint header logo"
+                    src="/logos/onpointhfdarkmodelogo.png"
+                    className="hidden duration-300 dark:flex"
+                  />
+                </div>
+
                 <span className="text-base font-semibold">onPoint</span>
               </Link>
             </SidebarMenuButton>
@@ -180,5 +200,5 @@ export function DashboardSidebar({ ...props }: React.ComponentProps<typeof Sideb
         <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
