@@ -12,7 +12,7 @@ export default function DestinationCard({
   return (
     <Link
       href={`/destinations/${destination.slug}`}
-      className="block group rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 bg-white/60 dark:bg-green-900/20 backdrop-blur-md border border-green-100/30 dark:border-green-900/30"
+      className="block group rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 bg-white/80 dark:bg-green-900/20 backdrop-blur-md border border-green-100/30 dark:border-green-900/30"
     >
       <div className="relative aspect-[1.2]">
         <Image
