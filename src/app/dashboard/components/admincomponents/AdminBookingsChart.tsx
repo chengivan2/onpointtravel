@@ -12,7 +12,6 @@ import {
 } from "recharts";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -23,10 +22,28 @@ import { createClient } from "@/utils/supabase/client";
 export default function AdminBookingsChart() {
   const supabase = createClient();
   const [chartData, setChartData] = React.useState<any[]>([]);
-  const [timeRange, setTimeRange] = React.useState("12m");
+  const [userRole, setUserRole] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    const fetchData = async () => {
+    const fetchUserData = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        const { data: profile } = await supabase
+          .from("users")
+          .select("role")
+          .eq("id", user.id)
+          .single();
+
+        if (profile) {
+          setUserRole(profile.role);
+        }
+      }
+    };
+
+    const fetchChartData = async () => {
       const { data: bookings } = await supabase
         .from("bookings")
         .select("id, status, booked_at");
@@ -59,8 +76,13 @@ export default function AdminBookingsChart() {
       }
     };
 
-    fetchData();
+    fetchUserData();
+    fetchChartData();
   }, [supabase]);
+
+  if (userRole !== "admin") {
+    return null; // Do not render the chart if the user is not an admin
+  }
 
   return (
     <Card className="bg-white/80 dark:bg-green-900/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 dark:border-green-900/50 shadow-xl">
