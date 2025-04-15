@@ -63,7 +63,7 @@ export default function AdminBookingsChart() {
   }, [supabase]);
 
   return (
-    <Card className="bg-white/80 dark:bg-green-900/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 dark:border-green-900 shadow-xl">
+    <Card className="bg-white/80 dark:bg-green-900/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 dark:border-green-900">
       <CardHeader>
         <CardTitle>Monthly Bookings</CardTitle>
         <CardDescription>
@@ -80,62 +80,62 @@ export default function AdminBookingsChart() {
           <defs>
             <linearGradient id="totalGradient" x1="0" y1="0" x2="0" y2="1">
               <stop
-          offset="5%"
-          stopColor="rgba(16, 185, 129, 1)"
-          stopOpacity={0.8}
+                offset="5%"
+                stopColor="rgba(34, 197, 94, 1)"
+                stopOpacity={0.8}
               />
               <stop
-          offset="95%"
-          stopColor="rgba(16, 185, 129, 1)"
-          stopOpacity={0.1}
+                offset="95%"
+                stopColor="rgba(34, 197, 94, 1)"
+                stopOpacity={0.1}
               />
             </linearGradient>
             <linearGradient id="pendingGradient" x1="0" y1="0" x2="0" y2="1">
               <stop
-          offset="5%"
-          stopColor="rgba(52, 211, 153, 1)"
-          stopOpacity={0.8}
+                offset="5%"
+                stopColor="rgba(255, 193, 7, 1)"
+                stopOpacity={0.8}
               />
               <stop
-          offset="95%"
-          stopColor="rgba(52, 211, 153, 1)"
-          stopOpacity={0.1}
+                offset="95%"
+                stopColor="rgba(255, 193, 7, 1)"
+                stopOpacity={0.1}
               />
             </linearGradient>
             <linearGradient id="completedGradient" x1="0" y1="0" x2="0" y2="1">
               <stop
-          offset="5%"
-          stopColor="rgba(16, 185, 129, 1)"
-          stopOpacity={0.8}
+                offset="5%"
+                stopColor="rgba(34, 197, 94, 1)"
+                stopOpacity={0.8}
               />
               <stop
-          offset="95%"
-          stopColor="rgba(16, 185, 129, 1)"
-          stopOpacity={0.1}
+                offset="95%"
+                stopColor="rgba(34, 197, 94, 1)"
+                stopOpacity={0.1}
               />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(16, 185, 129, 0.5)" />
-          <XAxis dataKey="month" stroke="rgba(16, 185, 129, 1)" />
-          <YAxis stroke="rgba(16, 185, 129, 1)" />
-          <Tooltip contentStyle={{ backgroundColor: "rgba(16, 185, 129, 0.8)", border: "none" }} />
-          <Legend wrapperStyle={{ color: "rgba(16, 185, 129, 1)" }} />
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="month" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
           <Area
             type="monotone"
             dataKey="total"
-            stroke="rgba(16, 185, 129, 1)"
+            stroke="rgba(34, 197, 94, 1)"
             fill="url(#totalGradient)"
           />
           <Area
             type="monotone"
             dataKey="pending"
-            stroke="rgba(52, 211, 153, 1)"
+            stroke="rgba(255, 193, 7, 1)"
             fill="url(#pendingGradient)"
           />
           <Area
             type="monotone"
             dataKey="completed"
-            stroke="rgba(16, 185, 129, 1)"
+            stroke="rgba(34, 197, 94, 1)"
             fill="url(#completedGradient)"
           />
         </AreaChart>
