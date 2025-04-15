@@ -63,7 +63,7 @@ export default function AdminBookingsChart() {
   }, [supabase]);
 
   return (
-    <Card className="bg-white/80 dark:bg-green-900/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 dark:border-green-900">
+    <Card className="bg-white/80 dark:bg-green-900/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 dark:border-green-900 shadow-xl">
       <CardHeader>
         <CardTitle>Monthly Bookings</CardTitle>
         <CardDescription>
