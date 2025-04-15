@@ -1,4 +1,3 @@
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 import { DataTable } from "@/components/data-table";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
@@ -25,6 +24,17 @@ export default async function OnPointDashboard() {
   if (!user) {
     redirect("/signin");
   }
+
+  // Fetch user profile
+  const { data: profile } = await supabase
+    .from("users")
+    .select("role, first_name, last_name")
+    .eq("id", user.id)
+    .single();
+
+  const fullName = `${profile?.first_name || ""} ${profile?.last_name || ""}`;
+  const isAdmin = profile?.role === "admin";
+
   return (
     <SidebarProvider
       style={
@@ -40,8 +50,22 @@ export default async function OnPointDashboard() {
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <div className="relative min-w-full ">
-                <h2>Hello </h2>
+              <div className="relative min-w-full flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-semibold">
+                    Hello, 👋 {fullName}
+                  </h2>
+                  <p className="text-sm text-gray-500">Welcome back.</p>
+                </div>
+                {isAdmin && (
+                  <Link
+                    href="/dashboard/trips/create"
+                    className="flex items-center justify-center w-12 h-12 rounded-full bg-green-500 text-white hover:bg-green-600 shadow-lg"
+                    aria-label="Create Trip"
+                  >
+                    +
+                  </Link>
+                )}
               </div>
               <AdminDataSlotCards />
               <div className="px-4 lg:px-6">
