@@ -118,7 +118,14 @@ export default function AdminBookingsChart() {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" />
           <YAxis />
-          <Tooltip />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "rgba(34, 197, 94, 0.2)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(34, 197, 94, 0.5)",
+              borderRadius: "8px",
+            }}
+          />
           <Legend />
           <Area
             type="monotone"
