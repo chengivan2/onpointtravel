@@ -32,7 +32,7 @@ export default async function OnPointDashboard() {
     .eq("id", user.id)
     .single();
 
-  const fullName = `${profile?.first_name || ""} ${profile?.last_name || ""}`;
+  const firstName = `${profile?.first_name || ""}`;
   const isAdmin = profile?.role === "admin";
 
   return (
@@ -49,13 +49,13 @@ export default async function OnPointDashboard() {
         <SiteHeader />
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <div className="relative min-w-full flex items-center justify-between">
+            <div className="flex flex-col px-4 lg:px-6 gap-4 py-4 md:gap-6 md:py-6">
+              <div className="relative min-w-full gap-4 flex flex-col lg:flex-row items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-semibold">
-                    Hello, 👋 {fullName}
+                    Hello, 👋 {firstName}
                   </h2>
-                  <p className="text-sm text-gray-500">Welcome back.</p>
+                  <p className="text-sm text-gray-200">Welcome back.</p>
                 </div>
                 {isAdmin && (
                   <Link
