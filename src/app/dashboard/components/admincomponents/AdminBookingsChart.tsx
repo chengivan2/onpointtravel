@@ -63,7 +63,7 @@ export default function AdminBookingsChart() {
   }, [supabase]);
 
   return (
-    <Card className="bg-white/80 dark:bg-green-900/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 dark:border-green-900 shadow-xl">
+    <Card className="bg-white/80 dark:bg-green-900/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 dark:border-green-900/50 shadow-xl">
       <CardHeader>
         <CardTitle>Monthly Bookings</CardTitle>
         <CardDescription>
@@ -120,7 +120,7 @@ export default function AdminBookingsChart() {
           <YAxis />
           <Tooltip
             contentStyle={{
-              backgroundColor: "rgba(34, 197, 94, 0.2)",
+              backgroundColor: "rgba(34, 197, 94, 0.5)",
               backdropFilter: "blur(10px)",
               border: "1px solid rgba(34, 197, 94, 0.5)",
               borderRadius: "8px",
