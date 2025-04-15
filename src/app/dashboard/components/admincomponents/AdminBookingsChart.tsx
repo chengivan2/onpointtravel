@@ -69,7 +69,6 @@ export default function AdminBookingsChart() {
         <CardDescription>
           Number of bookings categorized by status over the last 12 months.
         </CardDescription>
-        <CardAction>{/* Add time range toggle if needed */}</CardAction>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <AreaChart
