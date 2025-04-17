@@ -1,8 +1,6 @@
-import { DataTable } from "@/components/data-table";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createClient } from "@/utils/supabase/server";
-import data from "./data.json";
 import { Metadata } from "next";
 import { DashboardSidebar } from "./components/sidebar/DashboardSideBar";
 import AdminDataSlotCards from "./components/admincomponents/AdminDataSlotCards";
@@ -73,7 +71,7 @@ export default async function OnPointDashboard() {
                 <AdminBookingsChart />
               </div>
               <AdminBookingsTable />
-              <DataTable data={data} />
+             
             </div>
           </div>
         </div>
