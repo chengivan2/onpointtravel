@@ -20,6 +20,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+interface Booking {
+  id: string;
+  trip_id: string;
+  number_of_people: number;
+  status: string;
+  payment_status: string;
+  trip_name: {
+    name: string;
+  };
+}
+
 export default function AdminBookingsTable() {
   const supabase = createClient();
   const [userRole, setUserRole] = React.useState<string | null>(null);
@@ -50,15 +61,15 @@ export default function AdminBookingsTable() {
       const { data, error } = await supabase
         .from("bookings")
         .select(
-          "id, trip_id, number_of_people, status, payment_status, trips!inner(name)"
-        );
+          "id, trip_id, number_of_people, status, payment_status, trip_name:trips!inner(name)"
+        ).returns<Booking[]>();
 
       if (error) {
         console.error("Error fetching bookings:", error.message);
       } else {
         const formattedData = data?.map((booking) => ({
           id: booking.id,
-          trip_name: booking.trips[0]?.name || "N/A",
+          trip_name: booking.trip_name?.name || "N/A",
           people: booking.number_of_people,
           status: booking.status,
           payment_status: booking.payment_status,
