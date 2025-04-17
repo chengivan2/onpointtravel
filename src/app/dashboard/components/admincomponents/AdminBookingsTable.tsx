@@ -191,12 +191,12 @@ export default function AdminBookingsTable() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="unpaid">
-                        <Badge variant="outline" className="text-red-500">
+                        <Badge variant="outline" className="bg-red-500">
                           Unpaid
                         </Badge>
                       </SelectItem>
                       <SelectItem value="partially_paid">
-                        <Badge variant="outline" className="text-yellow-500">
+                        <Badge variant="outline" className="bg-yellow-500">
                           Partially Paid
                         </Badge>
                       </SelectItem>
