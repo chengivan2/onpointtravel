@@ -3,7 +3,13 @@
 import * as React from "react";
 import { Pie, PieChart, Cell, Tooltip, Legend } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { createClient } from "@/utils/supabase/client";
 
 const COLORS = ["#34D399", "#60A5FA", "#FBBF24", "#F87171", "#A78BFA"];
@@ -11,7 +17,9 @@ const COLORS = ["#34D399", "#60A5FA", "#FBBF24", "#F87171", "#A78BFA"];
 export default function TopTripsPieChart() {
   const supabase = createClient();
   const [chartData, setChartData] = React.useState<any[]>([]);
-  const [timeRange, setTimeRange] = React.useState<"all_time" | "this_month">("all_time");
+  const [timeRange, setTimeRange] = React.useState<"all_time" | "this_month">(
+    "all_time"
+  );
 
   React.useEffect(() => {
     const fetchChartData = async () => {
@@ -19,22 +27,30 @@ export default function TopTripsPieChart() {
         const currentMonth = new Date().getMonth() + 1; // Get current month (1-based)
         const currentYear = new Date().getFullYear();
 
-        // Fetch all confirmed bookings and process in JavaScript
+        // Fetch confirmed bookings
         let query = supabase
           .from("bookings")
-          .select(`
+          .select(
+            `
             trip_id,
             trips (
               id,
               name
             )
-          `)
+          `
+          )
           .eq("status", "confirmed");
 
         if (timeRange === "this_month") {
           query = query
-            .gte("booked_at", `${currentYear}-${String(currentMonth).padStart(2, "0")}-01`)
-            .lte("booked_at", `${currentYear}-${String(currentMonth).padStart(2, "0")}-31`);
+            .gte(
+              "booked_at",
+              `${currentYear}-${String(currentMonth).padStart(2, "0")}-01`
+            )
+            .lte(
+              "booked_at",
+              `${currentYear}-${String(currentMonth).padStart(2, "0")}-31`
+            );
         }
 
         const { data, error } = await query;
@@ -45,28 +61,29 @@ export default function TopTripsPieChart() {
 
         if (data && data.length > 0) {
           // Count bookings per trip
-          const tripCounts: Record<string, { count: number; name: string }> = {};
-          
+          const tripCounts: Record<string, { count: number; name: string }> =
+            {};
+
           data.forEach((booking: any) => {
             const tripId = booking.trip_id;
             const tripName = booking.trips?.name || "Unknown";
-            
+
             if (!tripCounts[tripId]) {
               tripCounts[tripId] = { count: 0, name: tripName };
             }
-            
+
             tripCounts[tripId].count += 1;
           });
-          
+
           // Convert to array, sort by count, and take top 5
           const formattedData = Object.values(tripCounts)
             .sort((a, b) => b.count - a.count)
             .slice(0, 5)
-            .map(trip => ({
+            .map((trip) => ({
               name: trip.name,
-              value: trip.count
+              value: trip.count,
             }));
-          
+
           setChartData(formattedData);
         } else {
           setChartData([]);
@@ -86,7 +103,9 @@ export default function TopTripsPieChart() {
         <CardTitle>Top 5 Most Booked Trips</CardTitle>
         <Select
           value={timeRange}
-          onValueChange={(value) => setTimeRange(value as "all_time" | "this_month")}
+          onValueChange={(value) =>
+            setTimeRange(value as "all_time" | "this_month")
+          }
         >
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Select time range" />
@@ -111,7 +130,10 @@ export default function TopTripsPieChart() {
               label
             >
               {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
               ))}
             </Pie>
             <Tooltip />
