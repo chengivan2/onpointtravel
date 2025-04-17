@@ -20,13 +20,15 @@ export default function TopTripsPieChart() {
 
       let query = supabase
         .from("bookings")
-        .select("trip_id, trips!inner(name), count:trip_id", { count: "exact" })
+        .select("trips.name, count:trip_id") // Aggregate count of trip_id and group by trips.name
         .eq("status", "confirmed")
         .order("count", { ascending: false })
         .limit(5);
 
       if (timeRange === "this_month") {
-        query = query.gte("booked_at", `${currentYear}-${currentMonth}-01`).lte("booked_at", `${currentYear}-${currentMonth}-31`);
+        query = query
+          .gte("booked_at", `${currentYear}-${String(currentMonth).padStart(2, "0")}-01`)
+          .lte("booked_at", `${currentYear}-${String(currentMonth).padStart(2, "0")}-31`);
       }
 
       const { data, error } = await query;
@@ -35,7 +37,7 @@ export default function TopTripsPieChart() {
         console.error("Error fetching chart data:", error.message);
       } else {
         const formattedData = data?.map((item) => ({
-          name: item.trips[0]?.name || "Unknown",
+          name: item.name || "Unknown",
           value: item.count,
         }));
         setChartData(formattedData || []);
