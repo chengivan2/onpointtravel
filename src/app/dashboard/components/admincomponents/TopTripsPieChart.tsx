@@ -28,7 +28,7 @@ export default function TopTripsPieChart() {
             bookings!trip_id(count)
           `)
           .eq("bookings.status", "confirmed")
-          .order("bookings.count", { ascending: false })
+          .order("trips.count", { ascending: false })
           .limit(5);
 
         if (timeRange === "this_month") {
