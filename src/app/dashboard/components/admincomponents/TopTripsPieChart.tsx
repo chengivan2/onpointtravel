@@ -23,7 +23,7 @@ export default function TopTripsPieChart() {
         // Any column without an aggregate function will automatically be used as a grouping column
         let query = supabase
           .from("bookings")
-          .select("trip_id, trips(name), count", { count: "exact" })
+          .select("trip_id, trips(name)",)
           .eq("status", "confirmed")
           .order("count", { ascending: false })
           .limit(5);
