@@ -135,22 +135,22 @@ export default function AdminBookingsTable() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="pending">
-                        <Badge variant="outline" className="text-yellow-500">
+                        <Badge variant="outline" className="bg-yellow-500">
                           Pending
                         </Badge>
                       </SelectItem>
                       <SelectItem value="confirmed">
-                        <Badge variant="outline" className="text-green-500">
+                        <Badge variant="outline" className="bg-green-500">
                           Confirmed
                         </Badge>
                       </SelectItem>
                       <SelectItem value="cancelled">
-                        <Badge variant="outline" className="text-red-500">
+                        <Badge variant="outline" className="bg-red-500">
                           Cancelled
                         </Badge>
                       </SelectItem>
                       <SelectItem value="completed">
-                        <Badge variant="outline" className="text-blue-500">
+                        <Badge variant="outline" className="bg-blue-500">
                           Completed
                         </Badge>
                       </SelectItem>
@@ -201,22 +201,22 @@ export default function AdminBookingsTable() {
                         </Badge>
                       </SelectItem>
                       <SelectItem value="paid">
-                        <Badge variant="outline" className="text-green-500">
+                        <Badge variant="outline" className="bg-green-500">
                           Paid
                         </Badge>
                       </SelectItem>
                       <SelectItem value="refund_pending">
-                        <Badge variant="outline" className="text-orange-500">
+                        <Badge variant="outline" className="bg-orange-500">
                           Refund Pending
                         </Badge>
                       </SelectItem>
                       <SelectItem value="refunded">
-                        <Badge variant="outline" className="text-blue-500">
+                        <Badge variant="outline" className="bg-blue-500">
                           Refunded
                         </Badge>
                       </SelectItem>
                       <SelectItem value="failed">
-                        <Badge variant="outline" className="text-gray-500">
+                        <Badge variant="outline" className="bg-gray-500">
                           Failed
                         </Badge>
                       </SelectItem>
