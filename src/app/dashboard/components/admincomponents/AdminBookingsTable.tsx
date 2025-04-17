@@ -49,7 +49,9 @@ export default function AdminBookingsTable() {
     const fetchBookings = async () => {
       const { data, error } = await supabase
         .from("bookings")
-        .select("id, number_of_people, status, payment_status, trips(name)");
+        .select(
+          "id, trip_id, number_of_people, status, payment_status, trips!inner(name)"
+        );
 
       if (error) {
         console.error("Error fetching bookings:", error.message);
