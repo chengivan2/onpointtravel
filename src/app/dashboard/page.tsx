@@ -9,6 +9,7 @@ import AdminDataSlotCards from "./components/admincomponents/AdminDataSlotCards"
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import AdminBookingsChart from "./components/admincomponents/AdminBookingsChart";
+import AdminBookingsTable from "./components/admincomponents/AdminBookingsTable";
 
 export const metadata: Metadata = {
   title: "OnPoint Dashboard",
@@ -71,6 +72,7 @@ export default async function OnPointDashboard() {
               <div className="px-4 lg:px-6">
                 <AdminBookingsChart />
               </div>
+              <AdminBookingsTable />
               <DataTable data={data} />
             </div>
           </div>
