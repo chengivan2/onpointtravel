@@ -67,11 +67,8 @@ export default async function OnPointDashboard() {
                 )}
               </div>
               <AdminDataSlotCards />
-              <div className="px-4 lg:px-6">
-                <AdminBookingsChart />
-              </div>
+              <AdminBookingsChart />
               <AdminBookingsTable />
-             
             </div>
           </div>
         </div>
