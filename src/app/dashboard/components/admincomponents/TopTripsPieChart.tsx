@@ -19,13 +19,16 @@ export default function TopTripsPieChart() {
         const currentMonth = new Date().getMonth() + 1; // Get current month (1-based)
         const currentYear = new Date().getFullYear();
 
-        // Using Supabase's approach to aggregation:
-        // Any column without an aggregate function will automatically be used as a grouping column
+        // Using Supabase's documented approach for counting related records
         let query = supabase
-          .from("bookings")
-          .select("trip_id, trips(name)",)
-          .eq("status", "confirmed")
-          .order("count", { ascending: false })
+          .from("trips")
+          .select(`
+            id,
+            name,
+            bookings!trip_id(count)
+          `)
+          .eq("bookings.status", "confirmed")
+          .order("bookings.count", { ascending: false })
           .limit(5);
 
         if (timeRange === "this_month") {
@@ -42,8 +45,8 @@ export default function TopTripsPieChart() {
 
         if (data && data.length > 0) {
           const formattedData = data.map((item: any) => ({
-            name: item.trips?.name || "Unknown",
-            value: parseInt(item.count)
+            name: item.name || "Unknown",
+            value: parseInt(item.bookings[0]?.count || 0)
           }));
           
           setChartData(formattedData);
