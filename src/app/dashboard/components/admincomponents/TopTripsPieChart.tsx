@@ -15,32 +15,44 @@ export default function TopTripsPieChart() {
 
   React.useEffect(() => {
     const fetchChartData = async () => {
-      const currentMonth = new Date().getMonth() + 1; // Get current month (1-based)
-      const currentYear = new Date().getFullYear();
+      try {
+        const currentMonth = new Date().getMonth() + 1; // Get current month (1-based)
+        const currentYear = new Date().getFullYear();
 
-      let query = supabase
-        .from("bookings")
-        .select("trips(name), count:trip_id") // Aggregate count of trip_id and group by trips.name
-        .eq("status", "confirmed")
-        .order("count", { ascending: false })
-        .limit(5);
+        // Using Supabase's approach to aggregation:
+        // Any column without an aggregate function will automatically be used as a grouping column
+        let query = supabase
+          .from("bookings")
+          .select("trip_id, trips(name), count", { count: "exact" })
+          .eq("status", "confirmed")
+          .order("count", { ascending: false })
+          .limit(5);
 
-      if (timeRange === "this_month") {
-        query = query
-          .gte("booked_at", `${currentYear}-${String(currentMonth).padStart(2, "0")}-01`)
-          .lte("booked_at", `${currentYear}-${String(currentMonth).padStart(2, "0")}-31`);
-      }
+        if (timeRange === "this_month") {
+          query = query
+            .gte("booked_at", `${currentYear}-${String(currentMonth).padStart(2, "0")}-01`)
+            .lte("booked_at", `${currentYear}-${String(currentMonth).padStart(2, "0")}-31`);
+        }
 
-      const { data, error } = await query;
+        const { data, error } = await query;
 
-      if (error) {
+        if (error) {
+          throw error;
+        }
+
+        if (data && data.length > 0) {
+          const formattedData = data.map((item: any) => ({
+            name: item.trips?.name || "Unknown",
+            value: parseInt(item.count)
+          }));
+          
+          setChartData(formattedData);
+        } else {
+          setChartData([]);
+        }
+      } catch (error: any) {
         console.error("Error fetching chart data:", error.message);
-      } else {
-        const formattedData = data?.map((item) => ({
-          name: item.trips[0]?.name || "Unknown", // Access trips.name
-          value: item.count,
-        }));
-        setChartData(formattedData || []);
+        setChartData([]);
       }
     };
 
