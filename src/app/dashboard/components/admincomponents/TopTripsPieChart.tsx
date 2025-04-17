@@ -20,7 +20,7 @@ export default function TopTripsPieChart() {
 
       let query = supabase
         .from("bookings")
-        .select("trips.name, count:trip_id") // Aggregate count of trip_id and group by trips.name
+        .select("trips(name), count:trip_id") // Aggregate count of trip_id and group by trips.name
         .eq("status", "confirmed")
         .order("count", { ascending: false })
         .limit(5);
@@ -37,7 +37,7 @@ export default function TopTripsPieChart() {
         console.error("Error fetching chart data:", error.message);
       } else {
         const formattedData = data?.map((item) => ({
-          name: item.name || "Unknown",
+          name: item.trips[0]?.name || "Unknown", // Access trips.name
           value: item.count,
         }));
         setChartData(formattedData || []);
