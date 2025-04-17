@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 import AdminBookingsChart from "./components/admincomponents/AdminBookingsChart";
 import AdminBookingsTable from "./components/admincomponents/AdminBookingsTable";
 import TopTripsPieChart from "./components/admincomponents/TopTripsPieChart";
+import { PlusIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "OnPoint Dashboard",
@@ -63,7 +64,7 @@ export default async function OnPointDashboard() {
                     className="flex items-center justify-center w-12 h-12 rounded-full bg-green-500 text-white hover:bg-green-600 shadow-lg"
                     aria-label="Create Trip"
                   >
-                    +
+                    <PlusIcon className="w-6 h-6" />
                   </Link>
                 )}
               </div>
