@@ -19,17 +19,17 @@ export default function TopTripsPieChart() {
         const currentMonth = new Date().getMonth() + 1; // Get current month (1-based)
         const currentYear = new Date().getFullYear();
 
-        // Using Supabase's documented approach for counting related records
+        // Fetch all confirmed bookings and process in JavaScript
         let query = supabase
-          .from("trips")
+          .from("bookings")
           .select(`
-            id,
-            name,
-            bookings!trip_id(count)
+            trip_id,
+            trips (
+              id,
+              name
+            )
           `)
-          .eq("bookings.status", "confirmed")
-          .order("trips.count", { ascending: false })
-          .limit(5);
+          .eq("status", "confirmed");
 
         if (timeRange === "this_month") {
           query = query
@@ -44,10 +44,28 @@ export default function TopTripsPieChart() {
         }
 
         if (data && data.length > 0) {
-          const formattedData = data.map((item: any) => ({
-            name: item.name || "Unknown",
-            value: parseInt(item.bookings[0]?.count || 0)
-          }));
+          // Count bookings per trip
+          const tripCounts: Record<string, { count: number; name: string }> = {};
+          
+          data.forEach((booking: any) => {
+            const tripId = booking.trip_id;
+            const tripName = booking.trips?.name || "Unknown";
+            
+            if (!tripCounts[tripId]) {
+              tripCounts[tripId] = { count: 0, name: tripName };
+            }
+            
+            tripCounts[tripId].count += 1;
+          });
+          
+          // Convert to array, sort by count, and take top 5
+          const formattedData = Object.values(tripCounts)
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 5)
+            .map(trip => ({
+              name: trip.name,
+              value: trip.count
+            }));
           
           setChartData(formattedData);
         } else {
