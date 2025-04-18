@@ -84,7 +84,7 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem className="hover:bg-muted dark:hover:bg-sidebar-accent">
                 <IconUserCircle className="text-gray-300" />
                 Account
               </DropdownMenuItem>
