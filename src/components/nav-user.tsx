@@ -76,7 +76,7 @@ export function NavUser({
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user.name}</span>
-                  <span className="text-gray-400 truncate text-xs">
+                  <span className="text-gray-300 truncate text-xs">
                     {user.email}
                   </span>
                 </div>
@@ -85,21 +85,21 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <IconUserCircle className="text-gray-400" />
+                <IconUserCircle className="text-gray-300" />
                 Account
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <IconCreditCard className="text-gray-400" />
+                <IconCreditCard className="text-gray-300" />
                 Billing
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <IconNotification className="text-gray-400" />
+                <IconNotification className="text-gray-300" />
                 Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <IconLogout className="text-gray-400" />
+              <IconLogout className="text-gray-300" />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
