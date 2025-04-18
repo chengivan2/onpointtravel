@@ -1,3 +1,4 @@
+
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createClient } from "@/utils/supabase/server";
@@ -6,18 +7,22 @@ import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PlusIcon } from "lucide-react";
-import FavoriteTrips from "./components/FavoriteTrips";
 
 export const metadata: Metadata = {
-  title: "OnPoint Dashboard",
-  description: "Manage your OnPoint account",
+  title: "Your Favorite Trips",
+  description: "Manage your favorite trips",
 };
 
 export default async function OnPointDashboard() {
   const supabase = await createClient();
   const {
     data: { user },
+    error: userError,
   } = await supabase.auth.getUser();
+
+  if (userError) {
+    console.error("Error fetching user:", userError.message);
+  }
 
   if (!user) {
     redirect("/signin");
@@ -26,11 +31,22 @@ export default async function OnPointDashboard() {
   // Fetch user profile
   const { data: profile } = await supabase
     .from("users")
-    .select("role, first_name, last_name")
+    .select("first_name, last_name")
     .eq("id", user.id)
     .single();
 
   const firstName = `${profile?.first_name || ""}`;
+
+  // Fetch the user's favorite trips
+  const { data: favoriteTrips, error: tripsError } = await supabase
+    .from("trips")
+    .select("id, name, featured_image")
+    .eq("is_favorite", true)
+    .eq("user_id", user.id);
+
+  if (tripsError) {
+    console.error("Error fetching favorite trips:", tripsError.message);
+  }
 
   return (
     <SidebarProvider
@@ -65,7 +81,23 @@ export default async function OnPointDashboard() {
                   <PlusIcon className="w-6 h-6" />
                 </Link>
               </div>
-              <FavoriteTrips />
+              <div className="p-6">
+                <h1 className="text-2xl font-bold mb-4">Your Favorite Trips</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {favoriteTrips?.map((trip) => (
+                    <div
+                      key={trip.id}
+                      className="rounded-lg shadow-lg bg-white/30 dark:bg-green-900/30 backdrop-blur-sm p-4"
+                    >
+                      <div
+                        className="h-40 bg-cover bg-center rounded-lg"
+                        style={{ backgroundImage: `url(${trip.featured_image})` }}
+                      ></div>
+                      <h2 className="text-lg font-semibold mt-2">{trip.name}</h2>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
