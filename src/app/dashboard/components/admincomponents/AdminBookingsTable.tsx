@@ -108,7 +108,7 @@ export default function AdminBookingsTable() {
     <div className="overflow-x-auto">
       <div className="min-w-[800px] bg-white/80 dark:bg-green-900/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 dark:border-green-900/50 shadow-xl">
         <Table>
-          <TableHeader className="bg-green-900/50">
+          <TableHeader className="bg-muted dark:bg-green-900/50">
             <TableRow>
               <TableHead>Trip Name</TableHead>
               <TableHead>People</TableHead>
