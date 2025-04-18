@@ -84,21 +84,21 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="hover:bg-muted dark:hover:bg-sidebar-accent">
+              <DropdownMenuItem className="cursor-pointer hover:bg-muted dark:hover:bg-sidebar-accent">
                 <IconUserCircle className="text-gray-300" />
                 Account
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:bg-muted dark:hover:bg-sidebar-accent">
+              <DropdownMenuItem className="cursor-pointer hover:bg-muted dark:hover:bg-sidebar-accent">
                 <IconCreditCard className="text-gray-300" />
                 Billing
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:bg-muted dark:hover:bg-sidebar-accent">
+              <DropdownMenuItem className="cursor-pointer hover:bg-muted dark:hover:bg-sidebar-accent">
                 <IconNotification className="text-gray-300" />
                 Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="hover:bg-muted dark:hover:bg-sidebar-accent">
+            <DropdownMenuItem className="cursor-pointer hover:bg-muted dark:hover:bg-sidebar-accent">
               <IconLogout className="text-gray-300" />
               Log out
             </DropdownMenuItem>
