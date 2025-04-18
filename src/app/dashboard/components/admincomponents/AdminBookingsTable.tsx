@@ -152,7 +152,7 @@ export default function AdminBookingsTable() {
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select status" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="text-[#F5F5F5]">
                       <SelectItem value="pending">
                         <Badge variant="outline" className="bg-yellow-500">
                           Pending
