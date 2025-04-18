@@ -94,6 +94,16 @@ export function DashboardSidebar({
             url: "/dashboard/users",
             icon: IconUsers,
           },
+          {
+            title: "Favorites",
+            url: "/dashboard/favorites",
+            icon: IconHeart,
+          },
+          {
+            title: "My Trips",
+            url: "/dashboard/trips",
+            icon: IconFolder,
+          },
         ]
       : [
           {
