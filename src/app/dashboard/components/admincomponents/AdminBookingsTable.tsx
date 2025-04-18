@@ -29,6 +29,11 @@ interface Booking {
   trip_name: {
     name: string;
   };
+  user: {
+    first_name: string | null;
+    last_name: string | null;
+    email: string;
+  };
 }
 
 export default function AdminBookingsTable() {
@@ -43,7 +48,7 @@ export default function AdminBookingsTable() {
       } = await supabase.auth.getUser();
 
       if (!user) {
-        redirect("/signin"); // Redirect to sign-in if no user is logged in
+        redirect("/signin");
       }
 
       const { data: profile } = await supabase
@@ -61,8 +66,17 @@ export default function AdminBookingsTable() {
       const { data, error } = await supabase
         .from("bookings")
         .select(
-          "id, trip_id, number_of_people, status, payment_status, trip_name:trips!inner(name)"
-        ).returns<Booking[]>();
+          `
+          id,
+          trip_id,
+          number_of_people,
+          status,
+          payment_status,
+          trip_name:trips(name),
+          user:users(first_name, last_name, email)
+          `
+        )
+        .returns<Booking[]>();
 
       if (error) {
         console.error("Error fetching bookings:", error.message);
@@ -73,6 +87,10 @@ export default function AdminBookingsTable() {
           people: booking.number_of_people,
           status: booking.status,
           payment_status: booking.payment_status,
+          booked_by:
+            booking.user.first_name && booking.user.last_name
+              ? `${booking.user.first_name} ${booking.user.last_name}`
+              : booking.user.email,
         }));
         setBookings(formattedData || []);
       }
@@ -83,7 +101,7 @@ export default function AdminBookingsTable() {
   }, [supabase]);
 
   if (userRole !== "admin") {
-    return null; // Render nothing if the user is not an admin
+    return null;
   }
 
   return (
@@ -96,6 +114,7 @@ export default function AdminBookingsTable() {
               <TableHead>People</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Payment Status</TableHead>
+              <TableHead>Booked By</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -223,6 +242,7 @@ export default function AdminBookingsTable() {
                     </SelectContent>
                   </Select>
                 </TableCell>
+                <TableCell>{booking.booked_by}</TableCell>
               </TableRow>
             ))}
           </TableBody>
