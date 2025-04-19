@@ -5,8 +5,6 @@ import { redirect } from "next/navigation";
 
 export default async function FavoriteTrips() {
   const supabase = createClient();
-
-  // Fetch the authenticated user
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -15,17 +13,11 @@ export default async function FavoriteTrips() {
     redirect("/signin");
   }
 
-  // Fetch the user's favorite trips (is_favorite array)
   const { data: userProfile, error: userError } = await supabase
     .from("users")
     .select("is_favorite")
     .eq("id", user.id)
     .single();
-
-  if (userError) {
-    console.error("Error fetching user profile:", userError.message);
-    return <p>Error loading favorite trips.</p>;
-  }
 
   const favoriteTripIds = userProfile?.is_favorite || [];
 
@@ -38,7 +30,6 @@ export default async function FavoriteTrips() {
     );
   }
 
-  // Fetch the favorite trips from the trips table
   const { data: favoriteTrips, error: tripsError } = await supabase
     .from("trips")
     .select("id, name, main_featured_image_url")
@@ -60,7 +51,9 @@ export default async function FavoriteTrips() {
           >
             <div
               className="h-40 bg-cover bg-center rounded-lg"
-              style={{ backgroundImage: `url(${trip.main_featured_image_url})` }}
+              style={{
+                backgroundImage: `url(${trip.main_featured_image_url})`,
+              }}
             ></div>
             <h2 className="text-lg font-semibold mt-2">{trip.name}</h2>
           </div>
