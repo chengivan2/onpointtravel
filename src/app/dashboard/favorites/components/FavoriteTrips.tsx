@@ -44,7 +44,7 @@ export default async function FavoriteTrips() {
       <h1 className="text-2xl font-bold mb-4">Your Favorite Trips</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {favoriteTrips?.map((trip) => (
-          <Link href={`/trips/${trip.slug}`} key={trip.id}>
+          <Link target="_blank" href={`/trips/${trip.slug}`} key={trip.id}>
             <div className="rounded-lg shadow-lg bg-white/30 dark:bg-green-900/30 backdrop-blur-sm p-4">
               <div
                 className="h-40 bg-cover bg-center rounded-lg"
