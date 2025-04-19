@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 
 export default async function FavoriteTrips() {
   const supabase = createClient();
+
+  // Fetch the authenticated user
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -13,11 +15,39 @@ export default async function FavoriteTrips() {
     redirect("/signin");
   }
 
-  const { data: favoriteTrips } = await supabase
+  // Fetch the user's favorite trips (is_favorite array)
+  const { data: userProfile, error: userError } = await supabase
+    .from("users")
+    .select("is_favorite")
+    .eq("id", user.id)
+    .single();
+
+  if (userError) {
+    console.error("Error fetching user profile:", userError.message);
+    return <p>Error loading favorite trips.</p>;
+  }
+
+  const favoriteTripIds = userProfile?.is_favorite || [];
+
+  if (favoriteTripIds.length === 0) {
+    return (
+      <div className="p-6">
+        <h1 className="text-2xl font-bold mb-4">Your Favorite Trips</h1>
+        <p className="text-gray-500">You have no favorite trips yet.</p>
+      </div>
+    );
+  }
+
+  // Fetch the favorite trips from the trips table
+  const { data: favoriteTrips, error: tripsError } = await supabase
     .from("trips")
     .select("id, name, main_featured_image_url")
-    .eq("is_favorite", true)
-    .eq("user_id", user.id);
+    .in("id", favoriteTripIds);
+
+  if (tripsError) {
+    console.error("Error fetching favorite trips:", tripsError.message);
+    return <p>Error loading favorite trips.</p>;
+  }
 
   return (
     <div className="p-6">

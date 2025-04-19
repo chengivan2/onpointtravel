@@ -1,4 +1,3 @@
-
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createClient } from "@/utils/supabase/server";
@@ -7,6 +6,7 @@ import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PlusIcon } from "lucide-react";
+import FavoriteTrips from "./components/FavoriteTrips";
 
 export const metadata: Metadata = {
   title: "Your Favorite Trips",
@@ -69,7 +69,8 @@ export default async function OnPointDashboard() {
                     Hello, 👋 {firstName}
                   </h2>
                   <p className="text-sm text-gray-800 dark:text-gray-200">
-                    Here are your favorite trips. Which one would you like to cross of your bucket list?
+                    Here are your favorite trips. Which one would you like to
+                    cross of your bucket list?
                   </p>
                 </div>
 
@@ -83,20 +84,7 @@ export default async function OnPointDashboard() {
               </div>
               <div className="p-6">
                 <h1 className="text-2xl font-bold mb-4">Your Favorite Trips</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {favoriteTrips?.map((trip) => (
-                    <div
-                      key={trip.id}
-                      className="rounded-lg shadow-lg bg-white/30 dark:bg-green-900/30 backdrop-blur-sm p-4"
-                    >
-                      <div
-                        className="h-40 bg-cover bg-center rounded-lg"
-                        style={{ backgroundImage: `url(${trip.featured_image})` }}
-                      ></div>
-                      <h2 className="text-lg font-semibold mt-2">{trip.name}</h2>
-                    </div>
-                  ))}
-                </div>
+                <FavoriteTrips />
               </div>
             </div>
           </div>
