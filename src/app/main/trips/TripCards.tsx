@@ -63,7 +63,7 @@ export default async function TripCards() {
             >
               <div
                 key={trip.id}
-                className="group relative backdrop-blur-lg bg-white/20 dark:bg-green-900/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100/30 dark:border-green-900/30 overflow-hidden"
+                className="group relative backdrop-blur-xl bg-white/20 dark:bg-green-900/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100/30 dark:border-green-900/30 overflow-hidden"
               >
                 {/* Image Section */}
                 <div className="relative h-48">
