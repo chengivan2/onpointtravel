@@ -62,13 +62,6 @@ export default function TripHeroSection({
           >
             {selectedTrip.short_description}
           </p>
-          <div className="flex space-x-4">
-            <Link href={`/trips/${selectedTrip.slug}`}>
-              <button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300">
-                Book Now
-              </button>
-            </Link>
-          </div>
         </div>
 
         {/* Trips thumbnails */}

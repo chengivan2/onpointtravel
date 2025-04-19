@@ -125,17 +125,9 @@ export default async function TripCards() {
                         per person
                       </span>
                     </div>
-
-                    <button
-                      className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
-                      aria-label={`Book ${trip.name}`}
-                    >
-                      Book Now
-                    </button>
                   </div>
                 </div>
 
-                {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-green-600/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </Link>

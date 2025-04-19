@@ -67,15 +67,6 @@ export default async function DestinationCards() {
                 <p className="text-green-700 dark:text-green-300 text-base line-clamp-3">
                   {destination.description}
                 </p>
-                <div className="relative py-[1.5rem]">
-                  <Link
-                    href={`/destinations/${destination.slug}`}
-                    className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-300"
-                    aria-label={`Book ${destination.name}`}
-                  >
-                    View Destination
-                  </Link>
-                </div>
               </div>
 
               <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-emerald-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
