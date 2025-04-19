@@ -5,7 +5,7 @@ export default function Destinations() {
     <section className="relative flex flex-col min-w-full">
       <div className="absolute inset-0 -z-10">
         <svg
-          className="absolute top-60 left-60 w-[50rem] h-[50rem]"
+          className="absolute top-60 lg:left-60 w-[50rem] h-[50rem]"
           viewBox="0 0 1024 1024"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
