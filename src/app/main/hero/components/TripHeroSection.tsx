@@ -24,8 +24,6 @@ export default function TripHeroSection({
 
   return (
     <div className="relative flex flex-col">
-      {/* --- Background Image Section --- */}
-
       <div
         key={selectedTrip.id}
         className="absolute inset-0 z-0 ease-in-out rounded-[0.7rem]"
@@ -64,7 +62,6 @@ export default function TripHeroSection({
           </p>
         </div>
 
-        {/* Trips thumbnails */}
         <div className="mt-auto">
           <div className="w-full flex flex-wrap flex-end justify-end gap-5">
             {initialTrips.map((trip) => (
