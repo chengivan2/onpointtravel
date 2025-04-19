@@ -33,6 +33,7 @@ export default async function TripCards() {
     `
     )
     .order("created_at", { ascending: false })
+    .limit(6)
     .returns<Trip[]>();
 
   if (error) {
