@@ -6,7 +6,7 @@ export default function Trips() {
     <section className="py-[3rem] bg-green-50/20 dark:bg-green-900/10 relative flex flex-col min-w-full">
       <div className="absolute inset-0 -z-10">
         <svg
-          className="absolute top-60 left-60 w-[50rem] h-[50rem] opacity-80"
+          className="absolute top-60 left-60 w-[50rem] h-[50rem] opacity-50 dark:opacity-90"
           viewBox="0 0 600 600"
           xmlns="http://www.w3.org/2000/svg"
         >
