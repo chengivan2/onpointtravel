@@ -7,7 +7,7 @@ export default function Trips() {
       
       <div className="absolute inset-0 -z-10">
         
-        <svg className="absolute top-40 left-30 w-[30rem] h-[30rem] opacity-20" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <svg className="absolute top-60 left-60 w-[50rem] h-[50rem] opacity-80" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="greenGradient" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#4caf50" />
