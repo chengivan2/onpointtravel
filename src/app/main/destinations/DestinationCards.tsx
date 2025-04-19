@@ -41,7 +41,7 @@ export default async function DestinationCards() {
             className="group flex flex-col justify-items-start relative cursor-pointer overflow-hidden rounded-xl transition-all duration-300 transform hover:scale-[1.02]"
           >
             <Link href={`/destinations/${destination.slug}`}>
-              <div className="relative z-10 h-full flex flex-col bg-lightmode-header-bg-color/80 dark:bg-green-900/20 backdrop-blur-lg border border-gray-200/40 dark:border-green-900/30 rounded-xl p-6 transition-all duration-300 hover:bg-white/40 dark:hover:bg-green-900/30 shadow-sm hover:shadow-md">
+              <div className="relative z-10 h-full flex flex-col bg-lightmode-header-bg-color/50 dark:bg-green-900/50 backdrop-blur-lg border border-gray-200/40 dark:border-green-900/30 rounded-xl p-6 transition-all duration-300 hover:bg-white/40 dark:hover:bg-green-900/30 shadow-sm hover:shadow-md">
                 <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
                   {imageUrl ? (
                     <Image
