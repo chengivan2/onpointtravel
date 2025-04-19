@@ -13,11 +13,11 @@ export default async function FavoriteTrips() {
 
   const { data: userProfile, error: userError } = await supabase
     .from("users")
-    .select("is_favorite")
+    .select("favorite_trips")
     .eq("id", user.id)
     .single();
 
-  const favoriteTripIds = userProfile?.is_favorite || [];
+  const favoriteTripIds = userProfile?.favorite_trips || [];
 
   if (favoriteTripIds.length === 0) {
     return (

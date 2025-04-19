@@ -82,8 +82,7 @@ export default async function OnPointDashboard() {
                   <PlusIcon className="w-6 h-6" />
                 </Link>
               </div>
-              <div className="p-6">
-                <h1 className="text-2xl font-bold mb-4">Your Favorite Trips</h1>
+              <div className="">
                 <FavoriteTrips />
               </div>
             </div>
