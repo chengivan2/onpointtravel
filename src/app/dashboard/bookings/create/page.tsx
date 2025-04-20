@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Create a trip for a client",
 };
 
-export default async function OnPointDashboard() {
+export default async function AdminAgentCreateBookingPage() {
   const supabase = await createClient();
 
   // Check session and user
