@@ -13,25 +13,36 @@ export const metadata: Metadata = {
 
 export default async function OnPointDashboard() {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
 
-  if (!user) {
+  // Check session and user
+  const {
+    data: { session },
+    error: sessionError,
+  } = await supabase.auth.getSession();
+
+  if (sessionError || !session) {
     redirect("/signin");
   }
 
-  const { data: profile } = await supabase
+  const { user } = session;
+
+  // Fetch user profile
+  const { data: profile, error: profileError } = await supabase
     .from("users")
     .select("role, first_name, last_name")
     .eq("id", user.id)
     .single();
 
+  if (profileError || !profile) {
+    redirect("/signin");
+  }
+
   const firstName = `${profile?.first_name || ""}`;
   const isAdmin = profile?.role === "admin";
   const isAgent = profile?.role === "agent";
 
-  if (!isAdmin || !isAgent) {
+  // Redirect if the user is neither an admin nor an agent
+  if (!isAdmin && !isAgent) {
     redirect("/dashboard");
   }
 
@@ -61,7 +72,7 @@ export default async function OnPointDashboard() {
                 </div>
               </div>
 
-               <AdminAgentBookingForm />
+              <AdminAgentBookingForm />
             </div>
           </div>
         </div>

@@ -58,12 +58,12 @@ export default function BookingsPage() {
           number_of_people,
           status,
           payment_status,
-          created_at,
+          booked_at,
           trips (name),
           users (first_name, last_name, email)
         `
         )
-        .order("created_at", { ascending: false })
+        .order("booked_at", { ascending: false })
         .range(page * LIMIT, page * LIMIT + LIMIT - 1); // Fetch the next batch
 
       if (error) {
@@ -130,7 +130,7 @@ export default function BookingsPage() {
                 <td className="px-4 py-2">{booking.number_of_people}</td>
                 <td className="px-4 py-2 capitalize">{booking.status}</td>
                 <td className="px-4 py-2 capitalize">{booking.payment_status}</td>
-                <td className="px-4 py-2">{new Date(booking.created_at).toLocaleDateString()}</td>
+                <td className="px-4 py-2">{new Date(booking.booked_at).toLocaleDateString()}</td>
               </tr>
             ))}
           </tbody>
