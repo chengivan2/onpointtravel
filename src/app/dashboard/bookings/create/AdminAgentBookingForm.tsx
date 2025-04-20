@@ -148,7 +148,7 @@ export function AdminAgentBookingForm() {
   };
 
   return (
-    <section className="bg-white/60 dark:bg-green-900/20 rounded-xl p-8 border border-green-100/30 dark:border-green-900/30 mt-12">
+    <div className="bg-white/60 dark:bg-green-900/20 rounded-xl p-8 border border-green-100/30 dark:border-green-900/30 mt-12">
       <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">Create Booking</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -161,9 +161,9 @@ export function AdminAgentBookingForm() {
             {...register("userId")}
             className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
           >
-            <option value="">Select a user</option>
+            <option className="dark:bg-green-900/20" value="">Select a user</option>
             {users.map((user) => (
-              <option key={user.id} value={user.id}>
+              <option key={user.id} value={user.id} className="dark:bg-green-900/20">
                 {user.name} ({user.email})
               </option>
             ))}
@@ -272,6 +272,6 @@ export function AdminAgentBookingForm() {
           </div>
         </DialogContent>
       </Dialog>
-    </section>
+    </div>
   );
 }
