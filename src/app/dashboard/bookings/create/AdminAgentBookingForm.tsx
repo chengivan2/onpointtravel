@@ -71,16 +71,22 @@ export function AdminAgentBookingForm() {
   // Fetch users for selection
   useEffect(() => {
     const fetchUsers = async () => {
-      const { data, error } = await supabase.from("users").select("id, email, first_name, last_name");
-      if (error) {
-        console.error("Error fetching users:", error.message);
-      } else {
-        const formattedUsers = data.map((user) => ({
-          id: user.id,
-          email: user.email,
-          name: `${user.first_name || ""} ${user.last_name || ""}`.trim() || user.email,
-        }));
-        setUsers(formattedUsers);
+      try {
+        // Use the Supabase Admin API to fetch all users
+        const { data, error } = await supabase.auth.admin.listUsers();
+
+        if (error) {
+          console.error("Error fetching users:", error.message);
+        } else {
+          const formattedUsers = data.users.map((user) => ({
+            id: user.id,
+            email: user.email || "",
+            name: `${user.user_metadata?.first_name || ""} ${user.user_metadata?.last_name || ""}`.trim() || user.email || "",
+          }));
+          setUsers(formattedUsers);
+        }
+      } catch (err) {
+        console.error("Unexpected error fetching users:", err);
       }
     };
 
