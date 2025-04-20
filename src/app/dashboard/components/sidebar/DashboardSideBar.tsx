@@ -100,8 +100,8 @@ export function DashboardSidebar({
             icon: IconHeart,
           },
           {
-            title: "My Trips",
-            url: "/dashboard/trips",
+            title: "Bookings",
+            url: "/dashboard/bookings",
             icon: IconFolder,
           },
         ]
