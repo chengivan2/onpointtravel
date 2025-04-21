@@ -21,7 +21,7 @@ import {
 
 export default function AdminBookingsTable({ bookings }: { bookings: any[] }) {
   const supabase = createClient();
-  
+
   const [localBookings, setLocalBookings] = React.useState(bookings);
 
   const handleStatusChange = async (id: string, value: string) => {
@@ -54,9 +54,7 @@ export default function AdminBookingsTable({ bookings }: { bookings: any[] }) {
         console.error("Error updating payment status:", error.message);
       } else {
         setLocalBookings((prev) =>
-          prev.map((b) =>
-            b.id === id ? { ...b, payment_status: value } : b
-          )
+          prev.map((b) => (b.id === id ? { ...b, payment_status: value } : b))
         );
       }
     } catch (err) {
@@ -103,6 +101,11 @@ export default function AdminBookingsTable({ bookings }: { bookings: any[] }) {
                           Confirmed
                         </Badge>
                       </SelectItem>
+                      <SelectItem value="ongoing">
+                        <Badge variant="outline" className="bg-green-300">
+                          Ongoing
+                        </Badge>
+                      </SelectItem>
                       <SelectItem value="cancelled">
                         <Badge variant="outline" className="bg-red-500">
                           Cancelled
@@ -111,6 +114,16 @@ export default function AdminBookingsTable({ bookings }: { bookings: any[] }) {
                       <SelectItem value="completed">
                         <Badge variant="outline" className="bg-blue-500">
                           Completed
+                        </Badge>
+                      </SelectItem>
+                      <SelectItem value="refunded">
+                        <Badge variant="outline" className="bg-red-300">
+                          Refunded
+                        </Badge>
+                      </SelectItem>
+                      <SelectItem value="on_hold">
+                        <Badge variant="outline" className="bg-gray-500">
+                          On hold
                         </Badge>
                       </SelectItem>
                     </SelectContent>
