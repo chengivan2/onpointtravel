@@ -4,6 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import { Metadata } from "next";
 import { DashboardSidebar } from "../../components/sidebar/DashboardSideBar";
 import { redirect } from "next/navigation";
+import { FetchUsers } from "./FetchUsers";
 import { AdminAgentBookingForm } from "./AdminAgentBookingForm";
 
 export const metadata: Metadata = {
@@ -46,6 +47,8 @@ export default async function AdminAgentCreateBookingPage() {
     redirect("/dashboard");
   }
 
+  const users = await FetchUsers();
+
   return (
     <SidebarProvider
       style={
@@ -72,7 +75,7 @@ export default async function AdminAgentCreateBookingPage() {
                 </div>
               </div>
 
-              <AdminAgentBookingForm />
+              <AdminAgentBookingForm users={users} />
             </div>
           </div>
         </div>
