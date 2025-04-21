@@ -29,6 +29,46 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
     }
   };
 
+  const handleStatusChange = async (id: string, value: string) => {
+    try {
+      const res = await fetch(`/api/bookings/update-status`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status: value }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update status");
+      }
+
+      setBookings((prev) =>
+        prev.map((b) => (b.id === id ? { ...b, status: value } : b))
+      );
+    } catch (err) {
+      console.error("Error updating status:", err);
+    }
+  };
+
+  const handlePaymentStatusChange = async (id: string, value: string) => {
+    try {
+      const res = await fetch(`/api/bookings/update-payment-status`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, payment_status: value }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update payment status");
+      }
+
+      setBookings((prev) =>
+        prev.map((b) => (b.id === id ? { ...b, payment_status: value } : b))
+      );
+    } catch (err) {
+      console.error("Error updating payment status:", err);
+    }
+  };
+
   return (
     <div className="p-6">
       {/* Add Booking Button */}
@@ -59,9 +99,40 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
                 <td className="px-4 py-2">{booking.trip_name}</td>
                 <td className="px-4 py-2">{booking.client}</td>
                 <td className="px-4 py-2">{booking.people}</td>
-                <td className="px-4 py-2 capitalize">{booking.status}</td>
-                <td className="px-4 py-2 capitalize">{booking.payment_status}</td>
-                <td className="px-4 py-2">{new Date(booking.created_at).toLocaleDateString()}</td>
+                <td className="px-4 py-2">
+                  <select
+                    value={booking.status}
+                    onChange={(e) => handleStatusChange(booking.id, e.target.value)}
+                    className="w-full px-2 py-1 border rounded"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="cancelled">Cancelled</option>
+                    <option value="completed">Completed</option>
+                    <option value="refunded">Refunded</option>
+                    <option value="on_hold">On Hold</option>
+                  </select>
+                </td>
+                <td className="px-4 py-2">
+                  <select
+                    value={booking.payment_status}
+                    onChange={(e) =>
+                      handlePaymentStatusChange(booking.id, e.target.value)
+                    }
+                    className="w-full px-2 py-1 border rounded"
+                  >
+                    <option value="unpaid">Unpaid</option>
+                    <option value="partially_paid">Partially Paid</option>
+                    <option value="paid">Paid</option>
+                    <option value="refund_pending">Refund Pending</option>
+                    <option value="refunded">Refunded</option>
+                    <option value="failed">Failed</option>
+                  </select>
+                </td>
+                <td className="px-4 py-2">
+                  {new Date(booking.created_at).toLocaleDateString()}
+                </td>
               </tr>
             ))}
           </tbody>
