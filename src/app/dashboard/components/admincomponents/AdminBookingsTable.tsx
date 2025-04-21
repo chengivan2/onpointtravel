@@ -90,9 +90,9 @@ export default function AdminBookingsTable() {
           status: booking.status,
           payment_status: booking.payment_status,
           booked_by:
-            booking.user.first_name && booking.user.last_name
-              ? `${booking.user.first_name} ${booking.user.last_name}`
-              : booking.user.email,
+            booking.user?.first_name && booking.user?.last_name
+              ? `${booking.user?.first_name} ${booking.user?.last_name}`
+              : booking.user?.email,
         }));
         setBookings(formattedData || []);
       }
