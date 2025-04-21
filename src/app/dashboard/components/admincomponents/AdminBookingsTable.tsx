@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import { createClient } from "@/utils/supabase/client";
-import { supabaseService } from "@/utils/supabase/srk";
-import { redirect } from "next/navigation";
 import {
   Table,
   TableBody,
@@ -20,92 +18,51 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Link from "next/link";
 
-interface Booking {
-  id: string;
-  trip_id: string;
-  number_of_people: number;
-  status: string;
-  payment_status: string;
-  trip_name: {
-    name: string;
-  };
-  user: {
-    first_name: string | null;
-    last_name: string | null;
-    email: string;
-  };
-}
-
-export default function AdminBookingsTable() {
+export default function AdminBookingsTable({ bookings }: { bookings: any[] }) {
   const supabase = createClient();
-  const [userRole, setUserRole] = React.useState<string | null>(null);
-  const [bookings, setBookings] = React.useState<any[]>([]);
+  
+  const [localBookings, setLocalBookings] = React.useState(bookings);
 
-  React.useEffect(() => {
-    const fetchUserRole = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (!user) {
-        redirect("/signin");
-      }
-
-      const { data: profile } = await supabase
-        .from("users")
-        .select("role")
-        .eq("id", user.id)
-        .single();
-
-      if (profile) {
-        setUserRole(profile.role);
-      }
-    };
-
-    const fetchBookings = async () => {
-      const { data, error } = await supabaseService
+  const handleStatusChange = async (id: string, value: string) => {
+    try {
+      const { error } = await supabase
         .from("bookings")
-        .select(
-          `
-          id,
-          trip_id,
-          number_of_people,
-          status,
-          payment_status,
-          trip_name:trips(name),
-          user:users(first_name, last_name, email)
-          `
-        )
-        .limit(10)
-        .returns<Booking[]>();
+        .update({ status: value })
+        .eq("id", id);
 
       if (error) {
-        console.error("Error fetching bookings:", error.message);
+        console.error("Error updating status:", error.message);
       } else {
-        const formattedData = data?.map((booking) => ({
-          id: booking.id,
-          trip_name: booking.trip_name?.name || "N/A",
-          people: booking.number_of_people,
-          status: booking.status,
-          payment_status: booking.payment_status,
-          booked_by:
-            booking.user?.first_name && booking.user?.last_name
-              ? `${booking.user?.first_name} ${booking.user?.last_name}`
-              : booking.user.email,
-        }));
-        setBookings(formattedData || []);
+        setLocalBookings((prev) =>
+          prev.map((b) => (b.id === id ? { ...b, status: value } : b))
+        );
       }
-    };
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    }
+  };
 
-    fetchUserRole();
-    fetchBookings();
-  }, [supabase]);
+  const handlePaymentStatusChange = async (id: string, value: string) => {
+    try {
+      const { error } = await supabase
+        .from("bookings")
+        .update({ payment_status: value })
+        .eq("id", id);
 
-  if (userRole !== "admin") {
-    return null;
-  }
+      if (error) {
+        console.error("Error updating payment status:", error.message);
+      } else {
+        setLocalBookings((prev) =>
+          prev.map((b) =>
+            b.id === id ? { ...b, payment_status: value } : b
+          )
+        );
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    }
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -121,36 +78,16 @@ export default function AdminBookingsTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {bookings.map((booking) => (
+            {localBookings.map((booking) => (
               <TableRow key={booking.id}>
                 <TableCell>{booking.trip_name}</TableCell>
                 <TableCell>{booking.people}</TableCell>
                 <TableCell>
                   <Select
                     value={booking.status}
-                    onValueChange={async (value) => {
-                      try {
-                        const { error } = await supabase
-                          .from("bookings")
-                          .update({ status: value })
-                          .eq("id", booking.id);
-
-                        if (error) {
-                          console.error(
-                            "Error updating status:",
-                            error.message
-                          );
-                        } else {
-                          setBookings((prev) =>
-                            prev.map((b) =>
-                              b.id === booking.id ? { ...b, status: value } : b
-                            )
-                          );
-                        }
-                      } catch (err) {
-                        console.error("Unexpected error:", err);
-                      }
-                    }}
+                    onValueChange={(value) =>
+                      handleStatusChange(booking.id, value)
+                    }
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select status" />
@@ -182,31 +119,9 @@ export default function AdminBookingsTable() {
                 <TableCell>
                   <Select
                     value={booking.payment_status}
-                    onValueChange={async (value) => {
-                      try {
-                        const { error } = await supabase
-                          .from("bookings")
-                          .update({ payment_status: value })
-                          .eq("id", booking.id);
-
-                        if (error) {
-                          console.error(
-                            "Error updating payment status:",
-                            error.message
-                          );
-                        } else {
-                          setBookings((prev) =>
-                            prev.map((b) =>
-                              b.id === booking.id
-                                ? { ...b, payment_status: value }
-                                : b
-                            )
-                          );
-                        }
-                      } catch (err) {
-                        console.error("Unexpected error:", err);
-                      }
-                    }}
+                    onValueChange={(value) =>
+                      handlePaymentStatusChange(booking.id, value)
+                    }
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select payment status" />
@@ -250,7 +165,6 @@ export default function AdminBookingsTable() {
             ))}
           </TableBody>
         </Table>
-        
       </div>
     </div>
   );
