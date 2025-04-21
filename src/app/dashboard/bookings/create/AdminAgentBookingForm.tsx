@@ -114,21 +114,19 @@ export function AdminAgentBookingForm({ users }: { users: { id: string; email: s
       const selectedTrip = trips.find((trip) => trip.id === formData.tripId);
       if (!selectedTrip || !formData.people || !formData.startDate || !formData.endDate) return;
 
-      const nights = Math.ceil(
-        (new Date(formData.endDate).getTime() - new Date(formData.startDate).getTime()) /
-          (1000 * 60 * 60 * 24)
-      );
-
+      // Calculate base price
       const calculatedBasePrice = selectedTrip.price * formData.people;
 
+      // Calculate addon price (per unit, not per night or day)
       const calculatedAddonPrice = Object.entries(formData.addons || {}).reduce(
         (acc, [type, quantity]) => {
           const addon = addons.find((a) => a.type === type);
-          return acc + (addon?.price || 0) * quantity * nights;
+          return acc + (addon?.price || 0) * quantity;
         },
         0
       );
 
+      // Update state
       setBasePrice(calculatedBasePrice);
       setAddonPrice(calculatedAddonPrice);
       setTotalPrice(calculatedBasePrice + calculatedAddonPrice);
