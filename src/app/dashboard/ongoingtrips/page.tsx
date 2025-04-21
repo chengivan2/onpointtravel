@@ -12,8 +12,8 @@ import { PlusIcon } from "lucide-react";
 import OngoingTrips from "./components/OngoingTrips";
 
 export const metadata: Metadata = {
-  title: "Your Favorite Trips",
-  description: "Manage your favorite trips",
+  title: "Ongoing Trips",
+  description: "Manage your ongoing trips",
 };
 
 export default async function OnPointDashboard() {
