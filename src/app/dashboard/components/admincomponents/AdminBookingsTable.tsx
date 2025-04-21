@@ -249,14 +249,7 @@ export default function AdminBookingsTable() {
             ))}
           </TableBody>
         </Table>
-        <div className="relative min-w-full">
-          <Link
-            href="/dashboard/bookings/"
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg"
-          >
-            View all bookings
-          </Link>
-        </div>
+        
       </div>
     </div>
   );
