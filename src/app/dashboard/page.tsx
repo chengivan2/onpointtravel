@@ -8,6 +8,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import AdminBookingsChart from "./components/admincomponents/AdminBookingsChart";
 import AdminBookingsTable from "./components/admincomponents/AdminBookingsTable";
+import { FetchBookings } from "./components/admincomponents/FetchBookings";
 import TopTripsPieChart from "./components/admincomponents/TopTripsPieChart";
 import { PlusIcon } from "lucide-react";
 
@@ -34,6 +35,8 @@ export default async function OnPointDashboard() {
 
   const firstName = `${profile?.first_name || ""}`;
   const isAdmin = profile?.role === "admin";
+
+  const bookings = await FetchBookings(); 
 
   return (
     <SidebarProvider
@@ -71,7 +74,7 @@ export default async function OnPointDashboard() {
               </div>
               <AdminDataSlotCards />
               <AdminBookingsChart />
-              <AdminBookingsTable />
+              <AdminBookingsTable bookings={bookings} />
               <TopTripsPieChart />
             </div>
           </div>
