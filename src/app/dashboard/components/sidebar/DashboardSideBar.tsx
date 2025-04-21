@@ -4,6 +4,7 @@ import * as React from "react";
 import {
   IconCamera,
   IconChartBar,
+  IconClock12,
   IconDashboard,
   IconDatabase,
   IconFileAi,
@@ -107,7 +108,7 @@ export function DashboardSidebar({
           {
             title: "Ongoing Trips",
             url: "/dashboard/ongoingtrips",
-            icon: IconFileDescription,
+            icon: IconClock12,
           },
         ]
       : [
