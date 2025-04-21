@@ -1,11 +1,10 @@
 import Link from "next/link";
 import TripCards from "./TripCards";
-import TripsSectionBg from "./TripsSectionBg";
 
 export default function Trips() {
   return (
-    <section className="py-[3rem] bg-green-50/20 dark:bg-green-900/10 relative flex flex-col min-w-full">
-      <TripsSectionBg />
+    <section className="py-[3rem] bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1745260693/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/3D-abstract-shape-no-bg_oz4osj.png)] relative flex flex-col min-w-full">
+      
 
       <div className="flex relative min-w-full justify-center">
         <h2 className="text-4xl font-black text-lightmode-heading-color dark:text-darkmode-heading-color">
