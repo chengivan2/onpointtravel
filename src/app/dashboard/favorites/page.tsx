@@ -40,7 +40,7 @@ export default async function OnPointDashboard() {
   // Fetch the user's favorite trips
   const { data: favoriteTrips, error: tripsError } = await supabase
     .from("trips")
-    .select("id, name, featured_image")
+    .select("id, name, main_featured_image_url")
     .eq("is_favorite", true)
     .eq("user_id", user.id);
 

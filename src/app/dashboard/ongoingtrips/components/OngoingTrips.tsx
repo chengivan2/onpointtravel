@@ -41,7 +41,7 @@ export default function OngoingTrips({ ongoingTrip }: { ongoingTrip: any }) {
               <div
                 className="bg-cover bg-center h-[40vh] lg:h-[50vh] rounded-xl"
                 style={{
-                  backgroundImage: `url(${ongoingTrip.trips.featured_image})`,
+                  backgroundImage: `url(${ongoingTrip.trips.main_featured_image_url})`,
                 }}
               ></div>
             </div>

@@ -10,7 +10,7 @@ export async function FetchOngoingTrips(userId: string) {
       end_date,
       trips (
         name,
-        featured_image
+        main_featured_image_url
       )
       `
     )
