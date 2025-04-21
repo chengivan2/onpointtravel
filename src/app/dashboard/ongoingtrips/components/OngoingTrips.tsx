@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { PlusIcon } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 export default function OngoingTrips({ ongoingTrip }: { ongoingTrip: any }) {
@@ -49,16 +47,6 @@ export default function OngoingTrips({ ongoingTrip }: { ongoingTrip: any }) {
         </div>
       ) : null}
 
-      {/* Create Trip Button */}
-      <Link
-        href="/dashboard/trips/create"
-        className="flex items-center justify-center w-48 h-48 rounded-full bg-green-500 text-white hover:bg-green-600 shadow-lg text-center"
-      >
-        <div>
-          <PlusIcon className="w-12 h-12 mx-auto" />
-          <p className="text-lg font-semibold mt-2">Create a Trip</p>
-        </div>
-      </Link>
     </div>
   );
 }
