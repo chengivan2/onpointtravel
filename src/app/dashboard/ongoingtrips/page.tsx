@@ -21,7 +21,7 @@ export default async function OnPointDashboard() {
   const {
     data: { user },
     error: userError,
-  } = await supabaseService.auth.getUser();
+  } = await supabase.auth.getUser();
 
   if (userError) {
     console.error("Error fetching user:", userError.message);
