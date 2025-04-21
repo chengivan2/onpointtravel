@@ -21,6 +21,7 @@ const formSchema = z.object({
   startDate: z.date().optional(),
   endDate: z.date().optional(),
   people: z.number().int().min(1, "At least 1 person required"),
+  addons: z.record(z.string(), z.number().int().min(0)).optional(),
   specialRequests: z.string().optional(),
 });
 
@@ -28,10 +29,12 @@ export function AdminAgentBookingForm() {
   const supabase = createClient();
   const router = useRouter();
 
-  const [users, setUsers] = useState<
-    { id: string; email: string; name: string }[]
-  >([]);
-  const [trips, setTrips] = useState<{ id: string; name: string }[]>([]);
+  const [users, setUsers] = useState<{ id: string; email: string; name: string }[]>([]);
+  const [trips, setTrips] = useState<{ id: string; name: string; price: number }[]>([]);
+  const [addons, setAddons] = useState<{ id: string; type: string; price: number }[]>([]);
+  const [basePrice, setBasePrice] = useState(0);
+  const [addonPrice, setAddonPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [processing, setProcessing] = useState(false);
   const [showResult, setShowResult] = useState<boolean | null>(null);
 
@@ -45,6 +48,7 @@ export function AdminAgentBookingForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       people: 1,
+      addons: {},
     },
   });
 
@@ -80,7 +84,6 @@ export function AdminAgentBookingForm() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        // Use the service role client to fetch all users
         const { data, error } = await supabaseService.auth.admin.listUsers();
 
         if (error) {
@@ -89,10 +92,7 @@ export function AdminAgentBookingForm() {
           const formattedUsers = data.users.map((user) => ({
             id: user.id,
             email: user.email || "",
-            name:
-              `${user.user_metadata?.first_name || ""} ${
-                user.user_metadata?.last_name || ""
-              }`.trim() || user.email || "",
+            name: `${user.user_metadata?.first_name || ""} ${user.user_metadata?.last_name || ""}`.trim() || user.email || "",
           }));
           setUsers(formattedUsers);
         }
@@ -107,7 +107,7 @@ export function AdminAgentBookingForm() {
   // Fetch trips for selection
   useEffect(() => {
     const fetchTrips = async () => {
-      const { data, error } = await supabase.from("trips").select("id, name");
+      const { data, error } = await supabase.from("trips").select("id, name, price");
       if (error) {
         console.error("Error fetching trips:", error.message);
       } else {
@@ -118,6 +118,49 @@ export function AdminAgentBookingForm() {
     fetchTrips();
   }, [supabase]);
 
+  // Fetch addons for selection
+  useEffect(() => {
+    const fetchAddons = async () => {
+      const { data, error } = await supabase.from("addons").select("id, type, price");
+      if (error) {
+        console.error("Error fetching addons:", error.message);
+      } else {
+        setAddons(data || []);
+      }
+    };
+
+    fetchAddons();
+  }, [supabase]);
+
+  // Calculate prices
+  useEffect(() => {
+    const calculatePrices = () => {
+      const selectedTrip = trips.find((trip) => trip.id === formData.tripId);
+      if (!selectedTrip || !formData.people || !formData.startDate || !formData.endDate) return;
+
+      const nights = Math.ceil(
+        (new Date(formData.endDate).getTime() - new Date(formData.startDate).getTime()) /
+          (1000 * 60 * 60 * 24)
+      );
+
+      const calculatedBasePrice = selectedTrip.price * formData.people;
+
+      const calculatedAddonPrice = Object.entries(formData.addons || {}).reduce(
+        (acc, [type, quantity]) => {
+          const addon = addons.find((a) => a.type === type);
+          return acc + (addon?.price || 0) * quantity * nights;
+        },
+        0
+      );
+
+      setBasePrice(calculatedBasePrice);
+      setAddonPrice(calculatedAddonPrice);
+      setTotalPrice(calculatedBasePrice + calculatedAddonPrice);
+    };
+
+    calculatePrices();
+  }, [formData, trips, addons]);
+
   const onSubmit = async (data: any) => {
     setProcessing(true);
     try {
@@ -127,10 +170,10 @@ export function AdminAgentBookingForm() {
           {
             user_id: data.userId,
             trip_id: data.tripId,
-            start_date: data.startDate?.toISOString(),
-            end_date: data.endDate?.toISOString(),
+            start_date: data.startDate.toISOString(),
+            end_date: data.endDate.toISOString(),
             number_of_people: data.people,
-            total_price: 0, // Default price, can be updated later
+            total_price: totalPrice,
             status: "pending",
             payment_status: "unpaid",
             special_requests: data.specialRequests,
@@ -145,7 +188,7 @@ export function AdminAgentBookingForm() {
       const paymentResponse = await supabase.from("payments").insert([
         {
           booking_id: bookingResponse.data.id,
-          amount: 0, // Default amount, can be updated later
+          amount: totalPrice,
           currency: "USD",
           payment_method: "cash",
           status: "unpaid",
@@ -153,6 +196,22 @@ export function AdminAgentBookingForm() {
       ]);
 
       if (paymentResponse.error) throw paymentResponse.error;
+
+      // Handle addons with quantity
+      const addonEntries = Object.entries(data.addons || {})
+        .filter(([_, quantity]) => Number(quantity) > 0)
+        .map(([type, quantity]) => ({
+          booking_id: bookingResponse.data.id,
+          addon_type: type,
+          description: `${type.replace("_", " ")} rental`,
+          price: addons.find((a) => a.type === type)?.price || 0,
+          quantity: Number(quantity),
+        }));
+
+      if (addonEntries.length > 0) {
+        const addonResponse = await supabase.from("booking_addons").insert(addonEntries);
+        if (addonResponse.error) throw addonResponse.error;
+      }
 
       setShowResult(true);
       reset();
@@ -166,123 +225,111 @@ export function AdminAgentBookingForm() {
 
   return (
     <div className="bg-white/60 dark:bg-green-900/20 rounded-xl p-8 border border-green-100/30 dark:border-green-900/30 mt-12">
-      <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
-        Create Booking
-      </h2>
+      <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">Create Booking</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* User Selection */}
         <div>
-          <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
-            Select User
-          </label>
+          <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">Select User</label>
           <select
             {...register("userId")}
             className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
           >
-            <option value="" className="dark:bg-green-900/20">
-              Select a user
-            </option>
+            <option value="">Select a user</option>
             {users.map((user) => (
-              <option
-                key={user.id}
-                value={user.id}
-                className="dark:bg-green-900/20"
-              >
+              <option key={user.id} value={user.id}>
                 {user.name} ({user.email})
               </option>
             ))}
           </select>
-          {errors.userId && (
-            <p className="text-red-500 text-sm mt-1">{errors.userId.message}</p>
-          )}
+          {errors.userId && <p className="text-red-500 text-sm mt-1">{errors.userId.message}</p>}
         </div>
 
         {/* Trip Selection */}
         <div>
-          <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
-            Select Trip
-          </label>
+          <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">Select Trip</label>
           <select
             {...register("tripId")}
             className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
           >
-            <option value="" className="dark:bg-green-900/20">
-              Select a trip
-            </option>
+            <option value="">Select a trip</option>
             {trips.map((trip) => (
-              <option
-                key={trip.id}
-                value={trip.id}
-                className="dark:bg-green-900/20"
-              >
+              <option key={trip.id} value={trip.id}>
                 {trip.name}
               </option>
             ))}
           </select>
-          {errors.tripId && (
-            <p className="text-red-500 text-sm mt-1">{errors.tripId.message}</p>
-          )}
+          {errors.tripId && <p className="text-red-500 text-sm mt-1">{errors.tripId.message}</p>}
         </div>
 
         {/* Other Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
-              Start Date
-            </label>
+            <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">Start Date</label>
             <input
               type="date"
               {...register("startDate", { valueAsDate: true })}
               className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
             />
-            {errors.startDate && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.startDate.message}
-              </p>
-            )}
+            {errors.startDate && <p className="text-red-500 text-sm mt-1">{errors.startDate.message}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
-              End Date
-            </label>
+            <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">End Date</label>
             <input
               type="date"
               {...register("endDate", { valueAsDate: true })}
               className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
             />
-            {errors.endDate && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.endDate.message}
-              </p>
-            )}
+            {errors.endDate && <p className="text-red-500 text-sm mt-1">{errors.endDate.message}</p>}
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
-            Number of People
-          </label>
+          <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">Number of People</label>
           <input
             type="number"
             {...register("people", { valueAsNumber: true })}
             className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
             min="1"
           />
-          {errors.people && (
-            <p className="text-red-500 text-sm mt-1">{errors.people.message}</p>
-          )}
+          {errors.people && <p className="text-red-500 text-sm mt-1">{errors.people.message}</p>}
         </div>
 
+        {/* Addons */}
         <div>
-          <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
-            Special Requests
-          </label>
-          <textarea
-            {...register("specialRequests")}
-            className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
-            rows={3}
-          />
+          <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">Addons</label>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {addons.map((addon) => (
+              <div key={addon.type} className="p-4 bg-white/60 dark:bg-green-900/20 rounded-lg border border-green-200/30 dark:border-green-700/30">
+                <label className="flex items-center justify-between">
+                  <span className="text-green-700 dark:text-green-300 capitalize">{addon.type.replace("_", " ")}</span>
+                  <input
+                    type="number"
+                    {...register(`addons.${addon.type}`, { valueAsNumber: true })}
+                    className="w-20 px-3 py-1 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+                    min="0"
+                    defaultValue={0}
+                  />
+                </label>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Price Breakdown */}
+        <div className="border-t border-green-200 dark:border-green-700 pt-6">
+          <div className="flex justify-between items-center">
+            <span className="text-sm text-green-700 dark:text-green-300">Base Price</span>
+            <span className="text-sm text-green-700 dark:text-green-300">${basePrice.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-sm text-green-700 dark:text-green-300">Addon Price</span>
+            <span className="text-sm text-green-700 dark:text-green-300">${addonPrice.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-medium text-green-800 dark:text-green-100">Total Price</span>
+            <span className="text-2xl font-bold text-green-700 dark:text-green-300">${totalPrice.toFixed(2)}</span>
+          </div>
         </div>
 
         <button
@@ -294,10 +341,7 @@ export function AdminAgentBookingForm() {
         </button>
       </form>
 
-      <Dialog
-        open={showResult !== null}
-        onOpenChange={() => setShowResult(null)}
-      >
+      <Dialog open={showResult !== null} onOpenChange={() => setShowResult(null)}>
         <DialogContent className="bg-white/70 dark:bg-green-900/30 backdrop-blur-md border-green-200/50 dark:border-green-700/50 rounded-lg shadow-lg">
           <DialogHeader>
             <DialogTitle className="text-green-900 dark:text-green-100">
