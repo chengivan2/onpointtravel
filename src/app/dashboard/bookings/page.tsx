@@ -1,154 +1,84 @@
-"use client";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { createClient } from "@/utils/supabase/server";
+import { Metadata } from "next";
+import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
+import { redirect } from "next/navigation";
+import AdminAgentBookingsView from "./AdminAgentBookingsView";
 
-import { useState, useEffect } from "react";
-import { createClient } from "@/utils/supabase/client";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 
-export default function BookingsPage() {
-  const supabase = createClient();
-  const router = useRouter();
+export const metadata: Metadata = {
+  title: "OnPoint Bookings",
+  description: "View bookings",
+};
 
-  const [bookings, setBookings] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(0); // Tracks the current page (0-based)
-  const [isAuthorized, setIsAuthorized] = useState(false);
+export default async function AdminAgentCreateBookingPage() {
+  const supabase = await createClient();
 
-  const LIMIT = 15; // Number of bookings to load per page
+  // Check session and user
+  const {
+    data: { session },
+    error: sessionError,
+  } = await supabase.auth.getSession();
 
-  // Check user role and restrict access
-  useEffect(() => {
-    const checkAccess = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (!user) {
-        router.push("/signin");
-        return;
-      }
-
-      const { data: profile, error } = await supabase
-        .from("users")
-        .select("role")
-        .eq("id", user.id)
-        .single();
-
-      if (error || (profile?.role !== "admin" && profile?.role !== "agent")) {
-        router.push("/dashboard");
-        return;
-      }
-
-      setIsAuthorized(true);
-    };
-
-    checkAccess();
-  }, [supabase, router]);
-
-  // Fetch bookings
-  const fetchBookings = async () => {
-    setLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from("bookings")
-        .select(
-          `
-          id,
-          number_of_people,
-          status,
-          payment_status,
-          booked_at,
-          trips (name),
-          users (first_name, last_name, email)
-        `
-        )
-        .order("booked_at", { ascending: false })
-        .range(page * LIMIT, page * LIMIT + LIMIT - 1); // Fetch the next batch
-
-      if (error) {
-        console.error("Error fetching bookings:", error.message);
-        return;
-      }
-
-      if (data.length < LIMIT) {
-        setHasMore(false); // No more bookings to load
-      }
-
-      setBookings((prev) => [...prev, ...data]); // Append new bookings to the existing list
-    } catch (err) {
-      console.error("Error loading bookings:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Load bookings on page load and when the page number changes
-  useEffect(() => {
-    if (isAuthorized) {
-      fetchBookings();
-    }
-  }, [page, isAuthorized]);
-
-  if (!isAuthorized) {
-    return null; // Prevent rendering until access is verified
+  if (sessionError || !session) {
+    redirect("/signin");
   }
 
+  const { user } = session;
+
+  // Fetch user profile
+  const { data: profile, error: profileError } = await supabase
+    .from("users")
+    .select("role, first_name, last_name")
+    .eq("id", user.id)
+    .single();
+
+  if (profileError || !profile) {
+    redirect("/signin");
+  }
+
+  const firstName = `${profile?.first_name || ""}`;
+  const isAdmin = profile?.role === "admin";
+  const isAgent = profile?.role === "agent";
+
+
+  if (!isAdmin && !isAgent) {
+    redirect("/dashboard");
+  }
+
+
   return (
-    <div className="p-6">
-      {/* Add Booking Button */}
-      <div className="flex justify-end mb-6">
-        <Link href="/dashboard/bookings/create">
-          <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg animate-pulse">
-            Add Booking
-          </button>
-        </Link>
-      </div>
+    <SidebarProvider
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties
+      }
+    >
+      <DashboardSidebar variant="inset" />
+      <SidebarInset>
+        <SiteHeader />
+        <div className="flex flex-1 flex-col">
+          <div className="@container/main flex flex-1 flex-col gap-2">
+            <div className="flex flex-col px-3 lg:px-6 gap-4 py-4 md:gap-6 md:py-6">
+              <div className="relative min-w-full px-4 lg:px-6 gap-4 flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h2 className="text-2xl font-semibold">
+                    Hello, 👋 {firstName}
+                  </h2>
+                  <p className="text-sm text-gray-800 dark:text-gray-200">
+                    Create a trip below.
+                  </p>
+                </div>
+              </div>
 
-      {/* Bookings Table */}
-      <div className="overflow-x-auto bg-white/30 dark:bg-green-900/30 rounded-lg shadow-lg">
-        <table className="min-w-full">
-          <thead>
-            <tr>
-              <th className="px-4 py-2 text-left">Trip Name</th>
-              <th className="px-4 py-2 text-left">Client</th>
-              <th className="px-4 py-2 text-left">People</th>
-              <th className="px-4 py-2 text-left">Status</th>
-              <th className="px-4 py-2 text-left">Payment Status</th>
-              <th className="px-4 py-2 text-left">Created At</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookings.map((booking) => (
-              <tr key={booking.id} className="border-t border-gray-200 dark:border-gray-700">
-                <td className="px-4 py-2">{booking.trips?.name || "N/A"}</td>
-                <td className="px-4 py-2">
-                  {booking.users?.first_name && booking.users?.last_name
-                    ? `${booking.users.first_name} ${booking.users.last_name}`
-                    : booking.users?.email || "N/A"}
-                </td>
-                <td className="px-4 py-2">{booking.number_of_people}</td>
-                <td className="px-4 py-2 capitalize">{booking.status}</td>
-                <td className="px-4 py-2 capitalize">{booking.payment_status}</td>
-                <td className="px-4 py-2">{new Date(booking.booked_at).toLocaleDateString()}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Load More Button */}
-      {hasMore && (
-        <div className="flex justify-center mt-6">
-          <button
-            onClick={() => setPage((prev) => prev + 1)}
-            disabled={loading}
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg disabled:opacity-50"
-          >
-            {loading ? "Loading..." : "Load More"}
-          </button>
+              <AdminAgentBookingsView />
+            </div>
+          </div>
         </div>
-      )}
-    </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
