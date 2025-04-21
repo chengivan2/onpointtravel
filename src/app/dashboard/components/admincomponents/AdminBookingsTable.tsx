@@ -107,7 +107,7 @@ export default function AdminBookingsTable({ bookings }: { bookings: any[] }) {
                         </Badge>
                       </SelectItem>
                       <SelectItem value="cancelled">
-                        <Badge variant="outline" className="bg-red-500">
+                        <Badge variant="outline" className="bg-red-800">
                           Cancelled
                         </Badge>
                       </SelectItem>
@@ -117,7 +117,7 @@ export default function AdminBookingsTable({ bookings }: { bookings: any[] }) {
                         </Badge>
                       </SelectItem>
                       <SelectItem value="refunded">
-                        <Badge variant="outline" className="bg-red-300">
+                        <Badge variant="outline" className="bg-red-500">
                           Refunded
                         </Badge>
                       </SelectItem>
