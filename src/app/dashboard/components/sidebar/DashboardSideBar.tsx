@@ -104,6 +104,11 @@ export function DashboardSidebar({
             url: "/dashboard/bookings",
             icon: IconFolder,
           },
+          {
+            title: "Ongoing Trips",
+            url: "/dashboard/ongoingtrips",
+            icon: IconFileDescription,
+          },
         ]
       : [
           {

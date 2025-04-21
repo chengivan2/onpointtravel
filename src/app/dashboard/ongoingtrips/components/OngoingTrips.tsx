@@ -1,52 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 import { PlusIcon } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
-export default function OngoingTrips() {
-  const [ongoingTrip, setOngoingTrip] = React.useState<any>(null);
-
-  React.useEffect(() => {
-    const fetchOngoingTrip = async () => {
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (!user) return;
-
-      const { data: trips } = await supabase
-        .from("bookings")
-        .select(
-          `
-          id,
-          start_date,
-          end_date,
-          trips (
-            name,
-            featured_image
-          )
-          `
-        )
-        .eq("user_id", user.id)
-        .eq("status", "confirmed");
-
-      const now = new Date();
-      const ongoing = trips?.find((trip) => {
-        const startDate = new Date(trip.start_date);
-        startDate.setHours(9, 0, 0, 0); // Set to 9 AM
-        return now >= startDate && now <= new Date(trip.end_date);
-      });
-
-      setOngoingTrip(ongoing || null);
-    };
-
-    fetchOngoingTrip();
-  }, []);
-
+export default function OngoingTrips({ ongoingTrip }: { ongoingTrip: any }) {
   return (
     <div className="flex flex-col lg:flex-row gap-6 items-start">
       {ongoingTrip ? (
