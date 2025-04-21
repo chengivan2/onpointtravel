@@ -233,11 +233,11 @@ export function AdminAgentBookingForm() {
           <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">Select User</label>
           <select
             {...register("userId")}
-            className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+            className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500"
           >
-            <option value="">Select a user</option>
+            <option value="" className="dark:bg-green-900/20">Select a user</option>
             {users.map((user) => (
-              <option key={user.id} value={user.id}>
+              <option key={user.id} value={user.id} className="dark:bg-green-900/20">
                 {user.name} ({user.email})
               </option>
             ))}
@@ -252,9 +252,9 @@ export function AdminAgentBookingForm() {
             {...register("tripId")}
             className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
           >
-            <option value="">Select a trip</option>
+            <option value="" className="dark:bg-green-900/20">Select a trip</option>
             {trips.map((trip) => (
-              <option key={trip.id} value={trip.id}>
+              <option key={trip.id} value={trip.id} className="dark:bg-green-900/20">
                 {trip.name}
               </option>
             ))}
