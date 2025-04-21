@@ -1,0 +1,56 @@
+import { supabaseService } from "@/utils/supabase/srk";
+
+interface Booking {
+  id: string;
+  number_of_people: number;
+  status: string;
+  payment_status: string;
+  booked_at: string;
+  trips: {
+    name: string;
+  };
+  users: {
+    first_name: string | null;
+    last_name: string | null;
+    email: string;
+  };
+}
+
+export async function FetchBookings(page: number, limit: number) {
+  const { data, error } = await supabaseService
+    .from("bookings")
+    .select(
+      `
+      id,
+      number_of_people,
+      status,
+      payment_status,
+      booked_at,
+      trips (name),
+      users (first_name, last_name, email)
+      `
+    )
+    .order("booked_at", { ascending: false })
+    .range(page * limit, page * limit + limit - 1)
+    .returns<Booking[]>();
+
+  if (error) {
+    console.error("Error fetching bookings:", error.message);
+    return [];
+  }
+
+  return (
+    data?.map((booking) => ({
+      id: booking.id,
+      trip_name: booking.trips?.name || "N/A",
+      client:
+        booking.users?.first_name && booking.users?.last_name
+          ? `${booking.users.first_name} ${booking.users.last_name}`
+          : booking.users?.email || "N/A",
+      people: booking.number_of_people,
+      status: booking.status,
+      payment_status: booking.payment_status,
+      created_at: booking.booked_at,
+    })) || []
+  );
+}

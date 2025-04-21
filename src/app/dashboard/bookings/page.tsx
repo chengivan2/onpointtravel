@@ -4,15 +4,15 @@ import { createClient } from "@/utils/supabase/server";
 import { Metadata } from "next";
 import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
 import { redirect } from "next/navigation";
-import AdminAgentBookingsView from "./AdminAgentBookingsView";
-
+import { FetchBookings } from "./components/FetchBookings";
+import AdminAgentBookingsView from "./components/AdminAgentBookingsView";
 
 export const metadata: Metadata = {
   title: "OnPoint Bookings",
   description: "View bookings",
 };
 
-export default async function AdminAgentCreateBookingPage() {
+export default async function AdminBookingsPage() {
   const supabase = await createClient();
 
   // Check session and user
@@ -42,11 +42,11 @@ export default async function AdminAgentCreateBookingPage() {
   const isAdmin = profile?.role === "admin";
   const isAgent = profile?.role === "agent";
 
-
   if (!isAdmin && !isAgent) {
     redirect("/dashboard");
   }
 
+  const initialBookings = await FetchBookings(0, 15); // Fetch the first page of bookings
 
   return (
     <SidebarProvider
@@ -69,12 +69,12 @@ export default async function AdminAgentCreateBookingPage() {
                     Hello, 👋 {firstName}
                   </h2>
                   <p className="text-sm text-gray-800 dark:text-gray-200">
-                    Create a trip below.
+                    Here are all your bookings below.
                   </p>
                 </div>
               </div>
 
-              <AdminAgentBookingsView />
+              <AdminAgentBookingsView initialBookings={initialBookings} />
             </div>
           </div>
         </div>
