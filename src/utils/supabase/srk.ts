@@ -7,4 +7,4 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error("Supabase environment variables are not defined.");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabaseService = createClient(supabaseUrl, supabaseKey);

@@ -2,10 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
+import { supabaseService } from "@/utils/supabase/srk";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -22,7 +28,9 @@ export function AdminAgentBookingForm() {
   const supabase = createClient();
   const router = useRouter();
 
-  const [users, setUsers] = useState<{ id: string; email: string; name: string }[]>([]);
+  const [users, setUsers] = useState<
+    { id: string; email: string; name: string }[]
+  >([]);
   const [trips, setTrips] = useState<{ id: string; name: string }[]>([]);
   const [processing, setProcessing] = useState(false);
   const [showResult, setShowResult] = useState<boolean | null>(null);
@@ -72,8 +80,8 @@ export function AdminAgentBookingForm() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        // Use the Supabase Admin API to fetch all users
-        const { data, error } = await supabase.auth.admin.listUsers();
+        // Use the service role client to fetch all users
+        const { data, error } = await supabaseService.auth.admin.listUsers();
 
         if (error) {
           console.error("Error fetching users:", error.message);
@@ -81,7 +89,10 @@ export function AdminAgentBookingForm() {
           const formattedUsers = data.users.map((user) => ({
             id: user.id,
             email: user.email || "",
-            name: `${user.user_metadata?.first_name || ""} ${user.user_metadata?.last_name || ""}`.trim() || user.email || "",
+            name:
+              `${user.user_metadata?.first_name || ""} ${
+                user.user_metadata?.last_name || ""
+              }`.trim() || user.email || "",
           }));
           setUsers(formattedUsers);
         }
@@ -91,7 +102,7 @@ export function AdminAgentBookingForm() {
     };
 
     fetchUsers();
-  }, [supabase]);
+  }, []);
 
   // Fetch trips for selection
   useEffect(() => {
@@ -155,7 +166,9 @@ export function AdminAgentBookingForm() {
 
   return (
     <div className="bg-white/60 dark:bg-green-900/20 rounded-xl p-8 border border-green-100/30 dark:border-green-900/30 mt-12">
-      <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">Create Booking</h2>
+      <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
+        Create Booking
+      </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* User Selection */}
@@ -167,14 +180,22 @@ export function AdminAgentBookingForm() {
             {...register("userId")}
             className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
           >
-            <option value="" className="dark:bg-green-900/20">Select a user</option>
+            <option value="" className="dark:bg-green-900/20">
+              Select a user
+            </option>
             {users.map((user) => (
-              <option key={user.id} value={user.id} className="dark:bg-green-900/20">
+              <option
+                key={user.id}
+                value={user.id}
+                className="dark:bg-green-900/20"
+              >
                 {user.name} ({user.email})
               </option>
             ))}
           </select>
-          {errors.userId && <p className="text-red-500 text-sm mt-1">{errors.userId.message}</p>}
+          {errors.userId && (
+            <p className="text-red-500 text-sm mt-1">{errors.userId.message}</p>
+          )}
         </div>
 
         {/* Trip Selection */}
@@ -186,14 +207,22 @@ export function AdminAgentBookingForm() {
             {...register("tripId")}
             className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
           >
-            <option value="" className="dark:bg-green-900/20">Select a trip</option>
+            <option value="" className="dark:bg-green-900/20">
+              Select a trip
+            </option>
             {trips.map((trip) => (
-              <option key={trip.id} value={trip.id} className="dark:bg-green-900/20">
+              <option
+                key={trip.id}
+                value={trip.id}
+                className="dark:bg-green-900/20"
+              >
                 {trip.name}
               </option>
             ))}
           </select>
-          {errors.tripId && <p className="text-red-500 text-sm mt-1">{errors.tripId.message}</p>}
+          {errors.tripId && (
+            <p className="text-red-500 text-sm mt-1">{errors.tripId.message}</p>
+          )}
         </div>
 
         {/* Other Fields */}
@@ -207,7 +236,11 @@ export function AdminAgentBookingForm() {
               {...register("startDate", { valueAsDate: true })}
               className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
             />
-            {errors.startDate && <p className="text-red-500 text-sm mt-1">{errors.startDate.message}</p>}
+            {errors.startDate && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.startDate.message}
+              </p>
+            )}
           </div>
           <div>
             <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">
@@ -218,7 +251,11 @@ export function AdminAgentBookingForm() {
               {...register("endDate", { valueAsDate: true })}
               className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
             />
-            {errors.endDate && <p className="text-red-500 text-sm mt-1">{errors.endDate.message}</p>}
+            {errors.endDate && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.endDate.message}
+              </p>
+            )}
           </div>
         </div>
 
@@ -232,7 +269,9 @@ export function AdminAgentBookingForm() {
             className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
             min="1"
           />
-          {errors.people && <p className="text-red-500 text-sm mt-1">{errors.people.message}</p>}
+          {errors.people && (
+            <p className="text-red-500 text-sm mt-1">{errors.people.message}</p>
+          )}
         </div>
 
         <div>
@@ -255,7 +294,10 @@ export function AdminAgentBookingForm() {
         </button>
       </form>
 
-      <Dialog open={showResult !== null} onOpenChange={() => setShowResult(null)}>
+      <Dialog
+        open={showResult !== null}
+        onOpenChange={() => setShowResult(null)}
+      >
         <DialogContent className="bg-white/70 dark:bg-green-900/30 backdrop-blur-md border-green-200/50 dark:border-green-700/50 rounded-lg shadow-lg">
           <DialogHeader>
             <DialogTitle className="text-green-900 dark:text-green-100">
