@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { createClient } from "@/utils/supabase/client";
+import { supabaseService } from "@/utils/supabase/srk";
 import { redirect } from "next/navigation";
 import {
   Table,
@@ -64,7 +65,7 @@ export default function AdminBookingsTable() {
     };
 
     const fetchBookings = async () => {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseService
         .from("bookings")
         .select(
           `
@@ -92,7 +93,7 @@ export default function AdminBookingsTable() {
           booked_by:
             booking.user?.first_name && booking.user?.last_name
               ? `${booking.user?.first_name} ${booking.user?.last_name}`
-              : booking.user?.email,
+              : booking.user.email,
         }));
         setBookings(formattedData || []);
       }
