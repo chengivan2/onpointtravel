@@ -141,7 +141,7 @@ export default async function TripPage({
 
         {/* Overview Section */}
         <section className="mb-12">
-          <div className="w-full flex lg:flex-row ">
+          <div className="w-full flex lg:flex-row gap-[1rem] md:gap-[2rem] lg:gap-[4rem]">
             <div>
               <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
                 Overview
@@ -153,7 +153,7 @@ export default async function TripPage({
 
             <div>
               <h2>I like this trip</h2>
-              <FavoriteButton tripId={trip.id} heartIconSize={100} />
+              <FavoriteButton tripId={trip.id} heartIconSize={120} />
             </div>
           </div>
         </section>
