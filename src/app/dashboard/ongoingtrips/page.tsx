@@ -2,14 +2,14 @@ import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createClient } from "@/utils/supabase/server";
 import { supabaseService } from "@/utils/supabase/srk";
-import { FetchOngoingTrips } from "./components//FetchOngoingTrips";
+import { FetchOngoingTrips } from "./components/FetchOngoingTrips";
+import OngoingTrips from "./components/OngoingTrips";
 
 import { Metadata } from "next";
 import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PlusIcon } from "lucide-react";
-import OngoingTrips from "./components/OngoingTrips";
 
 export const metadata: Metadata = {
   title: "Ongoing Trips",
@@ -40,7 +40,7 @@ export default async function OnPointDashboard() {
 
   const firstName = `${profile?.first_name || ""}`;
 
-  const ongoingTrip = await FetchOngoingTrips(user.id);
+  const ongoingTrip = await FetchOngoingTrips();
 
   return (
     <SidebarProvider
@@ -77,7 +77,7 @@ export default async function OnPointDashboard() {
                 </Link>
               </div>
               <div className="">
-                <OngoingTrips ongoingTrip={ongoingTrip} />
+                <OngoingTrips ongoingTrips={ongoingTrip} />
               </div>
             </div>
           </div>
