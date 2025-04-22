@@ -23,7 +23,7 @@ export default function ExtraTripOffer() {
             <h2 className="text-balance text-green-800 dark:text-green-200 text-3xl font-semibold md:text-4xl lg:text-5xl">
               Play even harder
             </h2>
-            <p className="text-lightmode-text-color dark:text-darkmode-text-color">
+            <p className="md:text-md text-lightmode-text-color dark:text-darkmode-text-color">
               Book three trips in a year and get a 27% discount on the next one.
             </p>
 
