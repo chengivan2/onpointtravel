@@ -32,7 +32,7 @@ export default function ExtraTripOffer() {
               size="lg"
               asChild
             >
-              <Link href="/trips">Book a Trip</Link>
+              <Link className="text-lightmode-text-color dark:text-darkmode-text-color" href="/trips">Book a Trip</Link>
             </Button>
           </div>
         </div>
