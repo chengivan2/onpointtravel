@@ -3,7 +3,7 @@ import TripCards from "./TripCards";
 
 export default function Trips() {
   return (
-    <section className="py-[3rem] bg-contain bg-center bg-repeat-y md:bg-no-repeat bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1745260693/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/3D-abstract-shape-no-bg_oz4osj.png)] relative flex flex-col min-w-full">
+    <section className="py-[3rem] bg-contain bg-center bg-repeat-y md:bg-no-repeat bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1745310480/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/green_blob_fztfvo.png)] relative flex flex-col min-w-full">
       
 
       <div className="flex relative min-w-full justify-center">
