@@ -1,5 +1,4 @@
 import DestinationCards from "./DestinationCards";
-import DestinationsSectionBg from "./DestinationsSectionBg";
 
 export default function Destinations() {
   return (
@@ -11,7 +10,6 @@ export default function Destinations() {
         </h2>
       </div>
 
-      <DestinationCards />
     </section>
   );
 }
