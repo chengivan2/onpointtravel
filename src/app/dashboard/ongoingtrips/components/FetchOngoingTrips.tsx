@@ -1,5 +1,18 @@
 import { supabaseService } from "@/utils/supabase/srk";
 
+interface Booking {
+  id: string;
+  start_date: string;
+  end_date: string;
+  status: string;
+  trips: { name: string; main_featured_image_url: string };
+  users: {
+    first_name: string;
+    last_name: string;
+    email: string;
+  };
+}
+
 export async function FetchOngoingTrips() {
   const { data, error } = await supabaseService
     .from("bookings")
@@ -20,7 +33,8 @@ export async function FetchOngoingTrips() {
       )
       `
     )
-    .eq("status", "ongoing");
+    .eq("status", "ongoing")
+    .returns <Booking[]>();
 
   if (error) {
     console.error("Error fetching ongoing trips:", error.message);
@@ -30,15 +44,15 @@ export async function FetchOngoingTrips() {
   return (
     data?.map((trip) => ({
       id: trip.id,
-      trip_name: trip.trips?.[0]?.name || "N/A",
+      trip_name: trip.trips?.name || "N/A",
       start_date: trip.start_date,
       end_date: trip.end_date,
       status: trip.status,
       booked_by:
-        trip.users?.[0]?.first_name && trip.users?.[0]?.last_name
-          ? `${trip.users[0].first_name} ${trip.users[0].last_name}`
-          : trip.users?.[0]?.email || "N/A",
-      featured_image: trip.trips?.[0]?.main_featured_image_url || "N/A",
+        trip.users?.first_name && trip.users?.last_name
+          ? `${trip.users.first_name} ${trip.users.last_name}`
+          : trip.users?.email || "N/A",
+      featured_image: trip.trips?.main_featured_image_url || "N/A",
     })) || []
   );
 }
