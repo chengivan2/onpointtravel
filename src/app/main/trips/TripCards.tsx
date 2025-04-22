@@ -53,7 +53,7 @@ export default async function TripCards() {
   }
 
   return (
-    <div className="py-16 px-4 md:px-8 lg:px-16">
+    <div className="py-16 px-4 md:px-8 lg:px-16 bg-contain bg-center bg-repeat-y md:bg-no-repeat bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1745310480/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/green_blob_fztfvo.png)]">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 cursor-pointer">
           {trips.map((trip) => (
