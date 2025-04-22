@@ -1,5 +1,6 @@
 import BookingSteps from "./bookingsteps/BookingSteps";
 import Destinations from "./destinations/Destinations";
+import ExtraTripOffer from "./extratripoffer/ExtraTripOffer";
 import HomeHero from "./hero/Hero";
 import OurServicesSection from "./ourservices/OurServices";
 import Stats from "./stats/Stats";
@@ -16,6 +17,7 @@ export default function Main() {
       <Trips />
       <Stats />
       <WallOfLoveTestimonials />
+      <ExtraTripOffer />
     </>
   );
 }
