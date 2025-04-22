@@ -15,7 +15,7 @@ export default function ExtraTripOffer() {
                 alt="Three gazelles staring"
                 width={600}
                 height={300}
-                className="rounded-xl"
+                className="rounded-lg"
               />
             </div>
           </div>
