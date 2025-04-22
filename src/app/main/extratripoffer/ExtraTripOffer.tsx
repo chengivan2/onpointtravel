@@ -23,11 +23,15 @@ export default function ExtraTripOffer() {
             <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl">
               Play even harder
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-lightmode-text-color dark:text-darkmode-text-color">
               Book three trips in a year and get a 27% discount on the next one.
             </p>
 
-            <Button className="bg-lightmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color dark:bg-darkmode-btn-bg-color hover:dark:bg-darkmode-btn-bg-hover-color shadow-2xl hover:scale-2" size="lg" asChild>
+            <Button
+              className="bg-lightmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color dark:bg-darkmode-btn-bg-color hover:dark:bg-darkmode-btn-bg-hover-color shadow-2xl hover:scale-2"
+              size="lg"
+              asChild
+            >
               <Link href="/trips">Book a Trip</Link>
             </Button>
           </div>
