@@ -118,9 +118,9 @@ export function DashboardSidebar({
             icon: IconHeart,
           },
           {
-            title: "My Trips",
-            url: "/dashboard/trips",
-            icon: IconFolder,
+            title: "My Ongoing Trips",
+            url: "/dashboard/my-ongoing-trips",
+            icon: IconClock12,
           },
         ]),
   ];
