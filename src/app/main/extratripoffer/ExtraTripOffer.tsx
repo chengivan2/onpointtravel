@@ -13,7 +13,7 @@ export default function ExtraTripOffer() {
               <Image
                 src="https://res.cloudinary.com/doqbnfais/image/upload/v1745260620/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/three-impalas_kwx3j6.jpg"
                 alt="Three gazelles staring"
-                width={300}
+                width={600}
                 height={600}
                 className="rounded-lg"
               />
