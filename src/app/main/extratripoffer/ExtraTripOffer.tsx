@@ -20,7 +20,7 @@ export default function ExtraTripOffer() {
             </div>
           </div>
           <div className="mx-auto mt-6 max-w-lg space-y-6 text-center">
-            <h2 className="text-balance text-green-800 dark:text-green-100 text-3xl font-semibold md:text-4xl lg:text-5xl">
+            <h2 className="text-balance text-green-800 dark:text-green-200 text-3xl font-semibold md:text-4xl lg:text-5xl">
               Play even harder
             </h2>
             <p className="text-lightmode-text-color dark:text-darkmode-text-color">
