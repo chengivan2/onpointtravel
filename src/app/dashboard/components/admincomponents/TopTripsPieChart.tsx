@@ -39,7 +39,7 @@ export default function TopTripsPieChart() {
             )
           `
           )
-          .eq("status", "confirmed");
+          .eq("status", "completed");
 
         if (timeRange === "this_month") {
           query = query

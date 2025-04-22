@@ -60,11 +60,10 @@ export default async function OnPointDashboard() {
               <div className="relative min-w-full px-4 lg:px-6 gap-4 flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
                   <h2 className="text-2xl font-semibold">
-                    Hello, 👋 {firstName}
+                    Hello, {firstName} 👋
                   </h2>
                   <p className="text-sm text-gray-800 dark:text-gray-200">
-                    Here are your favorite trips. Which one would you like to
-                    cross of your bucket list?
+                    Here are all the ongoing trips. You cn mnage them from here.
                   </p>
                 </div>
 
