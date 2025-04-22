@@ -27,7 +27,7 @@ export default function ExtraTripOffer() {
               Book three trips in a year and get a 27% discount on the next one.
             </p>
 
-            <Button variant="outline" size="sm" asChild>
+            <Button className="bg-lightmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color dark:bg-darkmode-btn-bg-color hover:dark:bg-darkmode-btn-bg-hover-color shadow-2xl hover:scale-2" size="lg" asChild>
               <Link href="/trips">Book a Trip</Link>
             </Button>
           </div>
