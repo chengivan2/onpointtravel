@@ -9,7 +9,7 @@ import { AdminAgentBookingForm } from "./AdminAgentBookingForm";
 
 export const metadata: Metadata = {
   title: "OnPoint Dashboard",
-  description: "Create a trip for a client",
+  description: "Create a booking for a client",
 };
 
 export default async function AdminAgentCreateBookingPage() {
@@ -70,7 +70,7 @@ export default async function AdminAgentCreateBookingPage() {
                     Hello, 👋 {firstName}
                   </h2>
                   <p className="text-sm text-gray-800 dark:text-gray-200">
-                    Create a trip below.
+                    Create a booking below.
                   </p>
                 </div>
               </div>

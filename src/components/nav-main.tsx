@@ -27,12 +27,12 @@ export function NavMain({
         <SidebarMenu>
           <SidebarMenuItem className="flex items-center gap-2">
             <SidebarMenuButton
-              title="Create a Trip"
+              title="Create a Booking"
               className="border border-gray-200/80 dark:border-green-900/80 bg-white/30 backdrop-blur-md text-green-600 hover:bg-white/40 hover:text-green-700 active:bg-white/50 active:text-green-800 dark:bg-green-900/20 dark:hover:bg-green-800/20 dark:active:bg-green-700/20 duration-200 ease-linear min-w-8 shadow-lg"
             >
               <Link href="/dashboard/bookings/create">
                 <IconCirclePlusFilled className="text-green-600 dark:text-green-400" />
-                <span>Create a Trip</span>
+                <span>Create a Booking</span>
               </Link>
             </SidebarMenuButton>
             <Button
