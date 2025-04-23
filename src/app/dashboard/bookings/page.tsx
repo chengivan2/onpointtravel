@@ -66,7 +66,7 @@ export default async function AdminBookingsPage() {
               <div className="relative min-w-full px-4 lg:px-6 gap-4 flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
                   <h2 className="text-2xl font-semibold">
-                    Hello, 👋 {firstName}
+                    Hello, {firstName} 👋
                   </h2>
                   <p className="text-sm text-gray-800 dark:text-gray-200">
                     Here are all your bookings below.
