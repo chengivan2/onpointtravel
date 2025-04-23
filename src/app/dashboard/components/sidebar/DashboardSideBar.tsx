@@ -184,7 +184,6 @@ export function DashboardSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={navMain} />
-        <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
