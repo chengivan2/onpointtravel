@@ -102,7 +102,7 @@ export default function AdminBookingsTable({ bookings }: { bookings: any[] }) {
                         </Badge>
                       </SelectItem>
                       <SelectItem value="ongoing">
-                        <Badge variant="outline" className="text-[#E0E0E0] bg-green-300">
+                        <Badge variant="outline" className="text-[#F5F5F5] bg-green-300">
                           Ongoing
                         </Badge>
                       </SelectItem>
