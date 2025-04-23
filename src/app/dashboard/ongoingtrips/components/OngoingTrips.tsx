@@ -50,7 +50,7 @@ export default function OngoingTrips({ ongoingTrips }: { ongoingTrips: any[] }) 
                 <select
                   value={trip.status}
                   onChange={(e) => handleStatusChange(trip.id, e.target.value)}
-                  className="bg-green-300/50 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm"
+                  className="bg-green-300/50 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-3 py-2 rounded-full text-sm"
                 >
                   <option value="ongoing">Ongoing</option>
                   <option value="completed">Completed</option>
