@@ -68,7 +68,7 @@ export default async function OnPointDashboard() {
                 </div>
 
                 <Link
-                  href="/dashboard/trips/create"
+                  href="/dashboard/bookings/create"
                   className="flex items-center justify-center w-12 h-12 rounded-full bg-green-500 text-white hover:bg-green-600 shadow-lg"
                   aria-label="Create Trip"
                 >
