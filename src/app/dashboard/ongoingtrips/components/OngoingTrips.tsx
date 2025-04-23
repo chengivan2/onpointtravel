@@ -67,7 +67,7 @@ export default function OngoingTrips({ ongoingTrips }: { ongoingTrips: any[] }) 
                         new Date(trip.start_date).getTime())) *
                     100
                   }
-                  className="h-[0.8rem] bg-green-200/50 dark:bg-green-100/80 rounded-full"
+                  className="h-[0.8rem] bg-green-200/50 dark:bg-green-200/80 rounded-full *:bg-green-700 *:dark:bg-green-900"
                 />
               </div>
 
