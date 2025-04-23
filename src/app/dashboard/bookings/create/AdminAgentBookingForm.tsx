@@ -208,11 +208,11 @@ export function AdminAgentBookingForm({ users }: { users: { id: string; email: s
           <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">Select User</label>
           <select
             {...register("userId")}
-            className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+            className="cursor-pointer w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500"
           >
-            <option value="" className="dark:bg-green-900/20">Select a user</option>
+            <option value="" className="cursor-pointer dark:bg-green-900/20">Select a user</option>
             {users.map((user) => (
-              <option key={user.id} value={user.id} className="dark:bg-green-900/20">
+              <option key={user.id} value={user.id} className="cursor-pointer dark:bg-green-900/20">
                 {user.name} ({user.email})
               </option>
             ))}
@@ -225,11 +225,11 @@ export function AdminAgentBookingForm({ users }: { users: { id: string; email: s
           <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">Select Trip</label>
           <select
             {...register("tripId")}
-            className="w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+            className="cursor-pointer w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
           >
-            <option value="" className="dark:bg-green-900/20">Select a trip</option>
+            <option value="" className="cursor-pointer dark:bg-green-900/20">Select a trip</option>
             {trips.map((trip) => (
-              <option key={trip.id} value={trip.id} className="dark:bg-green-900/20">
+              <option key={trip.id} value={trip.id} className="cursor-pointer dark:bg-green-900/20">
                 {trip.name}
               </option>
             ))}
@@ -487,7 +487,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
           <button
             onClick={loadMoreBookings}
             disabled={loading}
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg disabled:opacity-50"
+            className="cursor-pointer bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg disabled:opacity-50"
           >
             {loading ? "Loading..." : "Load More"}
           </button>
