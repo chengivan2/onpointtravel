@@ -369,6 +369,30 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
     }
   };
 
+  const handleStatusChange = async (bookingId: string, newStatus: string) => {
+    try {
+      const res = await fetch(`/api/bookings/${bookingId}/status`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update booking status");
+      }
+
+      setBookings((prev) =>
+        prev.map((booking) =>
+          booking.id === bookingId ? { ...booking, status: newStatus } : booking
+        )
+      );
+    } catch (err) {
+      console.error("Error updating booking status:", err);
+    }
+  };
+
   return (
     <div className="p-6">
       {/* Add Booking Button */}
@@ -399,7 +423,56 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
                 <td className="px-4 py-2">{booking.trip_name}</td>
                 <td className="px-4 py-2">{booking.client}</td>
                 <td className="px-4 py-2">{booking.people}</td>
-                <td className="px-4 py-2 capitalize">{booking.status}</td>
+                <td className="px-4 py-2">
+                  <select
+                    value={booking.status}
+                    onChange={(e) => handleStatusChange(booking.id, e.target.value)}
+                    className="w-full px-2 py-1 border rounded-lg bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md backdrop-blur-md"
+                  >
+                    <option
+                      value="pending"
+                      className="bg-yellow-100/50 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300 rounded-full px-2 py-1"
+                    >
+                      Pending
+                    </option>
+                    <option
+                      value="confirmed"
+                      className="bg-green-100/50 dark:bg-green-900/50 text-green-800 dark:text-green-300 rounded-full px-2 py-1"
+                    >
+                      Confirmed
+                    </option>
+                    <option
+                      value="ongoing"
+                      className="bg-blue-100/50 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 rounded-full px-2 py-1"
+                    >
+                      Ongoing
+                    </option>
+                    <option
+                      value="cancelled"
+                      className="bg-red-100/50 dark:bg-red-900/50 text-red-800 dark:text-red-300 rounded-full px-2 py-1"
+                    >
+                      Cancelled
+                    </option>
+                    <option
+                      value="completed"
+                      className="bg-purple-100/50 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 rounded-full px-2 py-1"
+                    >
+                      Completed
+                    </option>
+                    <option
+                      value="refunded"
+                      className="bg-pink-100/50 dark:bg-pink-900/50 text-pink-800 dark:text-pink-300 rounded-full px-2 py-1"
+                    >
+                      Refunded
+                    </option>
+                    <option
+                      value="on_hold"
+                      className="bg-gray-100/50 dark:bg-gray-900/50 text-gray-800 dark:text-gray-300 rounded-full px-2 py-1"
+                    >
+                      On Hold
+                    </option>
+                  </select>
+                </td>
                 <td className="px-4 py-2 capitalize">{booking.payment_status}</td>
                 <td className="px-4 py-2">{new Date(booking.created_at).toLocaleDateString()}</td>
               </tr>
