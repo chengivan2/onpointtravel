@@ -208,9 +208,9 @@ export function AdminAgentBookingForm({ users }: { users: { id: string; email: s
           <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">Select User</label>
           <select
             {...register("userId")}
-            className="cursor-pointer w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+            className="cursor-pointer w-full px-4 py-2 rounded-lg border bg-green-300/50 dark:bg-green-900/50 text-green-700 dark:text-green-300 border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500"
           >
-            <option value="" className="cursor-pointer dark:bg-green-900/20">Select a user</option>
+            <option value="" className="cursor-pointer">Select a user</option>
             {users.map((user) => (
               <option key={user.id} value={user.id} className="cursor-pointer dark:bg-green-900/20">
                 {user.name} ({user.email})
@@ -225,9 +225,9 @@ export function AdminAgentBookingForm({ users }: { users: { id: string; email: s
           <label className="block text-sm font-medium text-green-700 dark:text-green-300 mb-2">Select Trip</label>
           <select
             {...register("tripId")}
-            className="cursor-pointer w-full px-4 py-2 rounded-lg border border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
+            className="cursor-pointer w-full px-4 py-2 rounded-lg border bg-green-300/50 dark:bg-green-900/50 text-green-700 dark:text-green-300 border-green-200 dark:border-green-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-green-900/20"
           >
-            <option value="" className="cursor-pointer dark:bg-green-900/20">Select a trip</option>
+            <option value="" className="cursor-pointer">Select a trip</option>
             {trips.map((trip) => (
               <option key={trip.id} value={trip.id} className="cursor-pointer dark:bg-green-900/20">
                 {trip.name}
