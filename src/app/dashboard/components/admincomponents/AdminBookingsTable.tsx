@@ -87,7 +87,7 @@ export default function AdminBookingsTable({ bookings }: { bookings: any[] }) {
                       handleStatusChange(booking.id, value)
                     }
                   >
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className="cursor-pointer w-full">
                       <SelectValue placeholder="Select status" />
                     </SelectTrigger>
                     <SelectContent>
@@ -136,7 +136,7 @@ export default function AdminBookingsTable({ bookings }: { bookings: any[] }) {
                       handlePaymentStatusChange(booking.id, value)
                     }
                   >
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className="cursor-pointer w-full">
                       <SelectValue placeholder="Select payment status" />
                     </SelectTrigger>
                     <SelectContent>
