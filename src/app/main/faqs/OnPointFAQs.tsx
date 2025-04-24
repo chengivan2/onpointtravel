@@ -71,7 +71,7 @@ export default function OnPointFAQs() {
                                 <AccordionItem
                                     key={item.id}
                                     value={item.id}
-                                    className="bg-background shadow-xs rounded-lg border px-4 last:border-b">
+                                    className="bg-white/50 dark:bg-green-900/50 backdrop-blur-[4px] shadow-sm rounded-lg border px-4 last:border-b">
                                     <AccordionTrigger className="cursor-pointer items-center py-5 hover:no-underline">
                                         <div className="flex items-center gap-3">
                                             <div className="flex size-6">
@@ -80,12 +80,12 @@ export default function OnPointFAQs() {
                                                     className="m-auto size-4"
                                                 />
                                             </div>
-                                            <span className="text-base">{item.question}</span>
+                                            <span className="text-base text-green-800 dark:text-green-200">{item.question}</span>
                                         </div>
                                     </AccordionTrigger>
                                     <AccordionContent className="pb-5">
                                         <div className="px-9">
-                                            <p className="text-base">{item.answer}</p>
+                                            <p className="text-base text-green-600 dark:text-green-300">{item.answer}</p>
                                         </div>
                                     </AccordionContent>
                                 </AccordionItem>
