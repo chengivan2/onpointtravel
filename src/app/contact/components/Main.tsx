@@ -52,7 +52,7 @@ export default function Main() {
 
           <div className="h-3 border-x bg-[repeating-linear-gradient(-45deg,var(--color-border),var(--color-border)_1px,transparent_1px,transparent_6px)]"></div>
           <form action="" className="border px-4 py-12 lg:px-0 lg:py-24">
-            <Card className="mx-auto max-w-lg p-8 sm:p-16">
+            <Card className="mx-auto max-w-lg p-8 sm:p-16 shadow-xl bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color">
             <HeaderLogo />
               <h3 className="text-2xl text-green-800 dark:text-green-200 font-semibold">
               Reach out to our support team
