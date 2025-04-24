@@ -102,7 +102,7 @@ export default function Main() {
                   </Label>
                   <Textarea id="msg" rows={3} />
                 </div>
-                <Button className="bg-lightmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color dark:bg-darkmode-btn-bg-color dark:hover:bg-darkmode-btn-bg-hover-color">Submit</Button>
+                <Button className="bg-lightmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color dark:bg-darkmode-btn-bg-color dark:hover:bg-darkmode-btn-bg-hover-color"><span className="text-lightmode-btn-text-color dark:text-darkmode-btn-text-color">Submit</span></Button>
               </div>
             </Card>
           </form>
