@@ -68,7 +68,7 @@ export default async function AdminBookingsPage() {
                   <h2 className="text-2xl font-semibold">
                     Hello, {firstName} 👋
                   </h2>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">
+                  <p className="text-sm md:text-md text-gray-800 dark:text-gray-200">
                     Here are all your bookings below.
                   </p>
                 </div>

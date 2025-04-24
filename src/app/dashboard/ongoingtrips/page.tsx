@@ -62,8 +62,8 @@ export default async function OnPointDashboard() {
                   <h2 className="text-2xl font-semibold">
                     Hello, {firstName} 👋
                   </h2>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">
-                    Here are all the ongoing trips. You cn mnage them from here.
+                  <p className="text-sm md:text-md text-gray-800 dark:text-gray-200">
+                    Here are all the ongoing trips. You can mnage them from here.
                   </p>
                 </div>
 
