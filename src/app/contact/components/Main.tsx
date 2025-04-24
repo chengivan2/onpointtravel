@@ -18,9 +18,9 @@ export default function Main() {
     <main className="min-h-[100vh]">
       <section className="py-32">
         <div className="mx-auto max-w-4xl px-4 lg:px-0">
-            <HeaderLogo />
+            
           <h1 className="mb-12 text-center text-4xl font-semibold lg:text-5xl">
-            Reach out to us. We'll get back to you ASAP!
+            Reach out to us.
           </h1>
 
           <div className="grid divide-y border md:grid-cols-2 md:gap-4 md:divide-x md:divide-y-0">
@@ -53,11 +53,12 @@ export default function Main() {
           <div className="h-3 border-x bg-[repeating-linear-gradient(-45deg,var(--color-border),var(--color-border)_1px,transparent_1px,transparent_6px)]"></div>
           <form action="" className="border px-4 py-12 lg:px-0 lg:py-24">
             <Card className="mx-auto max-w-lg p-8 sm:p-16">
-              <h3 className="text-xl font-semibold">
-                Let's get you to the right place
+            <HeaderLogo />
+              <h3 className="text-2xl font-semibold">
+              Reach out to our support team
               </h3>
               <p className="mt-4 text-sm">
-                Reach out to our support team! We’re eager to help you choose the right plan or navigate any challenges you met when interacting with us.
+                We’re eager to help so we'll get back to you ASAP!
               </p>
 
               <div className="**:[&>label]:block mt-12 space-y-6 *:space-y-3">
