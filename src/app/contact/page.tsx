@@ -3,6 +3,7 @@ import Main from "./components/Main";
 import Footer from "../rootcomponents/footer/Footer";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import { Metadata } from "next";
+import OnPointFAQs from "./components/faqs/OnPointFAQs";
 
 export const metadata: Metadata = {
     title: "Contact OnPoint Travel",
@@ -14,6 +15,7 @@ export default function Home() {
     <>
       <Header />
       <Main />
+      <OnPointFAQs />
       <FooterBefore />
       <Footer />
     </>
