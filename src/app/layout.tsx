@@ -1,13 +1,7 @@
-import type { Metadata } from "next";
 import { inter, alegreyaSans } from "./fonts";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import ScrollToTop from "./rootcomponents/ScrollToTop";
-
-export const metadata: Metadata = {
-  title: "OnPoint Travel",
-  description: "Travel website",
-};
 
 export default function RootLayout({
   children,

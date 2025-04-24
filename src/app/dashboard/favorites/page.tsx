@@ -70,7 +70,7 @@ export default async function OnPointDashboard() {
                   </h2>
                   <p className="text-sm md:text-md text-gray-800 dark:text-gray-200">
                     Here are your favorite trips. Which one would you like to
-                    cross of your bucket list?
+                    cross off your bucket list?
                   </p>
                 </div>
 
