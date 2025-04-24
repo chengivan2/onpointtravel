@@ -26,24 +26,24 @@ export default function Main() {
               <div>
                 <h2 className="mb-3 text-lg font-semibold">Collaborate</h2>
                 <Link
-                  href="mailto:hello@tailus.io"
-                  className="text-lg text-blue-600 hover:underline dark:text-blue-400"
+                  href="mailto:info@onpoint.vercel.app"
+                  className="text-lg text-green-600 hover:underline dark:text-green-400"
                 >
-                  hello@tailus.io
+                  info@onpoint.vercel.app
                 </Link>
-                <p className="mt-3 text-sm">+243 000 000 000</p>
+                <p className="mt-3 text-sm">+254 111222333</p>
               </div>
             </div>
             <div className="flex flex-col justify-between space-y-8 p-6 sm:p-12">
               <div>
-                <h3 className="mb-3 text-lg font-semibold">Press</h3>
+                <h3 className="mb-3 text-lg font-semibold">Book</h3>
                 <Link
                   href="mailto:press@tailus.io"
-                  className="text-lg text-blue-600 hover:underline dark:text-blue-400"
+                  className="text-lg text-green-600 hover:underline dark:text-green-400"
                 >
-                  press@tailus.io
+                  bookings@onpoint.vercel.app
                 </Link>
-                <p className="mt-3 text-sm">+243 000 000 000</p>
+                <p className="mt-3 text-sm">+254 111222333</p>
               </div>
             </div>
           </div>
@@ -55,8 +55,7 @@ export default function Main() {
                 Let's get you to the right place
               </h3>
               <p className="mt-4 text-sm">
-                Reach out to our sales team! We’re eager to learn more about how
-                you plan to use our application.
+                Reach out to our support team! We’re eager to help you choose the right plan or navigate any challenges you met when interacting with us.
               </p>
 
               <div className="**:[&>label]:block mt-12 space-y-6 *:space-y-3">
@@ -68,7 +67,7 @@ export default function Main() {
                 </div>
                 <div>
                   <Label htmlFor="email" className="space-y-2">
-                    Work Email
+                    Email
                   </Label>
                   <Input type="email" id="email" required />
                 </div>
@@ -81,34 +80,19 @@ export default function Main() {
                       <SelectValue placeholder="Select a country" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="1">DR Congo</SelectItem>
+                      <SelectItem value="1">Kenya</SelectItem>
                       <SelectItem value="2">United States</SelectItem>
                       <SelectItem value="3">France</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <Label htmlFor="website" className="space-y-2">
-                    Company Website
+                  <Label htmlFor="phoneNumber" className="space-y-2">
+                    Phone number
                   </Label>
-                  <Input type="url" id="website" />
+                  <Input type="phone" id="phoneNumber" />
                 </div>
-                <div>
-                  <Label htmlFor="job" className="space-y-2">
-                    Job function
-                  </Label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a job function" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">Finance</SelectItem>
-                      <SelectItem value="2">Education</SelectItem>
-                      <SelectItem value="3">Legal</SelectItem>
-                      <SelectItem value="4">More</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                
                 <div>
                   <Label htmlFor="msg" className="space-y-2">
                     Message
