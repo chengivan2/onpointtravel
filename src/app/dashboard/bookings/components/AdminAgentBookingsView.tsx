@@ -71,16 +71,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
 
   return (
     <div className="p-6">
-      {/* Add Booking Button */}
-      <div className="flex justify-end mb-6">
-        <Link href="/dashboard/bookings/create">
-          <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg">
-            Add Booking
-          </button>
-        </Link>
-      </div>
 
-      {/* Bookings Table */}
       <div className="overflow-x-auto bg-white/30 dark:bg-green-900/30 rounded-lg shadow-lg">
         <table className="min-w-full">
           <thead>

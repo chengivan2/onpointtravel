@@ -6,6 +6,8 @@ import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
 import { redirect } from "next/navigation";
 import { FetchBookings } from "./components/FetchBookings";
 import AdminAgentBookingsView from "./components/AdminAgentBookingsView";
+import Link from "next/link";
+import { PlusIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "OnPoint Bookings",
@@ -72,6 +74,15 @@ export default async function AdminBookingsPage() {
                     Here are all your bookings below.
                   </p>
                 </div>
+                {isAdmin && (
+                  <Link
+                    href="/dashboard/bookings/create"
+                    className="flex items-center justify-center w-12 h-12 rounded-full bg-green-500 text-white hover:bg-green-600 shadow-lg"
+                    aria-label="Create Trip"
+                  >
+                    <PlusIcon className="w-6 h-6" />
+                  </Link>
+                )}
               </div>
 
               <AdminAgentBookingsView initialBookings={initialBookings} />
