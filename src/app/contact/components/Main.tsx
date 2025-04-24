@@ -20,7 +20,7 @@ export default function Main() {
         <div className="mx-auto max-w-4xl px-4 lg:px-0">
             <HeaderLogo />
           <h1 className="mb-12 text-center text-4xl font-semibold lg:text-5xl">
-            Help us route your inquiry
+            Reach out to us. We'll get back to you ASAP!
           </h1>
 
           <div className="grid divide-y border md:grid-cols-2 md:gap-4 md:divide-x md:divide-y-0">

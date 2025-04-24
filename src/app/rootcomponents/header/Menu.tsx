@@ -30,7 +30,7 @@ export default function Menu() {
         About
       </Link>
       <Link
-        href="#"
+        href="/contact"
         className="text-lightmode-headertext-color dark:text-darkmode-headertext-color hover:text-lightmode-headertext-hover-color dark:hover:text-darkmode-headertext-hover-color active:text-lightmode-headertext-active-color dark:active:text-darkmode-headertext-active-color block"
       >
         Contact
