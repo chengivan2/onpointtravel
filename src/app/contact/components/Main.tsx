@@ -11,12 +11,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Link from "next/link";
+import HeaderLogo from "@/app/rootcomponents/header/Logo";
 
 export default function Main() {
   return (
     <main className="min-h-[100vh]">
       <section className="py-32">
         <div className="mx-auto max-w-4xl px-4 lg:px-0">
+            <HeaderLogo />
           <h1 className="mb-12 text-center text-4xl font-semibold lg:text-5xl">
             Help us route your inquiry
           </h1>
@@ -99,7 +101,7 @@ export default function Main() {
                   </Label>
                   <Textarea id="msg" rows={3} />
                 </div>
-                <Button>Submit</Button>
+                <Button className="bg-lightmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color dark:bg-darkmode-btn-bg-color dark:hover:bg-darkmode-btn-bg-hover-color">Submit</Button>
               </div>
             </Card>
           </form>
