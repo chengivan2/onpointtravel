@@ -49,8 +49,8 @@ export default async function DestinationsPage() {
           </div>
         </section>
 
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-center text-green-800 dark:text-green-100 mb-8">
+        <section className="my-16">
+          <h2 className="text-3xl font-bold text-center text-green-800 dark:text-green-100 my-8">
             Featured Travel Packages
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
