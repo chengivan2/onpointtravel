@@ -7,27 +7,23 @@ export default function FooterMenu() {
       items: [
         {
           title: "Diani",
-          href: "#",
+          href: "/destinations/diani",
         },
         {
           title: "Nairobi",
-          href: "#",
+          href: "/destinations/nairobi-national-park",
         },
         {
           title: "Dubai",
-          href: "#",
+          href: "/destinations/dubai",
         },
         {
           title: "Masai Mara",
-          href: "#",
-        },
-        {
-          title: "Mombasa",
-          href: "#",
+          href: "/destinations/masai-mara-national-reserve",
         },
         {
           title: "Nakuru",
-          href: "#",
+          href: "/destinations/lake-nakuru-national-park",
         },
       ],
     },
@@ -48,7 +44,7 @@ export default function FooterMenu() {
         },
         {
           title: "Contact",
-          href: "#",
+          href: "/contact",
         },
         {
           title: "Help",
