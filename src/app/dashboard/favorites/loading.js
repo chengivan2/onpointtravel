@@ -4,7 +4,7 @@ export default function Loading() {
   return (
     <div className="flex h-screen">
       {/* Sidebar Skeleton */}
-      <div className="w-64 bg-gray-200 dark:bg-green-900/30 animate-pulse">
+      <div className="w-64 bg-gray-200 dark:bg-green-900/30 animate-pulse m-2 rounded-lg">
         <div className="h-16 bg-gray-300 dark:bg-green-800/50"></div>
         <div className="space-y-4 p-4">
           <div className="h-4 bg-gray-300 dark:bg-green-800/50 rounded"></div>
