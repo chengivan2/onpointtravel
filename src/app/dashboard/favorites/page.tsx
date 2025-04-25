@@ -48,6 +48,15 @@ export default async function OnPointDashboard() {
     console.error("Error fetching favorite trips:", tripsError.message);
   }
 
+  //Check for user role
+  const { data: userRole } = await supabase
+  .from("users")
+  .select("role, first_name, last_name")
+  .eq("id", user.id)
+  .single();
+
+  const isAdmin = userRole?.role === "admin";
+
   return (
     <SidebarProvider
       style={
@@ -74,13 +83,15 @@ export default async function OnPointDashboard() {
                   </p>
                 </div>
 
-                <Link
-                  href="/dashboard/bookings/create"
-                  className="flex items-center justify-center w-12 h-12 rounded-full bg-green-500 text-white hover:bg-green-600 shadow-lg"
-                  aria-label="Create Trip"
-                >
-                  <PlusIcon className="w-6 h-6" />
-                </Link>
+                {isAdmin && (
+                  <Link
+                    href="/dashboard/bookings/create"
+                    className="flex items-center justify-center w-12 h-12 rounded-full bg-green-500 text-white hover:bg-green-600 shadow-lg"
+                    aria-label="Create Trip"
+                  >
+                    <PlusIcon className="w-6 h-6" />
+                  </Link>
+                )}
               </div>
               <div className="">
                 <FavoriteTrips />
