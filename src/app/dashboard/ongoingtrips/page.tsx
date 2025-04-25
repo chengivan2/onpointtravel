@@ -31,6 +31,19 @@ export default async function OnPointDashboard() {
     redirect("/signin");
   }
 
+  // Check user role
+  const { data: userRole } = await supabase
+    .from("users")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+
+  const isAdmin = userRole?.role === "admin";
+
+  if (!isAdmin) {
+    redirect("/dashboard");
+  }
+
   // Fetch user profile
   const { data: profile } = await supabase
     .from("users")
