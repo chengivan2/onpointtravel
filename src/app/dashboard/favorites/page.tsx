@@ -72,7 +72,7 @@ export default async function FavoritesTripsPage() {
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col px-3 lg:px-6 gap-4 py-4 md:gap-6 md:py-6">
-              <div className="relative min-w-full px-4 lg:px-6 gap-4 flex flex-col md:flex-row md:items-center md:justify-between">
+              <div className="relative min-w-full gap-4 flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
                   <h2 className="text-2xl font-semibold">
                     Hello, {firstName} 👋
