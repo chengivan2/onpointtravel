@@ -119,7 +119,7 @@ export function DashboardSidebar({
           },
           {
             title: "My Ongoing Trips",
-            url: "/dashboard/my-ongoing-trips",
+            url: "/dashboard/myongoingtrips",
             icon: IconClock12,
           },
         ]),
