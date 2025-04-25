@@ -49,7 +49,7 @@ export default async function MyOngoingTripsPage() {
                   <h2 className="text-2xl font-semibold">
                     Hello, {firstName} 👋
                   </h2>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">
+                  <p className="text-sm md:text-md lg:text-lg text-gray-800 dark:text-gray-200">
                     Welcome back.
                   </p>
                 </div>
