@@ -29,7 +29,6 @@ export default async function MyOngoingTripsPage() {
 
   const firstName = `${profile?.first_name || ""}`;
 
-
   return (
     <SidebarProvider
       style={
@@ -55,6 +54,7 @@ export default async function MyOngoingTripsPage() {
                   </p>
                 </div>
                 <MyOngoingTrips />
+              </div>
             </div>
           </div>
         </div>
