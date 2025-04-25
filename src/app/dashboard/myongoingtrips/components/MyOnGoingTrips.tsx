@@ -8,7 +8,7 @@ interface Booking {
   trips: { name: string; main_featured_image_url: string };
 }
 
-export default async function MyOngoingTripsPage() {
+export default async function MyOngoingTrips() {
   const supabase = await createClient();
 
   // Fetch ongoing trips for the logged-in user
