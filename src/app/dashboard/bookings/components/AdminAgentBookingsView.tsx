@@ -73,7 +73,7 @@ export default function AdminAgentBookingsView({
   };
 
   return (
-    <div className="p-6">
+    <div>
       <div className="overflow-x-auto bg-white/30 dark:bg-green-900/30 rounded-lg shadow-lg">
         <table className="min-w-full">
           <thead>
