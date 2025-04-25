@@ -7,10 +7,10 @@ import AdminDataSlotCards from "./components/admincomponents/AdminDataSlotCards"
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import AdminBookingsChart from "./components/admincomponents/AdminBookingsChart";
-import AdminBookingsTable from "./components/admincomponents/AdminBookingsTable";
 import { FetchBookings } from "./components/admincomponents/FetchBookings";
 import TopTripsPieChart from "./components/admincomponents/TopTripsPieChart";
 import { PlusIcon } from "lucide-react";
+import AdminAgentBookingsView from "./components/admincomponents/AdminAgentBookingsView";
 
 export const metadata: Metadata = {
   title: "OnPoint Dashboard",
@@ -36,7 +36,7 @@ export default async function OnPointDashboard() {
   const firstName = `${profile?.first_name || ""}`;
   const isAdmin = profile?.role === "admin";
 
-  const bookings = await FetchBookings(); 
+  const initialBookings = await FetchBookings(0, 15); // Fetch the first page of bookings
 
   return (
     <SidebarProvider
@@ -74,7 +74,8 @@ export default async function OnPointDashboard() {
               </div>
               <AdminDataSlotCards />
               <AdminBookingsChart />
-              <AdminBookingsTable bookings={bookings} />
+              <AdminAgentBookingsView initialBookings={initialBookings} />
+
               <TopTripsPieChart />
             </div>
           </div>

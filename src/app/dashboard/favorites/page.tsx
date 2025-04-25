@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Manage your favorite trips",
 };
 
-export default async function OnPointDashboard() {
+export default async function FavoritesTripsPage() {
   const supabase = await createClient();
   const {
     data: { user },

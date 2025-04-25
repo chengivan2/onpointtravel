@@ -2,11 +2,7 @@
 
 import { useState } from "react";
 
-export default function AdminAgentBookingsView({
-  initialBookings,
-}: {
-  initialBookings: any[];
-}) {
+export default function AdminAgentBookingsView({ initialBookings }: { initialBookings: any[] }) {
   const [bookings, setBookings] = useState(initialBookings);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -74,6 +70,7 @@ export default function AdminAgentBookingsView({
 
   return (
     <div className="p-6">
+
       <div className="overflow-x-auto bg-white/30 dark:bg-green-900/30 rounded-lg shadow-lg">
         <table className="min-w-full">
           <thead>
@@ -88,19 +85,14 @@ export default function AdminAgentBookingsView({
           </thead>
           <tbody>
             {bookings.map((booking) => (
-              <tr
-                key={booking.id}
-                className="border-t border-gray-200 dark:border-gray-700"
-              >
+              <tr key={booking.id} className="border-t border-gray-200 dark:border-gray-700">
                 <td className="px-4 py-2">{booking.trip_name}</td>
                 <td className="px-4 py-2">{booking.client}</td>
                 <td className="px-4 py-2">{booking.people}</td>
                 <td className="px-4 py-2">
                   <select
                     value={booking.status}
-                    onChange={(e) =>
-                      handleStatusChange(booking.id, e.target.value)
-                    }
+                    onChange={(e) => handleStatusChange(booking.id, e.target.value)}
                     className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
                   >
                     <option

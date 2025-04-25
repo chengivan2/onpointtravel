@@ -1,7 +1,6 @@
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createClient } from "@/utils/supabase/server";
-import { supabaseService } from "@/utils/supabase/srk";
 import { FetchOngoingTrips } from "./components/FetchOngoingTrips";
 import OngoingTrips from "./components/OngoingTrips";
 
@@ -16,7 +15,7 @@ export const metadata: Metadata = {
   description: "Manage your ongoing trips",
 };
 
-export default async function OnPointDashboard() {
+export default async function AdminOngoingTripsPage() {
   const supabase = await createClient();
   const {
     data: { user },
