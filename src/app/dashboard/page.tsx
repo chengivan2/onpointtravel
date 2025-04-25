@@ -74,7 +74,8 @@ export default async function OnPointDashboard() {
               </div>
               <AdminDataSlotCards />
               <AdminBookingsChart />
-              <AdminAgentBookingsView initialBookings={initialBookings} />
+              {isAdmin && <AdminAgentBookingsView initialBookings={initialBookings} />}
+              
 
               <TopTripsPieChart />
             </div>
