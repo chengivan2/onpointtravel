@@ -48,7 +48,7 @@ export default function OurServicesSection() {
                 className={`
                   p-6 rounded-xl border overflow-hidden  
                   bg-lightmode-glass-card-bg-color      
-                  dark:bg-darkmode-glass-card-bg-color  
+                  dark:bg-darkmode-glass-info-card-gradient-color  
                   border-lightmode-glass-card-border-color 
                   dark:border-darkmode-glass-card-border-color
                   backdrop-blur-lg                     

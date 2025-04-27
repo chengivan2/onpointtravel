@@ -100,7 +100,7 @@
   /* --- Glass Card Variables --- */
   --color-lightmode-glass-card-bg-color: var(--lightmodeglasscardbgcolor);
   --color-darkmode-glass-card-bg-color: var(--darkmodeglasscardbgcolor);
-  --color-darkmodeglassinfocardgradientcolor: var(--darkmodeglassinfocardgradientcolor);
+  --color-darkmode-glass-info-card-gradient-color: var(--darkmodeglassinfocardgradientcolor);
   --color-lightmode-glass-card-border-color: var(
     --lightmodeglasscardbordercolor
   );
