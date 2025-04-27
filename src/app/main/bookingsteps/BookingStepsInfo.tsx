@@ -71,7 +71,7 @@ export default function BookingStepsInfo() {
   return (
     <div className="flex-1 space-y-8">
       <div className="text-center md:text-left animate-fade-in-down delay-300">
-        <h2 className="text-4xl font-bold text-green-800 dark:text-green-200 mb-4">
+        <h2 className="text-4xl font-bold text-lightmode-heading-color dark:text-darkmode-heading-color mb-4">
           Easy and Fast
         </h2>
         <p className="text-lg text-green-600 dark:text-green-300 delay-1000">

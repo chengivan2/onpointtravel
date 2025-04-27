@@ -166,7 +166,7 @@
   --lightmodebgcolor: hsl(146, 100%, 97%);
   --darkmodebgcolor: hsl(146, 41%, 10%);
   --lightmodetextcolor: hsl(0, 0%, 5%);
-  --darkmodetextcolor: hsl(0, 0%, 96%);
+  --darkmodetextcolor: oklch(0.627 0.194 149.214);
   --lightmodeheadingcolor: hsl(146, 41%, 10%);
   --darkmodeheadingcolor: hsl(146, 100%, 72%);
 
