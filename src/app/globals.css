@@ -225,9 +225,9 @@
 
   /* --- Glass Card Variables --- */
   --lightmodeglasscardbgcolor: hsla(0, 0%, 98%, 0.8);
-  --darkmodeglasscardbgcolor: hsla(146, 15%, 15%, 0.8);
-  --lightmodeglasscardbordercolor: hsla(0, 0%, 100%, 0.4);
-  --darkmodeglasscardbordercolor: hsla(0, 0%, 100%, 0.15);
+  --darkmodeglasscardbgcolor: hsla(145, 73%, 19%, 0.3);
+  --lightmodeglasscardbordercolor: hsla(141, 84%, 93%, 0.3);
+  --darkmodeglasscardbordercolor: hsla(145, 73%, 19%, 0.3);
   --lightmodeglasscardtextcolor: var(--lightmodetextcolor);
   --darkmodeglasscardtextcolor: var(--darkmodetextcolor);
   --lightmodeglasscardheadingcolor: var(--lightmodeheadingcolor);
