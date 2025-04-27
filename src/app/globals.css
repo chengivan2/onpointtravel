@@ -100,6 +100,7 @@
   /* --- Glass Card Variables --- */
   --color-lightmode-glass-card-bg-color: var(--lightmodeglasscardbgcolor);
   --color-darkmode-glass-card-bg-color: var(--darkmodeglasscardbgcolor);
+  --color-darkmodeglassinfocardgradientcolor: var(--darkmodeglassinfocardgradientcolor);
   --color-lightmode-glass-card-border-color: var(
     --lightmodeglasscardbordercolor
   );
@@ -139,7 +140,8 @@
 /* === Custom Animations and Keyframes  === */
 /* ======================================== */
 @keyframes pulse-up {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -226,6 +228,11 @@
   /* --- Glass Card Variables --- */
   --lightmodeglasscardbgcolor: hsla(0, 0%, 98%, 0.8);
   --darkmodeglasscardbgcolor: hsla(145, 73%, 19%, 0.3);
+  --darkmodeglassinfocardgradientcolor: linear-gradient(
+    145deg,
+    hsla(145, 73%, 19%, 0.3),
+    hsla(145, 73%, 25%, 0.3)
+  );
   --lightmodeglasscardbordercolor: hsla(141, 84%, 93%, 0.3);
   --darkmodeglasscardbordercolor: hsla(145, 73%, 19%, 0.3);
   --lightmodeglasscardtextcolor: var(--lightmodetextcolor);
