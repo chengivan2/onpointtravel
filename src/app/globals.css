@@ -450,3 +450,12 @@ h6 {
 html {
   scroll-behavior: smooth;
 }
+
+@media (hover: none) {
+  * {
+    pointer-events: none;
+  }
+  *:active {
+    pointer-events: auto;
+  }
+}
