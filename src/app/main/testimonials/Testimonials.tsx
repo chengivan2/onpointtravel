@@ -148,7 +148,7 @@ export default function WallOfLoveTestimonials() {
                       <div>
                         <h3 className="text-lightmode-heading-color dark:text-darkmode-heading-color font-medium">{name}</h3>
 
-                        <span className="text-lightmoode-text-color/60 dark:text-darkmode-text-color/60 block text-sm tracking-wide">
+                        <span className="text-lightmoode-text-color/40 dark:text-darkmode-text-color/40 block text-sm tracking-wide">
                           {role}
                         </span>
 
