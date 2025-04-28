@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function LogoSeparator() {
   return (
-    <div className="flex items-center justify-center w-[50%] my-8">
+    <div className="self-center flex items-center justify-center w-[50%] my-8">
       {/* Left Line */}
       <div className="flex-1 h-[1px] bg-lightmode-text-color dark:bg-darkmode-text-color opacity-50"></div>
 
