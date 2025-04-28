@@ -16,7 +16,7 @@ export default function LogoSeparator() {
             alt="Logo"
             width={40}
             height={40}
-            className="dark:hidden"
+            className="flexdark:hidden"
           />
 
           <Image
@@ -24,7 +24,7 @@ export default function LogoSeparator() {
             alt="Logo"
             width={40}
             height={40}
-            className="hidden"
+            className="hidden dark:flex"
           />
         </div>
         <div className="absolute inset-0 blur-md bg-green-500 rounded-full opacity-50"></div>
