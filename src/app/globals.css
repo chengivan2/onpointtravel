@@ -167,8 +167,8 @@
   /* === Core Theme Colors === */
   --lightmodebgcolor: hsl(146, 100%, 97%);
   --darkmodebgcolor: hsl(146, 41%, 10%);
-  --lightmodetextcolor: hsl(0, 0%, 5%);
-  --darkmodetextcolor: oklch(0.627 0.194 149.214);
+  --lightmodetextcolor: hsl(145, 100%, 25%);
+  --darkmodetextcolor: hsl(143, 81%, 71%);
   --lightmodeheadingcolor: hsl(146, 41%, 10%);
   --darkmodeheadingcolor: hsl(146, 100%, 72%);
 

@@ -64,7 +64,7 @@ export default async function DestinationCards() {
                 <p className="text-green-600 dark:text-green-200 text-sm mb-4">
                   {destination.location}
                 </p>
-                <p className="text-green-700 dark:text-green-300 text-base line-clamp-3">
+                <p className="text-lightmode-text-color dark:text-darkmode-text-color text-base line-clamp-3">
                   {destination.description}
                 </p>
               </div>
