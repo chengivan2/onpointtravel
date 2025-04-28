@@ -16,7 +16,7 @@ export default function LogoSeparator() {
             alt="Logo"
             width={40}
             height={40}
-            className="flexdark:hidden"
+            className="flex dark:hidden"
           />
 
           <Image
