@@ -114,13 +114,13 @@ const testimonialChunks = chunkArray(
 export default function WallOfLoveTestimonials() {
   return (
     <section className="bg-transparent min-w-full">
-      <div className="py-16 md:py-32">
+      <div className="py-12 md:py-24 md:pt-10">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
-            <h2 className="text-title text-3xl font-semibold">
+            <h2 className="text-lightmode-heading-color dark:text-darkmode-heading-color text-3xl font-semibold">
               Loved by Tourists All Around the World
             </h2>
-            <p className="text-body mt-6">
+            <p className="text-lightmode-text-color dark:text-darkmode-text-color mt-6">
               All our customers love our exceptional services and ability to
               customize their trips in an instant.
             </p>
@@ -146,14 +146,14 @@ export default function WallOfLoveTestimonials() {
                       </Avatar>
 
                       <div>
-                        <h3 className="text-green-800 dark:text-green-100 font-medium">{name}</h3>
+                        <h3 className="text-lightmode-heading-color dark:text-darkmode-heading-color font-medium">{name}</h3>
 
-                        <span className="text-green-600 dark:text-green-200 block text-sm tracking-wide">
+                        <span className="text-lightmoode-text-color/60 dark:text-darkmode-text-color/60 block text-sm tracking-wide">
                           {role}
                         </span>
 
                         <blockquote className="mt-3">
-                          <p className="text-green-700 dark:text-green-300">
+                          <p className="text-lightmode-text-color dark:text-darkmode-text-color leading-relaxed">
                             {quote}
                           </p>
                         </blockquote>
