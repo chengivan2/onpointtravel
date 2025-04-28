@@ -14,9 +14,17 @@ export default function LogoSeparator() {
           <Image
             src="/logos/onpointhflightmodelogo.png"
             alt="Logo"
-            width={40} 
+            width={40}
             height={40}
             className="dark:hidden"
+          />
+
+          <Image
+            src="/logos/onpointhfdarkmodelogo.png"
+            alt="Logo"
+            width={40}
+            height={40}
+            className="hidden"
           />
         </div>
         <div className="absolute inset-0 blur-md bg-green-500 rounded-full opacity-50"></div>
