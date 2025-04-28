@@ -108,7 +108,7 @@ export default async function TripCards() {
                     <h5>{trip.destination?.name || "Unknown Destination"}</h5>
                   </div>
 
-                  <p className="text-green-700/80 dark:text-green-200/80 text-sm mb-4 line-clamp-3">
+                  <p className="text-lightmode-text-color dark:text-darkmode-text-color text-sm mb-4 line-clamp-3">
                     {trip.short_description}
                   </p>
 
