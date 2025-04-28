@@ -25,7 +25,9 @@ export default function Main() {
       <WallOfLoveTestimonials />
       <LogoSeparator />
       <OnPointFAQs />
+      <LogoSeparator />
       <ExtraTripOffer />
+      <LogoSeparator />
     </>
   );
 }
