@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function ExtraTripOffer() {
   return (
     <section>
-      <div className="bg-transparent py-24 md:py-32">
+      <div className="bg-transparent py-12 md:py-24">
         <div className="mx-auto max-w-5xl px-6">
           <div className="mx-auto max-w-md px-6 [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#0F0_70%,transparent_100%)]">
             <div className="bg-white/60 dark:bg-green-900/50 rounded-xl backdrop-blur-md border p-3 shadow-xl">
@@ -20,7 +20,7 @@ export default function ExtraTripOffer() {
             </div>
           </div>
           <div className="mx-auto mt-6 max-w-lg space-y-6 text-center">
-            <h2 className="text-balance text-green-800 dark:text-green-200 text-3xl font-semibold md:text-4xl lg:text-5xl">
+            <h2 className="text-balance text-lightmode-heading-color dark:text-darkmode-heading-color text-3xl font-semibold md:text-4xl lg:text-5xl">
               Play even harder
             </h2>
             <p className="md:text-md text-lightmode-text-color dark:text-darkmode-text-color">
