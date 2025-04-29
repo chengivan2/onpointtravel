@@ -32,7 +32,7 @@ export default function FooterMenu() {
       items: [
         {
           title: "About",
-          href: "#",
+          href: "/about",
         },
         {
           title: "Careers",
