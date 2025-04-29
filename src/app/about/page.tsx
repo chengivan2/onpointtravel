@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { FaEnvelope, FaLocationPin, FaPhone } from "react-icons/fa6";
 import Header from "../rootcomponents/header/Header";
 
@@ -10,7 +9,7 @@ export default function AboutPage() {
       {/* Navbar */}
       <Header />
       {/* Hero Section */}
-      <section className="relative flex items-center justify-center h-[60vh] bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1745946843/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/herobgimage_ec9u8h.jpg)] bg-cover bg-center">
+      <section className="relative mt-16 flex items-center justify-center h-[60vh] bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1745946843/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/herobgimage_ec9u8h.jpg)] bg-cover bg-center">
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative z-10 text-center text-white">
           <h1 className="text-4xl md:text-6xl font-bold">About Us</h1>
