@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { FaEnvelope, FaLocationPin, FaPhone } from "react-icons/fa6";
 
 export default function AboutPage() {
   return (
@@ -73,15 +74,15 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 text-center">Contact Us</h2>
           <div className="mt-6 space-y-4">
             <div className="flex items-center space-x-4">
-              <Image src="/icons/phone.svg" alt="Phone" width={24} height={24} />
+              <FaPhone size={24} />
               <p className="text-gray-700 dark:text-gray-300">+1 234 567 890</p>
             </div>
             <div className="flex items-center space-x-4">
-              <Image src="/icons/email.svg" alt="Email" width={24} height={24} />
+              <FaEnvelope size={24} />
               <p className="text-gray-700 dark:text-gray-300">contact@onpointtravel.com</p>
             </div>
             <div className="flex items-center space-x-4">
-              <Image src="/icons/location.svg" alt="Location" width={24} height={24} />
+              <FaLocationPin size={24} />
               <p className="text-gray-700 dark:text-gray-300">123 Travel Lane, Wanderlust City</p>
             </div>
           </div>
