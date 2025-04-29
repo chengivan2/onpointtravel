@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import { FaEnvelope, FaLocationPin, FaPhone } from "react-icons/fa6";
+import Header from "../rootcomponents/header/Header";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-green-900/20">
+    <main className="min-h-screen bg-gray-100 dark:bg-green-900/20">
+      {/* Navbar */}
+      <Header />
       {/* Hero Section */}
       <section className="relative flex items-center justify-center h-[60vh] bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1745946843/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/herobgimage_ec9u8h.jpg)] bg-cover bg-center">
         <div className="absolute inset-0 bg-black/50"></div>
@@ -88,6 +91,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
