@@ -168,9 +168,9 @@
   --lightmodebgcolor: hsl(146, 100%, 97%);
   --darkmodebgcolor: hsl(146, 41%, 10%);
   --lightmodetextcolor: hsl(145, 100%, 25%);
-  --darkmodetextcolor: hsl(143, 100%, 47%);
+  --darkmodetextcolor: hsl(143, 100%, 40%);
   --lightmodeheadingcolor: hsl(146, 97%, 27%);
-  --darkmodeheadingcolor: hsl(146, 97%, 77%);
+  --darkmodeheadingcolor: hsl(146, 100%, 74%);
 
   /* === Header / Footer === */
   --lightmodeheaderbgcolor: hsl(0, 0%, 98%);
