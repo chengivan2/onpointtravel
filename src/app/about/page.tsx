@@ -2,6 +2,7 @@
 
 import { FaEnvelope, FaLocationPin, FaPhone } from "react-icons/fa6";
 import Header from "../rootcomponents/header/Header";
+import LogoSeparator from "../main/separator/LogoSeparator";
 
 export default function AboutPage() {
   return (
@@ -69,6 +70,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <LogoSeparator />
 
       {/* Contact Section */}
       <section className="py-12 md:py-24 px-6">
