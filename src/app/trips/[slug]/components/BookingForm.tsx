@@ -337,7 +337,7 @@ export function BookingForm({
         <button
           type="submit"
           disabled={processing}
-          className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg transition-colors duration-200 font-medium disabled:opacity-50"
+          className="cursor-pointer w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg transition-colors duration-200 font-medium disabled:opacity-50"
         >
           {processing ? "Processing..." : "Book Now"}
         </button>
