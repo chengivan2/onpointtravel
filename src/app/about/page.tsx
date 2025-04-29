@@ -6,7 +6,7 @@ import LogoSeparator from "../main/separator/LogoSeparator";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-gray-100 dark:bg-green-900/20">
+    <main className="min-h-screen flex flex-col bg-gray-100 dark:bg-green-900/20">
       {/* Navbar */}
       <Header />
       {/* Hero Section */}
@@ -23,8 +23,8 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Vision */}
           <div className="relative bg-white/30 dark:bg-green-900/30 backdrop-blur-md rounded-xl p-6 shadow-lg">
-            <h2 className="text-2xl font-bold text-green-800 dark:text-green-100">Our Vision</h2>
-            <p className="mt-4 text-gray-700 dark:text-gray-300">
+            <h2 className="text-2xl font-bold text-lightmode-heading-color dark:text-lightmode-heading-color">Our Vision</h2>
+            <p className="mt-4 text-lightmode-heading-color dark:text-lightmode-heading-color">
               To be the leading travel agency, inspiring people to explore the world and create unforgettable memories.
             </p>
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
