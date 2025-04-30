@@ -51,7 +51,7 @@ export default async function MyOngoingTrips() {
         {ongoingTrips.map((trip) => (
           <div
             key={trip.id}
-            className="relative rounded-2xl shadow-xl p-6 border bg-white/30 dark:bg-green-900/30 backdrop-blur-sm backdrop-saturate-150"
+            className="mb-3 md:mb-[reset] relative rounded-2xl shadow-xl p-6 border bg-white/30 dark:bg-green-900/30 backdrop-blur-sm backdrop-saturate-150"
           >
             {/* Glowing Dot */}
             <span className="absolute top-4 right-4 flex items-center bg-green-300/50 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm">
