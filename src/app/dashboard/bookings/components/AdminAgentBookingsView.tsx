@@ -101,7 +101,7 @@ export default function AdminAgentBookingsView({
                     onChange={(e) =>
                       handleStatusChange(booking.id, e.target.value)
                     }
-                    className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
+                    className="cursor-pointer *:cursor-pointer w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
                   >
                     <option
                       value="pending"
@@ -153,7 +153,7 @@ export default function AdminAgentBookingsView({
                     onChange={(e) =>
                       handlePaymentStatusChange(booking.id, e.target.value)
                     }
-                    className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
+                    className="cursor-pointer *:cursor-pointer w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
                   >
                     <option
                       value="unpaid"
@@ -208,7 +208,7 @@ export default function AdminAgentBookingsView({
           <button
             onClick={loadMoreBookings}
             disabled={loading}
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg disabled:opacity-50"
+            className="cursor-pointer bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg disabled:opacity-50"
           >
             {loading ? "Loading..." : "Load More"}
           </button>
