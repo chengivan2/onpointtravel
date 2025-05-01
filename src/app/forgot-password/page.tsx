@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
     if (error) {
       setError(error.message);
     } else {
-      setMessage("A password reset link has been sent to your email.");
+      setMessage("Please check your email inbox for the password reset link.");
     }
   };
 
