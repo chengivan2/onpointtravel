@@ -6,11 +6,10 @@ export default function ProfileEditForm({ profile }: { profile: any }) {
   const [formData, setFormData] = useState({
     first_name: profile?.first_name || "",
     last_name: profile?.last_name || "",
-    phone: profile?.phone || "",
-    bio: profile?.bio || "",
+    email: profile?.email || "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -70,23 +69,12 @@ export default function ProfileEditForm({ profile }: { profile: any }) {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Phone
+            Email
           </label>
           <input
-            type="text"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded bg-white/70 dark:bg-green-900/30"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Bio
-          </label>
-          <textarea
-            name="bio"
-            value={formData.bio}
+            type="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
             className="w-full mt-1 p-2 border rounded bg-white/70 dark:bg-green-900/30"
           />
