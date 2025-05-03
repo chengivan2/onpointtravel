@@ -6,10 +6,13 @@ export default function ProfileDetails({ profile }: { profile: any }) {
         </h2>
         <ul className="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
           <li>
-            <strong>Phone:</strong> {profile?.phone || "Not provided"}
+            <strong>First Name:</strong> {profile?.first_name || "Not provided"}
           </li>
           <li>
-            <strong>Bio:</strong> {profile?.bio || "No bio available"}
+            <strong>Last Name:</strong> {profile?.last_name || "Not provided"}
+          </li>
+          <li>
+            <strong>Email:</strong> {profile?.email || "Not provided"}
           </li>
         </ul>
       </div>
