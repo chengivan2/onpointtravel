@@ -5,8 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 interface UpdateProfileRequestBody {
   first_name: string;
   last_name: string;
-  phone: string;
-  bio: string;
+  email: string;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -15,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const supabase = await createClient();
 
       // Validate and typecast the request body
-      const { first_name, last_name, phone, bio } = req.body as UpdateProfileRequestBody;
+      const { first_name, last_name, email } = req.body as UpdateProfileRequestBody;
 
       // Ensure user ID is provided (modify this part based on your auth logic)
       const userId = req.headers["x-user-id"]; // Example: extract from headers
@@ -25,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const { data, error } = await supabase
         .from("users")
-        .update({ first_name, last_name, phone, bio })
+        .update({ first_name, last_name, email })
         .eq("id", userId);
 
       if (error) {
