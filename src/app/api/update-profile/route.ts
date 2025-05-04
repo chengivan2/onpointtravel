@@ -12,17 +12,23 @@ export async function POST(req: Request) {
   try {
     const supabase = await createClient();
 
-    // Parse the request body
-    const body: UpdateProfileRequestBody = await req.json();
+    // Get the authenticated user
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser();
 
-    const { first_name, last_name, email } = body;
-
-    // Ensure user ID is provided (modify this part based on your auth logic)
-    const userId = req.headers.get("x-user-id"); // Example: extract from headers
-    if (!userId) {
-      return NextResponse.json({ error: "User ID is missing" }, { status: 400 });
+    if (authError || !user) {
+      return NextResponse.json({ error: "User not authenticated" }, { status: 401 });
     }
 
+    const userId = user.id;
+
+    // Parse the request body
+    const body: UpdateProfileRequestBody = await req.json();
+    const { first_name, last_name, email } = body;
+
+    // Update the user's profile in the database
     const { data, error } = await supabase
       .from("users")
       .update({ first_name, last_name, email })
