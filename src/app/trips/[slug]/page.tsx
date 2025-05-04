@@ -3,7 +3,6 @@ import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import { Gallery } from "./components/TripGallery";
 import { RatingDisplay } from "../components/RatingDisplay";
-import { Database } from "@/types/supabase";
 import Header from "@/app/rootcomponents/header/Header";
 import FooterBefore from "@/app/rootcomponents/footerbefore/FooterBefore";
 import Footer from "@/app/rootcomponents/footer/Footer";
@@ -79,7 +78,7 @@ export default async function TripPage({
     .single()
     .returns<Trip>();
 
-  const mainImage = (await trip)?.main_featured_image_url;
+  const mainImage = trip?.main_featured_image_url;
 
   if (!trip) return notFound();
 
@@ -89,6 +88,8 @@ export default async function TripPage({
     if (rating >= 4.0) return "Good";
     return "Good";
   };
+
+  const user = await supabase.auth.getUser();
 
   return (
     <>
@@ -199,7 +200,20 @@ export default async function TripPage({
         </section>
 
         <section className="mb-12">
-          <BookingForm trip={trip} />
+          {user ? (
+            <BookingForm trip={trip} />
+          ) : (
+            <div>
+              <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
+                Please login to book this trip
+              </h2>
+              <Link href="/login">
+                <button className="bg-green-600 text-white px-4 py-2 rounded-lg">
+                  Login
+                </button>
+              </Link>
+            </div>
+          )}
         </section>
       </main>
       <FooterBefore />
