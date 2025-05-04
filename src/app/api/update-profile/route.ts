@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
 // Define the expected body shape
 interface UpdateProfileRequestBody {
@@ -8,36 +8,33 @@ interface UpdateProfileRequestBody {
   email: string;
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "POST") {
-    try {
-      const supabase = await createClient();
+export async function POST(req: Request) {
+  try {
+    const supabase = await createClient();
 
-      // Validate and typecast the request body
-      const { first_name, last_name, email } = req.body as UpdateProfileRequestBody;
+    // Parse the request body
+    const body: UpdateProfileRequestBody = await req.json();
 
-      // Ensure user ID is provided (modify this part based on your auth logic)
-      const userId = req.headers["x-user-id"]; // Example: extract from headers
-      if (!userId) {
-        return res.status(400).json({ error: "User ID is missing" });
-      }
+    const { first_name, last_name, email } = body;
 
-      const { data, error } = await supabase
-        .from("users")
-        .update({ first_name, last_name, email })
-        .eq("id", userId);
-
-      if (error) {
-        return res.status(500).json({ error: error.message });
-      }
-
-      return res.status(200).json({ data });
-    } catch (err) {
-      console.error("Error updating profile:", err);
-      return res.status(500).json({ error: "Internal server error" });
+    // Ensure user ID is provided (modify this part based on your auth logic)
+    const userId = req.headers.get("x-user-id"); // Example: extract from headers
+    if (!userId) {
+      return NextResponse.json({ error: "User ID is missing" }, { status: 400 });
     }
-  }
 
-  res.setHeader("Allow", ["POST"]);
-  res.status(405).end(`Method ${req.method} Not Allowed`);
+    const { data, error } = await supabase
+      .from("users")
+      .update({ first_name, last_name, email })
+      .eq("id", userId);
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ data }, { status: 200 });
+  } catch (err) {
+    console.error("Error updating profile:", err);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
 }
