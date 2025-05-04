@@ -86,7 +86,7 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem className="cursor-pointer hover:bg-muted dark:hover:bg-sidebar-accent">
                 <IconUserCircle className="text-gray-300" />
-                Account
+                Profile
               </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer hover:bg-muted dark:hover:bg-sidebar-accent">
                 <IconCreditCard className="text-gray-300" />
