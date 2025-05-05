@@ -114,6 +114,7 @@ export default function SignUpMain() {
                       onChange={(e) => setFirstName(e.target.value)}
                       required
                       id="firstname"
+                      className="border border-green-300 dark:border-green-700 rounded-md p-2"
                     />
                   </div>
                   <div className="space-y-2">
@@ -126,6 +127,7 @@ export default function SignUpMain() {
                       onChange={(e) => setLastName(e.target.value)}
                       required
                       id="lastname"
+                      className="border border-green-300 dark:border-green-700 rounded-md p-2"
                     />
                   </div>
                 </div>
@@ -140,6 +142,7 @@ export default function SignUpMain() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     id="email"
+                    className="border border-green-300 dark:border-green-700 rounded-md p-2"
                   />
                 </div>
 
@@ -153,7 +156,7 @@ export default function SignUpMain() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     id="pwd"
-                    className="input sz-md variant-mixed"
+                    className="border border-green-300 dark:border-green-700 rounded-md p-2"
                   />
                 </div>
 

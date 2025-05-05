@@ -97,6 +97,7 @@ export default function SignInMain() {
               required
               name="email"
               id="email"
+              className="border border-green-300 dark:border-green-700 rounded-md p-2"
             />
           </div>
 
@@ -121,7 +122,7 @@ export default function SignInMain() {
               required
               name="pwd"
               id="pwd"
-              className="input sz-md variant-mixed"
+              className="border border-green-300 dark:border-green-700 rounded-md p-2"
             />
           </div>
 
