@@ -44,12 +44,12 @@ export default function SignInMain() {
 
   return (
     <main>
-      <section className="flex flex-col lg:flex-row mt-16 min-h-screen bg-transparent">
+      <section className="flex flex-col md:flex-row mt-16 min-h-screen bg-transparent">
         <div className="hidden lg:flex relative min-h-full bg-center bg-cover bg-[url(/images/signin.jpg)] flex-1/2">
           <div className="absolute inset-0 bg-darkmode-bg-color opacity-10 dark:opacity-20"></div>
         </div>
 
-        <div className="relative min-h-full flex flex-row justify-center items-center flex-2/3">
+        <div className="bg-center bg-cover bg-[url(/images/signin.jpg)] md:bg-transparent relative min-h-full flex flex-row justify-center items-center flex-2/3">
           <form
             onSubmit={handleSignIn}
             className="bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color m-auto h-fit w-full max-w-sm rounded-[0.85rem] p-0.5 shadow-md"
