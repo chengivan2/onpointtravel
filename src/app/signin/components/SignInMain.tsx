@@ -52,7 +52,7 @@ export default function SignInMain() {
         <div className="bg-center bg-cover bg-[url(/images/signin.jpg)] md:bg-transparent relative min-h-full flex flex-row justify-center items-center flex-2/3">
           <form
             onSubmit={handleSignIn}
-            className="bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color m-auto h-fit w-full max-w-sm rounded-[0.85rem] p-0.5 shadow-md"
+            className="bg-lightmode-auth-bg-color/80 md:bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color dark:md:bg-darkmode-auth-bg-color m-auto h-fit w-full max-w-sm rounded-[0.85rem] p-0.5 shadow-md"
           >
             <div className="p-8 pb-6">
               <div>
