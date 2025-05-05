@@ -5,11 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useState } from "react";
-import { login } from "../actions/actions";
 import { FaGoogle } from "react-icons/fa6";
 import HeaderLogo from "@/app/rootcomponents/header/Logo";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
 
 export default function SignInMain() {
+  const supabase = createClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,6 +21,25 @@ export default function SignInMain() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      setError(error.message);
+      setLoading(false);
+      return;
+    }
+
+    if (data.user) {
+      redirect("/dashboard");
+    } else {
+      setError("Invalid email or password.");
+    }
+    setLoading(false);
+    
   };
 
   return (
@@ -107,7 +128,6 @@ export default function SignInMain() {
                 {error && <p className="text-red-500">{error}</p>}
 
                 <Button
-                  formAction={login}
                   className="w-full cursor-pointer bg-lightmode-btn-bg-color dark:bg-darkmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color hover:dark:bg-darkmode-btn-bg-hover-color"
                   type="submit"
                   disabled={loading}
