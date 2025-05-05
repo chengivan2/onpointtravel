@@ -22,22 +22,30 @@ export default function SignInMain() {
     setLoading(true);
     setError(null);
 
-    try {
+    const handleSignIn = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setLoading(true);
+      setError(null);
+  
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
-
+  
       if (error) {
         setError(error.message);
-      } else {
-        redirect("/dashboard");
+        setLoading(false);
+        return;
       }
-    } catch (err: any) {
-      setError(err.message || "An unexpected error occurred");
-    } finally {
+  
+      if (data.user) {
+        redirect("/dashboard");
+      } else {
+        setError("Invalid email or password.");
+      }
       setLoading(false);
-    }
+      
+    };
   };
 
   return (
