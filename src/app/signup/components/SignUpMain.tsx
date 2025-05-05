@@ -54,7 +54,7 @@ export default function SignUpMain() {
           <div className="absolute inset-0 bg-darkmode-bg-color opacity-10 dark:opacity-20"></div>
         </div>
 
-        <div className="bg-center bg-cover bg-[url(/images/signin.jpg)] md:bg-transparent relative min-h-full flex flex-row justify-center items-center flex-1/2">
+        <div className="bg-center bg-cover bg-[url(/images/signin.jpg)] md:bg-none relative min-h-full flex flex-row justify-center items-center flex-1/2">
           <form
             onSubmit={handleSignUp}
             className="bg-lightmode-auth-bg-color/80 md:bg-lightmode-auth-bg-color dark:bg-darkmode-auth-bg-color dark:md:bg-darkmode-auth-bg-color m-auto h-fit w-full max-w-sm rounded-[0.8rem] p-0.5 shadow-md dark:[--color-muted:var(--color-zinc-900)]"
