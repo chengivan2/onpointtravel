@@ -91,7 +91,7 @@ export default function ProfilePictureUploader({
             className="w-32 h-32 rounded-full object-cover mb-4 shadow-lg"
           />
         ) : (
-          <p className="text-gray-700 dark:text-gray-300 my-2">No profile picture uploaded.</p>
+          <p className="text-gray-700 dark:text-gray-300 my-4">No profile picture uploaded.</p>
         )}
         <input
         id="profilepictureuploader"
