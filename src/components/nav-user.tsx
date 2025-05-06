@@ -26,8 +26,7 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/client";
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export function NavUser({
   user,
@@ -40,6 +39,7 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar();
   const supabase = createClient();
+  const router = useRouter();
 
   async function handleSignOut(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -51,7 +51,7 @@ export function NavUser({
         console.error("Error signing out:", error.message);
       } else {
         console.log("Successfully signed out");
-        redirect("/");
+        router.push("/");
       }
     } catch (err) {
       console.error("Unexpected error during sign out:", err);
