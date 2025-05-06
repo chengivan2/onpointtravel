@@ -99,7 +99,7 @@ export default function ProfilePictureUploader({
           accept="image/*"
           onChange={handleFileUpload}
           disabled={uploading}
-          className="mt-2 file:opacity-0 file:absolute file:w-0 file:h-0"
+          className="mt-2 hidden"
         />
         <label htmlFor="profile-picture-uploader" className="text-green-800 dark:text-green-100 cursor-pointer">
           {newLogoUrl ? "Change profile picture" : "Upload profile picture"}
