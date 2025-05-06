@@ -82,10 +82,7 @@ export default function ProfilePictureUploader({
   };
 
   return (
-    <div className="bg-white/30 dark:bg-green-900/30 backdrop-blur-md p-6 rounded-xl shadow-lg">
-      <h2 className="text-xl font-bold text-green-800 dark:text-green-100">
-        Profile Picture
-      </h2>
+    <>
       <div className="mt-4">
         {newLogoUrl ? (
           <img
@@ -110,6 +107,6 @@ export default function ProfilePictureUploader({
         {uploading && <p className="text-sm text-gray-500">Uploading...</p>}
         {error && <p className="text-sm text-red-500">{error}</p>}
       </div>
-    </div>
+    </>
   );
 }
