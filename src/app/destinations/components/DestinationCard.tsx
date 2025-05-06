@@ -29,10 +29,10 @@ export default function DestinationCard({
         <h3 className="text-lg font-bold text-green-800 dark:text-green-100">
           {destination.name}
         </h3>
-        <p className="text-sm text-green-600 dark:text-green-300">
+        <p className="text-sm text-lightmode-text-color/80 dark:text-darkmode-text-color/80">
           {destination.location}
         </p>
-        <p className="text-green-700 dark:text-green-200 text-base line-clamp-3">
+        <p className="text-lightmode-text-color dark:text-darkmode-text-color text-base line-clamp-3">
           {destination.description}
         </p>
       </div>
