@@ -101,7 +101,7 @@ export default function ProfilePictureUploader({
           accept="image/*"
           onChange={handleFileUpload}
           disabled={uploading}
-          className="mt-2"
+          className="mt-2 file:opacity-0 file:absolute file:w-0 file:h-0"
         />
         {uploading && <p className="text-sm text-gray-500">Uploading...</p>}
         {error && <p className="text-sm text-red-500">{error}</p>}
