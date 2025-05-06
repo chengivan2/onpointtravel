@@ -103,6 +103,9 @@ export default function ProfilePictureUploader({
           disabled={uploading}
           className="mt-2 file:opacity-0 file:absolute file:w-0 file:h-0"
         />
+        <label className="text-green-800 dark:text-green-100 cursor-pointer">
+          {newLogoUrl ? "Change profile picture" : "Upload profile picture"}
+        </label>
         {uploading && <p className="text-sm text-gray-500">Uploading...</p>}
         {error && <p className="text-sm text-red-500">{error}</p>}
       </div>
