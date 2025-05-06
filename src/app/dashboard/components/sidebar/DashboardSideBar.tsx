@@ -2,25 +2,17 @@
 
 import * as React from "react";
 import {
-  IconCamera,
   IconChartBar,
   IconClock12,
   IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileDescription,
-  IconFileWord,
   IconFolder,
   IconHeart,
   IconHelp,
-  IconListDetails,
-  IconReport,
   IconSearch,
   IconSettings,
   IconUsers,
 } from "@tabler/icons-react";
 
-import { NavDocuments } from "@/components/nav-documents";
 import { NavMain } from "@/components/nav-main";
 import { NavSecondary } from "@/components/nav-secondary";
 import { NavUser } from "@/components/nav-user";
@@ -57,7 +49,7 @@ export function DashboardSidebar({
       if (user) {
         const { data: profile } = await supabase
           .from("users")
-          .select("role, first_name, last_name, email")
+          .select("role, first_name, last_name, email, logo_url")
           .eq("id", user.id)
           .single();
 
@@ -66,9 +58,7 @@ export function DashboardSidebar({
           setUserProfile({
             name: `${profile.first_name} ${profile.last_name}`,
             email: profile.email,
-            avatar:
-              user.user_metadata?.avatar_url ||
-              "https://res.cloudinary.com/doqbnfais/image/upload/v1743234420/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/booking%20steps%20faces/booking-steps-face-image-2_x5heop.jpg",
+            avatar: profile.logo_url || "/default-avatar.png",
           });
         }
       }
