@@ -88,7 +88,7 @@ export default function ProfilePictureUploader({
           <img
             src={newLogoUrl}
             alt="Profile Picture"
-            className="w-32 h-32 rounded-full object-cover mb-4"
+            className="w-32 h-32 rounded-full object-cover mb-4 shadow-lg"
           />
         ) : (
           <p className="text-gray-700 dark:text-gray-300">No profile picture uploaded.</p>
@@ -101,7 +101,7 @@ export default function ProfilePictureUploader({
           disabled={uploading}
           className="mt-2 hidden"
         />
-        <label htmlFor="profile-picture-uploader" className="text-green-800 dark:text-green-100 cursor-pointer">
+        <label htmlFor="profile-picture-uploader" className="text-green-800 dark:text-green-100 cursor-pointer px-2 py-2 bg-lightmode-bg-color dark:bg-darkmode-bg-color rounded-md shadow-md hover:bg-lightmode-btn-bg-hover-color dark:hover:bg-darkmode-btn-bg-hover-color transition duration-200 ease-in-out">
           {newLogoUrl ? "Change profile picture" : "Upload profile picture"}
         </label>
         {uploading && <p className="text-sm text-gray-500">Uploading...</p>}
