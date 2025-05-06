@@ -26,6 +26,8 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/client";
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 export function NavUser({
   user,
@@ -39,6 +41,22 @@ export function NavUser({
   const { isMobile } = useSidebar();
   const supabase = createClient();
 
+  async function handleSignOut(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ): Promise<void> {
+    event.preventDefault();
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error("Error signing out:", error.message);
+      } else {
+        console.log("Successfully signed out");
+        redirect("/");
+      }
+    } catch (err) {
+      console.error("Unexpected error during sign out:", err);
+    }
+  }
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -103,12 +121,7 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className="cursor-pointer hover:bg-muted dark:hover:bg-sidebar-accent"
-              onClick={async () => {
-              const { error } = await supabase.auth.signOut();
-              if (error) {
-                console.error("Error signing out:", error.message);
-              }
-              }}
+              onClick={handleSignOut}
             >
               <IconLogout className="text-gray-300" />
               Log out
