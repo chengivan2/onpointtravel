@@ -15,13 +15,14 @@ export default function ProfileDetails({ profile }: { profile: any }) {
 
       <ul className="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
         <li>
-          <strong>First Name:</strong> {profile?.first_name || "Not provided"}
+          <strong>First Name:</strong> <span className="text-lightmode-text-color dark:text-darkmode-text-color">
+            {profile?.first_name || "Not provided"}</span>
         </li>
         <li>
-          <strong>Last Name:</strong> {profile?.last_name || "Not provided"}
+          <strong>Last Name:</strong> <span className="text-lightmode-text-color dark:text-darkmode-text-color">{profile?.last_name || "Not provided"}</span>
         </li>
         <li>
-          <strong>Email:</strong> {profile?.email || "Not provided"}
+          <strong>Email:</strong> <span className="text-lightmode-text-color dark:text-darkmode-text-color">{profile?.email || "Not provided"}</span>
         </li>
       </ul>
     </div>
