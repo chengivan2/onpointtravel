@@ -5,7 +5,6 @@ import { Metadata } from "next";
 import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
 import ProfileDetails from "./components/ProfileDetails";
 import ProfileEditForm from "./components/ProfileEditForm";
-import ProfilePictureUploader from "./components/ProfilePictureUploader";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
@@ -25,7 +24,7 @@ export default async function ProfilePage() {
 
   const { data: profile } = await supabase
     .from("users")
-    .select("first_name, last_name, email, logo_url")
+    .select("id, first_name, last_name, email, logo_url")
     .eq("id", user.id)
     .single();
 
@@ -58,12 +57,6 @@ export default async function ProfilePage() {
 
                 {/* Profile Edit Form */}
                 <ProfileEditForm profile={profile} />
-
-                {/* Profile Picture Uploader */}
-                <ProfilePictureUploader
-                  userId={user.id}
-                  currentLogoUrl={profile?.logo_url || null}
-                />
               </div>
             </div>
           </div>
