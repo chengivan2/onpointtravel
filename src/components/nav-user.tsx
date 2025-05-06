@@ -25,6 +25,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/client";
 
 export function NavUser({
   user,
@@ -36,6 +37,7 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const supabase = createClient();
 
   return (
     <SidebarMenu>
@@ -99,7 +101,15 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer hover:bg-muted dark:hover:bg-sidebar-accent">
+            <DropdownMenuItem
+              className="cursor-pointer hover:bg-muted dark:hover:bg-sidebar-accent"
+              onClick={async () => {
+              const { error } = await supabase.auth.signOut();
+              if (error) {
+                console.error("Error signing out:", error.message);
+              }
+              }}
+            >
               <IconLogout className="text-gray-300" />
               Log out
             </DropdownMenuItem>
