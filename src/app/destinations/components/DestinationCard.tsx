@@ -26,7 +26,7 @@ export default function DestinationCard({
       </div>
 
       <div className="p-4 space-y-2">
-        <h3 className="text-lg font-bold text-green-800 dark:text-green-100">
+        <h3 className="text-lg font-bold text-lightmode-text-color dark:text-darkmode-text-color">
           {destination.name}
         </h3>
         <p className="text-sm text-lightmode-text-color/80 dark:text-darkmode-text-color/80">
