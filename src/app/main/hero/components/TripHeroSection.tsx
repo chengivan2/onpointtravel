@@ -89,7 +89,7 @@ export default function TripHeroSection({
                   />
                 )}
                 {/* Optional Name Overlay on Thumbnail */}
-                <div className={`absolute bottom-0 left-0 right-0 p-1 ${selectedTrip.id === trip.id ? "bg-green-800" : "bg-green-900/50"} rounded-b-lg`}>
+                <div className={`absolute bottom-0 left-0 right-0 p-1 ${selectedTrip.id === trip.id ? "bg-green-700/90" : "bg-green-900/90 backdrop-blur-md"} rounded-b-lg`}>
                   <span className="text-xs font-medium text-darkmode-heading-color block">
                     {trip.name}
                   </span>
