@@ -16,7 +16,7 @@ interface Booking {
     name: string;
     destination: string;
     description: string;
-  } | null;
+  } | null; // Allow trip to be null
 }
 
 export default function BookingsTable({ bookings }: { bookings: Booking[] }) {

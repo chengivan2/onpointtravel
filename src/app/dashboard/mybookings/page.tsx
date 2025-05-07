@@ -41,7 +41,7 @@ export default async function MyBookingsPage() {
 
   const bookingsWithTripDetails = bookings.map((booking) => ({
     ...booking,
-    trip: trips?.find((trip) => trip.id === booking.trip_id),
+    trip: trips?.find((trip) => trip.id === booking.trip_id) || null, // Ensure trip is null if not found
   }));
 
   return (
