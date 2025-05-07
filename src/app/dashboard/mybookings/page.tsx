@@ -24,13 +24,25 @@ export default async function MyBookingsPage() {
   // Fetch the user's bookings
   const { data: bookings, error } = await supabase
     .from("bookings")
-    .select("id, trip_name, trip_date, destination, trip_info")
+    .select("id, trip_id, start_date, end_date, number_of_people, total_price, status")
     .eq("user_id", user.id);
 
   if (error) {
     console.error("Error fetching bookings:", error);
     return <p>Error loading bookings.</p>;
   }
+
+  // Fetch trip details for each booking
+  const tripIds = bookings.map((booking) => booking.trip_id);
+  const { data: trips } = await supabase
+    .from("trips")
+    .select("id, name, destination, description")
+    .in("id", tripIds);
+
+  const bookingsWithTripDetails = bookings.map((booking) => ({
+    ...booking,
+    trip: trips?.find((trip) => trip.id === booking.trip_id),
+  }));
 
   return (
     <SidebarProvider
@@ -63,10 +75,13 @@ export default async function MyBookingsPage() {
                         Trip Name
                       </th>
                       <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">
-                        Date
+                        Start Date
                       </th>
                       <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">
-                        Destination
+                        End Date
+                      </th>
+                      <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">
+                        Status
                       </th>
                       <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">
                         Actions
@@ -74,7 +89,7 @@ export default async function MyBookingsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {bookings?.map((booking) => (
+                    {bookingsWithTripDetails?.map((booking) => (
                       <BookingRow key={booking.id} booking={booking} />
                     ))}
                   </tbody>
@@ -92,13 +107,16 @@ function BookingRow({ booking }: { booking: any }) {
   return (
     <tr>
       <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-        {booking.trip_name}
+        {booking.trip?.name || "Unknown Trip"}
       </td>
       <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-        {booking.trip_date}
+        {booking.start_date}
       </td>
       <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-        {booking.destination}
+        {booking.end_date}
+      </td>
+      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+        {booking.status}
       </td>
       <td className="px-6 py-4 text-sm">
         <Dialog>
@@ -109,8 +127,10 @@ function BookingRow({ booking }: { booking: any }) {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>{booking.trip_name}</DialogTitle>
-              <DialogDescription>{booking.trip_info}</DialogDescription>
+              <DialogTitle>{booking.trip?.name || "Unknown Trip"}</DialogTitle>
+              <DialogDescription>
+                {booking.trip?.description || "No description available."}
+              </DialogDescription>
             </DialogHeader>
             <button
               onClick={() => alert("Booking trip again!")}
