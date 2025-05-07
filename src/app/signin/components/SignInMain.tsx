@@ -34,10 +34,11 @@ export default function SignInMain() {
     }
 
     if (data.user) {
-      alert("Sign-in successful!");
       redirect("/dashboard");
     } else {
       setError("Invalid email or password.");
+      alert("Invalid email or password.");
+      setLoading(false);
     }
     setLoading(false);
   };

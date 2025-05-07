@@ -6,11 +6,13 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 import { FaGoogle, FaXTwitter } from "react-icons/fa6";
 import HeaderLogo from "../../rootcomponents/header/Logo";
 
 export default function SignUpMain() {
   const supabase = createClient();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -24,7 +26,7 @@ export default function SignUpMain() {
     setError(null);
 
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -38,7 +40,8 @@ export default function SignUpMain() {
       if (error) {
         setError(error.message);
       } else {
-        alert("Sign-up successful! Please check your email to confirm your account.");
+        // Redirect to the welcome page after successful sign-up
+        router.push("/welcome");
       }
     } catch (err: any) {
       setError(err.message || "An unexpected error occurred.");
