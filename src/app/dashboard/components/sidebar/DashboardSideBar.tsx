@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import {
+  IconCar4wd,
   IconChartBar,
   IconClock12,
   IconDashboard,
@@ -100,6 +101,12 @@ export function DashboardSidebar({
             url: "/dashboard/ongoingtrips",
             icon: IconClock12,
           },
+          {
+            title: "My Bookings",
+            url: "/dashboard/mybookings",
+            icon: IconCar4wd,
+          },
+          
         ]
       : [
           {
@@ -112,6 +119,12 @@ export function DashboardSidebar({
             url: "/dashboard/myongoingtrips",
             icon: IconClock12,
           },
+          {
+            title: "My Bookings",
+            url: "/dashboard/mybookings",
+            icon: IconCar4wd,
+          },
+          
         ]),
   ];
 
