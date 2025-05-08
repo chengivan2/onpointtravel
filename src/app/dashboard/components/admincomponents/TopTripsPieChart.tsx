@@ -126,6 +126,7 @@ export default function TopTripsPieChart() {
               cx="50%"
               cy="50%"
               outerRadius={150}
+              innerRadius={80} // Add this to create the hollow center
               fill="#8884d8"
               label
             >
