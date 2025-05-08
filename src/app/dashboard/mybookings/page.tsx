@@ -36,12 +36,12 @@ export default async function MyBookingsPage() {
   const tripIds = bookings.map((booking) => booking.trip_id);
   const { data: trips } = await supabase
     .from("trips")
-    .select("id, name, destination, description")
+    .select("id, name, description, destination_id")
     .in("id", tripIds);
 
   const bookingsWithTripDetails = bookings.map((booking) => ({
     ...booking,
-    trip: trips?.find((trip) => trip.id === booking.trip_id) || null, // Ensure trip is null if not found
+    trip: trips?.find((trip) => trip.id === booking.trip_id) || null,
   }));
 
   return (

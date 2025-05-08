@@ -14,9 +14,9 @@ interface Booking {
   trip: {
     id: string;
     name: string;
-    destination: string;
+    destination_id: string;
     description: string;
-  } | null; // Allow trip to be null
+  } | null;
 }
 
 export default function BookingsTable({ bookings }: { bookings: Booking[] }) {
@@ -51,47 +51,43 @@ export default function BookingsTable({ bookings }: { bookings: Booking[] }) {
 }
 
 function BookingRow({ booking }: { booking: Booking }) {
-  const [isModalOpen, setModalOpen] = useState(false);
-
   return (
-    <>
-      <tr>
-        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-          {booking.trip?.name || "Unknown Trip"}
-        </td>
-        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-          {booking.start_date}
-        </td>
-        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-          {booking.end_date}
-        </td>
-        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-          {booking.status}
-        </td>
-        <td className="px-6 py-4 text-sm">
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
-                View Trip
-              </button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>{booking.trip?.name || "Unknown Trip"}</DialogTitle>
-                <DialogDescription>
-                  {booking.trip?.description || "No description available."}
-                </DialogDescription>
-              </DialogHeader>
-              <button
-                onClick={() => alert("Booking trip again!")}
-                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 mt-4"
-              >
-                Go Again
-              </button>
-            </DialogContent>
-          </Dialog>
-        </td>
-      </tr>
-    </>
+    <tr>
+      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+        {booking.trip?.name || "Unknown Trip"}
+      </td>
+      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+        {booking.start_date}
+      </td>
+      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+        {booking.end_date}
+      </td>
+      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+        {booking.status}
+      </td>
+      <td className="px-6 py-4 text-sm">
+        <Dialog>
+          <DialogTrigger asChild>
+            <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+              View Trip
+            </button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{booking.trip?.name || "Unknown Trip"}</DialogTitle>
+              <DialogDescription>
+                {booking.trip?.description || "No description available."}
+              </DialogDescription>
+            </DialogHeader>
+            <button
+              onClick={() => alert("Booking trip again!")}
+              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 mt-4"
+            >
+              Go Again
+            </button>
+          </DialogContent>
+        </Dialog>
+      </td>
+    </tr>
   );
 }
