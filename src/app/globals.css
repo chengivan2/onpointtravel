@@ -2,7 +2,6 @@
 @import "tw-animate-css";
 
 @plugin "tailwindcss-motion";
-@plugin 'tailwind-scrollbar';
 
 @custom-variant dark (&:is(.dark *));
 
