@@ -9,5 +9,6 @@ export const inter = Inter({
 export const alegreyaSans = Alegreya_Sans({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['100', '300', '400', '500', '700', '800', '900']
+  weight: ['100', '300', '400', '500', '700', '800', '900'],
+  variable: '--font-heading'
 })

@@ -160,8 +160,6 @@
 /* === Base Styles and Global Variables === */
 /* ======================================== */
 :root {
-  --font-body: "Inter", sans-serif;
-  --font-heading: "Alegreya Sans", sans-serif;
 
   /* === Core Theme Colors === */
   --lightmodebgcolor: hsl(146, 100%, 97%);
