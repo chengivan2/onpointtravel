@@ -41,7 +41,8 @@ export default async function FavoriteTrips() {
   const { data: favoriteTrips, error: tripsError } = await supabase
     .from("trips")
     .select("id, name, main_featured_image_url, slug")
-    .in("id", favoriteTripIds);
+    .eq("is_favorite", true)
+    .eq("user_id", user.id);
 
   if (tripsError) {
     console.error("Error loading favorite trips:", tripsError);
