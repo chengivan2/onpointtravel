@@ -50,6 +50,11 @@ export default async function AdminBookingsPage() {
 
   const initialBookingsResult = await FetchBookings(0, 15); // Fetch the first page of bookings
 
+  let initialBookings: any[] = [];
+  if (initialBookingsResult && !initialBookingsResult.error) {
+    initialBookings = initialBookingsResult.data;
+  }
+
   if (initialBookingsResult.error) {
     return (
       <SidebarProvider
@@ -73,8 +78,6 @@ export default async function AdminBookingsPage() {
       </SidebarProvider>
     );
   }
-
-  const initialBookings = initialBookingsResult.data;
 
   return (
     <SidebarProvider
