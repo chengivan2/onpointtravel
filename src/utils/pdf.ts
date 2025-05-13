@@ -19,11 +19,11 @@ export async function generateInvoicePDF(invoice: any, booking: any, user: any) 
   const doc = new jsPDF();
 
   // Glassmorphism background
-  doc.setFillColor(240, 255, 250, 0.7); // Mint/greenish, semi-transparent
+  doc.setFillColor(240, 255, 250, 0.7);
   doc.roundedRect(8, 8, 194, 281, 12, 12, 'F');
 
   // Logo
-  const logoUrl = '/logos/onpointhflightmodelogo.png';
+  const logoUrl = '/logos/onpointhfdarkmodelogo.png';
   const logoBase64 = await getLogoBase64(logoUrl);
   if (logoBase64) {
     doc.addImage(logoBase64, 'PNG', 14, 14, 36, 18, undefined, 'FAST');
@@ -31,12 +31,12 @@ export async function generateInvoicePDF(invoice: any, booking: any, user: any) 
 
   // Header
   doc.setFontSize(22);
-  doc.setTextColor(34, 197, 94); // Tailwind green-500
+  doc.setTextColor(34, 197, 94);
   doc.text("INVOICE", 110, 28, { align: "left" });
 
   // Invoice info
   doc.setFontSize(12);
-  doc.setTextColor(30, 41, 59); // Slate-800
+  doc.setTextColor(255, 255, 255); // Slate-800
   doc.text(`Invoice #: ${invoice.invoice_number}`, 14, 45);
   doc.text(`Issued: ${new Date(invoice.issued_at).toLocaleDateString()}`, 14, 53);
   doc.text(`Due: ${invoice.due_date ? new Date(invoice.due_date).toLocaleDateString() : "-"}`, 14, 61);
@@ -45,14 +45,14 @@ export async function generateInvoicePDF(invoice: any, booking: any, user: any) 
   // User info
   doc.setTextColor(34, 197, 94); // green
   doc.text("Billed To:", 14, 83);
-  doc.setTextColor(30, 41, 59);
+  doc.setTextColor(255, 255, 255);
   doc.text(user?.name || user?.email || "-", 14, 89);
   doc.text(user?.email || "", 14, 95);
 
   // Trip info
   doc.setTextColor(34, 197, 94);
   doc.text("Trip:", 14, 109);
-  doc.setTextColor(30, 41, 59);
+  doc.setTextColor(255, 255, 255);
   doc.text(booking.trip?.name || "-", 14, 115);
   doc.text(`Dates: ${booking.start_date} to ${booking.end_date}`, 14, 121);
   doc.text(`People: ${booking.number_of_people}`, 14, 127);
@@ -63,10 +63,10 @@ export async function generateInvoicePDF(invoice: any, booking: any, user: any) 
   doc.text(`Total: $${invoice.total_amount.toFixed(2)} ${invoice.currency}`, 14, 145);
 
   // Glassy footer
-  doc.setFillColor(34, 197, 94, 30); // Use alpha 30/255 for visible glass effect
+  doc.setFillColor(34, 197, 94, 30);
   doc.roundedRect(14, 260, 182, 20, 8, 8, 'F');
   doc.setFontSize(11);
-  doc.setTextColor(30, 41, 59, 255); // Ensure text is fully opaque
+  doc.setTextColor(30, 41, 59, 255);
   doc.text("Thank you for booking with OnPoint!", 105, 273, { align: "center" });
 
   return doc;
