@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function AdminAgentBookingsView({ initialBookings }: { initialBookings: any[] }) {
   const [bookings, setBookings] = useState(initialBookings);
@@ -22,7 +23,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
       setBookings((prev) => [...prev, ...newBookings]); // Append new bookings to the existing list
       setPage((prev) => prev + 1); // Increment the page number
     } catch (err) {
-      console.error("Error loading more bookings:", err);
+      toast.error("Failed to load more bookings. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -44,7 +45,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
         prev.map((b) => (b.id === id ? { ...b, status: value } : b))
       );
     } catch (err) {
-      console.error("Error updating status:", err);
+      toast.error("Failed to update booking status. Please try again.");
     }
   };
 
@@ -64,7 +65,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
         prev.map((b) => (b.id === id ? { ...b, payment_status: value } : b))
       );
     } catch (err) {
-      console.error("Error updating payment status:", err);
+      toast.error("Failed to update payment status. Please try again.");
     }
   };
 

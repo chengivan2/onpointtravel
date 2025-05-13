@@ -10,7 +10,6 @@ export async function POST(request: Request) {
     .eq("id", id);
 
   if (error) {
-    console.error("Error updating status:", error.message);
     return NextResponse.json({ error: "Failed to update status" }, { status: 500 });
   }
 

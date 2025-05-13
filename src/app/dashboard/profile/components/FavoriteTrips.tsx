@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
+import { toast } from "sonner";
 
 interface Trip {
   id: string;
@@ -22,7 +23,7 @@ export default function FavoriteTrips({ userId }: { userId: string }) {
         .eq("user_id", userId);
 
       if (error) {
-        console.error("Error fetching favorite trips:", error);
+        toast.error("Failed to load favorite trips. Please try again.");
       } else {
         setTrips(data || []);
       }

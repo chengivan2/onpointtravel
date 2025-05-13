@@ -10,7 +10,6 @@ export async function POST(request: Request) {
     .eq("id", id);
 
   if (error) {
-    console.error("Error updating payment status:", error.message);
     return NextResponse.json({ error: "Failed to update payment status" }, { status: 500 });
   }
 

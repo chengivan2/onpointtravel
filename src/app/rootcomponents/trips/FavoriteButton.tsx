@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-
+import { toast } from "sonner";
 
 export default function FavoriteButton(
   { tripId, heartIconSize }: { tripId: string; heartIconSize: number }
@@ -57,7 +57,7 @@ export default function FavoriteButton(
       .single();
 
     if (error) {
-      console.error("Error fetching favorites:", error);
+      toast.error("Failed to fetch favorites. Please try again later.");
       setLoading(false);
       return;
     }
@@ -73,7 +73,7 @@ export default function FavoriteButton(
       .eq("id", user.id);
 
     if (updateError) {
-      console.error("Error updating favorites:", updateError);
+      toast.error("Failed to update favorites. Please try again.");
     } else {
       setIsFavorite(!isFavorite);
     }

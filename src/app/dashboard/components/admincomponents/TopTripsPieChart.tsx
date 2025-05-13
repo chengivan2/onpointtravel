@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { createClient } from "@/utils/supabase/client";
+import { toast } from "sonner";
 
 const COLORS = ["#34D399", "#60A5FA", "#FBBF24", "#F87171", "#A78BFA"];
 
@@ -56,7 +57,8 @@ export default function TopTripsPieChart() {
         const { data, error } = await query;
 
         if (error) {
-          throw error;
+          toast.error("Failed to fetch chart data. Please try again.");
+          setChartData([]);
         }
 
         if (data && data.length > 0) {
@@ -89,7 +91,7 @@ export default function TopTripsPieChart() {
           setChartData([]);
         }
       } catch (error: any) {
-        console.error("Error fetching chart data:", error.message);
+        toast.error("Failed to fetch chart data. Please try again.");
         setChartData([]);
       }
     };

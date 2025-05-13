@@ -1,10 +1,11 @@
 import { supabaseService } from "@/utils/supabase/srk";
+import { toast } from "sonner";
 
 export async function FetchUsers() {
   const { data, error } = await supabaseService.auth.admin.listUsers();
 
   if (error) {
-    console.error("Error fetching users:", error.message);
+    toast.error("Failed to fetch users. Please try again.");
     return [];
   }
 

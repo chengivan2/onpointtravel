@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 export default async function FavoriteTrips() {
   const supabase = await createClient();
@@ -35,7 +36,7 @@ export default async function FavoriteTrips() {
     .in("id", favoriteTripIds);
 
   if (tripsError) {
-    console.error("Error fetching favorite trips:", tripsError.message);
+    toast.error("Failed to load favorite trips. Please try again.");
     return <p>Error loading favorite trips.</p>;
   }
 

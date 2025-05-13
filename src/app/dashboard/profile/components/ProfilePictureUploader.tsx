@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
+import { toast } from "sonner";
 
 interface ProfilePictureUploaderProps {
   userId: string;
@@ -34,7 +35,8 @@ export default function ProfilePictureUploader({
             .from("profilepics")
             .remove([oldFileName]);
           if (deleteError) {
-            throw new Error("Failed to delete old profile picture.");
+            toast.error("Failed to delete old profile picture.");
+            return;
           }
         }
       }
@@ -46,7 +48,8 @@ export default function ProfilePictureUploader({
         .upload(fileName, file);
 
       if (uploadError) {
-        throw new Error("Failed to upload new profile picture.");
+        toast.error("Failed to upload new profile picture.");
+        return;
       }
 
       // Get the public URL of the uploaded file
@@ -55,7 +58,8 @@ export default function ProfilePictureUploader({
         .getPublicUrl(fileName);
 
       if (!publicUrlData?.publicUrl) {
-        throw new Error("Failed to retrieve public URL for the uploaded file.");
+        toast.error("Failed to retrieve public URL for the uploaded file.");
+        return;
       }
 
       const newLogoUrl = publicUrlData.publicUrl;
@@ -67,14 +71,15 @@ export default function ProfilePictureUploader({
         .eq("id", userId);
 
       if (updateError) {
-        throw new Error("Failed to update profile picture URL in the database.");
+        toast.error("Failed to update profile picture URL in the database.");
+        return;
       }
 
       // Update the state with the new logo URL
       setNewLogoUrl(newLogoUrl);
-      alert("Profile picture updated successfully!");
+      toast.success("Profile picture updated successfully!");
     } catch (err: any) {
-      console.error(err);
+      toast.error(err.message || "An unexpected error occurred.");
       setError(err.message || "An unexpected error occurred.");
     } finally {
       setUploading(false);

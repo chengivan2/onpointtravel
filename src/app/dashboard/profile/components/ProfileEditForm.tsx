@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function ProfileEditForm({ profile }: { profile: any }) {
   const [formData, setFormData] = useState({
@@ -24,13 +25,13 @@ export default function ProfileEditForm({ profile }: { profile: any }) {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to update profile");
+        toast.error("Failed to update profile. Please try again.");
+        return;
       }
 
-      alert("Profile updated successfully!");
+      toast.success("Profile updated successfully!");
     } catch (error) {
-      console.error("Error updating profile:", error);
-      alert("Failed to update profile.");
+      toast.error("Error updating profile. Please try again.");
     }
   };
 

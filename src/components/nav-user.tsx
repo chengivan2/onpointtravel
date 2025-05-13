@@ -27,6 +27,7 @@ import {
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export function NavUser({
   user,
@@ -48,15 +49,16 @@ export function NavUser({
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
-        console.error("Error signing out:", error.message);
+        toast.error("Error signing out: " + error.message);
       } else {
-        console.log("Successfully signed out");
+        toast.success("Signed out successfully.");
         router.push("/");
       }
     } catch (err) {
-      console.error("Unexpected error during sign out:", err);
+      toast.error("Unexpected error during sign out. Please try again.");
     }
   }
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>

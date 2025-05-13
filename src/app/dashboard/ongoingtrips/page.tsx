@@ -9,6 +9,7 @@ import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PlusIcon } from "lucide-react";
+import { toast } from "sonner";
 
 export const metadata: Metadata = {
   title: "Ongoing Trips",
@@ -23,7 +24,7 @@ export default async function AdminOngoingTripsPage() {
   } = await supabase.auth.getUser();
 
   if (userError) {
-    console.error("Error fetching user:", userError.message);
+    toast.error("Failed to fetch user. Please try again.");
   }
 
   if (!user) {

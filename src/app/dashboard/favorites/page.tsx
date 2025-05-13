@@ -7,6 +7,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PlusIcon } from "lucide-react";
 import FavoriteTrips from "./components/FavoriteTrips";
+import { toast } from "sonner";
 
 export const metadata: Metadata = {
   title: "Your Favorite Trips",
@@ -21,7 +22,7 @@ export default async function FavoritesTripsPage() {
   } = await supabase.auth.getUser();
 
   if (userError) {
-    console.error("Error fetching user:", userError.message);
+    toast.error("Failed to fetch user. Please try again.");
   }
 
   if (!user) {
@@ -45,7 +46,7 @@ export default async function FavoritesTripsPage() {
     .eq("user_id", user.id);
 
   if (tripsError) {
-    console.error("Error fetching favorite trips:", tripsError.message);
+    toast.error("Failed to load favorite trips. Please try again.");
   }
 
   //Check for user role

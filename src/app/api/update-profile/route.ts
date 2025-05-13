@@ -39,8 +39,7 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ data }, { status: 200 });
-  } catch (err) {
-    console.error("Error updating profile:", err);
+  } catch (error) {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

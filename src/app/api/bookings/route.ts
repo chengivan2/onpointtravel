@@ -10,7 +10,6 @@ export async function GET(request: Request) {
     const bookings = await FetchBookings(page, limit);
     return NextResponse.json(bookings);
   } catch (error) {
-    console.error("Error fetching bookings:", error);
     return NextResponse.json({ error: "Failed to fetch bookings" }, { status: 500 });
   }
 }

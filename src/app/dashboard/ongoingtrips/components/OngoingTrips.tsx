@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Progress } from "@/components/ui/progress";
+import { toast } from "sonner";
 
 export default function OngoingTrips({ ongoingTrips }: { ongoingTrips: any[] }) {
   const [trips, setTrips] = useState(ongoingTrips);
@@ -24,7 +25,7 @@ export default function OngoingTrips({ ongoingTrips }: { ongoingTrips: any[] }) 
         )
       );
     } catch (err) {
-      console.error("Error updating status:", err);
+      toast.error("Failed to update trip status. Please try again.");
     }
   };
 

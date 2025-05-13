@@ -1,4 +1,5 @@
 import { supabaseService } from "@/utils/supabase/srk";
+import { toast } from "sonner";
 
 interface Booking {
   id: string;
@@ -35,7 +36,7 @@ export async function FetchBookings(page: number, limit: number) {
     .returns<Booking[]>();
 
   if (error) {
-    console.error("Error fetching bookings:", error.message);
+    toast.error("Failed to fetch bookings. Please try again.");
     return [];
   }
 

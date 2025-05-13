@@ -18,7 +18,6 @@ async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
       .order("created_at", { ascending: false });
 
     if (error) {
-      console.error("Supabase error:", error.message);
       return { trips: [], error: `Failed to load trips: ${error.message}` };
     }
 
@@ -36,10 +35,9 @@ async function getTrip(): Promise<{ trips: Trip[]; error: string | null }> {
 
     return { trips: validatedData, error: null };
   } catch (error: any) {
-    console.error("Error fetching trips:", error.message);
     return {
       trips: [],
-      error: `Unexpected error fetching trips: ${error.message}`,
+      error: "Failed to fetch trips. Please try again later.",
     };
   }
 }

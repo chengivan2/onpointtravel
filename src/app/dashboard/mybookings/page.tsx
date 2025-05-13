@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
 import { redirect } from "next/navigation";
 import BookingsTable from "./components/BookingsTable";
+import { toast } from "sonner";
 
 export const metadata: Metadata = {
   title: "My Bookings - OnPoint Dashboard",
@@ -28,9 +29,12 @@ export default async function MyBookingsPage() {
     .eq("user_id", user.id);
 
   if (error) {
-    console.error("Error fetching bookings:", error);
+    toast.error("Failed to load your bookings. Please try again.");
     return <p>Error loading bookings.</p>;
   }
+
+  // Only show user bookings, not admin/agent data
+  // (No changes needed here, as only the logged-in user's bookings are fetched)
 
   // Fetch trip details for each booking
   const tripIds = bookings.map((booking) => booking.trip_id);

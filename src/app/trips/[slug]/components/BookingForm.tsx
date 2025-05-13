@@ -13,6 +13,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { CheckCircle2, XCircle } from "lucide-react";
+import { toast } from "sonner";
 
 const vehicleTypes = [
   "land_cruiser",
@@ -82,11 +83,15 @@ export function BookingForm({
   // Fetch addons for the trip
   useEffect(() => {
     const fetchAddons = async () => {
-      const { data, error } = await supabase.from("addons").select("*");
-      if (error) {
-        console.error("Error fetching addons:", error);
-      } else {
-        setAddons(data || []);
+      try {
+        const { data, error } = await supabase.from("addons").select("*");
+        if (error) {
+          toast.error("Failed to fetch addons. Please try again later.");
+        } else {
+          setAddons(data || []);
+        }
+      } catch (error) {
+        toast.error("Unexpected error fetching addons.");
       }
     };
 
@@ -149,7 +154,10 @@ export function BookingForm({
         .select()
         .single();
 
-      if (bookingResponse.error) throw bookingResponse.error;
+      if (bookingResponse.error) {
+        toast.error("Failed to create booking. Please try again.");
+        throw bookingResponse.error;
+      }
 
       // Create initial payment record
       const paymentResponse = await supabase.from("payments").insert([
@@ -162,10 +170,12 @@ export function BookingForm({
         },
       ]);
 
-      if (paymentResponse.error) throw paymentResponse.error;
+      if (paymentResponse.error) {
+        toast.error("Failed to create payment record. Please try again.");
+        throw paymentResponse.error;
+      }
 
       // Handle addons with quantity
-      console.log("Form addons data:", data.addons); // Log the addons data
       const addonEntries = Object.entries(data.addons || {})
         .filter(([_, quantity]) => Number(quantity) > 0)
         .map(([type, quantity]) => ({
@@ -176,12 +186,10 @@ export function BookingForm({
           quantity: Number(quantity),
         }));
 
-      console.log("Addon entries to insert:", addonEntries); // Log the addon entries
-
       if (addonEntries.length > 0) {
         const addonResponse = await supabase.from("booking_addons").insert(addonEntries);
         if (addonResponse.error) {
-          console.error("Addon insertion error:", addonResponse.error);
+          toast.error("Failed to add booking addons. Please try again.");
           throw addonResponse.error;
         }
       }
@@ -189,7 +197,7 @@ export function BookingForm({
       setShowResult(true);
       reset();
     } catch (error) {
-      console.error("Booking error:", error);
+      toast.error("Booking failed. Please try again.");
       setShowResult(false);
     } finally {
       setProcessing(false);

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
-import { supabaseService } from "@/utils/supabase/srk";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -14,8 +13,8 @@ import {
 } from "@/components/ui/dialog";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FetchUsers } from "./FetchUsers";
 import Link from "next/link";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   userId: z.string().nonempty("Please select a user"),
@@ -86,7 +85,7 @@ export function AdminAgentBookingForm({ users }: { users: { id: string; email: s
     const fetchTrips = async () => {
       const { data, error } = await supabase.from("trips").select("id, name, price");
       if (error) {
-        console.error("Error fetching trips:", error.message);
+        toast.error("Failed to fetch trips. Please try again.");
       } else {
         setTrips(data || []);
       }
@@ -100,7 +99,7 @@ export function AdminAgentBookingForm({ users }: { users: { id: string; email: s
     const fetchAddons = async () => {
       const { data, error } = await supabase.from("addons").select("id, type, price");
       if (error) {
-        console.error("Error fetching addons:", error.message);
+        toast.error("Failed to fetch addons. Please try again.");
       } else {
         setAddons(data || []);
       }
@@ -191,7 +190,7 @@ export function AdminAgentBookingForm({ users }: { users: { id: string; email: s
       setShowResult(true);
       reset();
     } catch (error) {
-      console.error("Booking error:", error);
+      toast.error("Booking failed. Please try again.");
       setShowResult(false);
     } finally {
       setProcessing(false);
@@ -363,7 +362,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
       setBookings((prev) => [...prev, ...newBookings]); // Append new bookings to the existing list
       setPage((prev) => prev + 1); // Increment the page number
     } catch (err) {
-      console.error("Error loading more bookings:", err);
+      toast.error("Failed to load more bookings. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -389,7 +388,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
         )
       );
     } catch (err) {
-      console.error("Error updating booking status:", err);
+      toast.error("Failed to update booking status. Please try again.");
     }
   };
 
