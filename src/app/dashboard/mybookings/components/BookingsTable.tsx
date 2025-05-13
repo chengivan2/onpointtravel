@@ -85,7 +85,7 @@ function BookingRow({ booking }: { booking: Booking }) {
       setInvoice(invoiceData);
       // Download PDF
       const user = { name: booking.user.name, email: booking.user.email };
-      const doc = generateInvoicePDF(invoiceData, booking, user);
+      const doc = await generateInvoicePDF(invoiceData, booking, user);
       doc.save(`invoice-${invoiceData.invoice_number}.pdf`);
     } catch (err) {
       alert("Failed to generate invoice");

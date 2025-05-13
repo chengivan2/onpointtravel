@@ -1,64 +1,73 @@
 import jsPDF from "jspdf";
 
-export function generateInvoicePDF(invoice: any, booking: any, user: any) {
+// Helper to load logo as base64 (for browser)
+async function getLogoBase64(url: string): Promise<string | null> {
+  try {
+    const res = await fetch(url);
+    const blob = await res.blob();
+    return await new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    return null;
+  }
+}
+
+export async function generateInvoicePDF(invoice: any, booking: any, user: any) {
   const doc = new jsPDF();
 
   // Glassmorphism background
   doc.setFillColor(240, 255, 250, 0.7); // Mint/greenish, semi-transparent
-  doc.rect(5, 5, 200, 287, "F");
+  doc.roundedRect(8, 8, 194, 281, 12, 12, 'F');
 
-  // Logo (centered)
-  const logoUrl = "/logos/onpointhflightmodelogo.png";
-  // jsPDF supports base64 images, so we fetch and convert
-  // This must be async in a real app, but for now, just leave a placeholder
-  // doc.addImage(logoBase64, "PNG", 80, 10, 50, 18);
-  doc.setFontSize(18);
-  doc.setTextColor(34, 139, 34); // Green
-  doc.text("OnPoint Travel", 105, 30, { align: "center" });
+  // Logo
+  const logoUrl = '/logos/onpointhflightmodelogo.png';
+  const logoBase64 = await getLogoBase64(logoUrl);
+  if (logoBase64) {
+    doc.addImage(logoBase64, 'PNG', 14, 14, 36, 18, undefined, 'FAST');
+  }
 
+  // Header
+  doc.setFontSize(22);
+  doc.setTextColor(34, 197, 94); // Tailwind green-500
+  doc.text("INVOICE", 110, 28, { align: "left" });
+
+  // Invoice info
   doc.setFontSize(12);
-  doc.setTextColor(60, 80, 60);
-  doc.text(`Invoice Number: ${invoice.invoice_number}`, 14, 50);
-  doc.text(`Issued At: ${new Date(invoice.issued_at).toLocaleDateString()}`, 14, 58);
-  doc.text(`Due Date: ${invoice.due_date ? new Date(invoice.due_date).toLocaleDateString() : "-"}`, 14, 66);
-  doc.text(`Status: ${invoice.status}`, 14, 74);
+  doc.setTextColor(30, 41, 59); // Slate-800
+  doc.text(`Invoice #: ${invoice.invoice_number}`, 14, 45);
+  doc.text(`Issued: ${new Date(invoice.issued_at).toLocaleDateString()}`, 14, 53);
+  doc.text(`Due: ${invoice.due_date ? new Date(invoice.due_date).toLocaleDateString() : "-"}`, 14, 61);
+  doc.text(`Status: ${invoice.status}`, 14, 69);
 
-  // User/Client
-  doc.setFontSize(13);
-  doc.setTextColor(34, 139, 34);
-  doc.text("Billed To:", 14, 86);
-  doc.setFontSize(12);
-  doc.setTextColor(60, 80, 60);
-  doc.text(`${user?.name || user?.email || "-"}`, 14, 92);
-  doc.text(`${user?.email || ""}`, 14, 98);
+  // User info
+  doc.setTextColor(34, 197, 94); // green
+  doc.text("Billed To:", 14, 83);
+  doc.setTextColor(30, 41, 59);
+  doc.text(user?.name || user?.email || "-", 14, 89);
+  doc.text(user?.email || "", 14, 95);
 
-  // Trip details
-  doc.setFontSize(13);
-  doc.setTextColor(34, 139, 34);
-  doc.text("Trip Details:", 14, 112);
-  doc.setFontSize(12);
-  doc.setTextColor(60, 80, 60);
-  doc.text(`Trip: ${booking.trip?.name || "-"}`, 14, 118);
-  doc.text(`Dates: ${booking.start_date} to ${booking.end_date}`, 14, 124);
-  doc.text(`People: ${booking.number_of_people}`, 14, 130);
+  // Trip info
+  doc.setTextColor(34, 197, 94);
+  doc.text("Trip:", 14, 109);
+  doc.setTextColor(30, 41, 59);
+  doc.text(booking.trip?.name || "-", 14, 115);
+  doc.text(`Dates: ${booking.start_date} to ${booking.end_date}`, 14, 121);
+  doc.text(`People: ${booking.number_of_people}`, 14, 127);
 
   // Amount
-  doc.setFontSize(14);
-  doc.setTextColor(34, 139, 34);
-  doc.text(`Total: $${invoice.total_amount.toFixed(2)} ${invoice.currency}`, 14, 146);
+  doc.setFontSize(16);
+  doc.setTextColor(34, 197, 94);
+  doc.text(`Total: $${invoice.total_amount.toFixed(2)} ${invoice.currency}`, 14, 145);
 
-  // Glassy info box
-  doc.setDrawColor(34, 139, 34);
-  doc.setLineWidth(0.5);
-  doc.roundedRect(12, 140, 80, 18, 3, 3, 'D');
-
-  // Footer
+  // Glassy footer
+  doc.setFillColor(34, 197, 94, 0.12);
+  doc.roundedRect(14, 260, 182, 20, 8, 8, 'F');
   doc.setFontSize(11);
-  doc.setTextColor(60, 80, 60);
-  doc.text("Thank you for booking with OnPoint!", 14, 270);
-  doc.setFontSize(9);
-  doc.setTextColor(120, 160, 120);
-  doc.text("This is a computer generated invoice.", 14, 278);
+  doc.setTextColor(30, 41, 59);
+  doc.text("Thank you for booking with OnPoint!", 105, 273, { align: "center" });
 
   return doc;
 }
