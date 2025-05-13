@@ -1,7 +1,8 @@
 "use client";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { generateInvoicePDF } from "@/utils/pdf";
 
 interface Booking {
   id: string;
@@ -11,6 +12,11 @@ interface Booking {
   number_of_people: number;
   total_price: number;
   status: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+  };
   trip: {
     id: string;
     name: string;
@@ -51,6 +57,43 @@ export default function BookingsTable({ bookings }: { bookings: Booking[] }) {
 }
 
 function BookingRow({ booking }: { booking: Booking }) {
+  const [invoice, setInvoice] = useState<any | null>(null);
+  const [loadingInvoice, setLoadingInvoice] = useState(false);
+
+  const handleGenerateInvoice = async () => {
+    setLoadingInvoice(true);
+    try {
+      // Fetch or create invoice for this booking
+      const res = await fetch(`/api/invoices?booking_id=${booking.id}`);
+      let invoiceData = await res.json();
+      if (!invoiceData || invoiceData.error) {
+        // Try to create if not found
+        const createRes = await fetch("/api/invoices", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            booking_id: booking.id,
+            user_id: booking.user.id,
+            details: booking,
+            total_amount: booking.total_price,
+            currency: "USD",
+            due_date: null,
+          }),
+        });
+        invoiceData = await createRes.json();
+      }
+      setInvoice(invoiceData);
+      // Download PDF
+      const user = { name: booking.user.name, email: booking.user.email };
+      const doc = generateInvoicePDF(invoiceData, booking, user);
+      doc.save(`invoice-${invoiceData.invoice_number}.pdf`);
+    } catch (err) {
+      alert("Failed to generate invoice");
+    } finally {
+      setLoadingInvoice(false);
+    }
+  };
+
   return (
     <tr>
       <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
@@ -84,6 +127,13 @@ function BookingRow({ booking }: { booking: Booking }) {
               className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 mt-4"
             >
               Go Again
+            </button>
+            <button
+              onClick={handleGenerateInvoice}
+              className="bg-glassmorphism border border-green-400 text-green-900 dark:text-green-100 px-4 py-2 rounded-lg mt-4 shadow-lg hover:bg-green-100/40 dark:hover:bg-green-900/40 backdrop-blur-md"
+              disabled={loadingInvoice}
+            >
+              {loadingInvoice ? "Generating..." : "Download Invoice PDF"}
             </button>
           </DialogContent>
         </Dialog>

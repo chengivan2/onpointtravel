@@ -24,7 +24,7 @@ export default async function MyBookingsPage() {
   // Fetch the user's bookings
   const { data: bookings, error } = await supabase
     .from("bookings")
-    .select("id, trip_id, start_date, end_date, number_of_people, total_price, status")
+    .select("id, trip_id, start_date, end_date, number_of_people, total_price, status, user_id")
     .eq("user_id", user.id);
 
   if (error) {
@@ -39,9 +39,21 @@ export default async function MyBookingsPage() {
     .select("id, name, description, destination_id")
     .in("id", tripIds);
 
+  // Fetch user info for invoice PDF
+  const { data: userProfile } = await supabase
+    .from("users")
+    .select("id, first_name, last_name, email")
+    .eq("id", user.id)
+    .single();
+
   const bookingsWithTripDetails = bookings.map((booking) => ({
     ...booking,
     trip: trips?.find((trip) => trip.id === booking.trip_id) || null,
+    user: {
+      id: userProfile?.id,
+      name: `${userProfile?.first_name || ""} ${userProfile?.last_name || ""}`.trim() || userProfile?.email || "",
+      email: userProfile?.email || "",
+    },
   }));
 
   return (
