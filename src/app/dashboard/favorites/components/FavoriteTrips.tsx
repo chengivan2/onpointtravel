@@ -44,6 +44,7 @@ export default async function FavoriteTrips() {
     .in("id", favoriteTripIds);
 
   if (tripsError) {
+    console.error("Error loading favorite trips:", tripsError);
     return (
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-4">Your Favorite Trips</h1>
