@@ -50,30 +50,6 @@ export default async function FavoritesTripsPage() {
 
   const firstName = `${profile?.first_name || ""}`;
 
-  // Fetch the user's favorite trips
-  const { data: favoriteTrips, error: tripsError } = await supabase
-    .from("trips")
-    .select("id, name, main_featured_image_url")
-    .eq("is_favorite", true)
-    .eq("user_id", user.id);
-
-  if (tripsError) {
-    return (
-      <SidebarProvider>
-        <DashboardSidebar variant="inset" />
-        <SidebarInset>
-          <SiteHeader />
-          <div className="flex flex-1 flex-col items-center justify-center min-h-[40vh]">
-            <div className="bg-white/40 dark:bg-green-900/30 rounded-xl p-8 shadow-lg text-center">
-              <h2 className="text-2xl font-semibold mb-2 text-red-700 dark:text-red-300">Error</h2>
-              <p className="text-gray-700 dark:text-gray-200">Failed to load favorite trips. Please try again.</p>
-            </div>
-          </div>
-        </SidebarInset>
-      </SidebarProvider>
-    );
-  }
-
   //Check for user role
   const { data: userRole } = await supabase
     .from("users")
