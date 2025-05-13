@@ -48,7 +48,33 @@ export default async function AdminBookingsPage() {
     redirect("/dashboard");
   }
 
-  const initialBookings = await FetchBookings(0, 15); // Fetch the first page of bookings
+  const initialBookingsResult = await FetchBookings(0, 15); // Fetch the first page of bookings
+
+  if (initialBookingsResult.error) {
+    return (
+      <SidebarProvider
+        style={
+          {
+            "--sidebar-width": "calc(var(--spacing) * 72)",
+            "--header-height": "calc(var(--spacing) * 12)",
+          } as React.CSSProperties
+        }
+      >
+        <DashboardSidebar variant="inset" />
+        <SidebarInset>
+          <SiteHeader />
+          <div className="flex flex-1 flex-col items-center justify-center min-h-[40vh]">
+            <div className="bg-white/40 dark:bg-green-900/30 rounded-xl p-8 shadow-lg text-center">
+              <h2 className="text-2xl font-semibold mb-2 text-red-700 dark:text-red-300">Error</h2>
+              <p className="text-gray-700 dark:text-gray-200">{initialBookingsResult.error}</p>
+            </div>
+          </div>
+        </SidebarInset>
+      </SidebarProvider>
+    );
+  }
+
+  const initialBookings = initialBookingsResult.data;
 
   return (
     <SidebarProvider
