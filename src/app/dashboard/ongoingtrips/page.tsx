@@ -9,7 +9,6 @@ import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PlusIcon } from "lucide-react";
-import { toast } from "sonner";
 
 export const metadata: Metadata = {
   title: "Ongoing Trips",
@@ -24,7 +23,25 @@ export default async function AdminOngoingTripsPage() {
   } = await supabase.auth.getUser();
 
   if (userError) {
-    toast.error("Failed to fetch user. Please try again.");
+    return (
+      <SidebarProvider
+        style={{
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties}
+      >
+        <DashboardSidebar variant="inset" />
+        <SidebarInset>
+          <SiteHeader />
+          <div className="flex flex-1 flex-col items-center justify-center min-h-[40vh]">
+            <div className="bg-white/40 dark:bg-green-900/30 rounded-xl p-8 shadow-lg text-center">
+              <h2 className="text-2xl font-semibold mb-2 text-red-700 dark:text-red-300">Error</h2>
+              <p className="text-gray-700 dark:text-gray-200">Failed to fetch user. Please try again.</p>
+            </div>
+          </div>
+        </SidebarInset>
+      </SidebarProvider>
+    );
   }
 
   if (!user) {
@@ -53,7 +70,32 @@ export default async function AdminOngoingTripsPage() {
 
   const firstName = `${profile?.first_name || ""}`;
 
-  const ongoingTrip = await FetchOngoingTrips();
+  const ongoingTripResult = await FetchOngoingTrips();
+
+  // Handle error from FetchOngoingTrips
+  if (ongoingTripResult.error) {
+    return (
+      <SidebarProvider
+        style={{
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties}
+      >
+        <DashboardSidebar variant="inset" />
+        <SidebarInset>
+          <SiteHeader />
+          <div className="flex flex-1 flex-col items-center justify-center min-h-[40vh]">
+            <div className="bg-white/40 dark:bg-green-900/30 rounded-xl p-8 shadow-lg text-center">
+              <h2 className="text-2xl font-semibold mb-2 text-red-700 dark:text-red-300">Error</h2>
+              <p className="text-gray-700 dark:text-gray-200">{ongoingTripResult.error}</p>
+            </div>
+          </div>
+        </SidebarInset>
+      </SidebarProvider>
+    );
+  }
+
+  const ongoingTrip = ongoingTripResult.data;
 
   return (
     <SidebarProvider

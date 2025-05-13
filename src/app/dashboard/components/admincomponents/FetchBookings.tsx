@@ -1,5 +1,4 @@
 import { supabaseService } from "@/utils/supabase/srk";
-import { toast } from "sonner";
 
 interface Booking {
   id: string;
@@ -36,22 +35,24 @@ export async function FetchBookings(page: number, limit: number) {
     .returns<Booking[]>();
 
   if (error) {
-    toast.error("Failed to fetch bookings. Please try again.");
-    return [];
+    // Do not use toast in server components. Return a special error result for the UI to handle.
+    return { error: "Failed to fetch bookings. Please try again.", data: [] };
   }
 
-  return (
-    data?.map((booking) => ({
-      id: booking.id,
-      trip_name: booking.trips?.name || "N/A",
-      client:
-        booking.users?.first_name && booking.users?.last_name
-          ? `${booking.users.first_name} ${booking.users.last_name}`
-          : booking.users?.email || "N/A",
-      people: booking.number_of_people,
-      status: booking.status,
-      payment_status: booking.payment_status,
-      created_at: booking.booked_at,
-    })) || []
-  );
+  return {
+    data:
+      data?.map((booking) => ({
+        id: booking.id,
+        trip_name: booking.trips?.name || "N/A",
+        client:
+          booking.users?.first_name && booking.users?.last_name
+            ? `${booking.users.first_name} ${booking.users.last_name}`
+            : booking.users?.email || "N/A",
+        people: booking.number_of_people,
+        status: booking.status,
+        payment_status: booking.payment_status,
+        created_at: booking.booked_at,
+      })) || [],
+    error: null,
+  };
 }

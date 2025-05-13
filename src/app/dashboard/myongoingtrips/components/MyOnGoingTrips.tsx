@@ -1,6 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
 import { Progress } from "@/components/ui/progress";
-import { toast } from "sonner";
 
 interface Booking {
   id: string;
@@ -39,8 +38,7 @@ export default async function MyOngoingTrips() {
     .returns<Booking[]>();
 
   if (error) {
-    toast.error("Failed to load ongoing trips. Please try again.");
-    return <p>Failed to load ongoing trips.</p>;
+    return <p className="text-red-600 dark:text-red-300">Failed to load ongoing trips. Please try again.</p>;
   }
 
   return (

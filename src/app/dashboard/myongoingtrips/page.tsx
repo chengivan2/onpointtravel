@@ -15,10 +15,15 @@ export default async function MyOngoingTripsPage() {
   const supabase = await createClient();
   const {
     data: { user },
+    error: userError,
   } = await supabase.auth.getUser();
 
   if (!user) {
     redirect("/signin");
+  }
+
+  if (userError) {
+    return <p className="text-red-600 dark:text-red-300">Failed to fetch user. Please try again.</p>;
   }
 
   const { data: profile } = await supabase

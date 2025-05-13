@@ -1,23 +1,31 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { toast } from "sonner";
 
 export default async function FavoriteTrips() {
   const supabase = await createClient();
   const {
     data: { user },
+    error: userError,
   } = await supabase.auth.getUser();
+
+  if (userError) {
+    return <p className="text-red-600 dark:text-red-300">Failed to fetch user. Please try again.</p>;
+  }
 
   if (!user) {
     redirect("/signin");
   }
 
-  const { data: userProfile, error: userError } = await supabase
+  const { data: userProfile, error: userErrorProfile } = await supabase
     .from("users")
     .select("favorite_trips")
     .eq("id", user.id)
     .single();
+
+  if (userErrorProfile) {
+    return <p className="text-red-600 dark:text-red-300">Failed to load favorite trips. Please try again.</p>;
+  }
 
   const favoriteTripIds = userProfile?.favorite_trips || [];
 
@@ -36,8 +44,7 @@ export default async function FavoriteTrips() {
     .in("id", favoriteTripIds);
 
   if (tripsError) {
-    toast.error("Failed to load favorite trips. Please try again.");
-    return <p>Error loading favorite trips.</p>;
+    return <p className="text-red-600 dark:text-red-300">Error loading favorite trips.</p>;
   }
 
   return (
