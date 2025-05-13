@@ -10,7 +10,11 @@ export default async function FavoriteTrips() {
   } = await supabase.auth.getUser();
 
   if (userError) {
-    return <p className="text-red-600 dark:text-red-300">Failed to fetch user. Please try again.</p>;
+    return (
+      <p className="text-red-600 dark:text-red-300">
+        Failed to fetch user. Please try again.
+      </p>
+    );
   }
 
   if (!user) {
@@ -24,7 +28,11 @@ export default async function FavoriteTrips() {
     .single();
 
   if (userErrorProfile) {
-    return <p className="text-red-600 dark:text-red-300">Failed to load favorite trips. Please try again.</p>;
+    return (
+      <p className="text-red-600 dark:text-red-300">
+        Failed to load favorite trips. Please try again.
+      </p>
+    );
   }
 
   const favoriteTripIds = userProfile?.favorite_trips || [];
@@ -41,8 +49,7 @@ export default async function FavoriteTrips() {
   const { data: favoriteTrips, error: tripsError } = await supabase
     .from("trips")
     .select("id, name, main_featured_image_url, slug")
-    .eq("is_favorite", true)
-    .eq("user_id", user.id);
+    .in("id", favoriteTripIds);
 
   if (tripsError) {
     console.error("Error loading favorite trips:", tripsError);
@@ -50,7 +57,8 @@ export default async function FavoriteTrips() {
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-4">Your Favorite Trips</h1>
         <p className="text-red-600 dark:text-red-300">
-          Error loading favorite trips: {tripsError.message || JSON.stringify(tripsError)}
+          Error loading favorite trips:{" "}
+          {tripsError.message || JSON.stringify(tripsError)}
         </p>
       </div>
     );
