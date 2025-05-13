@@ -7,7 +7,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PlusIcon } from "lucide-react";
 import FavoriteTrips from "./components/FavoriteTrips";
-import { toast } from "sonner";
 
 export const metadata: Metadata = {
   title: "Your Favorite Trips",
@@ -22,7 +21,20 @@ export default async function FavoritesTripsPage() {
   } = await supabase.auth.getUser();
 
   if (userError) {
-    toast.error("Failed to fetch user. Please try again.");
+    return (
+      <SidebarProvider>
+        <DashboardSidebar variant="inset" />
+        <SidebarInset>
+          <SiteHeader />
+          <div className="flex flex-1 flex-col items-center justify-center min-h-[40vh]">
+            <div className="bg-white/40 dark:bg-green-900/30 rounded-xl p-8 shadow-lg text-center">
+              <h2 className="text-2xl font-semibold mb-2 text-red-700 dark:text-red-300">Error</h2>
+              <p className="text-gray-700 dark:text-gray-200">Failed to fetch user. Please try again.</p>
+            </div>
+          </div>
+        </SidebarInset>
+      </SidebarProvider>
+    );
   }
 
   if (!user) {
@@ -46,15 +58,28 @@ export default async function FavoritesTripsPage() {
     .eq("user_id", user.id);
 
   if (tripsError) {
-    toast.error("Failed to load favorite trips. Please try again.");
+    return (
+      <SidebarProvider>
+        <DashboardSidebar variant="inset" />
+        <SidebarInset>
+          <SiteHeader />
+          <div className="flex flex-1 flex-col items-center justify-center min-h-[40vh]">
+            <div className="bg-white/40 dark:bg-green-900/30 rounded-xl p-8 shadow-lg text-center">
+              <h2 className="text-2xl font-semibold mb-2 text-red-700 dark:text-red-300">Error</h2>
+              <p className="text-gray-700 dark:text-gray-200">Failed to load favorite trips. Please try again.</p>
+            </div>
+          </div>
+        </SidebarInset>
+      </SidebarProvider>
+    );
   }
 
   //Check for user role
   const { data: userRole } = await supabase
-  .from("users")
-  .select("role, first_name, last_name")
-  .eq("id", user.id)
-  .single();
+    .from("users")
+    .select("role, first_name, last_name")
+    .eq("id", user.id)
+    .single();
 
   const isAdmin = userRole?.role === "admin";
 
