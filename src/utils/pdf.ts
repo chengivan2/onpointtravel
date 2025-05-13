@@ -63,10 +63,10 @@ export async function generateInvoicePDF(invoice: any, booking: any, user: any) 
   doc.text(`Total: $${invoice.total_amount.toFixed(2)} ${invoice.currency}`, 14, 145);
 
   // Glassy footer
-  doc.setFillColor(34, 197, 94, 0.12);
+  doc.setFillColor(34, 197, 94, 30); // Use alpha 30/255 for visible glass effect
   doc.roundedRect(14, 260, 182, 20, 8, 8, 'F');
   doc.setFontSize(11);
-  doc.setTextColor(30, 41, 59);
+  doc.setTextColor(30, 41, 59, 255); // Ensure text is fully opaque
   doc.text("Thank you for booking with OnPoint!", 105, 273, { align: "center" });
 
   return doc;
