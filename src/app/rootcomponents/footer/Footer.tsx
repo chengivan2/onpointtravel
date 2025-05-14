@@ -5,8 +5,8 @@ import Footersocials from "./FooterSocials";
 
 export default function Footer() {
   return (
-    <footer className="min-w-full bg-lightmode-footer-bg-color pt-20 dark:bg-darkmode-footer-bg-color mt-12">
-      <div className="">
+    <footer className="min-w-full bg-gradient-to-b from-lightmode-footer-bg-color to-bg-transparent pt-20 dark:from-darkmode-footer-bg-color dark:to-darkmode-footer-bg-color mt-12">
+      <div className="relative min-h-[100%] min-w-[100%] bg-cover bg-[url(/images/footer.png)]">
         <div className="px-[2rem] grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
             <Link href="/" aria-label="go home" className="block size-fit">

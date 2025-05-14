@@ -78,18 +78,13 @@ export default async function OnPointDashboard() {
     // Most booked trips (doughnut)
     const tripCounts: Record<string, number> = {};
     bookingsWithTripDetails.forEach((b) => {
-      // Use trip?.name only if trip is not null/undefined and has a name
-      const name =
-        b.trip && typeof b.trip.name === "string" && b.trip.name.trim() !== ""
-          ? b.trip.name
-          : null;
-      if (name) {
-        tripCounts[name] = (tripCounts[name] ?? 0) + 1;
+      if (b.trip && typeof b.trip.name === "string" && b.trip.name.trim() !== "") {
+        tripCounts[b.trip.name] = (tripCounts[b.trip.name] ?? 0) + 1;
       }
     });
     userTopTrips = Object.entries(tripCounts).map(([trip, count]) => ({
       trip,
-      count,
+      count: Number(count),
     }));
     userTopTrips.sort((a, b) => b.count - a.count);
   }
