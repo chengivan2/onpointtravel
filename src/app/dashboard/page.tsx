@@ -11,6 +11,9 @@ import { FetchBookings } from "./components/admincomponents/FetchBookings";
 import TopTripsPieChart from "./components/admincomponents/TopTripsPieChart";
 import { PlusIcon } from "lucide-react";
 import AdminAgentBookingsView from "./components/admincomponents/AdminAgentBookingsView";
+import UserDashboardBookingsTable from "./components/usercomponents/UserDashboardBookingsTable";
+import UserBookingsAreaChart from "./components/usercomponents/UserBookingsAreaChart";
+import UserTopTripsDoughnut from "./components/usercomponents/UserTopTripsDoughnut";
 
 export const metadata: Metadata = {
   title: "OnPoint Dashboard",
@@ -42,6 +45,49 @@ export default async function OnPointDashboard() {
     latestBookings = latestBookingsResult.data;
   }
 
+  const bookingsWithTripDetails = latestBookings.map((booking) => ({
+    ...booking,
+    trip: booking.trip || null,
+  }));
+
+  // User: Prepare data for last 5 bookings, bookings per month, and most booked trips
+  type BookingsPerMonth = { month: string; count: number }[];
+  type TopTrip = { trip: string; count: number }[];
+  let userLast5Bookings: typeof bookingsWithTripDetails = [];
+  let userBookingsPerMonth: BookingsPerMonth = [];
+  let userTopTrips: TopTrip = [];
+  if (!isAdmin && bookingsWithTripDetails.length > 0) {
+    userLast5Bookings = bookingsWithTripDetails.slice(-5).reverse();
+    // Bookings per month (last 5 months)
+    const now = new Date();
+    const months = [] as { month: string; key: string }[];
+    for (let i = 4; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      months.push({
+        month: d.toLocaleString("default", { month: "short", year: "2-digit" }),
+        key: `${d.getFullYear()}-${d.getMonth()}`,
+      });
+    }
+    userBookingsPerMonth = months.map(({ month, key }) => ({
+      month,
+      count: bookingsWithTripDetails.filter((b) => {
+        const d = new Date(b.start_date);
+        return `${d.getFullYear()}-${d.getMonth()}` === key;
+      }).length,
+    }));
+    // Most booked trips (doughnut)
+    const tripCounts: Record<string, number> = {};
+    bookingsWithTripDetails.forEach((b) => {
+      const name = b.trip?.name || "Unknown";
+      tripCounts[name] = (tripCounts[name] ?? 0) + 1;
+    });
+    userTopTrips = Object.entries(tripCounts).map(([trip, count]) => ({
+      trip,
+      count,
+    }));
+    userTopTrips.sort((a, b) => (b.count as number) - (a.count as number));
+  }
+
   if (latestBookingsResult.error) {
     return (
       <SidebarProvider
@@ -57,8 +103,12 @@ export default async function OnPointDashboard() {
           <SiteHeader />
           <div className="flex flex-1 flex-col items-center justify-center min-h-[40vh]">
             <div className="bg-white/40 dark:bg-green-900/30 rounded-xl p-8 shadow-lg text-center">
-              <h2 className="text-2xl font-semibold mb-2 text-red-700 dark:text-red-300">Error</h2>
-              <p className="text-gray-700 dark:text-gray-200">{latestBookingsResult.error}</p>
+              <h2 className="text-2xl font-semibold mb-2 text-red-700 dark:text-red-300">
+                Error
+              </h2>
+              <p className="text-gray-700 dark:text-gray-200">
+                {latestBookingsResult.error}
+              </p>
             </div>
           </div>
         </SidebarInset>
@@ -103,8 +153,13 @@ export default async function OnPointDashboard() {
               {/* Admin: Show latest bookings table with a button to all bookings */}
               {isAdmin && (
                 <div className="mt-6">
-                  <h3 className="text-xl font-semibold mb-2">Recent Bookings</h3>
-                  <AdminAgentBookingsView initialBookings={latestBookings} showAll={false} />
+                  <h3 className="text-xl font-semibold mb-2">
+                    Recent Bookings
+                  </h3>
+                  <AdminAgentBookingsView
+                    initialBookings={latestBookings}
+                    showAll={false}
+                  />
                   <div className="flex justify-end mt-2">
                     <Link href="/dashboard/bookings">
                       <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow-md">
@@ -119,6 +174,16 @@ export default async function OnPointDashboard() {
                   <AdminDataSlotCards />
                   <AdminBookingsChart />
                   <TopTripsPieChart />
+                </>
+              )}
+              {/* User: Show last 5 bookings, area chart, and doughnut chart */}
+              {!isAdmin && (
+                <>
+                  <UserDashboardBookingsTable bookings={userLast5Bookings} />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <UserBookingsAreaChart data={userBookingsPerMonth} />
+                    <UserTopTripsDoughnut data={userTopTrips} />
+                  </div>
                 </>
               )}
             </div>
