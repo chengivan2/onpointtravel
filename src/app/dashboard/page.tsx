@@ -76,18 +76,22 @@ export default async function OnPointDashboard() {
       }).length,
     }));
     // Most booked trips (doughnut)
-    const tripCounts: Record<string, { count: number; name: string }> = {};
+    const tripCounts: Record<string, number> = {};
     bookingsWithTripDetails.forEach((b) => {
-      const tripName = b.trip && typeof b.trip === "object" && b.trip.name ? b.trip.name : null;
-      if (!tripName) return;
-      if (!tripCounts[tripName]) {
-        tripCounts[tripName] = { count: 0, name: tripName };
+      // Use trip?.name only if trip is not null/undefined and has a name
+      const name =
+        b.trip && typeof b.trip.name === "string" && b.trip.name.trim() !== ""
+          ? b.trip.name
+          : null;
+      if (name) {
+        tripCounts[name] = (tripCounts[name] ?? 0) + 1;
       }
-      tripCounts[tripName].count += 1;
     });
-    userTopTrips = Object.values(tripCounts)
-      .sort((a, b) => b.count - a.count)
-      .map(({ name, count }) => ({ trip: name, count }));
+    userTopTrips = Object.entries(tripCounts).map(([trip, count]) => ({
+      trip,
+      count,
+    }));
+    userTopTrips.sort((a, b) => b.count - a.count);
   }
 
   if (latestBookingsResult.error) {
