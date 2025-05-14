@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 
-export default function AdminAgentBookingsView({ initialBookings }: { initialBookings: any[] }) {
+export default function AdminAgentBookingsView({ initialBookings, showAll = true }: { initialBookings: any[]; showAll?: boolean }) {
   const [bookings, setBookings] = useState(initialBookings);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -69,8 +69,44 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
     }
   };
 
+  // Add state for search/filter
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+
+  // Filter bookings based on search and status
+  const filteredBookings = bookings.filter((b) => {
+    const matchesSearch =
+      b.trip_name.toLowerCase().includes(search.toLowerCase()) ||
+      b.client.toLowerCase().includes(search.toLowerCase());
+    const matchesStatus = statusFilter ? b.status === statusFilter : true;
+    return matchesSearch && matchesStatus;
+  });
+
   return (
     <div>
+      <div className="flex flex-col md:flex-row gap-4 mb-4">
+        <input
+          type="text"
+          placeholder="Search by trip or client..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="px-4 py-2 rounded-lg border border-green-200 bg-white/60 dark:bg-green-900/30 text-green-900 dark:text-green-100 shadow"
+        />
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="px-4 py-2 rounded-lg border border-green-200 bg-white/60 dark:bg-green-900/30 text-green-900 dark:text-green-100 shadow"
+        >
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="ongoing">Ongoing</option>
+          <option value="cancelled">Cancelled</option>
+          <option value="completed">Completed</option>
+          <option value="refunded">Refunded</option>
+          <option value="on_hold">On Hold</option>
+        </select>
+      </div>
       <div className="relative rounded-2xl shadow-xl bg-white/40 dark:bg-green-900/30 backdrop-blur-md border border-green-100/30 dark:border-green-900/30 overflow-x-auto">
         <svg className="absolute -top-10 -right-10 w-64 h-64 opacity-10 text-green-300" fill="none" viewBox="0 0 200 200">
           <circle cx="100" cy="100" r="100" fill="currentColor" />
@@ -90,7 +126,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking) => (
+            {filteredBookings.map((booking) => (
               <tr key={booking.id} className="hover:bg-green-50/30 dark:hover:bg-green-900/40 transition-colors">
                 <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100 font-semibold">{booking.trip_name}</td>
                 <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.client}</td>
@@ -158,19 +194,6 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
           </tbody>
         </table>
       </div>
-
-      {/* Load More Button */}
-      {hasMore && (
-        <div className="flex justify-center mt-6">
-          <button
-            onClick={loadMoreBookings}
-            disabled={loading}
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg disabled:opacity-50"
-          >
-            {loading ? "Loading..." : "Load More"}
-          </button>
-        </div>
-      )}
     </div>
   );
 }

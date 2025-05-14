@@ -36,14 +36,13 @@ export default async function OnPointDashboard() {
   const firstName = `${profile?.first_name || ""}`;
   const isAdmin = profile?.role === "admin";
 
-  const initialBookingsResult = await FetchBookings(0, 15); // Fetch the first page of bookings
-
-  let initialBookings: any[] = [];
-  if (initialBookingsResult && !initialBookingsResult.error) {
-    initialBookings = initialBookingsResult.data;
+  const latestBookingsResult = await FetchBookings(0, 10); // Fetch only the last 10 bookings for dashboard home
+  let latestBookings: any[] = [];
+  if (latestBookingsResult && !latestBookingsResult.error) {
+    latestBookings = latestBookingsResult.data;
   }
 
-  if (initialBookingsResult.error) {
+  if (latestBookingsResult.error) {
     return (
       <SidebarProvider
         style={
@@ -59,7 +58,7 @@ export default async function OnPointDashboard() {
           <div className="flex flex-1 flex-col items-center justify-center min-h-[40vh]">
             <div className="bg-white/40 dark:bg-green-900/30 rounded-xl p-8 shadow-lg text-center">
               <h2 className="text-2xl font-semibold mb-2 text-red-700 dark:text-red-300">Error</h2>
-              <p className="text-gray-700 dark:text-gray-200">{initialBookingsResult.error}</p>
+              <p className="text-gray-700 dark:text-gray-200">{latestBookingsResult.error}</p>
             </div>
           </div>
         </SidebarInset>
@@ -101,11 +100,24 @@ export default async function OnPointDashboard() {
                   </Link>
                 )}
               </div>
+              {/* Admin: Show latest bookings table with a button to all bookings */}
+              {isAdmin && (
+                <div className="mt-6">
+                  <h3 className="text-xl font-semibold mb-2">Recent Bookings</h3>
+                  <AdminAgentBookingsView initialBookings={latestBookings} showAll={false} />
+                  <div className="flex justify-end mt-2">
+                    <Link href="/dashboard/bookings">
+                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow-md">
+                        View All Bookings
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              )}
               {isAdmin && (
                 <>
                   <AdminDataSlotCards />
                   <AdminBookingsChart />
-                  <AdminAgentBookingsView initialBookings={initialBookings} />
                   <TopTripsPieChart />
                 </>
               )}
