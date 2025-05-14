@@ -65,7 +65,6 @@ export default function BookingsTable({ bookings }: { bookings: Booking[] }) {
 function BookingRow({ booking }: { booking: Booking }) {
   const [invoice, setInvoice] = useState<any | null>(null);
   const [loadingInvoice, setLoadingInvoice] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
 
   const handleGenerateInvoice = async () => {
     setLoadingInvoice(true);
@@ -99,8 +98,15 @@ function BookingRow({ booking }: { booking: Booking }) {
     }
   };
 
+  const handleRowClick = () => {
+    window.location.href = `/dashboard/mybookings/${booking.id}`;
+  };
+
   return (
-    <tr className="hover:bg-green-50/30 dark:hover:bg-green-900/40 transition-colors">
+    <tr
+      className="hover:bg-green-50/30 dark:hover:bg-green-900/40 transition-colors cursor-pointer"
+      onClick={handleRowClick}
+    >
       <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100 font-semibold">
         {booking.trip?.name || "Unknown Trip"}
       </td>
@@ -114,23 +120,6 @@ function BookingRow({ booking }: { booking: Booking }) {
         {booking.status}
       </td>
       <td className="px-6 py-4 text-sm flex flex-col gap-2 min-w-[180px]">
-        <button
-          onClick={() => setShowDetails((v) => !v)}
-          className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 shadow-md"
-        >
-          <FileText className="w-4 h-4" />
-          View Booking
-        </button>
-        {showDetails && (
-          <div className="mt-2 p-4 rounded-xl bg-white/80 dark:bg-green-900/60 border border-green-100/40 dark:border-green-900/40 shadow-lg text-green-900 dark:text-green-100">
-            <div className="mb-2 font-bold">Booking Details</div>
-            <div>Trip: {booking.trip?.name}</div>
-            <div>Dates: {booking.start_date} to {booking.end_date}</div>
-            <div>People: {booking.number_of_people}</div>
-            <div>Status: {booking.status}</div>
-            <div>Total: ${booking.total_price}</div>
-          </div>
-        )}
         <div className="flex gap-2 mt-2">
           <button
             onClick={() => toast.info("Rebooking coming soon!")}

@@ -74,7 +74,7 @@ export default function AdminAgentBookingsView({
   };
 
   return (
-    <div>
+    <>
       <div className="overflow-x-auto bg-white/30 dark:bg-green-900/30 rounded-lg shadow-lg">
         <table className="min-w-full">
           <thead>
@@ -91,7 +91,10 @@ export default function AdminAgentBookingsView({
             {bookings.map((booking) => (
               <tr
                 key={booking.id}
-                className="border-t border-gray-200 dark:border-gray-700"
+                className="border-t border-gray-200 dark:border-gray-700 hover:bg-green-50/30 dark:hover:bg-green-900/40 transition-colors cursor-pointer"
+                onClick={() =>
+                  (window.location.href = `/dashboard/bookings/${booking.id}`)
+                }
               >
                 <td className="px-4 py-2">{booking.trip_name}</td>
                 <td className="px-4 py-2">{booking.client}</td>
@@ -103,6 +106,7 @@ export default function AdminAgentBookingsView({
                       handleStatusChange(booking.id, e.target.value)
                     }
                     className="cursor-pointer *:cursor-pointer w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <option
                       value="pending"
@@ -155,6 +159,7 @@ export default function AdminAgentBookingsView({
                       handlePaymentStatusChange(booking.id, e.target.value)
                     }
                     className="cursor-pointer *:cursor-pointer w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <option
                       value="unpaid"
@@ -215,6 +220,6 @@ export default function AdminAgentBookingsView({
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 }
