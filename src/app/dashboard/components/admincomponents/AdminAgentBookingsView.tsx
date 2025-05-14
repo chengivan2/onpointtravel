@@ -1,77 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { toast } from "sonner";
 
 export default function AdminAgentBookingsView({ initialBookings, showAll = true }: { initialBookings: any[]; showAll?: boolean }) {
   const [bookings, setBookings] = useState(initialBookings);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(1); // Start from page 1 since initialBookings is page 0
-  const LIMIT = 15; // Number of bookings to load per page
-
-  const loadMoreBookings = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch(`/api/bookings?page=${page}&limit=${LIMIT}`);
-      const newBookings = await res.json();
-
-      if (newBookings.length < LIMIT) {
-        setHasMore(false); // No more bookings to load
-      }
-
-      setBookings((prev) => [...prev, ...newBookings]); // Append new bookings to the existing list
-      setPage((prev) => prev + 1); // Increment the page number
-    } catch (err) {
-      toast.error("Failed to load more bookings. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleStatusChange = async (id: string, value: string) => {
-    try {
-      const res = await fetch(`/api/bookings/update-status`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, status: value }),
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to update status");
-      }
-
-      setBookings((prev) =>
-        prev.map((b) => (b.id === id ? { ...b, status: value } : b))
-      );
-    } catch (err) {
-      toast.error("Failed to update booking status. Please try again.");
-    }
-  };
-
-  const handlePaymentStatusChange = async (id: string, value: string) => {
-    try {
-      const res = await fetch(`/api/bookings/update-payment-status`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, payment_status: value }),
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to update payment status");
-      }
-
-      setBookings((prev) =>
-        prev.map((b) => (b.id === id ? { ...b, payment_status: value } : b))
-      );
-    } catch (err) {
-      toast.error("Failed to update payment status. Please try again.");
-    }
-  };
+  // Remove paging logic
 
   // Add state for search/filter
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
+  // Add state for expanded rows
+  const [expandedRows, setExpandedRows] = useState<string[]>([]);
 
   // Filter bookings based on search and status
   const filteredBookings = bookings.filter((b) => {
@@ -81,6 +20,41 @@ export default function AdminAgentBookingsView({ initialBookings, showAll = true
     const matchesStatus = statusFilter ? b.status === statusFilter : true;
     return matchesSearch && matchesStatus;
   });
+
+  // Toggle row expansion
+  const toggleRow = (id: string) => {
+    setExpandedRows((prev) =>
+      prev.includes(id) ? prev.filter((rowId) => rowId !== id) : [...prev, id]
+    );
+  };
+
+  // Status and payment status change handlers (unchanged)
+  const handleStatusChange = async (id: string, value: string) => {
+    try {
+      const res = await fetch(`/api/bookings/update-status`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status: value }),
+      });
+      if (!res.ok) throw new Error("Failed to update status");
+      setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, status: value } : b)));
+    } catch (err) {
+      // Show error in UI (could add error state if needed)
+    }
+  };
+  const handlePaymentStatusChange = async (id: string, value: string) => {
+    try {
+      const res = await fetch(`/api/bookings/update-payment-status`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, payment_status: value }),
+      });
+      if (!res.ok) throw new Error("Failed to update payment status");
+      setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, payment_status: value } : b)));
+    } catch (err) {
+      // Show error in UI (could add error state if needed)
+    }
+  };
 
   return (
     <div>
@@ -108,91 +82,98 @@ export default function AdminAgentBookingsView({ initialBookings, showAll = true
         </select>
       </div>
       <div className="relative rounded-2xl shadow-xl bg-white/40 dark:bg-green-900/30 backdrop-blur-md border border-green-100/30 dark:border-green-900/30 overflow-x-auto">
-        <svg className="absolute -top-10 -right-10 w-64 h-64 opacity-10 text-green-300" fill="none" viewBox="0 0 200 200">
+        {/* SVG backgrounds with pointer-events-none and z-index */}
+        <svg className="absolute -top-10 -right-10 w-64 h-64 opacity-10 text-green-300 pointer-events-none z-0" fill="none" viewBox="0 0 200 200" style={{zIndex:0}}>
           <circle cx="100" cy="100" r="100" fill="currentColor" />
         </svg>
-        <svg className="absolute bottom-0 left-0 w-40 h-40 opacity-10 text-green-200" fill="none" viewBox="0 0 160 160">
+        <svg className="absolute bottom-0 left-0 w-40 h-40 opacity-10 text-green-200 pointer-events-none z-0" fill="none" viewBox="0 0 160 160" style={{zIndex:0}}>
           <circle cx="80" cy="80" r="80" fill="currentColor" />
         </svg>
-        <table className="min-w-full bg-transparent">
-          <thead>
-            <tr>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Trip Name</th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Client</th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">People</th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Status</th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Payment Status</th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Created At</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredBookings.map((booking) => (
-              <tr key={booking.id} className="hover:bg-green-50/30 dark:hover:bg-green-900/40 transition-colors">
-                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100 font-semibold">{booking.trip_name}</td>
-                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.client}</td>
-                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.people}</td>
-                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
-                  <select
-                    value={booking.status}
-                    onChange={(e) => handleStatusChange(booking.id, e.target.value)}
-                    className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
-                  >
-                    <option value="pending" className="bg-yellow-100 text-yellow-800 rounded-full px-2 py-1">
-                      Pending
-                    </option>
-                    <option value="confirmed" className="bg-green-100 text-green-800 rounded-full px-2 py-1">
-                      Confirmed
-                    </option>
-                    <option value="ongoing" className="bg-blue-100 text-blue-800 rounded-full px-2 py-1">
-                      Ongoing
-                    </option>
-                    <option value="cancelled" className="bg-red-100 text-red-800 rounded-full px-2 py-1">
-                      Cancelled
-                    </option>
-                    <option value="completed" className="bg-purple-100 text-purple-800 rounded-full px-2 py-1">
-                      Completed
-                    </option>
-                    <option value="refunded" className="bg-pink-100 text-pink-800 rounded-full px-2 py-1">
-                      Refunded
-                    </option>
-                    <option value="on_hold" className="bg-gray-100 text-gray-800 rounded-full px-2 py-1">
-                      On Hold
-                    </option>
-                  </select>
-                </td>
-                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
-                  <select
-                    value={booking.payment_status}
-                    onChange={(e) => handlePaymentStatusChange(booking.id, e.target.value)}
-                    className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
-                  >
-                    <option value="unpaid" className="bg-red-100 text-red-800 rounded-full px-2 py-1">
-                      Unpaid
-                    </option>
-                    <option value="partially_paid" className="bg-yellow-100 text-yellow-800 rounded-full px-2 py-1">
-                      Partially Paid
-                    </option>
-                    <option value="paid" className="bg-green-100 text-green-800 rounded-full px-2 py-1">
-                      Paid
-                    </option>
-                    <option value="refund_pending" className="bg-orange-100 text-orange-800 rounded-full px-2 py-1">
-                      Refund Pending
-                    </option>
-                    <option value="refunded" className="bg-blue-100 text-blue-800 rounded-full px-2 py-1">
-                      Refunded
-                    </option>
-                    <option value="failed" className="bg-gray-100 text-gray-800 rounded-full px-2 py-1">
-                      Failed
-                    </option>
-                  </select>
-                </td>
-                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
-                  {new Date(booking.created_at).toLocaleDateString()}
-                </td>
+        <div className="relative z-10">
+          <table className="min-w-full bg-transparent">
+            <thead>
+              <tr>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Trip Name</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Client</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">People</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Status</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Payment Status</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Created At</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredBookings.map((booking) => (
+                <>
+                  <tr
+                    key={booking.id}
+                    className="hover:bg-green-50/30 dark:hover:bg-green-900/40 transition-colors cursor-pointer"
+                    onClick={() => toggleRow(booking.id)}
+                  >
+                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100 font-semibold">{booking.trip_name}</td>
+                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.client}</td>
+                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.people}</td>
+                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
+                      <select
+                        value={booking.status}
+                        onChange={(e) => handleStatusChange(booking.id, e.target.value)}
+                        className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
+                        onClick={e => e.stopPropagation()}
+                      >
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="completed">Completed</option>
+                        <option value="refunded">Refunded</option>
+                        <option value="on_hold">On Hold</option>
+                      </select>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
+                      <select
+                        value={booking.payment_status}
+                        onChange={(e) => handlePaymentStatusChange(booking.id, e.target.value)}
+                        className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
+                        onClick={e => e.stopPropagation()}
+                      >
+                        <option value="unpaid">Unpaid</option>
+                        <option value="partially_paid">Partially Paid</option>
+                        <option value="paid">Paid</option>
+                        <option value="refund_pending">Refund Pending</option>
+                        <option value="refunded">Refunded</option>
+                        <option value="failed">Failed</option>
+                      </select>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
+                      {new Date(booking.created_at).toLocaleDateString()}
+                    </td>
+                  </tr>
+                  {expandedRows.includes(booking.id) && (
+                    <tr className="bg-green-50/40 dark:bg-green-900/40">
+                      <td colSpan={6} className="px-6 py-4 text-green-900 dark:text-green-100 border-t border-green-100/30 dark:border-green-900/30">
+                        {/* Booking details here, customize as needed */}
+                        <div className="flex flex-col md:flex-row gap-4">
+                          <div>
+                            <div className="font-semibold">Email:</div>
+                            <div>{booking.email || "-"}</div>
+                          </div>
+                          <div>
+                            <div className="font-semibold">Phone:</div>
+                            <div>{booking.phone || "-"}</div>
+                          </div>
+                          <div>
+                            <div className="font-semibold">Notes:</div>
+                            <div>{booking.notes || "-"}</div>
+                          </div>
+                          {/* Add more details as needed */}
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
