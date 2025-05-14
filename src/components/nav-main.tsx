@@ -32,25 +32,17 @@ export function NavMain({
             >
               <SidebarMenuButton
                 title="Create a Booking"
-                className="border border-gray-200/80 dark:border-green-900/80 bg-white/30 backdrop-blur-md text-green-600 hover:bg-white/40 hover:text-green-700 active:bg-white/50 active:text-green-800 dark:bg-green-900/20 dark:hover:bg-green-800/20 dark:active:bg-green-700/20 duration-200 ease-linear min-w-8 shadow-lg"
+                className="border border-gray-200/80 dark:border-green-900/80 bg-white/30 backdrop-blur-md text-white/800 hover:bg-white/40 active:bg-white/50 dark:bg-green-900/20 dark:hover:bg-green-800/20 duration-200 ease-linear min-w-8 shadow-lg"
               >
-                <IconCirclePlusFilled className="text-green-600 dark:text-green-400" />
+                <IconCirclePlusFilled className="text-white/800" />
                 <span>Create a Booking</span>
               </SidebarMenuButton>
             </Link>
-            <Button
-              size="icon"
-              className="cursor-pointer size-8 group-data-[collapsible=icon]:opacity-0"
-              variant="outline"
-            >
-              <IconMail />
-              <span className="sr-only">Inbox</span>
-            </Button>
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarMenu>
           {items.map((item) => (
-            <Link href={item.url}>
+            <Link className="text-white/800" href={item.url}>
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
                   className="cursor-pointer"
