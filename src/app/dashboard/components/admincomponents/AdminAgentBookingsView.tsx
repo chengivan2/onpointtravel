@@ -71,122 +71,86 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
 
   return (
     <div>
-
-      <div className="overflow-x-auto bg-white/30 dark:bg-green-900/30 rounded-lg shadow-lg">
-        <table className="min-w-full">
+      <div className="relative rounded-2xl shadow-xl bg-white/40 dark:bg-green-900/30 backdrop-blur-md border border-green-100/30 dark:border-green-900/30 overflow-x-auto">
+        <svg className="absolute -top-10 -right-10 w-64 h-64 opacity-10 text-green-300" fill="none" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="100" fill="currentColor" />
+        </svg>
+        <svg className="absolute bottom-0 left-0 w-40 h-40 opacity-10 text-green-200" fill="none" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="80" fill="currentColor" />
+        </svg>
+        <table className="min-w-full bg-transparent">
           <thead>
             <tr>
-              <th className="px-4 py-2 text-left">Trip Name</th>
-              <th className="px-4 py-2 text-left">Client</th>
-              <th className="px-4 py-2 text-left">People</th>
-              <th className="px-4 py-2 text-left">Status</th>
-              <th className="px-4 py-2 text-left">Payment Status</th>
-              <th className="px-4 py-2 text-left">Created At</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Trip Name</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Client</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">People</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Status</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Payment Status</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Created At</th>
             </tr>
           </thead>
           <tbody>
             {bookings.map((booking) => (
-              <tr key={booking.id} className="border-t border-gray-200 dark:border-gray-700">
-                <td className="px-4 py-2">{booking.trip_name}</td>
-                <td className="px-4 py-2">{booking.client}</td>
-                <td className="px-4 py-2">{booking.people}</td>
-                <td className="px-4 py-2">
+              <tr key={booking.id} className="hover:bg-green-50/30 dark:hover:bg-green-900/40 transition-colors">
+                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100 font-semibold">{booking.trip_name}</td>
+                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.client}</td>
+                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.people}</td>
+                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
                   <select
                     value={booking.status}
                     onChange={(e) => handleStatusChange(booking.id, e.target.value)}
                     className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
                   >
-                    <option
-                      value="pending"
-                      className="bg-yellow-100 text-yellow-800 rounded-full px-2 py-1"
-                    >
+                    <option value="pending" className="bg-yellow-100 text-yellow-800 rounded-full px-2 py-1">
                       Pending
                     </option>
-                    <option
-                      value="confirmed"
-                      className="bg-green-100 text-green-800 rounded-full px-2 py-1"
-                    >
+                    <option value="confirmed" className="bg-green-100 text-green-800 rounded-full px-2 py-1">
                       Confirmed
                     </option>
-                    <option
-                      value="ongoing"
-                      className="bg-blue-100 text-blue-800 rounded-full px-2 py-1"
-                    >
+                    <option value="ongoing" className="bg-blue-100 text-blue-800 rounded-full px-2 py-1">
                       Ongoing
                     </option>
-                    <option
-                      value="cancelled"
-                      className="bg-red-100 text-red-800 rounded-full px-2 py-1"
-                    >
+                    <option value="cancelled" className="bg-red-100 text-red-800 rounded-full px-2 py-1">
                       Cancelled
                     </option>
-                    <option
-                      value="completed"
-                      className="bg-purple-100 text-purple-800 rounded-full px-2 py-1"
-                    >
+                    <option value="completed" className="bg-purple-100 text-purple-800 rounded-full px-2 py-1">
                       Completed
                     </option>
-                    <option
-                      value="refunded"
-                      className="bg-pink-100 text-pink-800 rounded-full px-2 py-1"
-                    >
+                    <option value="refunded" className="bg-pink-100 text-pink-800 rounded-full px-2 py-1">
                       Refunded
                     </option>
-                    <option
-                      value="on_hold"
-                      className="bg-gray-100 text-gray-800 rounded-full px-2 py-1"
-                    >
+                    <option value="on_hold" className="bg-gray-100 text-gray-800 rounded-full px-2 py-1">
                       On Hold
                     </option>
                   </select>
                 </td>
-                <td className="px-4 py-2">
+                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
                   <select
                     value={booking.payment_status}
-                    onChange={(e) =>
-                      handlePaymentStatusChange(booking.id, e.target.value)
-                    }
+                    onChange={(e) => handlePaymentStatusChange(booking.id, e.target.value)}
                     className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
                   >
-                    <option
-                      value="unpaid"
-                      className="bg-red-100 text-red-800 rounded-full px-2 py-1"
-                    >
+                    <option value="unpaid" className="bg-red-100 text-red-800 rounded-full px-2 py-1">
                       Unpaid
                     </option>
-                    <option
-                      value="partially_paid"
-                      className="bg-yellow-100 text-yellow-800 rounded-full px-2 py-1"
-                    >
+                    <option value="partially_paid" className="bg-yellow-100 text-yellow-800 rounded-full px-2 py-1">
                       Partially Paid
                     </option>
-                    <option
-                      value="paid"
-                      className="bg-green-100 text-green-800 rounded-full px-2 py-1"
-                    >
+                    <option value="paid" className="bg-green-100 text-green-800 rounded-full px-2 py-1">
                       Paid
                     </option>
-                    <option
-                      value="refund_pending"
-                      className="bg-orange-100 text-orange-800 rounded-full px-2 py-1"
-                    >
+                    <option value="refund_pending" className="bg-orange-100 text-orange-800 rounded-full px-2 py-1">
                       Refund Pending
                     </option>
-                    <option
-                      value="refunded"
-                      className="bg-blue-100 text-blue-800 rounded-full px-2 py-1"
-                    >
+                    <option value="refunded" className="bg-blue-100 text-blue-800 rounded-full px-2 py-1">
                       Refunded
                     </option>
-                    <option
-                      value="failed"
-                      className="bg-gray-100 text-gray-800 rounded-full px-2 py-1"
-                    >
+                    <option value="failed" className="bg-gray-100 text-gray-800 rounded-full px-2 py-1">
                       Failed
                     </option>
                   </select>
                 </td>
-                <td className="px-4 py-2">
+                <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
                   {new Date(booking.created_at).toLocaleDateString()}
                 </td>
               </tr>
