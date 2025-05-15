@@ -50,6 +50,41 @@ export default function SignInMain() {
         {/* Glass overlay and text/icons for left image (desktop only) */}
         <div className="hidden lg:flex relative min-h-full bg-center bg-cover bg-[url(/images/signin.jpg)] flex-1/2">
           <div className="absolute inset-0 bg-darkmode-bg-color opacity-10 dark:opacity-20"></div>
+          {/* Glass overlays with benefits/info */}
+          <div className="absolute top-10 left-10 flex flex-col gap-6 z-20">
+            <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3 min-w-[220px]">
+              <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#bbf7d0" />
+                <path
+                  d="M8 12l2 2 4-4"
+                  stroke="#16a34a"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <div>
+                <div className="font-semibold text-green-800 dark:text-green-100">Game Drives Available</div>
+                <div className="text-green-700 dark:text-green-300 text-sm">Experience the wild up close</div>
+              </div>
+            </div>
+            <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3 min-w-[220px]">
+              <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#bbf7d0" />
+                <path
+                  d="M12 8v4l3 3"
+                  stroke="#16a34a"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <div>
+                <div className="font-semibold text-green-800 dark:text-green-100">Flexible Payment</div>
+                <div className="text-green-700 dark:text-green-300 text-sm">Pay in installments</div>
+              </div>
+            </div>
+          </div>
           {/* Glass and content overlay */}
           <div className="absolute inset-0 flex flex-col justify-center items-center z-10">
             <div className="backdrop-blur-lg bg-white/30 dark:bg-green-900/30 border border-green-100/30 dark:border-green-900/30 rounded-2xl shadow-2xl px-8 py-10 flex flex-col items-center gap-4 max-w-xs">
