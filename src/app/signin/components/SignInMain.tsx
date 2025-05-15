@@ -53,9 +53,33 @@ export default function SignInMain() {
           {/* Glass and content overlay */}
           <div className="absolute inset-0 flex flex-col justify-center items-center z-10">
             <div className="backdrop-blur-lg bg-white/30 dark:bg-green-900/30 border border-green-100/30 dark:border-green-900/30 rounded-2xl shadow-2xl px-8 py-10 flex flex-col items-center gap-4 max-w-xs">
-              <svg className="w-12 h-12 text-green-500 mb-2" fill="none" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" stroke="currentColor" strokeWidth="4" fill="#bbf7d0" /><path d="M16 24l6 6 10-10" stroke="#16a34a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 text-center">Welcome Back!</h2>
-              <p className="text-green-700 dark:text-green-300 text-center">Sign in to access your dashboard, manage trips, and more.</p>
+              <svg
+                className="w-12 h-12 text-green-500 mb-2"
+                fill="none"
+                viewBox="0 0 48 48"
+              >
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="22"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  fill="#bbf7d0"
+                />
+                <path
+                  d="M16 24l6 6 10-10"
+                  stroke="#16a34a"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 text-center">
+                Welcome Back!
+              </h2>
+              <p className="text-green-700 dark:text-green-300 text-center">
+                Sign in to access your dashboard, manage trips, and more.
+              </p>
             </div>
           </div>
         </div>
@@ -133,7 +157,9 @@ export default function SignInMain() {
                     />
                     <button
                       type="button"
-                      aria-label={showPassword ? "Hide password" : "Show password"}
+                      aria-label={
+                        showPassword ? "Hide password" : "Show password"
+                      }
                       className="absolute right-2 top-1/2 -translate-y-1/2 text-green-700 dark:text-green-300"
                       tabIndex={0}
                       onClick={() => setShowPassword((v) => !v)}
@@ -161,8 +187,8 @@ export default function SignInMain() {
               </div>
             </div>
 
-            <div className="bg-muted rounded-(--radius) p-3">
-              <p className="text-accent-foreground text-center text-sm">
+            <div className="border-t p-3">
+              <p className="text-center text-sm">
                 Don't have an account?
                 <Button asChild variant="link" className="px-2">
                   <Link href="/signup">Create account</Link>
@@ -175,9 +201,33 @@ export default function SignInMain() {
         {/* On mobile, show glass overlay and text/icons below everything else */}
         <div className="lg:hidden w-full flex flex-col items-center mt-8 mb-4 px-4">
           <div className="backdrop-blur-lg bg-white/30 dark:bg-green-900/30 border border-green-100/30 dark:border-green-900/30 rounded-2xl shadow-2xl px-6 py-8 flex flex-col items-center gap-3 max-w-xs">
-            <svg className="w-10 h-10 text-green-500 mb-1" fill="none" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" stroke="currentColor" strokeWidth="4" fill="#bbf7d0" /><path d="M16 24l6 6 10-10" stroke="#16a34a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            <h2 className="text-xl font-bold text-green-800 dark:text-green-100 text-center">Welcome Back!</h2>
-            <p className="text-green-700 dark:text-green-300 text-center text-sm">Sign in to access your dashboard, manage trips, and more.</p>
+            <svg
+              className="w-10 h-10 text-green-500 mb-1"
+              fill="none"
+              viewBox="0 0 48 48"
+            >
+              <circle
+                cx="24"
+                cy="24"
+                r="22"
+                stroke="currentColor"
+                strokeWidth="4"
+                fill="#bbf7d0"
+              />
+              <path
+                d="M16 24l6 6 10-10"
+                stroke="#16a34a"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <h2 className="text-xl font-bold text-green-800 dark:text-green-100 text-center">
+              Welcome Back!
+            </h2>
+            <p className="text-green-700 dark:text-green-300 text-center text-sm">
+              Sign in to access your dashboard, manage trips, and more.
+            </p>
           </div>
         </div>
       </section>
