@@ -223,7 +223,7 @@ export default function SignUpMain() {
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full cursor-pointer bg-lightmode-btn-bg-color dark:bg-darkmode-bg-color hover:bg-lightmode-btn-bg-hover-color hover:dark:bg-darkmode-btn-bg-hover-color"
+                  className="w-full cursor-pointer bg-lightmode-btn-bg-color dark:bg-darkmode-btn-bg-color hover:bg-lightmode-btn-bg-hover-color hover:dark:bg-darkmode-btn-bg-hover-color"
                 >
                   <span className="text-lightmode-btn-text-color dark:text-darkmode-btn-text-color">
                     {loading ? "Signing you up..." : "Continue"}
@@ -245,35 +245,7 @@ export default function SignUpMain() {
 
         {/* On mobile, show glass overlays below everything else */}
         <div className="lg:hidden w-full flex flex-col items-center mt-8 mb-4 px-4 gap-4">
-          <div className="backdrop-blur-lg bg-white/30 dark:bg-green-900/30 border border-green-100/30 dark:border-green-900/30 rounded-2xl shadow-2xl px-6 py-8 flex flex-col items-center gap-3 max-w-xs">
-            <svg
-              className="w-10 h-10 text-green-500 mb-1"
-              fill="none"
-              viewBox="0 0 48 48"
-            >
-              <circle
-                cx="24"
-                cy="24"
-                r="22"
-                stroke="currentColor"
-                strokeWidth="4"
-                fill="#bbf7d0"
-              />
-              <path
-                d="M16 24l6 6 10-10"
-                stroke="#16a34a"
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <h2 className="text-xl font-bold text-green-800 dark:text-green-100 text-center">
-              Create Your Account
-            </h2>
-            <p className="text-green-700 dark:text-green-300 text-center text-sm">
-              Sign up to start your journey with OnPoint Travel.
-            </p>
-          </div>
+            
           <div className="flex flex-col gap-4 w-full max-w-xs">
             <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3">
               <svg

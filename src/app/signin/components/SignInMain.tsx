@@ -9,6 +9,7 @@ import { Eye, EyeOff } from "lucide-react";
 import HeaderLogo from "@/app/rootcomponents/header/Logo";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
+import { FaCar } from "react-icons/fa6";
 
 export default function SignInMain() {
   const supabase = createClient();
@@ -53,20 +54,8 @@ export default function SignInMain() {
           {/* Glass overlays with benefits/info */}
           <div className="absolute top-10 left-10 flex flex-col gap-6 z-20">
             <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3 min-w-[220px]">
-              <svg
-                className="w-8 h-8 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle cx="12" cy="12" r="10" fill="#bbf7d0" />
-                <path
-                  d="M8 12l2 2 4-4"
-                  stroke="#16a34a"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              
+              <FaCar size={24} className="text-green-500" />
               <div>
                 <div className="font-semibold text-green-800 dark:text-green-100">
                   Game Drives Available
