@@ -54,8 +54,30 @@ export default function SignUpMain() {
   return (
     <main>
       <section className="flex flex-col lg:flex-row min-h-screen mt-16">
+        {/* Glass overlay and text/icons for left image (desktop only) */}
         <div className="hidden lg:flex relative min-h-full bg-center bg-cover bg-[url(/images/signup.jpg)] flex-1/2">
           <div className="absolute inset-0 bg-darkmode-bg-color opacity-10 dark:opacity-20"></div>
+          {/* Glass and content overlay */}
+          <div className="absolute inset-0 flex flex-col justify-center items-center z-10">
+            <div className="backdrop-blur-lg bg-white/30 dark:bg-green-900/30 border border-green-100/30 dark:border-green-900/30 rounded-2xl shadow-2xl px-8 py-10 flex flex-col items-center gap-4 max-w-xs">
+              <svg className="w-12 h-12 text-green-500 mb-2" fill="none" viewBox="0 0 48 48">
+                <circle cx="24" cy="24" r="22" stroke="currentColor" strokeWidth="4" fill="#bbf7d0" />
+                <path
+                  d="M16 24l6 6 10-10"
+                  stroke="#16a34a"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 text-center">
+                Create Your Account
+              </h2>
+              <p className="text-green-700 dark:text-green-300 text-center">
+                Sign up to start your journey with OnPoint Travel.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="bg-center bg-cover bg-[url(/images/signin.jpg)] md:bg-none relative min-h-full flex flex-row justify-center items-center flex-1/2">
@@ -185,6 +207,28 @@ export default function SignUpMain() {
               </p>
             </div>
           </form>
+        </div>
+
+        {/* On mobile, show glass overlay and text/icons below everything else */}
+        <div className="lg:hidden w-full flex flex-col items-center mt-8 mb-4 px-4">
+          <div className="backdrop-blur-lg bg-white/30 dark:bg-green-900/30 border border-green-100/30 dark:border-green-900/30 rounded-2xl shadow-2xl px-6 py-8 flex flex-col items-center gap-3 max-w-xs">
+            <svg className="w-10 h-10 text-green-500 mb-1" fill="none" viewBox="0 0 48 48">
+              <circle cx="24" cy="24" r="22" stroke="currentColor" strokeWidth="4" fill="#bbf7d0" />
+              <path
+                d="M16 24l6 6 10-10"
+                stroke="#16a34a"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <h2 className="text-xl font-bold text-green-800 dark:text-green-100 text-center">
+              Create Your Account
+            </h2>
+            <p className="text-green-700 dark:text-green-300 text-center text-sm">
+              Sign up to start your journey with OnPoint Travel.
+            </p>
+          </div>
         </div>
       </section>
     </main>
