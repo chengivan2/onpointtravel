@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function FooterSocials() {
   return (
-    <div className="order-first z-[999] flex flex-wrap justify-center gap-6 text-sm md:order-last">
+    <div className="*:text-white/80 *:hover:text-green-300 order-first z-[999] flex flex-wrap justify-center gap-6 text-sm md:order-last">
       <Link
         href="#"
         target="_blank"

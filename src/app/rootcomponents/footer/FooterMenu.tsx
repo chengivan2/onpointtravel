@@ -81,7 +81,7 @@ export default function FooterMenu() {
             <Link
               key={index}
               href={item.href}
-              className="font-light block duration-150"
+              className="font-light block duration-150 text-white/80 hover:text-green-300"
             >
               <span>{item.title}</span>
             </Link>
