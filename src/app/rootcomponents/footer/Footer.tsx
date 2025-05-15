@@ -7,17 +7,7 @@ export default function Footer() {
   return (
     <footer className="min-w-full h-[60vh] bg-lightmode-footer-bg-color p-16 dark:bg-darkmode-footer-bg-color mt-12">
       <div className="relative rounded-lg bg-[url(/images/footer.png)] bg-cover bg-no-repeat bg-bottom h-full w-full px-4 py-3">
-        <div className="absolute inset-0 pointer-events-none rounded-lg">
-          <div
-            className="w-full h-full rounded-lg"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 70%)",
-
-              mixBlendMode: "multiply",
-            }}
-          />
-        </div>
+        <div className="absolute inset-0 bg-[#FAFAFA] dark:bg-[#181818] opacity-30 dark:opacity-40 rounded-lg"></div>
         <div className="px-[2rem] grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
             <Link href="/" aria-label="go home" className="block size-fit">

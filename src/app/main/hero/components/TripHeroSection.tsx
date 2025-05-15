@@ -14,8 +14,7 @@ interface TripHeroSectionProps {
 export default function TripHeroSection({
   initialTrips,
 }: TripHeroSectionProps) {
-  // State to keep track of the currently selected trip
-  // Initialize with the first trip from the props
+
   const [selectedTrip, setSelectedTrip] = useState<Trip>(initialTrips[0]);
 
   const handleThumbnailClick = (trip: Trip) => {
