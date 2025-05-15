@@ -6,7 +6,7 @@ import Footersocials from "./FooterSocials";
 export default function Footer() {
   return (
     <footer className="min-w-full h-[60vh] bg-lightmode-footer-bg-color p-16 dark:bg-darkmode-footer-bg-color mt-12">
-      <div className="rounded-lg bg-[url(/images/footer-bg.png)] bg-cover bg-no-repeat bg-bottom h-full w-full">
+      <div className="rounded-lg bg-[url(/images/footer.png)] bg-cover bg-no-repeat bg-bottom h-full w-full">
       <div className="absolute inset-0 pointer-events-none rounded-lg">
         <div
           className="w-full h-full rounded-lg"
