@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface Trip {
   id: string;
@@ -55,15 +56,24 @@ export default async function TripCards() {
   return (
     <div className="py-16 px-4 md:px-8 lg:px-16 bg-contain bg-center bg-repeat-y md:bg-no-repeat bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1745310480/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/green_blob_fztfvo.png)]">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 cursor-pointer">
-          {trips.map((trip) => (
-            <Link
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 cursor-pointer relative">
+          {/* SVG background shapes behind cards */}
+          <svg className="absolute -z-10 left-0 top-0 w-full h-full pointer-events-none" viewBox="0 0 900 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="250" cy="100" rx="120" ry="40" fill="#bbf7d0" fillOpacity="0.18" />
+            <ellipse cx="800" cy="350" rx="100" ry="30" fill="#34d399" fillOpacity="0.12" />
+            {/* Example animal silhouette (cheetah) */}
+            <path d="M500 350 Q520 320 560 340 Q570 310 610 330 Q620 340 640 350 Q630 360 610 355 Q600 370 580 360 Q560 370 540 355 Q520 360 500 350 Z" fill="#047857" fillOpacity="0.08" />
+          </svg>
+          {trips.map((trip, index) => (
+            <motion.div
               key={trip.id}
-              href={`/trips/${trip.slug}`}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 40 }}
+              transition={{ delay: index * 0.15, duration: 0.6, type: "spring" }}
               className="group relative"
             >
               <div
-                key={trip.id}
                 className="group relative backdrop-blur-xl bg-white/50 dark:bg-green-900/50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100/30 dark:border-green-900/30 overflow-hidden"
               >
                 {/* Image Section */}
@@ -77,13 +87,11 @@ export default async function TripCards() {
                     priority={false}
                   />
                 </div>
-
                 {/* Content Section */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-green-800 dark:text-green-100 mb-2">
                     {trip.name}
                   </h3>
-
                   <div className="flex items-center gap-2 mb-3">
                     <svg
                       className="w-5 h-5 text-green-600 dark:text-green-300"
@@ -104,14 +112,11 @@ export default async function TripCards() {
                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                       />
                     </svg>
-
                     <h5>{trip.destination?.name || "Unknown Destination"}</h5>
                   </div>
-
                   <p className="text-lightmode-text-color dark:text-darkmode-text-color text-sm mb-4 line-clamp-3">
                     {trip.short_description}
                   </p>
-
                   <div className="flex items-center justify-between mt-4">
                     <div className="space-y-1">
                       <span className="text-3xl font-bold text-green-700 dark:text-green-300 font-heading">
@@ -127,10 +132,9 @@ export default async function TripCards() {
                     </div>
                   </div>
                 </div>
-
                 <div className="absolute inset-0 bg-gradient-to-t from-green-600/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-            </Link>
+            </motion.div>
           ))}
         </div>
       </div>

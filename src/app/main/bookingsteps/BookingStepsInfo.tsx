@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function BookingStepsInfo() {
   const steps = [
     {
@@ -80,12 +82,48 @@ export default function BookingStepsInfo() {
       </div>
 
       <div className="relative space-y-6">
-        <div className="absolute z-9 left-[3rem] top-18 bottom-20 w-0.5 bg-green-500/4 dark:bg-green-300/4"></div>
-
+        {/* SVG background shapes behind steps */}
+        <svg
+          className="absolute -z-10 left-0 top-0 w-full h-full pointer-events-none"
+          viewBox="0 0 400 400"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <ellipse
+            cx="80"
+            cy="100"
+            rx="60"
+            ry="20"
+            fill="#bbf7d0"
+            fillOpacity="0.18"
+          />
+          <ellipse
+            cx="320"
+            cy="300"
+            rx="50"
+            ry="15"
+            fill="#34d399"
+            fillOpacity="0.12"
+          />
+          {/* Example animal silhouette (rhino) */}
+          <path
+            d="M100 320 Q110 300 130 310 Q140 290 160 300 Q170 310 180 320 Q170 330 160 325 Q150 340 130 330 Q110 340 100 320 Z"
+            fill="#047857"
+            fillOpacity="0.08"
+          />
+        </svg>
         {steps.map((step, index) => (
-          <div
+          <motion.div
             key={index}
-            className="relative z-10 p-6 rounded-xl transition-all duration-300"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{
+              delay: index * 0.15,
+              duration: 0.6,
+              type: "spring",
+            }}
+            className="relative z-10 p-6 rounded-xl transition-all duration-300 bg-white/60 dark:bg-green-900/30 backdrop-blur-lg border border-green-100/40 dark:border-green-900/30 shadow-lg"
           >
             <div className={`delay-[${index * 1000}] flex items-start gap-4`}>
               <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -100,7 +138,7 @@ export default function BookingStepsInfo() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

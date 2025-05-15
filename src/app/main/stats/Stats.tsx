@@ -1,6 +1,7 @@
 "use client";
 
 import SlotCounter from "react-slot-counter";
+import { motion } from "framer-motion";
 
 export default function Stats() {
   return (
@@ -17,20 +18,45 @@ export default function Stats() {
           </p>
         </div>
 
-        <div className="grid gap-[1rem] *:text-center *:rounded-lg *:bg-white/60 *:dark:bg-green-900/20 *:backdrop-blur-md *:border *:border-green-100/40 *:dark:border-green-900/30 *:shadow-lg *transition-all *:dark:drop-shadow-2xl md:grid-cols-3">
-          <div className="rounded-(--radius) space-y-4 py-12">
+        <div className="grid gap-[1rem] *:text-center *:rounded-lg *:bg-white/60 *:dark:bg-green-900/20 *:backdrop-blur-md *:border *:border-green-100/40 *:dark:border-green-900/30 *:shadow-lg *transition-all *:dark:drop-shadow-2xl md:grid-cols-3 relative">
+          {/* SVG background shapes behind stats */}
+          <svg className="absolute -z-10 left-0 top-0 w-full h-full pointer-events-none" viewBox="0 0 800 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="120" cy="60" rx="90" ry="30" fill="#bbf7d0" fillOpacity="0.18" />
+            <ellipse cx="700" cy="180" rx="80" ry="20" fill="#34d399" fillOpacity="0.12" />
+            {/* Example animal silhouette (buffalo) */}
+            <path d="M200 180 Q210 160 240 170 Q250 150 280 160 Q290 170 300 180 Q290 190 280 185 Q270 200 250 190 Q230 200 220 185 Q210 190 200 180 Z" fill="#047857" fillOpacity="0.08" />
+          </svg>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ delay: 0, duration: 0.6, type: "spring" }}
+            className="rounded-(--radius) space-y-4 py-12"
+          >
             <div className="text-5xl font-bold text-green-500 dark:text-green-400 drop-shadow-lg">
               <SlotCounter value={"6,000"} />
             </div>
             <p>Trips Organized</p>
-          </div>
-          <div className="rounded-(--radius) space-y-4 py-12">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ delay: 0.15, duration: 0.6, type: "spring" }}
+            className="rounded-(--radius) space-y-4 py-12"
+          >
             <div className="text-5xl font-bold text-green-500 dark:text-green-400 drop-shadow-lg">
               <SlotCounter value={"120,000"} />
             </div>
             <p>Customers Served</p>
-          </div>
-          <div className="rounded-(--radius) space-y-4 py-12">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ delay: 0.3, duration: 0.6, type: "spring" }}
+            className="rounded-(--radius) space-y-4 py-12"
+          >
             <div className="text-5xl font-bold">
               <div className="flex justify-center items-center gap-2">
                 {[...Array(5)].map((_, i) => (
@@ -46,7 +72,7 @@ export default function Stats() {
               </div>
             </div>
             <p>Global Rating</p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

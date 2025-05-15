@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface Destination {
   id: string;
@@ -31,13 +32,47 @@ export default async function DestinationCards() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 py-[4rem] min-h-[100vh]">
-      {(data as Destination[]).map((destination) => {
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 py-[4rem] min-h-[100vh] relative">
+      {/* SVG background shapes behind cards */}
+      <svg
+        className="absolute -z-10 left-0 top-0 w-full h-full pointer-events-none"
+        viewBox="0 0 900 400"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <ellipse
+          cx="200"
+          cy="100"
+          rx="140"
+          ry="50"
+          fill="#bbf7d0"
+          fillOpacity="0.18"
+        />
+        <ellipse
+          cx="700"
+          cy="320"
+          rx="120"
+          ry="40"
+          fill="#34d399"
+          fillOpacity="0.12"
+        />
+        {/* Example animal silhouette (lion) */}
+        <path
+          d="M300 350 Q320 320 360 340 Q370 310 410 330 Q420 340 440 350 Q430 360 410 355 Q400 370 380 360 Q360 370 340 355 Q320 360 300 350 Z"
+          fill="#047857"
+          fillOpacity="0.08"
+        />
+      </svg>
+      {(data as Destination[]).map((destination, index) => {
         const imageUrl = destination.main_image_url;
 
         return (
-          <div
+          <motion.div
             key={destination.id}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ delay: index * 0.15, duration: 0.6, type: "spring" }}
             className="group flex flex-col justify-items-start relative cursor-pointer overflow-hidden rounded-xl transition-all duration-300 transform hover:scale-[1.02]"
           >
             <Link href={`/destinations/${destination.slug}`}>
@@ -71,7 +106,7 @@ export default async function DestinationCards() {
 
               <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-emerald-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
             </Link>
-          </div>
+          </motion.div>
         );
       })}
     </div>
