@@ -208,34 +208,40 @@ export default function SignInMain() {
 
         {/* On mobile, show glass overlay and text/icons below everything else */}
         <div className="lg:hidden w-full flex flex-col items-center mt-8 mb-4 px-4">
-          <div className="backdrop-blur-lg bg-white/30 dark:bg-green-900/30 border border-green-100/30 dark:border-green-900/30 rounded-2xl shadow-2xl px-6 py-8 flex flex-col items-center gap-3 max-w-xs">
+          <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3 min-w-[220px] mb-4">
+            <FaCar size={24} className="text-green-500" />
+            <div>
+              <div className="font-semibold text-green-800 dark:text-green-100">
+                Game Drives Available
+              </div>
+              <div className="text-green-700 dark:text-green-300 text-sm">
+                Experience the wild up close
+              </div>
+            </div>
+          </div>
+          <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3 min-w-[220px]">
             <svg
-              className="w-10 h-10 text-green-500 mb-1"
+              className="w-8 h-8 text-green-500"
               fill="none"
-              viewBox="0 0 48 48"
+              viewBox="0 0 24 24"
             >
-              <circle
-                cx="24"
-                cy="24"
-                r="22"
-                stroke="currentColor"
-                strokeWidth="4"
-                fill="#bbf7d0"
-              />
+              <circle cx="12" cy="12" r="10" fill="#bbf7d0" />
               <path
-                d="M16 24l6 6 10-10"
+                d="M12 8v4l3 3"
                 stroke="#16a34a"
-                strokeWidth="4"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
-            <h2 className="text-xl font-bold text-green-800 dark:text-green-100 text-center">
-              Welcome Back!
-            </h2>
-            <p className="text-green-700 dark:text-green-300 text-center text-sm">
-              Sign in to access your dashboard, manage trips, and more.
-            </p>
+            <div>
+              <div className="font-semibold text-green-800 dark:text-green-100">
+                Flexible Payment
+              </div>
+              <div className="text-green-700 dark:text-green-300 text-sm">
+                Pay in installments
+              </div>
+            </div>
           </div>
         </div>
       </section>
