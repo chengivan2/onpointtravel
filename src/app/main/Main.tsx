@@ -1,13 +1,15 @@
-import BookingSteps from "./bookingsteps/BookingSteps";
-import Destinations from "./destinations/Destinations";
-import ExtraTripOffer from "./extratripoffer/ExtraTripOffer";
+import dynamic from "next/dynamic";
 import OnPointFAQs from "./faqs/OnPointFAQs";
 import HomeHero from "./hero/Hero";
-import OurServicesSection from "./ourservices/OurServices";
 import LogoSeparator from "./separator/LogoSeparator";
-import Stats from "./stats/Stats";
-import WallOfLoveTestimonials from "./testimonials/Testimonials";
-import Trips from "./trips/Trips";
+
+const OurServicesSection = dynamic(() => import("./ourservices/OurServices"), { ssr: false });
+const Destinations = dynamic(() => import("./destinations/Destinations"), { ssr: false });
+const BookingSteps = dynamic(() => import("./bookingsteps/BookingSteps"), { ssr: false });
+const Stats = dynamic(() => import("./stats/Stats"), { ssr: false });
+const WallOfLoveTestimonials = dynamic(() => import("./testimonials/Testimonials"), { ssr: false });
+const Trips = dynamic(() => import("./trips/Trips"), { ssr: false });
+const ExtraTripOffer = dynamic(() => import("./extratripoffer/ExtraTripOffer"), { ssr: false });
 
 export default function Main() {
   return (
