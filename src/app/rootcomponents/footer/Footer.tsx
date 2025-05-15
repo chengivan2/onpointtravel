@@ -5,8 +5,18 @@ import Footersocials from "./FooterSocials";
 
 export default function Footer() {
   return (
-    <footer className="min-w-full bg-lightmode-footer-bg-color pt-20 dark:bg-darkmode-footer-bg-color mt-12">
-      <div className="">
+    <footer className="min-w-full h-[60vh] bg-lightmode-footer-bg-color p-16 dark:bg-darkmode-footer-bg-color mt-12">
+      <div className="rounded-lg bg-[url('/images/footer-bg.png')] bg-cover bg-no-repeat bg-bottom h-full w-full">
+      <div className="absolute inset-0 pointer-events-none rounded-lg">
+        <div
+          className="w-full h-full rounded-lg"
+          style={{
+            background: "linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 70%)",
+            
+            mixBlendMode: "multiply",
+          }}
+        />
+      </div>
         <div className="px-[2rem] grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
             <Link href="/" aria-label="go home" className="block size-fit">
