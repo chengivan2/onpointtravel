@@ -8,7 +8,6 @@ export default function FooterSocials() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="X/Twitter"
-        className="text-muted-foreground hover:text-primary block"
       >
         <svg
           className="size-6"
@@ -28,7 +27,6 @@ export default function FooterSocials() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
-        className="text-muted-foreground hover:text-primary block"
       >
         <svg
           className="size-6"
@@ -48,7 +46,6 @@ export default function FooterSocials() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Facebook"
-        className="text-muted-foreground hover:text-primary block"
       >
         <svg
           className="size-6"
@@ -68,7 +65,6 @@ export default function FooterSocials() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Threads"
-        className="text-muted-foreground hover:text-primary block"
       >
         <svg
           className="size-6"
@@ -93,7 +89,6 @@ export default function FooterSocials() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram"
-        className="text-muted-foreground hover:text-primary block"
       >
         <svg
           className="size-6"
@@ -113,7 +108,6 @@ export default function FooterSocials() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="TikTok"
-        className="text-muted-foreground hover:text-primary block"
       >
         <svg
           className="size-6"
