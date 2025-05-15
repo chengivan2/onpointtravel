@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface Destination {
   id: string;
@@ -14,18 +15,41 @@ interface Destination {
   main_image_url?: string | null;
 }
 
-export default async function DestinationCards() {
-  const supabase = await createClient();
+export default function DestinationCards() {
+  const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const { data, error } = await supabase
-    .from("destinations")
-    .select("id, name, slug, description, location, main_image_url");
+  useEffect(() => {
+    async function fetchDestinations() {
+      setLoading(true);
+      setError(null);
+      try {
+        const supabase = await createClient();
+        const { data, error } = await supabase
+          .from("destinations")
+          .select("id, name, slug, description, location, main_image_url");
+        if (error) {
+          setError(error.message);
+        } else {
+          setDestinations(data || []);
+        }
+      } catch (err: any) {
+        setError(err.message || "An unexpected error occurred.");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchDestinations();
+  }, []);
 
-  if (error) {
-    return <div className="text-red-500 p-4">Error loading destinations</div>;
+  if (loading) {
+    return <div className="text-green-600 p-4">Loading destinations...</div>;
   }
-
-  if (!data || data.length === 0) {
+  if (error) {
+    return <div className="text-red-500 p-4">Error loading destinations: {error}</div>;
+  }
+  if (!destinations || destinations.length === 0) {
     return (
       <div className="text-green-600 p-4">
         No destinations were found. Check back later.
@@ -65,9 +89,8 @@ export default async function DestinationCards() {
           fillOpacity="0.08"
         />
       </svg>
-      {(data as Destination[]).map((destination, index) => {
+      {destinations.map((destination, index) => {
         const imageUrl = destination.main_image_url;
-
         return (
           <motion.div
             key={destination.id}
@@ -94,7 +117,6 @@ export default async function DestinationCards() {
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-green-900/40 to-transparent" />
                 </div>
-
                 <h3 className="text-xl font-bold text-green-800 dark:text-green-100 mb-2">
                   {destination.name}
                 </h3>
@@ -105,7 +127,6 @@ export default async function DestinationCards() {
                   {destination.description}
                 </p>
               </div>
-
               <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-emerald-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
             </Link>
           </motion.div>

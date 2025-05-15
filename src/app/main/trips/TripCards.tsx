@@ -1,9 +1,10 @@
 "use client";
 
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/client";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface Trip {
   id: string;
@@ -19,34 +20,52 @@ interface Trip {
   created_at: string;
 }
 
-export default async function TripCards() {
-  const supabase = await createClient();
+export default function TripCards() {
+  const [trips, setTrips] = useState<Trip[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const { data: trips, error } = await supabase
-    .from("trips")
-    .select(
-      `
-      id,
-      name,
-      short_description,
-      main_featured_image_url,
-      price,
-      destination:destinations!inner(name),
-      slug
-    `
-    )
-    .order("created_at", { ascending: false })
-    .limit(6)
-    .returns<Trip[]>();
+  useEffect(() => {
+    async function fetchTrips() {
+      setLoading(true);
+      setError(null);
+      try {
+        const supabase = await createClient();
+        const { data, error } = await supabase
+          .from("trips")
+          .select(
+            `id, name, short_description, description, main_featured_image_url, price, destination:destinations!inner(name), slug, created_at`
+          )
+          .order("created_at", { ascending: false })
+          .limit(6);
+        if (error) {
+          setError(error.message);
+        } else {
+          const tripsData = (data || []).map((trip: any) => ({
+            ...trip,
+            destination: Array.isArray(trip.destination) ? trip.destination[0] : trip.destination,
+          }));
+          setTrips(tripsData);
+        }
+      } catch (err: any) {
+        setError(err.message || "An unexpected error occurred.");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchTrips();
+  }, []);
 
+  if (loading) {
+    return <div className="text-green-600 p-4">Loading trips...</div>;
+  }
   if (error) {
     return (
       <div className="text-red-500 p-4">
-        Error loading trips: {error.message}
+        Error loading trips: {error}
       </div>
     );
   }
-
   if (!trips || trips.length === 0) {
     return (
       <div className="text-green-600 p-4">
