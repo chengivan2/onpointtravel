@@ -60,7 +60,11 @@ export default function SignUpMain() {
           {/* Glass overlays with benefits/info at the bottom */}
           <div className="absolute bottom-10 left-10 flex flex-col gap-6 z-20">
             <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3 min-w-[220px]">
-              <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24">
+              <svg
+                className="w-8 h-8 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
                 <circle cx="12" cy="12" r="10" fill="#bbf7d0" />
                 <path
                   d="M8 12l2 2 4-4"
@@ -71,12 +75,20 @@ export default function SignUpMain() {
                 />
               </svg>
               <div>
-                <div className="font-semibold text-green-800 dark:text-green-100">Game Drives Available</div>
-                <div className="text-green-700 dark:text-green-300 text-sm">Experience the wild up close</div>
+                <div className="font-semibold text-green-800 dark:text-green-100">
+                  Game Drives Available
+                </div>
+                <div className="text-green-700 dark:text-green-300 text-sm">
+                  Experience the wild up close
+                </div>
               </div>
             </div>
             <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3 min-w-[220px]">
-              <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24">
+              <svg
+                className="w-8 h-8 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
                 <circle cx="12" cy="12" r="10" fill="#bbf7d0" />
                 <path
                   d="M12 8v4l3 3"
@@ -87,41 +99,13 @@ export default function SignUpMain() {
                 />
               </svg>
               <div>
-                <div className="font-semibold text-green-800 dark:text-green-100">Flexible Payment</div>
-                <div className="text-green-700 dark:text-green-300 text-sm">Pay in installments</div>
+                <div className="font-semibold text-green-800 dark:text-green-100">
+                  Flexible Payment
+                </div>
+                <div className="text-green-700 dark:text-green-300 text-sm">
+                  Pay in installments
+                </div>
               </div>
-            </div>
-          </div>
-          {/* Glass and content overlay */}
-          <div className="absolute inset-0 flex flex-col justify-center items-center z-10">
-            <div className="backdrop-blur-lg bg-white/30 dark:bg-green-900/30 border border-green-100/30 dark:border-green-900/30 rounded-2xl shadow-2xl px-8 py-10 flex flex-col items-center gap-4 max-w-xs">
-              <svg
-                className="w-12 h-12 text-green-500 mb-2"
-                fill="none"
-                viewBox="0 0 48 48"
-              >
-                <circle
-                  cx="24"
-                  cy="24"
-                  r="22"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                  fill="#bbf7d0"
-                />
-                <path
-                  d="M16 24l6 6 10-10"
-                  stroke="#16a34a"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 text-center">
-                Create Your Account
-              </h2>
-              <p className="text-green-700 dark:text-green-300 text-center">
-                Sign up to start your journey with OnPoint Travel.
-              </p>
             </div>
           </div>
         </div>
@@ -241,7 +225,9 @@ export default function SignUpMain() {
                   disabled={loading}
                   className="w-full cursor-pointer bg-lightmode-btn-bg-color dark:bg-darkmode-bg-color hover:bg-lightmode-btn-bg-hover-color hover:dark:bg-darkmode-btn-bg-hover-color"
                 >
-                  <span className="text-lightmode-btn-text-color dark:text-darkmode-btn-text-color">{loading ? "Signing you up..." : "Continue"}</span>
+                  <span className="text-lightmode-btn-text-color dark:text-darkmode-btn-text-color">
+                    {loading ? "Signing you up..." : "Continue"}
+                  </span>
                 </Button>
               </div>
             </div>
@@ -290,7 +276,11 @@ export default function SignUpMain() {
           </div>
           <div className="flex flex-col gap-4 w-full max-w-xs">
             <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3">
-              <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24">
+              <svg
+                className="w-8 h-8 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
                 <circle cx="12" cy="12" r="10" fill="#bbf7d0" />
                 <path
                   d="M8 12l2 2 4-4"
@@ -301,12 +291,20 @@ export default function SignUpMain() {
                 />
               </svg>
               <div>
-                <div className="font-semibold text-green-800 dark:text-green-100">Game Drives Available</div>
-                <div className="text-green-700 dark:text-green-300 text-sm">Experience the wild up close</div>
+                <div className="font-semibold text-green-800 dark:text-green-100">
+                  Game Drives Available
+                </div>
+                <div className="text-green-700 dark:text-green-300 text-sm">
+                  Experience the wild up close
+                </div>
               </div>
             </div>
             <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3">
-              <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24">
+              <svg
+                className="w-8 h-8 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
                 <circle cx="12" cy="12" r="10" fill="#bbf7d0" />
                 <path
                   d="M12 8v4l3 3"
@@ -317,8 +315,12 @@ export default function SignUpMain() {
                 />
               </svg>
               <div>
-                <div className="font-semibold text-green-800 dark:text-green-100">Flexible Payment</div>
-                <div className="text-green-700 dark:text-green-300 text-sm">Pay in installments</div>
+                <div className="font-semibold text-green-800 dark:text-green-100">
+                  Flexible Payment
+                </div>
+                <div className="text-green-700 dark:text-green-300 text-sm">
+                  Pay in installments
+                </div>
               </div>
             </div>
           </div>
