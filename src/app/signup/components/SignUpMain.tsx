@@ -59,22 +59,9 @@ export default function SignUpMain() {
         <div className="hidden lg:flex relative min-h-full bg-center bg-cover bg-[url(/images/signup.jpg)] flex-1/2">
           <div className="absolute inset-0 bg-darkmode-bg-color opacity-10 dark:opacity-20"></div>
           {/* Glass overlays with benefits/info at the bottom */}
-          <div className="absolute bottom-10 left-10 flex flex-col gap-6 z-20">
+          <div className="absolute top-10 left-10 flex flex-col gap-6 z-20">
             <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3 min-w-[220px]">
-              <svg
-                className="w-8 h-8 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle cx="12" cy="12" r="10" fill="#bbf7d0" />
-                <path
-                  d="M8 12l2 2 4-4"
-                  stroke="#16a34a"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <FaCar size={24} className="text-[#bbf7d0]" />
               <div>
                 <div className="font-semibold text-green-800 dark:text-green-100">
                   Game Drives Available
@@ -85,20 +72,7 @@ export default function SignUpMain() {
               </div>
             </div>
             <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3 min-w-[220px]">
-              <svg
-                className="w-8 h-8 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle cx="12" cy="12" r="10" fill="#bbf7d0" />
-                <path
-                  d="M12 8v4l3 3"
-                  stroke="#16a34a"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <FaClock size={24} className="text-[#bbf7d0]" />
               <div>
                 <div className="font-semibold text-green-800 dark:text-green-100">
                   Flexible Payment
@@ -248,7 +222,7 @@ export default function SignUpMain() {
         <div className="lg:hidden w-full flex flex-col items-center mt-8 mb-4 px-4 gap-4">
           <div className="flex flex-col gap-4 w-full max-w-xs">
             <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3">
-              <FaCar className="w-8 h-8 text-green-500" />
+              <FaCar size={24} className="text-[#bbf7d0]" />
               <div>
                 <div className="font-semibold text-green-800 dark:text-green-100">
                   Game Drives Available
@@ -259,7 +233,7 @@ export default function SignUpMain() {
               </div>
             </div>
             <div className="backdrop-blur-lg bg-white/40 dark:bg-green-900/40 border border-green-100/40 dark:border-green-900/40 rounded-xl shadow-xl px-6 py-4 flex items-center gap-3">
-              <FaClock size={24} className="text-green-500" />
+              <FaClock size={24} className="text-[#bbf7d0]" />
               <div>
                 <div className="font-semibold text-green-800 dark:text-green-100">
                   Flexible Payment
