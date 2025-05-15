@@ -29,6 +29,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/utils/supabase/client";
+import HeaderThemeToggler from "@/app/rootcomponents/header/ThemeToggler";
 
 export function DashboardSidebar({
   ...props
@@ -106,7 +107,6 @@ export function DashboardSidebar({
             url: "/dashboard/mybookings",
             icon: IconCar4wd,
           },
-          
         ]
       : [
           {
@@ -124,14 +124,11 @@ export function DashboardSidebar({
             url: "/dashboard/mybookings",
             icon: IconCar4wd,
           },
-          
         ]),
   ];
 
   const data = {
-    documents: [
-      
-    ],
+    documents: [],
     navSecondary: [
       {
         title: "Settings",
@@ -160,27 +157,30 @@ export function DashboardSidebar({
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <Link href="/">
-                <div className="flex justify-between items-center">
-                  <Image
-                    width={50}
-                    height={30}
-                    alt="OnPoint header logo"
-                    src="/logos/onpointhflightmodelogo.png"
-                    className="flex duration-300 dark:hidden"
-                  />
+              <div className="flex items-center justify-between w-full">
+                <Link href="/">
+                  <div className="flex justify-between items-center">
+                    <Image
+                      width={50}
+                      height={30}
+                      alt="OnPoint header logo"
+                      src="/logos/onpointhflightmodelogo.png"
+                      className="flex duration-300 dark:hidden"
+                    />
 
-                  <Image
-                    width={50}
-                    height={30}
-                    alt="OnPoint header logo"
-                    src="/logos/onpointhfdarkmodelogo.png"
-                    className="hidden duration-300 dark:flex"
-                  />
-                </div>
+                    <Image
+                      width={50}
+                      height={30}
+                      alt="OnPoint header logo"
+                      src="/logos/onpointhfdarkmodelogo.png"
+                      className="hidden duration-300 dark:flex"
+                    />
+                  </div>
 
-                <span className="text-base font-semibold">onPoint</span>
-              </Link>
+                  <span className="text-base font-semibold">onPoint</span>
+                </Link>
+                <HeaderThemeToggler />
+              </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
