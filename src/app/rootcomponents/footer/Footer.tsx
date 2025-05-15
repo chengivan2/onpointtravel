@@ -18,7 +18,7 @@ export default function Footer() {
           <FooterMenu />
         </div>
         <div className="relative min-w-full px-[2rem] lg:px-[2rem] flex flex-wrap items-end justify-between gap-6 border-t dark:border-t py-6">
-          <span className="text-muted-foreground order-last block text-center text-sm md:order-first">
+          <span className="order-last block text-center text-sm md:order-first">
             © {new Date().getFullYear()} OnPoint Travel Agency
           </span>
 
