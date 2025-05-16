@@ -65,7 +65,7 @@ export default function FooterMenu() {
         },
         {
           title: "Terms & Conditions",
-          href: "#",
+          href: "terms-and-conditions",
         },
       ],
     },
