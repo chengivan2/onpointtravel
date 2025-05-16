@@ -44,6 +44,7 @@ export default function TermsAndConditionsPage() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }
