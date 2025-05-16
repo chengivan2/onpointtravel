@@ -32,7 +32,7 @@ export default function FooterMenu() {
       items: [
         {
           title: "About",
-          href: "/about",
+          href: "about",
         },
         {
           title: "Careers",
@@ -44,7 +44,7 @@ export default function FooterMenu() {
         },
         {
           title: "Contact",
-          href: "/contact",
+          href: "contact",
         },
         {
           title: "Help",
@@ -61,7 +61,7 @@ export default function FooterMenu() {
         },
         {
           title: "Privacy Policy",
-          href: "#",
+          href: "privacy-policy",
         },
         {
           title: "Terms & Conditions",
