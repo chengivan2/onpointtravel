@@ -1,3 +1,4 @@
+import Footer from "../rootcomponents/footer/Footer";
 import Header from "../rootcomponents/header/Header";
 
 export default function TermsAndConditionsPage() {
