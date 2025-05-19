@@ -120,6 +120,10 @@ export default function TripCards() {
                 type: "spring",
               }}
               className="group relative"
+              style={{
+                animation: 'slit-in-diagonal-2 0.7s cubic-bezier(.23,1.01,.32,1) both',
+                animationDelay: `${index * 0.08}s`,
+              }}
             >
               <Link href={`/trips/${trip.slug}`}>
                 <div className="group relative backdrop-blur-xl bg-white/50 dark:bg-green-900/50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100/30 dark:border-green-900/30 overflow-hidden">
