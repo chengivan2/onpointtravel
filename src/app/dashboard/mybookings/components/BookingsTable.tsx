@@ -36,7 +36,13 @@ export default function BookingsTable({ bookings }: { bookings: Booking[] }) {
         <svg className="absolute -top-10 -left-10 w-48 h-48 opacity-10 text-green-400" fill="none" viewBox="0 0 200 200"><circle cx="100" cy="100" r="100" fill="currentColor" /></svg>
         <FileText className="w-12 h-12 text-green-500 mb-4" />
         <p className="text-lg text-green-800 dark:text-green-100 font-semibold mb-2">No bookings found</p>
-        <p className="text-gray-600 dark:text-green-200">You haven't made any bookings yet. Start your adventure now!</p>
+        <p className="text-gray-600 dark:text-green-200 mb-4">You haven't made any bookings yet. Start your adventure now!</p>
+        <a
+          href="/trips"
+          className="mt-2 px-6 py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold shadow-lg transition-colors"
+        >
+          Book an Adventure
+        </a>
       </div>
     );
   }
