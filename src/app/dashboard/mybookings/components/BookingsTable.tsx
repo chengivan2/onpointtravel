@@ -32,9 +32,9 @@ export default function BookingsTable({ bookings }: { bookings: Booking[] }) {
 
   if (!bookings || bookings.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[300px] bg-white/40 dark:bg-green-900/30 rounded-2xl shadow-xl p-8 relative overflow-hidden">
+      <div className="flex flex-col items-center justify-center min-h-[220px] bg-white/40 dark:bg-green-900/30 rounded-2xl shadow-xl p-8 relative overflow-hidden">
         <svg className="absolute -top-10 -left-10 w-48 h-48 opacity-10 text-green-400" fill="none" viewBox="0 0 200 200"><circle cx="100" cy="100" r="100" fill="currentColor" /></svg>
-        <FileText className="w-12 h-12 text-green-500 mb-4" />
+        <svg className="w-12 h-12 text-green-500 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.05l-.71-.71" /></svg>
         <p className="text-lg text-green-800 dark:text-green-100 font-semibold mb-2">No bookings found</p>
         <p className="text-gray-600 dark:text-green-200 mb-4">You haven't made any bookings yet. Start your adventure now!</p>
         <a

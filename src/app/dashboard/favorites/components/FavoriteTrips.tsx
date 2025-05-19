@@ -39,9 +39,35 @@ export default async function FavoriteTrips() {
 
   if (favoriteTripIds.length === 0) {
     return (
-      <div className="p-6">
-        <h1 className="text-2xl font-bold mb-4">Your Favorite Trips</h1>
-        <p className="text-gray-500">You have no favorite trips yet.</p>
+      <div className="flex flex-col items-center justify-center p-8 rounded-2xl shadow-xl bg-white/30 dark:bg-green-900/30 backdrop-blur-md max-w-md mx-auto mt-12">
+        <div className="mb-4">
+          <svg
+            className="w-16 h-16 text-green-400 mx-auto"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M16.5 3.75a5.25 5.25 0 00-4.5 2.472A5.25 5.25 0 007.5 3.75C4.462 3.75 2 6.214 2 9.25c0 5.25 9.25 11 9.25 11s9.25-5.75 9.25-11c0-3.036-2.462-5.5-5.5-5.5z"
+            />
+          </svg>
+        </div>
+        <h1 className="text-2xl font-bold mb-2 text-center">
+          No Favorite Trips Yet
+        </h1>
+        <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+          You haven’t added any trips to your favorites. Start exploring and add
+          your dream destinations!
+        </p>
+        <a
+          href="/trips"
+          className="inline-block px-6 py-2 rounded-full bg-green-500 text-white font-semibold shadow hover:bg-green-600 transition"
+        >
+          Browse Trips
+        </a>
       </div>
     );
   }

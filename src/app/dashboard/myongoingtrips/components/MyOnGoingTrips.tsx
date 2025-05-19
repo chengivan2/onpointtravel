@@ -41,6 +41,41 @@ export default async function MyOngoingTrips() {
     return <p className="text-red-600 dark:text-red-300">Failed to load ongoing trips. Please try again.</p>;
   }
 
+  if (!ongoingTrips || ongoingTrips.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center p-8 rounded-2xl shadow-xl bg-white/30 dark:bg-green-900/30 backdrop-blur-md max-w-md mx-auto mt-12">
+        <div className="mb-4">
+          <svg
+            className="w-16 h-16 text-green-400 mx-auto"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.05l-.71-.71"
+            />
+          </svg>
+        </div>
+        <h1 className="text-2xl font-bold mb-2 text-center">
+          No Ongoing Trips
+        </h1>
+        <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+          You don’t have any ongoing adventures. Book your next journey and start
+          exploring the world!
+        </p>
+        <a
+          href="/trips"
+          className="inline-block px-6 py-2 rounded-full bg-green-500 text-white font-semibold shadow hover:bg-green-600 transition"
+        >
+          Book an Adventure
+        </a>
+      </div>
+    );
+  }
+
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-6">
