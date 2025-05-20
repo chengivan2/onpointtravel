@@ -52,7 +52,6 @@ export default async function OnPointDashboard() {
       : booking.trip_name
       ? { id: booking.trip_id || '', name: booking.trip_name, destination_id: '', description: '' }
       : null,
-    // Use the same logic as /mybookings: always pass through the original start_date and end_date
     start_date: booking.start_date,
     end_date: booking.end_date,
   }));

@@ -14,6 +14,8 @@ interface Booking {
     last_name: string | null;
     email: string;
   };
+  start_date: string;
+  end_date: string;
 }
 
 export async function FetchBookings(page: number, limit: number) {
@@ -27,7 +29,9 @@ export async function FetchBookings(page: number, limit: number) {
       payment_status,
       booked_at,
       trips (name),
-      users (first_name, last_name, email)
+      users (first_name, last_name, email),
+      start_date,
+      end_date
       `
     )
     .order("booked_at", { ascending: false })
@@ -52,6 +56,8 @@ export async function FetchBookings(page: number, limit: number) {
         status: booking.status,
         payment_status: booking.payment_status,
         created_at: booking.booked_at,
+        start_date: booking.start_date,
+        end_date: booking.end_date,
       })) || [],
     error: null,
   };
