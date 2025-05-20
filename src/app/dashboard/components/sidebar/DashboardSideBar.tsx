@@ -176,8 +176,6 @@ export function DashboardSidebar({
                       className="hidden duration-300 dark:flex"
                     />
                   </div>
-
-                  <span className="text-base font-semibold">onPoint</span>
                 </Link>
                 <HeaderThemeToggler />
               </div>
