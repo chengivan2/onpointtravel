@@ -47,7 +47,11 @@ export default async function OnPointDashboard() {
 
   const bookingsWithTripDetails = latestBookings.map((booking) => ({
     ...booking,
-    trip: booking.trip || null,
+    trip: booking.trip
+      ? booking.trip
+      : booking.trip_name
+      ? { id: booking.trip_id || '', name: booking.trip_name, destination_id: '', description: '' }
+      : null,
   }));
 
   // User: Prepare data for last 5 bookings, bookings per month, and most booked trips
