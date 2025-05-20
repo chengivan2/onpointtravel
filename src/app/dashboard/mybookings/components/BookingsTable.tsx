@@ -108,10 +108,10 @@ export default function BookingsTable({ bookings }: { bookings: Booking[] }) {
                     {booking.trip?.name || "Unknown Trip"}
                   </td>
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
-                    {booking.start_date}
+                    {booking.start_date ? new Date(booking.start_date).toLocaleDateString() : "-"}
                   </td>
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
-                    {booking.end_date}
+                    {booking.end_date ? new Date(booking.end_date).toLocaleDateString() : "-"}
                   </td>
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
                     {booking.status}
