@@ -54,7 +54,7 @@ export async function FetchBookings(page: number, limit: number) {
           booking.users?.first_name && booking.users?.last_name
             ? `${booking.users.first_name} ${booking.users.last_name}`
             : booking.users?.email || "N/A",
-        people: booking.number_of_people,
+        number_of_people: booking.number_of_people,
         status: booking.status,
         payment_status: booking.payment_status,
         created_at: booking.booked_at,
