@@ -29,14 +29,11 @@ interface UserDashboardBookingsTableProps {
 }
 
 const UserDashboardBookingsTable: FC<UserDashboardBookingsTableProps> = ({ bookings }) => {
-  // Filter out bookings with missing or invalid trip names
-  const filteredBookings = bookings.filter(
-    (b) => b.trip && typeof b.trip.name === "string" && b.trip.name.trim() !== "" && b.trip.name !== "Unknown Trip"
-  );
+  
   return (
     <div className="mt-6">
       <h3 className="text-xl font-semibold mb-2">Your Recent Bookings</h3>
-      <BookingsTable bookings={filteredBookings} />
+      <BookingsTable bookings={bookings} />
     </div>
   );
 };
