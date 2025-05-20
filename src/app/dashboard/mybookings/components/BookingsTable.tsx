@@ -27,6 +27,12 @@ interface Booking {
   } | null;
 }
 
+function formatDate(dateStr: string | null | undefined) {
+  if (!dateStr) return "-";
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? "-" : d.toLocaleDateString();
+}
+
 export default function BookingsTable({ bookings }: { bookings: Booking[] }) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -108,10 +114,10 @@ export default function BookingsTable({ bookings }: { bookings: Booking[] }) {
                     {booking.trip?.name || "Unknown Trip"}
                   </td>
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
-                    {booking.start_date ? new Date(booking.start_date).toLocaleDateString() : "-"}
+                    {formatDate(booking.start_date)}
                   </td>
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
-                    {booking.end_date ? new Date(booking.end_date).toLocaleDateString() : "-"}
+                    {formatDate(booking.end_date)}
                   </td>
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
                     {booking.status}
