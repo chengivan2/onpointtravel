@@ -111,7 +111,7 @@ export default function AdminAgentBookingsView({ initialBookings, showAll = true
                   >
                     <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100 font-semibold">{booking.trip_name}</td>
                     <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.client}</td>
-                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.people}</td>
+                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.number_of_people}</td>
                     <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
                       <select
                         value={booking.status}

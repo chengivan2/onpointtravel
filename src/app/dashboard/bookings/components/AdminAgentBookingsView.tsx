@@ -101,7 +101,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
                 >
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100 font-semibold">{booking.trip_name}</td>
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.client}</td>
-                  <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.people}</td>
+                  <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.number_of_people}</td>
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
                     <select
                       value={booking.status}
@@ -139,7 +139,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
                       <div className="mb-2 font-bold">Booking Details</div>
                       <div>Trip: {booking.trip_name}</div>
                       <div>Client: {booking.client}</div>
-                      <div>People: {booking.people}</div>
+                      <div>People: {booking.number_of_people}</div>
                       <div>Status: {booking.status}</div>
                       <div>Payment Status: {booking.payment_status}</div>
                       <div>Created: {new Date(booking.created_at).toLocaleString()}</div>
