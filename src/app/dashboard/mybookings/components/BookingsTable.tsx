@@ -158,8 +158,9 @@ export default function BookingsTable({ bookings }: { bookings: Booking[] }) {
           })}
         </tbody>
       </table>
-      <svg className="absolute -top-10 -right-10 w-64 h-64 opacity-10 text-green-300" fill="none" viewBox="0 0 200 200"><circle cx="100" cy="100" r="100" fill="currentColor" /></svg>
-      <svg className="absolute bottom-0 left-0 w-40 h-40 opacity-10 text-green-200" fill="none" viewBox="0 0 160 160"><circle cx="80" cy="80" r="80" fill="currentColor" /></svg>
+      <svg className="z-[-1] absolute -top-10 -right-10 w-64 h-64 opacity-10 text-green-300" fill="none" viewBox="0 0 200 200"><circle cx="100" cy="100" r="100" fill="currentColor" /></svg>
+      <svg className="z-[-1] absolute bottom-0 left-0 w-40 h-40 opacity-10 text-green-200" fill="none" viewBox="0 0 160 160"><circle cx="80" cy="80" r="80" fill="currentColor" /></svg>
+
     </div>
   );
 }
