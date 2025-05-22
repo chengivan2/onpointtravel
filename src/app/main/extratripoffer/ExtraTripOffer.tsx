@@ -48,10 +48,10 @@ export default function ExtraTripOffer() {
               asChild
             >
               <Link
-                className="text-[#F5F5F5] md:text-md"
+                className="md:text-md"
                 href="/trips"
               >
-                Book a Trip
+                <span className="text-[#F5F5F5]">Book a Trip</span>
               </Link>
             </Button>
           </div>
