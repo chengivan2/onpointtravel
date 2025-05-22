@@ -79,7 +79,7 @@ export default function ExtraTripOffer() {
               asChild
             >
               <Link
-                className="text-lightmode-text-color dark:text-darkmode-text-color md:text-md"
+                className="text-[#F5F5F5] md:text-md"
                 href="/trips"
               >
                 Book a Trip
