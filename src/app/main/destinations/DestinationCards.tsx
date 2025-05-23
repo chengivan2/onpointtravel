@@ -80,7 +80,7 @@ export default function DestinationCards() {
             }}
           >
             <Link href={`/destinations/${destination.slug}`}>
-              <div className="relative z-10 h-full flex flex-col bg-green-900/60 backdrop-blur-md border border-gray-200/40 dark:border-green-900/30 rounded-xl p-6 transition-all duration-300 hover:bg-white/40 dark:hover:bg-green-900/30 shadow-sm hover:shadow-md">
+              <div className="relative z-10 h-full flex flex-col bg-green-200/50 dark:bg-green-900/50 backdrop-blur-md border border-gray-200/40 dark:border-green-900/30 rounded-xl p-6 transition-all duration-300 hover:bg-white/40 dark:hover:bg-green-900/30 shadow-sm hover:shadow-md">
                 <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
                   {imageUrl ? (
                     <Image
