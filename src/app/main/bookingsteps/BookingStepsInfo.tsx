@@ -84,36 +84,6 @@ export default function BookingStepsInfo() {
       </div>
 
       <div className="relative space-y-6">
-        {/* SVG background shapes behind steps */}
-        <svg
-          className="absolute -z-10 left-0 top-0 w-full h-full pointer-events-none"
-          viewBox="0 0 400 400"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <ellipse
-            cx="80"
-            cy="100"
-            rx="60"
-            ry="20"
-            fill="#bbf7d0"
-            fillOpacity="0.18"
-          />
-          <ellipse
-            cx="320"
-            cy="300"
-            rx="50"
-            ry="15"
-            fill="#34d399"
-            fillOpacity="0.12"
-          />
-          {/* Example animal silhouette (rhino) */}
-          <path
-            d="M100 320 Q110 300 130 310 Q140 290 160 300 Q170 310 180 320 Q170 330 160 325 Q150 340 130 330 Q110 340 100 320 Z"
-            fill="#047857"
-            fillOpacity="0.08"
-          />
-        </svg>
         {steps.map((step, index) => (
           <motion.div
             key={index}
