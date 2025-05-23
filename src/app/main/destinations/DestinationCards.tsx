@@ -68,9 +68,9 @@ export default function DestinationCards() {
         return (
           <motion.div
             key={destination.id}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 40 }}
+            exit={{ opacity: 0, y: 100 }}
             transition={{ delay: index * 0.15, duration: 0.6, type: "spring" }}
             className="group flex flex-col justify-items-start relative cursor-pointer overflow-hidden rounded-xl transition-all duration-300 transform hover:scale-[1.02]"
             style={{
