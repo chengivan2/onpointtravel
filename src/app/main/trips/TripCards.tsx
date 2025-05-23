@@ -129,7 +129,7 @@ export default function TripCards() {
                             maximumFractionDigits: 0,
                           })}
                         </span>
-                        <span className="block text-sm text-green-600/80 dark:text-green-300/80">
+                        <span className="block text-sm text-lightmode-text-color/90 dark:text-darkmode-text-color/90">
                           per person
                         </span>
                       </div>

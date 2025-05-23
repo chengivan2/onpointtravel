@@ -8,7 +8,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
   return (
     <Link
       href={`/trips/${trip.slug}`}
-      className="z-20 group block rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/60 dark:bg-green-900/20 backdrop-blur-md border border-green-100/30 dark:border-green-900/30"
+      className="z-20 group block rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/50 dark:bg-green-900/50 backdrop-blur-md border border-green-100/30 dark:border-green-900/30"
     >
       <div className="relative aspect-[1.2]">
         <Image
@@ -26,13 +26,13 @@ export default function TripCard({ trip }: { trip: Trip }) {
           <h3 className="text-xl font-bold text-green-800 dark:text-green-100">
             {trip.name}
           </h3>
-          <p className="text-sm text-green-600/80 dark:text-green-300/80 line-clamp-2 mt-1">
+          <p className="text-sm text-lightmode-text-color dark:text-darkmode-text-color line-clamp-2 mt-1">
             {trip.short_description}
           </p>
         </div>
 
         <div className="flex justify-between items-center">
-          <span className="text-lg font-bold text-green-700 dark:text-green-300">
+          <span className="text-lg font-bold text-lightmode-text-color/90 dark:text-darkmode-text-color/90">
             ${trip.price?.toFixed(2)}
           </span>
           <div className="flex items-center gap-1">

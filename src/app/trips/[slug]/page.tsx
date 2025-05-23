@@ -166,25 +166,6 @@ export default async function TripPage({
           <Gallery images={trip.extra_featured_images} />
         </section>
 
-        {/* Facilities Section */}
-        {/* <div className="mb-12">
-          <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
-            Our Best Facilities
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {trip.facilities?.map((facility: string) => (
-              <div
-                key={facility}
-                className="p-4 text-center bg-white/60 dark:bg-green-900/20 rounded-lg border border-green-100/30 dark:border-green-900/30"
-              >
-                <span className="text-green-700 dark:text-green-300">
-                  {facility}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div> */}
-
         {/* Location Section */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
