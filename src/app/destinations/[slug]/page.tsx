@@ -46,10 +46,10 @@ export default async function DestinationPage({
   return (
     <>
       <Header />
-      <main className="mt-16">
+      <main className="mt-18">
         <section className="relative min-h-[100vh] flex justify-center px-[0.8rem] lg:px-[1rem] py-[0.8rem] lg:py-[2rem]">
           <div className="min-w-full min-h-[98vh] flex gap-0 flex-col md:flex-row items-start justify-start rounded-lg shadow-lg">
-            <div className="relative h-full w-[40%] flex flex-col justify-center items-start text-center lg:text-left bg-white/70 dark:bg-green-900/70 backdrop-blur-[2px] p-6 rounded-tl-lg rounded-tr-lg md:rounded-tr-none md:rounded-bl-lg">
+            <div className="relative h-full w-full md:w-[40%] flex flex-col justify-center items-start text-center lg:text-left bg-white/70 dark:bg-green-900/70 backdrop-blur-[2px] p-6 rounded-tl-lg rounded-tr-lg md:rounded-tr-none md:rounded-bl-lg">
               <h1 className="text-4xl font-bold text-green-800 dark:text-green-100">
                 {destination.name}
               </h1>
@@ -63,7 +63,7 @@ export default async function DestinationPage({
 
             {/* Image */}
             <div
-              className="relative h-full w-[60%] rounded-br-lg rounded-bl-lg md:rounded-bl-none md:rounded-tr-lg bg-cover bg-center shadow-lg"
+              className="relative h-full w-full md:w-[60%] rounded-br-lg rounded-bl-lg md:rounded-bl-none md:rounded-tr-lg bg-cover bg-center shadow-lg"
               style={{ backgroundImage: `url(${destination.main_image_url})` }}
             ></div>
           </div>
