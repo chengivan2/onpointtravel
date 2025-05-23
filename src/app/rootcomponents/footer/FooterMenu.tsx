@@ -75,7 +75,7 @@ export default function FooterMenu() {
       {links.map((link, index) => (
         <div key={index} className="space-y-4 text-sm">
           <span className="block font-bold">
-            <h2>{link.group}</h2>
+            <h2 className="text-[#F5F5F5]">{link.group}</h2>
           </span>
           {link.items.map((item, index) => (
             <Link
