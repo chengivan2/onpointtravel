@@ -62,7 +62,7 @@ export default function DestinationCards() {
   }
 
   return (
-    <div className="bg-[url(/images/green-elephant-bg.png)] bg-contain bg-center bg-repeat-y md:bg-no-repeat grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 py-[4rem] min-h-[100vh] relative">
+    <div className="bg-[url(/images/green-elephant-blob-no-bg.png)] bg-contain bg-center bg-repeat-y md:bg-no-repeat grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 py-[4rem] min-h-[100vh] relative">
       {destinations.map((destination, index) => {
         const imageUrl = destination.main_image_url;
         return (
