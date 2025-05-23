@@ -99,7 +99,7 @@ export default function DestinationCards() {
                 <h3 className="text-xl font-bold text-green-800 dark:text-green-100 mb-2">
                   {destination.name}
                 </h3>
-                <p className="text-green-600 dark:text-green-200 text-sm mb-4">
+                <p className="text-lightmode-text-color/90 dark:text-green-200 text-sm mb-4">
                   {destination.location}
                 </p>
                 <p className="text-lightmode-text-color dark:text-darkmode-text-color text-base line-clamp-3">
