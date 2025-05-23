@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { FaLocationArrow } from "react-icons/fa6";
 
 interface Trip {
   id: string;
@@ -95,7 +96,7 @@ export default function TripCards() {
               }}
             >
               <Link href={`/trips/${trip.slug}`}>
-                <div className="group relative backdrop-blur-md bg-green-200/50 dark:bg-green-900/50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100/30 dark:border-green-900/30 overflow-hidden">
+                <div className="group relative backdrop-blur-md bg-green-200/20 dark:bg-green-900/50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100/30 dark:border-green-900/30 overflow-hidden">
                   {/* Image Section */}
                   <div className="relative h-48">
                     <Image
@@ -113,25 +114,7 @@ export default function TripCards() {
                       {trip.name}
                     </h3>
                     <div className="flex items-center gap-2 mb-3">
-                      <svg
-                        className="w-5 h-5 text-green-600 dark:text-green-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                      </svg>
+                      <FaLocationArrow className="text-lightmode-text-color dark:text-darkmode-text-color text-sm" />
                       <h5>{trip.destination?.name || "Unknown Destination"}</h5>
                     </div>
                     <p className="text-lightmode-text-color dark:text-darkmode-text-color text-sm mb-4 line-clamp-3">
@@ -139,7 +122,7 @@ export default function TripCards() {
                     </p>
                     <div className="flex items-center justify-between mt-4">
                       <div className="space-y-1">
-                        <span className="text-3xl font-bold text-green-700 dark:text-green-300 font-heading">
+                        <span className="text-3xl font-bold text-lightmode-text-color dark:text-darkmode-text-color font-heading">
                           {trip.price.toLocaleString("en-US", {
                             style: "currency",
                             currency: "USD",
