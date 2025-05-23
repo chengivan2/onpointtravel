@@ -47,7 +47,11 @@ export default function DestinationCards() {
     return <div className="text-green-600 p-4">Loading destinations...</div>;
   }
   if (error) {
-    return <div className="text-red-500 p-4">Error loading destinations: {error}</div>;
+    return (
+      <div className="text-red-500 p-4">
+        Error loading destinations: {error}
+      </div>
+    );
   }
   if (!destinations || destinations.length === 0) {
     return (
@@ -59,36 +63,6 @@ export default function DestinationCards() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 py-[4rem] min-h-[100vh] relative">
-      {/* SVG background shapes behind cards */}
-      <svg
-        className="absolute -z-10 left-0 top-0 w-full h-full pointer-events-none"
-        viewBox="0 0 900 400"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <ellipse
-          cx="200"
-          cy="100"
-          rx="140"
-          ry="50"
-          fill="#bbf7d0"
-          fillOpacity="0.18"
-        />
-        <ellipse
-          cx="700"
-          cy="320"
-          rx="120"
-          ry="40"
-          fill="#34d399"
-          fillOpacity="0.12"
-        />
-        {/* Example animal silhouette (lion) */}
-        <path
-          d="M300 350 Q320 320 360 340 Q370 310 410 330 Q420 340 440 350 Q430 360 410 355 Q400 370 380 360 Q360 370 340 355 Q320 360 300 350 Z"
-          fill="#047857"
-          fillOpacity="0.08"
-        />
-      </svg>
       {destinations.map((destination, index) => {
         const imageUrl = destination.main_image_url;
         return (
@@ -100,7 +74,8 @@ export default function DestinationCards() {
             transition={{ delay: index * 0.15, duration: 0.6, type: "spring" }}
             className="group flex flex-col justify-items-start relative cursor-pointer overflow-hidden rounded-xl transition-all duration-300 transform hover:scale-[1.02]"
             style={{
-              animation: 'slit-in-diagonal-2 0.7s cubic-bezier(.23,1.01,.32,1) both',
+              animation:
+                "slit-in-diagonal-2 0.7s cubic-bezier(.23,1.01,.32,1) both",
               animationDelay: `${index * 0.08}s`,
             }}
           >
