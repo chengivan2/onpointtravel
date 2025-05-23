@@ -6,6 +6,7 @@ import { Database } from "@/types/supabase";
 import Header from "@/app/rootcomponents/header/Header";
 import FooterBefore from "@/app/rootcomponents/footerbefore/FooterBefore";
 import Footer from "@/app/rootcomponents/footer/Footer";
+import { FaL, FaLocationArrow } from "react-icons/fa6";
 
 export async function generateStaticParams() {
   const supabase = createClient(
@@ -53,9 +54,12 @@ export default async function DestinationPage({
               <h1 className="text-4xl font-bold text-green-800 dark:text-green-100">
                 {destination.name}
               </h1>
-              <p className="text-xl text-green-600 dark:text-green-300 mt-2">
+              <span className="flex items-center justify-center mt-4">
+                <FaLocationArrow className="inline-block text-green-600 dark:text-green-300 mr-2" />
+                <p className="text-xl text-green-600 dark:text-green-300 mt-2">
                 {destination.location}
               </p>
+              </span>
               <p className="mt-4 text-green-700 dark:text-green-300">
                 {destination.description}
               </p>
