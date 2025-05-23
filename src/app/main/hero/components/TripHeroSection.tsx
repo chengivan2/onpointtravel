@@ -59,6 +59,10 @@ export default function TripHeroSection({
           >
             {selectedTrip.short_description}
           </p>
+
+          <Link href={`/trips/${selectedTrip.id}`} className="bg-green-900 rounded-full shadow-lg text-green-100 underline">
+            View Trip
+          </Link>
         </div>
 
         <div className="mt-auto">
