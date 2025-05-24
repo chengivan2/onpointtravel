@@ -96,7 +96,7 @@ export default function TripCards() {
               }}
             >
               <Link href={`/trips/${trip.slug}`}>
-                <div className="group relative bg-white/50 dark:bg-green-900/50 backdrop-blur-xl rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100/30 dark:border-green-900/30 overflow-hidden">
+                <div className="group relative bg-white/50 dark:bg-green-900/50 backdrop-blur-2xl rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100/30 dark:border-green-900/30 overflow-hidden">
                   {/* Image Section */}
                   <div className="relative h-48">
                     <Image
