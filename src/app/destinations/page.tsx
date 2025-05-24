@@ -5,6 +5,7 @@ import TripCard from "./components/TripCard";
 import Header from "../rootcomponents/header/Header";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
+import FeaturedDestination from "./components/FeaturedDestination";
 
 export const metadata: Metadata = {
   title: "OnPoint Travel Destinations",
@@ -28,7 +29,10 @@ export default async function DestinationsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen max-w-7xl mx-auto mt-16 px-4 py-12 sm:px-6 lg:px-8">
+      <main className="min-h-[100vh] max-w-7xl mx-auto mt-16 px-4 py-12 sm:px-6 lg:px-8">
+        <section className="min-w-[100vw] min-h-[100vh]">
+          <FeaturedDestination />
+        </section>
         <section>
           <h2 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-8">
             Explore Destinations
