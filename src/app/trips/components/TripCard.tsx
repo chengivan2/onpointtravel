@@ -8,7 +8,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
   return (
     <Link
       href={`/trips/${trip.slug}`}
-      className="z-20 group block rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/50 dark:bg-green-900/50 backdrop-blur-md border border-green-100/30 dark:border-green-900/30"
+      className="z-20 group block rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/50 dark:bg-green-900/50 backdrop-blur-2xl border border-green-100/30 dark:border-green-900/30"
     >
       <div className="relative aspect-[1.2]">
         <Image
