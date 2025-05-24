@@ -29,11 +29,14 @@ export default async function DestinationsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-[100vh] max-w-7xl mx-auto mt-16 px-4 py-12 sm:px-6 lg:px-8">
-        <section className="min-w-[100vw] min-h-[100vh]">
+      <main className="min-h-[100vh] w-full">
+        {/* Featured Destination - Full width */}
+        <section className="mb-16">
           <FeaturedDestination />
         </section>
-        <section>
+
+        {/* Destinations Grid - Contained width */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-8">
             Explore Destinations
           </h2>
