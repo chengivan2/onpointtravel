@@ -31,7 +31,7 @@ export default async function DestinationsPage() {
       <Header />
       <main className="min-h-[100vh] w-full mt-16">
         {/* Featured Destination - Full width */}
-        <section className="h-[98vh] p-4">
+        <section className="h-[98vh] p-4 mt-16">
           <FeaturedDestination />
         </section>
 
