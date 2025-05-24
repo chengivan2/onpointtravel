@@ -56,7 +56,7 @@ export default async function DestinationPage({
               </h1>
               
               <span className="w-full flex flex-row flex-wrap items-center gap-2 mt-4 text-green-700 dark:text-green-300">
-                <FaLocationArrow className="inline-block text-green-600 dark:text-green-300" />
+                <FaLocationArrow className="text-xl inline-block text-green-600 dark:text-green-300" />
               <p className="text-xl text-green-600 dark:text-green-300">
                 {destination.location}
               </p>
