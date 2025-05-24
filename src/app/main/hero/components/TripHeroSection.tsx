@@ -14,7 +14,6 @@ interface TripHeroSectionProps {
 export default function TripHeroSection({
   initialTrips,
 }: TripHeroSectionProps) {
-
   const [selectedTrip, setSelectedTrip] = useState<Trip>(initialTrips[0]);
 
   const handleThumbnailClick = (trip: Trip) => {
@@ -46,7 +45,6 @@ export default function TripHeroSection({
           <p className="text-sm tracking-widest text-[#F5F5F5] mb-2">
             Today's Featured Trips
           </p>
-
           <h1
             key={`${selectedTrip.id}-title`}
             className="text-green-100 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 transition-all duration-300"
@@ -58,10 +56,24 @@ export default function TripHeroSection({
             className="text-sm md:text-md lg:text-lg text-green-200/90 mb-6 max-w-2xl leading-relaxed transition-all duration-300"
           >
             {selectedTrip.short_description}
-          </p>
-
-          <Link href={`/trips/${selectedTrip.id}`} className="bg-green-900 rounded-full shadow-lg text-green-100 underline">
-            View Trip
+          </p>{" "}
+          <Link
+            href={`/trips/${selectedTrip.id}`}
+            className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full shadow-lg transition-colors duration-200"
+          >
+            View Trip Details
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 ml-2"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
           </Link>
         </div>
 
@@ -71,7 +83,7 @@ export default function TripHeroSection({
               <button
                 key={trip.id}
                 onClick={() => handleThumbnailClick(trip)}
-                className={`relative aspect-2/3 h-25 md:h-35 lg:h-60 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
+                className={`relative aspect-2/3 w-32 md:w-48 lg:w-64 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-950 ${
                   selectedTrip.id === trip.id
                     ? "ring-2 ring-green-400 dark:ring-green-900 opacity-100 scale-105" // Highlight selected
                     : "opacity-80 hover:opacity-100 hover:scale-105" // Style for non-selected
@@ -92,7 +104,13 @@ export default function TripHeroSection({
                   />
                 )}
                 {/* Optional Name Overlay on Thumbnail */}
-                <div className={`absolute bottom-0 left-0 right-0 p-1 ${selectedTrip.id === trip.id ? "bg-green-700/90" : "bg-green-900/90 backdrop-blur-md"} rounded-b-lg`}>
+                <div
+                  className={`absolute bottom-0 left-0 right-0 p-1 ${
+                    selectedTrip.id === trip.id
+                      ? "bg-green-700/90"
+                      : "bg-green-900/90 backdrop-blur-md"
+                  } rounded-b-lg`}
+                >
                   <span className="text-xs font-medium text-darkmode-heading-color block">
                     {trip.name}
                   </span>
