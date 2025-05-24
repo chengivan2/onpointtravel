@@ -29,9 +29,9 @@ export default async function DestinationsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-[100vh] w-full">
+      <main className="min-h-[100vh] w-full mt-16">
         {/* Featured Destination - Full width */}
-        <section className="mb-16">
+        <section className="h-[98vh] p-4">
           <FeaturedDestination />
         </section>
 
