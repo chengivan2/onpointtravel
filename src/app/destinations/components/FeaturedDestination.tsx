@@ -34,7 +34,7 @@ export default async function FeaturedDestination() {
       />
       
       {/* Discount Banner */}
-      <div className="absolute top-6 right-6 bg-green-600/90 text-white px-6 py-3 rounded-full backdrop-blur-sm font-semibold shadow-lg">
+      <div className="z-[998] absolute top-6 right-6 bg-green-600/90 text-white px-6 py-3 rounded-full backdrop-blur-sm font-semibold shadow-lg">
         15% OFF on all trips for this destination
       </div>
 
