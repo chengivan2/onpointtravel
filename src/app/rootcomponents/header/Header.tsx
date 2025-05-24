@@ -42,7 +42,7 @@ export default function Header() {
   return (
     <header
       className={`
-      fixed top-0 left-0 right-0 z-50 
+      fixed top-0 left-0 right-0 z-[1001] 
       py-3 px-[1.5rem] 
       bg-lightmode-header-bg-color dark:bg-darkmode-header-bg-color 
       shadow-lg
