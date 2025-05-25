@@ -40,7 +40,8 @@ export default function TripHeroSection({
       </div>
 
       <div className="relative z-10 flex flex-col justify-between gap-[3rem] flex-grow px-3 py-8 md:px-5 md:pt-12 md:pb-10 lg:px-10 lg:pt-22 lg:pb-20 rounded-[0.7rem] shadow-lg transition-all duration-300">
-        {/* Main Text Content */}        <div className="py-2 px-4 bg-green-900/20 rounded-lg backdrop-blur-md w-full md:w-[60%] min-h-full flex flex-col items-start pt-[2rem] md:pt-[2rem] px-[2rem] lg:px-[3rem]">
+        {/* Main Text Content */}{" "}
+        <div className="p-4 bg-green-400/10 rounded-lg backdrop-blur-md w-full md:w-[60%] min-h-full flex flex-col items-start pt-[2rem] md:pt-[2rem] px-[2rem] lg:px-[3rem]">
           <p className="text-sm tracking-widest text-[#F5F5F5] mb-2">
             Today's Featured Trips
           </p>
@@ -75,7 +76,6 @@ export default function TripHeroSection({
             </svg>
           </Link>
         </div>
-
         <div className="mt-auto">
           <div className="w-full flex flex-wrap flex-end justify-end gap-5">
             {initialTrips.map((trip) => (
