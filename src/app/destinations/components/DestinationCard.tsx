@@ -32,7 +32,7 @@ export default function DestinationCard({
         <p className="text-sm text-lightmode-text-color/80 dark:text-darkmode-text-color/80">
           {destination.location}
         </p>
-        <p className="text-lightmode-text-color dark:text-darkmode-text-color text-base line-clamp-3">
+        <p className="text-lightmode-text-color/90 dark:text-darkmode-text-color/90 text-base line-clamp-3">
           {destination.description}
         </p>
       </div>
