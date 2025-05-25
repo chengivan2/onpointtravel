@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { createClient } from "@/utils/supabase/server";
 import DestinationCard from "./components/DestinationCard";
 import TripCard from "./components/TripCard";
+import { SearchBar } from "./components/SearchBar";
 import Header from "../rootcomponents/header/Header";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
@@ -12,13 +13,28 @@ export const metadata: Metadata = {
   description: "Discover different destinations",
 };
 
-export default async function DestinationsPage() {
+export default async function DestinationsPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const supabase = await createClient();
+  const query = (searchParams.query as string || "").toLowerCase();
 
   // Fetch destinations with all required fields
   const { data: destinations } = await supabase
     .from("destinations")
     .select("*");
+
+  // Filter destinations based on search query
+  const filteredDestinations = destinations?.filter((destination) => {
+    if (!query) return true;
+    return (
+      destination.name.toLowerCase().includes(query) ||
+      destination.location.toLowerCase().includes(query) ||
+      destination.description.toLowerCase().includes(query)
+    );
+  });
 
   // Fetch trips with all required fields
   const { data: featuredTrips } = await supabase
@@ -36,13 +52,14 @@ export default async function DestinationsPage() {
         </section>
 
         {/* Destinations Grid - Contained width */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-8">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">          <h2 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-8">
             Explore Destinations
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {destinations?.length ? (
-              destinations.map((destination) => (
+          <div className="mb-8">
+            <SearchBar placeholder="Search destinations by name or location..." />
+          </div>          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredDestinations?.length ? (
+              filteredDestinations.map((destination) => (
                 <DestinationCard
                   key={destination.id}
                   destination={destination}
