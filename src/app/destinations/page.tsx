@@ -52,7 +52,7 @@ export default async function DestinationsPage({
         </section>
 
         {/* Destinations Grid - Contained width */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">          <h2 className="text-3xl font-bold text-green-800 dark:text-green-100 mb-8">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">          <h2 className="text-3xl text-center font-bold text-green-800 dark:text-green-100 mb-8">
             Explore Destinations
           </h2>
           <div className="mb-8">
