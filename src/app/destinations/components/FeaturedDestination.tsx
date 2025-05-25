@@ -39,7 +39,7 @@ export default async function FeaturedDestination() {
       </div>
 
       {/* Content Overlay */}
-      <div className="absolute inset-0 bg-black/20 flex flex-col justify-end p-8 md:p-12">
+      <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-8 md:p-12">
         <div className="max-w-3xl space-y-4">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
             {destination.name}
