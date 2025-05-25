@@ -16,10 +16,10 @@ export const metadata: Metadata = {
 export default async function DestinationsPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const supabase = await createClient();
-  const query = (searchParams.query as string || "").toLowerCase();
+  const query = ((await searchParams)?.query as string || "").toLowerCase();
 
   // Fetch destinations with all required fields
   const { data: destinations } = await supabase
