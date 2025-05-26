@@ -182,26 +182,22 @@ export default async function PaymentsDashboardPage() {
       console.error('[ADMIN] Fetching all payments...');
       const { data: allPayments = [], error: paymentsError } = await supabaseService
         .from("payments")
-        .select(`id, amount, currency, status, booking_id, processed_at, booking:bookings!payments_booking_id_fkey(trip:trips(name), user:users(first_name, last_name, email), created_by, agent:users!bookings_created_by_fkey(first_name, last_name, email))`);
+        .select(`id, amount, currency, status, booking_id, processed_at, booking:bookings!payments_booking_id_fkey(trip:trips(name), user:users(first_name, last_name, email))`);
       if (paymentsError) console.error('[ADMIN] Payments fetch error:', paymentsError);
       console.error('[ADMIN] allPayments:', allPayments);
       adminPayments = (allPayments ?? []).map((p: any) => {
         const booking = p.booking ?? {};
-        // Defensive: booking.trip, booking.user, booking.agent may be null, array, or object
         let trip = booking.trip;
         if (Array.isArray(trip)) trip = trip[0];
         let u = booking.user;
         if (Array.isArray(u)) u = u[0];
-        let agent = booking.agent;
-        if (Array.isArray(agent)) agent = agent[0];
         const tripName = trip?.name ?? "-";
         const userName = u ? ((`${u.first_name ?? ""} ${u.last_name ?? ""}`.trim()) || (u.email ?? "-")) : "-";
-        const agentName = agent ? ((`${agent.first_name ?? ""} ${agent.last_name ?? ""}`.trim()) || (agent.email ?? null)) : null;
         return {
           ...p,
           trip_name: tripName,
           user_name: userName,
-          agent_name: agentName,
+          agent_name: null, // Not joined for now
         };
       });
       console.error('[ADMIN] adminPayments:', adminPayments);
