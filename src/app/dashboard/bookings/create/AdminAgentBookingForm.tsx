@@ -211,7 +211,7 @@ export function AdminAgentBookingForm({ users }: { users: { id: string; email: s
           >
             <option value="" className="cursor-pointer">Select a user</option>
             {users.map((user) => (
-              <option key={user.id} value={user.id} className="cursor-pointer dark:bg-green-900/20">
+              <option key={user.id} value={user.id} className="cursor-pointer dark:bg-green-900/50">
                 {user.name} ({user.email})
               </option>
             ))}
@@ -424,6 +424,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
                 <td className="px-4 py-2">{booking.people}</td>
                 <td className="px-4 py-2">
                   <select
+                    title="Booking Status"
                     value={booking.status}
                     onChange={(e) => handleStatusChange(booking.id, e.target.value)}
                     className="w-full px-2 py-1 border rounded-lg bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md backdrop-blur-md"

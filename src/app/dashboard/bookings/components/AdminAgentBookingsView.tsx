@@ -63,6 +63,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
             className="px-4 py-2 rounded-lg border border-green-200 bg-white/60 dark:bg-green-900/30 text-green-900 dark:text-green-100 shadow"
           />
           <select
+            title="Filter by Status"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             className="px-4 py-2 rounded-lg border border-green-200 bg-white/60 dark:bg-green-900/30 text-green-900 dark:text-green-100 shadow"
@@ -104,6 +105,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.number_of_people}</td>
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
                     <select
+                      title="Booking Status"
                       value={booking.status}
                       onChange={(e) => { e.stopPropagation(); handleStatusChange(booking.id, e.target.value); }}
                       className="cursor-pointer w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
@@ -119,6 +121,7 @@ export default function AdminAgentBookingsView({ initialBookings }: { initialBoo
                   </td>
                   <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
                     <select
+                      title="Payment Status"
                       value={booking.payment_status}
                       onChange={(e) => { e.stopPropagation(); handlePaymentStatusChange(booking.id, e.target.value); }}
                       className="cursor-pointer w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
