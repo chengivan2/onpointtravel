@@ -182,7 +182,7 @@ export default async function PaymentsDashboardPage() {
       console.error('[ADMIN] Fetching all payments...');
       const { data: allPayments = [], error: paymentsError } = await supabaseService
         .from("payments")
-        .select("id, amount, currency, status, booking_id, processed_at, booking:bookings(trip:trips(name), user:users(first_name, last_name, email), created_by, agent:users!bookings_created_by_fkey(first_name, last_name, email))");
+        .select(`id, amount, currency, status, booking_id, processed_at, booking:bookings!payments_booking_id_fkey(trip:trips(name), user:users(first_name, last_name, email), created_by, agent:users!bookings_created_by_fkey(first_name, last_name, email))`);
       if (paymentsError) console.error('[ADMIN] Payments fetch error:', paymentsError);
       console.error('[ADMIN] allPayments:', allPayments);
       adminPayments = (allPayments ?? []).map((p: any) => {
