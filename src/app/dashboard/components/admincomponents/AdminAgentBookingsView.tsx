@@ -84,10 +84,10 @@ export default function AdminAgentBookingsView({ initialBookings, showAll = true
       </div>
       <div className="relative rounded-2xl shadow-xl bg-white/40 dark:bg-green-900/30 backdrop-blur-md border border-green-100/30 dark:border-green-900/30 overflow-x-auto">
         {/* SVG backgrounds with pointer-events-none and z-index */}
-        <svg className="absolute -top-10 -right-10 w-64 h-64 opacity-10 text-green-300 pointer-events-none z-0" fill="none" viewBox="0 0 200 200" style={{zIndex:0}}>
+        <svg className="absolute -top-10 -right-10 w-64 h-64 opacity-10 text-green-300 pointer-events-none z-0" fill="none" viewBox="0 0 200 200">
           <circle cx="100" cy="100" r="100" fill="currentColor" />
         </svg>
-        <svg className="absolute bottom-0 left-0 w-40 h-40 opacity-10 text-green-200 pointer-events-none z-0" fill="none" viewBox="0 0 160 160" style={{zIndex:0}}>
+        <svg className="absolute bottom-0 left-0 w-40 h-40 opacity-10 text-green-200 pointer-events-none z-0" fill="none" viewBox="0 0 160 160">
           <circle cx="80" cy="80" r="80" fill="currentColor" />
         </svg>
         <div className="relative z-10">
