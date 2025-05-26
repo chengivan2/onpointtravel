@@ -228,7 +228,7 @@ export function AdminAgentBookingForm({ users }: { users: { id: string; email: s
           >
             <option value="" className="cursor-pointer">Select a trip</option>
             {trips.map((trip) => (
-              <option key={trip.id} value={trip.id} className="cursor-pointer dark:bg-green-900/20">
+              <option key={trip.id} value={trip.id} className="cursor-pointer dark:bg-green-900/50">
                 {trip.name}
               </option>
             ))}
