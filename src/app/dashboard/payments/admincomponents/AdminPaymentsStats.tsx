@@ -14,7 +14,7 @@ const AdminPaymentsStats: FC<AdminPaymentsStatsProps> = ({ totalPayments, totalA
       <div className="text-sm text-green-800 dark:text-green-100">Payments</div>
     </div>
     <div className="bg-green-100 dark:bg-green-900/40 rounded-xl p-4 text-center">
-      <div className="text-2xl font-bold text-green-700 dark:text-green-200">{totalAmount.toLocaleString()}</div>
+      <div className="text-2xl font-bold text-green-700 dark:text-green-200">${totalAmount.toLocaleString()}</div>
       <div className="text-sm text-green-800 dark:text-green-100">Total Amount</div>
     </div>
     <div className="bg-green-100 dark:bg-green-900/40 rounded-xl p-4 text-center">
