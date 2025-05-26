@@ -80,7 +80,7 @@ export default function OngoingTrips({
 
               <div
                 className={`bg-cover bg-center bg-[url(${trip.featured_image})] h-[40vh] lg:h-[50vh] rounded-xl`}
-                ></div>
+              ></div>
             </div>
           </div>
         </div>

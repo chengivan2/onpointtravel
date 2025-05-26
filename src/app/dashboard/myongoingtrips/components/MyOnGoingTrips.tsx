@@ -120,10 +120,8 @@ export default async function MyOngoingTrips() {
 
             {/* Trip Image */}
             <div
-              className="mt-4 bg-cover bg-center h-[40vh] rounded-xl"
-              style={{
-                backgroundImage: `url(${trip.trips.main_featured_image_url})`,
-              }}
+              className={`mt-4 bg-cover bg-center bg-[url(${trip.trips.main_featured_image_url})] h-[40vh] rounded-xl`}
+              
             ></div>
 
             {/* Green SVG for Glassmorphism */}
