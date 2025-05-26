@@ -142,7 +142,7 @@ export default async function PaymentsDashboardPage() {
       return {
         ...p,
         trip_name: trip?.name ?? "-",
-        client_name: u ? `${u.first_name ?? ""} ${u.last_name ?? ""}`.trim() || u.email ?? "-" : "-",
+        client_name: u ? ((`${u.first_name ?? ""} ${u.last_name ?? ""}`.trim() || u.email) ?? "-") : "-",
       };
     });
     // Area chart: payments per month (last 6 months)
