@@ -5,6 +5,7 @@ import {
   IconCar4wd,
   IconChartBar,
   IconClock12,
+  IconCreditCard,
   IconDashboard,
   IconFolder,
   IconHeart,
@@ -131,9 +132,9 @@ export function DashboardSidebar({
     documents: [],
     navSecondary: [
       {
-        title: "Settings",
-        url: "#",
-        icon: IconSettings,
+        title: "Payments",
+        url: "/dashboard/payments",
+        icon: IconCreditCard,
       },
       {
         title: "Support",
