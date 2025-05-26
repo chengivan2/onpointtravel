@@ -4,7 +4,11 @@ import { useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
 
-export default function OngoingTrips({ ongoingTrips }: { ongoingTrips: any[] }) {
+export default function OngoingTrips({
+  ongoingTrips,
+}: {
+  ongoingTrips: any[];
+}) {
   const [trips, setTrips] = useState(ongoingTrips);
 
   const handleStatusChange = async (id: string, newStatus: string) => {
@@ -49,6 +53,7 @@ export default function OngoingTrips({ ongoingTrips }: { ongoingTrips: any[] }) 
                   </p>
                 </div>
                 <select
+                  title="Trip Status"
                   value={trip.status}
                   onChange={(e) => handleStatusChange(trip.id, e.target.value)}
                   className="bg-green-300/50 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-3 py-2 rounded-full text-sm"
@@ -63,7 +68,8 @@ export default function OngoingTrips({ ongoingTrips }: { ongoingTrips: any[] }) 
               <div>
                 <Progress
                   value={
-                    ((new Date().getTime() - new Date(trip.start_date).getTime()) /
+                    ((new Date().getTime() -
+                      new Date(trip.start_date).getTime()) /
                       (new Date(trip.end_date).getTime() -
                         new Date(trip.start_date).getTime())) *
                     100
