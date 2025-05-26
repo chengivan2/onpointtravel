@@ -47,38 +47,38 @@ export default function ProfileEditForm({ profile }: { profile: any }) {
         <div>
           <label className="block text-sm font-medium text-lightmode-heading-color dark:text-darkmode-heading-color">
             First Name
+            <input
+              type="text"
+              name="first_name"
+              value={formData.first_name}
+              onChange={handleChange}
+              className="w-full mt-1 p-2 border rounded bg-white/70 dark:bg-green-900/30 text-lightmode-text-color dark:text-darkmode-text-color"
+            />
           </label>
-          <input
-            type="text"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded bg-white/70 dark:bg-green-900/30 text-lightmode-text-color dark:text-darkmode-text-color"
-          />
         </div>
         <div>
           <label className="block text-sm font-medium text-lightmode-heading-color dark:text-darkmode-heading-color">
             Last Name
+            <input
+              type="text"
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleChange}
+              className="w-full mt-1 p-2 border rounded bg-white/70 dark:bg-green-900/30 text-lightmode-text-color dark:text-darkmode-text-color"
+            />
           </label>
-          <input
-            type="text"
-            name="last_name"
-            value={formData.last_name}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded bg-white/70 dark:bg-green-900/30 text-lightmode-text-color dark:text-darkmode-text-color"
-          />
         </div>
         <div>
           <label className="block text-sm font-medium text-lightmode-heading-color dark:text-darkmode-heading-color">
             Email
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full mt-1 p-2 border rounded bg-white/70 dark:bg-green-900/30 text-lightmode-text-color dark:text-darkmode-text-color"
+            />
           </label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded bg-white/70 dark:bg-green-900/30 text-lightmode-text-color dark:text-darkmode-text-color"
-          />
         </div>
       </div>
       <button
