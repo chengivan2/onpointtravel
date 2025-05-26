@@ -178,51 +178,62 @@ export default async function PaymentsDashboardPage() {
   let adminPaymentsAreaData: { month: string; total: number }[] = [];
   let adminStats: { totalPayments: number; totalAmount: number; totalUsers: number; totalAgents: number } = { totalPayments: 0, totalAmount: 0, totalUsers: 0, totalAgents: 0 };
   if (isAdmin) {
-    // Use supabaseService for admin queries
-    const { data: allPayments = [] } = await supabaseService
-      .from("payments")
-      .select("id, amount, currency, status, booking_id, processed_at, booking:bookings(trip:trips(name), user:users(first_name, last_name, email), created_by, agent:users!bookings_created_by_fkey(first_name, last_name, email))");
-    adminPayments = (allPayments ?? []).map((p: any) => {
-      const booking = p.booking ?? {};
-      // Defensive: booking.trip, booking.user, booking.agent may be null, array, or object
-      let trip = booking.trip;
-      if (Array.isArray(trip)) trip = trip[0];
-      let u = booking.user;
-      if (Array.isArray(u)) u = u[0];
-      let agent = booking.agent;
-      if (Array.isArray(agent)) agent = agent[0];
-      const tripName = trip?.name ?? "-";
-      const userName = u ? ((`${u.first_name ?? ""} ${u.last_name ?? ""}`.trim()) || (u.email ?? "-")) : "-";
-      const agentName = agent ? ((`${agent.first_name ?? ""} ${agent.last_name ?? ""}`.trim()) || (agent.email ?? null)) : null;
-      return {
-        ...p,
-        trip_name: tripName,
-        user_name: userName,
-        agent_name: agentName,
-      };
-    });
-    // Area chart: payments per month (last 6 months)
-    const now = new Date();
-    adminPaymentsAreaData = Array.from({ length: 6 }).map((_, i) => {
-      const d = new Date(now.getFullYear(), now.getMonth() - (5 - i), 1);
-      const month = d.toLocaleString("default", { month: "short", year: "2-digit" });
-      const total = adminPayments
-        .filter((p) => {
-          const pd = new Date(p.processed_at);
-          return pd.getMonth() === d.getMonth() && pd.getFullYear() === d.getFullYear();
-        })
-        .reduce((sum, p) => sum + (p.amount ?? 0), 0);
-      return { month, total };
-    });
-    // Stats
-    adminStats.totalPayments = adminPayments.length;
-    adminStats.totalAmount = adminPayments.reduce((sum, p) => sum + (p.amount ?? 0), 0);
-    // Users
-    const { count: totalUsers = 0 } = await supabaseService.from("users").select("id", { count: "exact" });
-    adminStats.totalUsers = totalUsers ?? 0;
-    // Agents
-    const { count: totalAgents = 0 } = await supabaseService.from("users").select("id", { count: "exact" }).eq("role", "agent");
-    adminStats.totalAgents = totalAgents ?? 0;
+    try {
+      console.error('[ADMIN] Fetching all payments...');
+      const { data: allPayments = [], error: paymentsError } = await supabaseService
+        .from("payments")
+        .select("id, amount, currency, status, booking_id, processed_at, booking:bookings(trip:trips(name), user:users(first_name, last_name, email), created_by, agent:users!bookings_created_by_fkey(first_name, last_name, email))");
+      if (paymentsError) console.error('[ADMIN] Payments fetch error:', paymentsError);
+      console.error('[ADMIN] allPayments:', allPayments);
+      adminPayments = (allPayments ?? []).map((p: any) => {
+        const booking = p.booking ?? {};
+        // Defensive: booking.trip, booking.user, booking.agent may be null, array, or object
+        let trip = booking.trip;
+        if (Array.isArray(trip)) trip = trip[0];
+        let u = booking.user;
+        if (Array.isArray(u)) u = u[0];
+        let agent = booking.agent;
+        if (Array.isArray(agent)) agent = agent[0];
+        const tripName = trip?.name ?? "-";
+        const userName = u ? ((`${u.first_name ?? ""} ${u.last_name ?? ""}`.trim()) || (u.email ?? "-")) : "-";
+        const agentName = agent ? ((`${agent.first_name ?? ""} ${agent.last_name ?? ""}`.trim()) || (agent.email ?? null)) : null;
+        return {
+          ...p,
+          trip_name: tripName,
+          user_name: userName,
+          agent_name: agentName,
+        };
+      });
+      console.error('[ADMIN] adminPayments:', adminPayments);
+      // Area chart: payments per month (last 6 months)
+      const now = new Date();
+      adminPaymentsAreaData = Array.from({ length: 6 }).map((_, i) => {
+        const d = new Date(now.getFullYear(), now.getMonth() - (5 - i), 1);
+        const month = d.toLocaleString("default", { month: "short", year: "2-digit" });
+        const total = adminPayments
+          .filter((p) => {
+            const pd = new Date(p.processed_at);
+            return pd.getMonth() === d.getMonth() && pd.getFullYear() === d.getFullYear();
+          })
+          .reduce((sum, p) => sum + (p.amount ?? 0), 0);
+        return { month, total };
+      });
+      console.error('[ADMIN] adminPaymentsAreaData:', adminPaymentsAreaData);
+      // Stats
+      adminStats.totalPayments = adminPayments.length;
+      adminStats.totalAmount = adminPayments.reduce((sum, p) => sum + (p.amount ?? 0), 0);
+      // Users
+      const { count: totalUsers = 0, error: usersError } = await supabaseService.from("users").select("id", { count: "exact" });
+      if (usersError) console.error('[ADMIN] Users count error:', usersError);
+      adminStats.totalUsers = totalUsers ?? 0;
+      // Agents
+      const { count: totalAgents = 0, error: agentsError } = await supabaseService.from("users").select("id", { count: "exact" }).eq("role", "agent");
+      if (agentsError) console.error('[ADMIN] Agents count error:', agentsError);
+      adminStats.totalAgents = totalAgents ?? 0;
+      console.error('[ADMIN] adminStats:', adminStats);
+    } catch (err) {
+      console.error('[ADMIN] Exception:', err);
+    }
   }
 
   // --- FILTERS & SEARCH (Client-side) ---
