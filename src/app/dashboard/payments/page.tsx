@@ -184,9 +184,13 @@ export default async function PaymentsDashboardPage() {
       .select("id, amount, currency, status, booking_id, processed_at, booking:bookings(trip:trips(name), user:users(first_name, last_name, email), created_by, agent:users!bookings_created_by_fkey(first_name, last_name, email))");
     adminPayments = (allPayments ?? []).map((p: any) => {
       const booking = p.booking ?? {};
-      const trip = Array.isArray(booking.trip) ? booking.trip[0] : booking.trip;
-      const u = Array.isArray(booking.user) ? booking.user[0] : booking.user;
-      const agent = Array.isArray(booking.agent) ? booking.agent[0] : booking.agent;
+      // Defensive: booking.trip, booking.user, booking.agent may be null, array, or object
+      let trip = booking.trip;
+      if (Array.isArray(trip)) trip = trip[0];
+      let u = booking.user;
+      if (Array.isArray(u)) u = u[0];
+      let agent = booking.agent;
+      if (Array.isArray(agent)) agent = agent[0];
       const tripName = trip?.name ?? "-";
       const userName = u ? ((`${u.first_name ?? ""} ${u.last_name ?? ""}`.trim()) || (u.email ?? "-")) : "-";
       const agentName = agent ? ((`${agent.first_name ?? ""} ${agent.last_name ?? ""}`.trim()) || (agent.email ?? null)) : null;
@@ -220,6 +224,16 @@ export default async function PaymentsDashboardPage() {
     const { count: totalAgents = 0 } = await supabaseService.from("users").select("id", { count: "exact" }).eq("role", "agent");
     adminStats.totalAgents = totalAgents ?? 0;
   }
+
+  // --- FILTERS & SEARCH (Client-side) ---
+  // These would be implemented in the card/chart components using useState/useMemo for filtering and searching.
+  // Example for AdminPaymentsCard (pseudo):
+  // const [search, setSearch] = useState("");
+  // const [statusFilter, setStatusFilter] = useState("");
+  // const filteredPayments = useMemo(() => adminPayments.filter(...), [adminPayments, search, statusFilter]);
+  // Pass filteredPayments to AdminPaymentsCard.
+
+  // For empty charts, the chart components already show an empty state if data is empty.
 
   return (
     <SidebarProvider
