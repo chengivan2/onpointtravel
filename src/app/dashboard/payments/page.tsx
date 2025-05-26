@@ -11,6 +11,7 @@ import AgentPaymentsAreaChart from "./agentcomponents/AgentPaymentsAreaChart";
 import AdminPaymentsCard from "../payments/admincomponents/AdminPaymentsCard";
 import AdminPaymentsAreaChart from "../payments/admincomponents/AdminPaymentsAreaChart";
 import AdminPaymentsStats from "../payments/admincomponents/AdminPaymentsStats";
+import { supabaseService } from "@/utils/supabase/srk";
 
 export const metadata: Metadata = {
   title: "Payments | OnPoint Dashboard",
@@ -101,14 +102,14 @@ export default async function PaymentsDashboardPage() {
   let agentClientPayments: AgentPayment[] = [];
   let agentPaymentsAreaData: { month: string; total: number }[] = [];
   if (isAgent && !isAdmin) {
-    // Own bookings (as a customer)
-    const { data: ownBookings = [] } = await supabase
+    // Use supabaseService for agent queries
+    const { data: ownBookings = [] } = await supabaseService
       .from("bookings")
       .select("id, trip_id, start_date, end_date, number_of_people, total_price, status, trip:trips(name)")
       .eq("user_id", user.id);
     const ownBookingIds: string[] = (ownBookings ?? []).map((b: any) => b.id);
     const { data: ownPayments = [] } = ownBookingIds.length
-      ? await supabase
+      ? await supabaseService
           .from("payments")
           .select("id, amount, currency, status, booking_id, processed_at")
           .in("booking_id", ownBookingIds)
@@ -123,14 +124,14 @@ export default async function PaymentsDashboardPage() {
       };
     });
     // Bookings created for others
-    const { data: clientBookings = [] } = await supabase
+    const { data: clientBookings = [] } = await supabaseService
       .from("bookings")
       .select("id, trip_id, start_date, end_date, number_of_people, total_price, status, trip:trips(name), user:users(first_name, last_name, email)")
       .eq("created_by", user.id)
       .neq("user_id", user.id);
     const clientBookingIds: string[] = (clientBookings ?? []).map((b: any) => b.id);
     const { data: clientPayments = [] } = clientBookingIds.length
-      ? await supabase
+      ? await supabaseService
           .from("payments")
           .select("id, amount, currency, status, booking_id, processed_at")
           .in("booking_id", clientBookingIds)
@@ -177,8 +178,8 @@ export default async function PaymentsDashboardPage() {
   let adminPaymentsAreaData: { month: string; total: number }[] = [];
   let adminStats: { totalPayments: number; totalAmount: number; totalUsers: number; totalAgents: number } = { totalPayments: 0, totalAmount: 0, totalUsers: 0, totalAgents: 0 };
   if (isAdmin) {
-    // All payments
-    const { data: allPayments = [] } = await supabase
+    // Use supabaseService for admin queries
+    const { data: allPayments = [] } = await supabaseService
       .from("payments")
       .select("id, amount, currency, status, booking_id, processed_at, booking:bookings(trip:trips(name), user:users(first_name, last_name, email), created_by, agent:users!bookings_created_by_fkey(first_name, last_name, email))");
     adminPayments = (allPayments ?? []).map((p: any) => {
@@ -213,10 +214,10 @@ export default async function PaymentsDashboardPage() {
     adminStats.totalPayments = adminPayments.length;
     adminStats.totalAmount = adminPayments.reduce((sum, p) => sum + (p.amount ?? 0), 0);
     // Users
-    const { count: totalUsers = 0 } = await supabase.from("users").select("id", { count: "exact" });
+    const { count: totalUsers = 0 } = await supabaseService.from("users").select("id", { count: "exact" });
     adminStats.totalUsers = totalUsers ?? 0;
     // Agents
-    const { count: totalAgents = 0 } = await supabase.from("users").select("id", { count: "exact" }).eq("role", "agent");
+    const { count: totalAgents = 0 } = await supabaseService.from("users").select("id", { count: "exact" }).eq("role", "agent");
     adminStats.totalAgents = totalAgents ?? 0;
   }
 
