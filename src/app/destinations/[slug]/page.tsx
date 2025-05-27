@@ -54,12 +54,12 @@ export default async function DestinationPage({
               <h1 className="text-4xl font-bold text-green-800 dark:text-green-100">
                 {destination.name}
               </h1>
-              
+
               <span className="w-full flex flex-row flex-wrap items-center gap-2 mt-4 text-green-700 dark:text-green-300">
                 <FaLocationArrow className="text-xl inline-block text-green-600 dark:text-green-300" />
-              <p className="text-xl text-green-600 dark:text-green-300">
-                {destination.location}
-              </p>
+                <p className="text-xl text-green-600 dark:text-green-300">
+                  {destination.location}
+                </p>
               </span>
 
               <p className="mt-4 text-green-700 dark:text-green-300">
@@ -69,8 +69,7 @@ export default async function DestinationPage({
 
             {/* Image */}
             <div
-              className="relative h-full w-full md:w-[60%] rounded-br-lg rounded-bl-lg md:rounded-bl-none md:rounded-tr-lg bg-cover bg-center shadow-lg"
-              style={{ backgroundImage: `url(${destination.main_image_url})` }}
+              className={`relative h-full w-full md:w-[60%] rounded-br-lg rounded-bl-lg md:rounded-bl-none md:rounded-tr-lg bg-cover bg-center bg-[url(${destination.main_image_url})] shadow-lg`}
             ></div>
           </div>
         </section>
