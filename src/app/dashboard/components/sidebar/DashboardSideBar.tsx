@@ -85,7 +85,7 @@ export function DashboardSidebar({
           },
           {
             title: "Manage Users",
-            url: "/dashboard/users",
+            url: "/dashboard/manage-users",
             icon: IconUsers,
           },
           {
