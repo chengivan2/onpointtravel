@@ -25,8 +25,8 @@ const UserPaymentsAreaChart: FC<{ data: PaymentsPerMonth[] }> = ({ data }) => {
               <stop offset="95%" stopColor="#16a34a" stopOpacity={0}/>
             </linearGradient>
           </defs>
-          <XAxis dataKey="month" stroke="#166534"/>
-          <YAxis stroke="#166534"/>
+          <XAxis dataKey="month" stroke="var(--color-muted-foreground)" fontSize={12} />
+          <YAxis stroke="var(--color-muted-foreground)" fontSize={12} />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
           <Area type="monotone" dataKey="total" stroke="#16a34a" fillOpacity={1} fill="url(#colorPay)" />
