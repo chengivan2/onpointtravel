@@ -3,10 +3,15 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
-import dynamic from "next/dynamic";
 import { fetchUsersServer } from "./fetchUsersServer";
+import ManageUsersTable from "./ManageUsersTable";
+import { Metadata } from "next";
 
-const ManageUsersTable = dynamic(() => import("./ManageUsersTable"), { ssr: false });
+
+export const metadata: Metadata = {
+  title: "Manage Users - OnPoint Dashboard",
+  description: "Admin and agent users can manage other users",
+};
 
 export default async function ManageUsersPage() {
   const supabase = await createClient();
