@@ -133,22 +133,71 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
         </TableBody>
       </Table>
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="max-w-2xl w-full h-[90vh] max-h-[90vh] overflow-y-auto p-6 md:p-10 rounded-2xl">
+        <DialogContent
+          className="max-w-2xl w-full h-[90vh] max-h-[90vh] overflow-y-auto p-6 md:p-10 rounded-2xl shadow-2xl backdrop-blur-lg bg-white/60 dark:bg-green-900/20 border border-green-100/30 dark:border-green-900/30"
+        >
           <DialogHeader>
-            <DialogTitle>Edit User</DialogTitle>
+            <DialogTitle className="text-green-800 dark:text-green-100">Edit User</DialogTitle>
           </DialogHeader>
           {editingUser && (
             <form className="flex flex-col gap-4">
-              <Input name="name" aria-label="Name" value={editForm.name || ""} onChange={handleEditChange} placeholder="Full Name" />
-              <Input name="email" aria-label="Email" value={editForm.email || ""} onChange={handleEditChange} placeholder="Email" />
-              <Input name="role" aria-label="Role" value={editForm.role || ""} onChange={handleEditChange} placeholder="Role (admin/agent/user)" />
-              <Input name="created_at" aria-label="Created At" value={editForm.created_at || ""} disabled />
+              <Input
+                name="name"
+                aria-label="Name"
+                value={editForm.name || ""}
+                onChange={handleEditChange}
+                placeholder="Full Name"
+                className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500"
+              />
+              <Input
+                name="email"
+                aria-label="Email"
+                value={editForm.email || ""}
+                onChange={handleEditChange}
+                placeholder="Email"
+                className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500"
+              />
+              <Input
+                name="role"
+                aria-label="Role"
+                value={editForm.role || ""}
+                onChange={handleEditChange}
+                placeholder="Role (admin/agent/user)"
+                className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500"
+              />
+              <Input
+                name="created_at"
+                aria-label="Created At"
+                value={editForm.created_at || ""}
+                disabled
+                className="bg-white/40 dark:bg-green-900/10 border-green-100 dark:border-green-900 text-green-700 dark:text-green-300"
+              />
               <DialogFooter className="flex flex-col md:flex-row gap-2 mt-4">
-                <Button type="button" onClick={handleEditSave} className="w-full md:w-auto">Save</Button>
+                <Button
+                  type="button"
+                  onClick={handleEditSave}
+                  className="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white border-green-700 shadow-md"
+                >
+                  Save
+                </Button>
                 {role === "admin" && (
-                  <Button type="button" variant="destructive" onClick={() => handleDelete(editingUser.id)} className="w-full md:w-auto">Delete</Button>
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    onClick={() => handleDelete(editingUser.id)}
+                    className="w-full md:w-auto border-red-600 bg-red-600 hover:bg-red-700 text-white shadow-md"
+                  >
+                    Delete
+                  </Button>
                 )}
-                <Button type="button" variant="outline" onClick={closeDialog} className="w-full md:w-auto">Cancel</Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={closeDialog}
+                  className="w-full md:w-auto border-green-400 text-green-700 dark:text-green-200 bg-white/60 dark:bg-green-900/20 hover:bg-green-50 dark:hover:bg-green-900/40"
+                >
+                  Cancel
+                </Button>
               </DialogFooter>
             </form>
           )}
