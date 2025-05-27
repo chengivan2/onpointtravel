@@ -153,10 +153,10 @@ export function DashboardSidebar({
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem>
+          <SidebarMenuItem className="flex flex-row justify-between items-center">
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="data-[slot=sidebar-menu-button]:!p-1.5m"
             >
               <div className="flex items-center justify-between w-full">
                 <Link href="/">
@@ -178,9 +178,9 @@ export function DashboardSidebar({
                     />
                   </div>
                 </Link>
-                <HeaderThemeToggler />
               </div>
             </SidebarMenuButton>
+            <HeaderThemeToggler />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

@@ -12,7 +12,7 @@ const AdminPaymentsAreaChart: FC<{ data: PaymentsPerMonth[] }> = ({ data }) => {
   if (!data || data.length === 0) {
     return (
       <EmptyPaymentsCard
-        message="No payment stats yet"
+        message="No payment data yet"
         buttonText="View bookings"
         buttonHref="/dashboard/bookings"
       />
