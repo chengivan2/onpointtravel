@@ -1,4 +1,4 @@
-import { Users } from "lucide-react";
+import { CreditCard } from "lucide-react";
 
 export default function Loading() {
   return (
@@ -16,7 +16,7 @@ export default function Loading() {
 
       {/* Main Content Skeleton */}
       <div className="flex-1 bg-gray-100 dark:bg-green-900/20 p-6 animate-pulse flex flex-col items-center justify-center">
-        <Users className="w-16 h-16 text-gray-300 dark:text-green-800 animate-bounce mb-6" />
+        <CreditCard className="w-16 h-16 text-gray-300 dark:text-green-800 animate-bounce mb-6" />
         <div className="h-8 bg-gray-300 dark:bg-green-800/50 rounded w-1/2 mb-4"></div>
         <div className="space-y-4 w-full max-w-3xl">
           <div className="h-4 bg-gray-300 dark:bg-green-800/50 rounded w-3/4 mx-auto"></div>
