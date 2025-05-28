@@ -113,7 +113,6 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
             <TableHead>Email</TableHead>
             <TableHead>Role</TableHead>
             <TableHead>Created At</TableHead>
-            <TableHead>Edit</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
