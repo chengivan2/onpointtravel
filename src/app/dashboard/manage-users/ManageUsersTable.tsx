@@ -141,37 +141,62 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
           </DialogHeader>
           {editingUser && (
             <form className="flex flex-col gap-4">
-              <Input
-                name="name"
-                aria-label="Name"
-                value={editForm.name || ""}
-                onChange={handleEditChange}
-                placeholder="Full Name"
-                className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500"
-              />
-              <Input
-                name="email"
-                aria-label="Email"
-                value={editForm.email || ""}
-                onChange={handleEditChange}
-                placeholder="Email"
-                className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500"
-              />
-              <Input
-                name="role"
-                aria-label="Role"
-                value={editForm.role || ""}
-                onChange={handleEditChange}
-                placeholder="Role (admin/agent/user)"
-                className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500"
-              />
-              <Input
-                name="created_at"
-                aria-label="Created At"
-                value={editForm.created_at || ""}
-                disabled
-                className="bg-white/40 dark:bg-green-900/10 border-green-100 dark:border-green-900 text-green-700 dark:text-green-300"
-              />
+              <label className="flex flex-col gap-1 text-sm font-medium text-green-900 dark:text-green-200">
+                Name
+                <Input
+                  name="name"
+                  aria-label="Name"
+                  value={editForm.name || ""}
+                  onChange={handleEditChange}
+                  placeholder="Full Name"
+                  className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500"
+                />
+              </label>
+              <label className="flex flex-col gap-1 text-sm font-medium text-green-900 dark:text-green-200">
+                Email
+                <Input
+                  name="email"
+                  aria-label="Email"
+                  value={editForm.email || ""}
+                  onChange={handleEditChange}
+                  placeholder="Email"
+                  className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500"
+                />
+              </label>
+              <label className="flex flex-col gap-1 text-sm font-medium text-green-900 dark:text-green-200">
+                Role
+                {role === "admin" ? (
+                  <select
+                    name="role"
+                    aria-label="Role"
+                    value={editForm.role || ""}
+                    onChange={handleEditChange}
+                    className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500 rounded-md p-2"
+                  >
+                    <option value="admin">admin</option>
+                    <option value="agent">agent</option>
+                    <option value="user">user</option>
+                  </select>
+                ) : (
+                  <Input
+                    name="role"
+                    aria-label="Role"
+                    value={editForm.role || ""}
+                    disabled
+                    className="bg-white/40 dark:bg-green-900/10 border-green-100 dark:border-green-900 text-green-700 dark:text-green-300"
+                  />
+                )}
+              </label>
+              <label className="flex flex-col gap-1 text-sm font-medium text-green-900 dark:text-green-200">
+                Created At
+                <Input
+                  name="created_at"
+                  aria-label="Created At"
+                  value={editForm.created_at || ""}
+                  disabled
+                  className="bg-white/40 dark:bg-green-900/10 border-green-100 dark:border-green-900 text-green-700 dark:text-green-300"
+                />
+              </label>
               <DialogFooter className="flex flex-col md:flex-row gap-2 mt-4">
                 <Button
                   type="button"
