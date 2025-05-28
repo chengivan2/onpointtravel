@@ -66,17 +66,17 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
   };
   const handleEditSave = async () => {
     // Only update editable fields
-    const { id, name, email, role: userRole } = editForm;
+    const { id, first_name, last_name, email, role: userRole } = editForm;
     const { error } = await supabase.from("users").update({
-      first_name: name.split(" ")[0] || "",
-      last_name: name.split(" ").slice(1).join(" ") || "",
+      first_name: first_name || "",
+      last_name: last_name || "",
       email,
       role: userRole,
     }).eq("id", id);
     if (error) {
       toast.error("Failed to update user");
     } else {
-      setUsers((prev) => prev.map((u) => (u.id === id ? { ...u, name, email, role: userRole } : u)));
+      setUsers((prev) => prev.map((u) => (u.id === id ? { ...u, first_name, last_name, name: `${first_name} ${last_name}`.trim(), email, role: userRole } : u)));
       toast.success("User updated");
       closeDialog();
     }
@@ -142,13 +142,24 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
           {editingUser && (
             <form className="flex flex-col gap-4">
               <label className="flex flex-col gap-1 text-sm font-medium text-green-900 dark:text-green-200">
-                Name
+                First Name
                 <Input
-                  name="name"
-                  aria-label="Name"
-                  value={editForm.name || ""}
+                  name="first_name"
+                  aria-label="First Name"
+                  value={editForm.first_name || ""}
                   onChange={handleEditChange}
-                  placeholder="Full Name"
+                  placeholder="First Name"
+                  className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500"
+                />
+              </label>
+              <label className="flex flex-col gap-1 text-sm font-medium text-green-900 dark:text-green-200">
+                Last Name
+                <Input
+                  name="last_name"
+                  aria-label="Last Name"
+                  value={editForm.last_name || ""}
+                  onChange={handleEditChange}
+                  placeholder="Last Name"
                   className="bg-white/70 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 focus:ring-green-500 focus:border-green-500"
                 />
               </label>
@@ -200,7 +211,22 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
               <DialogFooter className="flex flex-col md:flex-row gap-2 mt-4">
                 <Button
                   type="button"
-                  onClick={handleEditSave}
+                  onClick={async () => {
+                    const { id, first_name, last_name, email, role: userRole } = editForm;
+                    const { error } = await supabase.from("users").update({
+                      first_name: first_name || "",
+                      last_name: last_name || "",
+                      email,
+                      role: userRole,
+                    }).eq("id", id);
+                    if (error) {
+                      toast.error("Failed to update user");
+                    } else {
+                      setUsers((prev) => prev.map((u) => (u.id === id ? { ...u, first_name, last_name, name: `${first_name} ${last_name}`.trim(), email, role: userRole } : u)));
+                      toast.success("User updated");
+                      closeDialog();
+                    }
+                  }}
                   className="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white border-green-700 shadow-md"
                 >
                   Save
