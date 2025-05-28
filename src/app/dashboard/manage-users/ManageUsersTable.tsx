@@ -132,7 +132,6 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.role}</TableCell>
               <TableCell>{user.created_at ? format(new Date(user.created_at), "yyyy-MM-dd") : ""}</TableCell>
-              <TableCell></TableCell>
             </TableRow>
           ))}
         </TableBody>
