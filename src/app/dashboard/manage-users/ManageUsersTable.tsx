@@ -118,16 +118,22 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
         </TableHeader>
         <TableBody>
           {filteredUsers.map((user) => (
-            <TableRow key={user.id}>
+            <TableRow
+              key={user.id}
+              onClick={() => openEditDialog(user)}
+              className="cursor-pointer hover:bg-green-50 dark:hover:bg-green-900/40 focus:bg-green-100 dark:focus:bg-green-900/60 transition-colors"
+              tabIndex={0}
+              role="button"
+              aria-label={`Edit user ${user.name}`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') openEditDialog(user);
+              }}
+            >
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.role}</TableCell>
               <TableCell>{user.created_at ? format(new Date(user.created_at), "yyyy-MM-dd") : ""}</TableCell>
-              <TableCell>
-                <Button size="sm" onClick={() => openEditDialog(user)}>
-                  Edit
-                </Button>
-              </TableCell>
+              <TableCell></TableCell>
             </TableRow>
           ))}
         </TableBody>
