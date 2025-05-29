@@ -96,8 +96,8 @@ export default async function AdminAnalyticsData({
       {/* Revenue */}
       <div className="bg-white/80 dark:bg-green-900/40 rounded-lg shadow-xl p-6">
         <h3 className="text-lg font-semibold mb-2">Revenue</h3>
-        <div>Total Revenue: ₦{totalRevenue.toLocaleString()}</div>
-        <div>Previous Period: ₦{prevTotalRevenue.toLocaleString()}</div>
+        <div>Total Revenue: ${totalRevenue.toLocaleString()}</div>
+        <div>Previous Period: ${prevTotalRevenue.toLocaleString()}</div>
       </div>
       {/* Top Trips */}
       <div className="bg-white/80 dark:bg-green-900/40 rounded-lg shadow-xl p-6">
