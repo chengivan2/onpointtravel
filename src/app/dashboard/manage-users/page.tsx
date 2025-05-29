@@ -6,8 +6,7 @@ import { createClient } from "@/utils/supabase/server";
 import { fetchUsersServer } from "./fetchUsersServer";
 import ManageUsersTable from "./ManageUsersTable";
 import { Metadata } from "next";
-import { PlusIcon } from "lucide-react";
-import { useState } from "react";
+import AddUserButtonClient from "./components/AddUserButtonClient";
 
 export const metadata: Metadata = {
   title: "Manage Users - OnPoint Dashboard",
@@ -61,25 +60,7 @@ export default async function ManageUsersPage() {
             </div>
           </div>
         </div>
-        {isAdmin && (
-          <div className="fixed bottom-8 right-8 z-50">
-            <button
-              type="button"
-              className="group flex items-center gap-2 px-6 py-3 rounded-full bg-green-600 text-white shadow-xl transition-all duration-300 hover:translate-x-[-120px] focus:translate-x-[-120px] hover:w-14 focus:w-14 w-40"
-              onClick={() => {
-                // Custom event or state to trigger add user dialog in ManageUsersTable
-                const event = new CustomEvent("openAddUserDialog");
-                window.dispatchEvent(event);
-              }}
-              aria-label="Add user"
-            >
-              <PlusIcon className="w-6 h-6" />
-              <span className="group-hover:opacity-0 group-focus:opacity-0 transition-opacity duration-200">
-                Add user
-              </span>
-            </button>
-          </div>
-        )}
+        {isAdmin && <AddUserButtonClient />}
       </SidebarInset>
     </SidebarProvider>
   );

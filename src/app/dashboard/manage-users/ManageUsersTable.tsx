@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { format } from "date-fns";
 import { toast } from "sonner";
+import FloatingAddUserButton from "./components/FloatingAddUserButton";
 
 export default function ManageUsersTable({ initialUsers, role }: { initialUsers: any[]; role: string }) {
   const [users, setUsers] = useState(initialUsers);
@@ -95,21 +96,30 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
     }
   };
 
-  useEffect(() => {
-    const handler = () => setAddDialogOpen(true);
-    window.addEventListener("openAddUserDialog", handler);
-    return () => window.removeEventListener("openAddUserDialog", handler);
-  }, []);
+  // Add dialog handler
+  const openAddDialog = () => setAddDialogOpen(true);
 
   const handleAddChange = (e: any) => {
     setAddForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   };
   const handleAddSave = async () => {
-    if (!addForm.email || !addForm.password || !addForm.first_name || !addForm.last_name) {
+    // Validate required fields
+    if (!addForm.first_name?.trim() || !addForm.last_name?.trim() || !addForm.email?.trim() || !addForm.password) {
       toast.error("All fields are required");
       return;
     }
-    // Create user in Supabase Auth and users table
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(addForm.email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+    // Validate password strength (minimum 6 characters)
+    if (addForm.password.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      return;
+    }
+    // Create user in Supabase Auth only; trigger will handle users table
     const { error: signUpError, data: signUpData } = await supabase.auth.admin.createUser({
       email: addForm.email,
       password: addForm.password,
@@ -123,20 +133,7 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
       toast.error(signUpError?.message || "Failed to create user");
       return;
     }
-    // Insert into users table
-    const { error: dbError } = await supabase.from("users").insert({
-      id: signUpData.user.id,
-      first_name: addForm.first_name,
-      last_name: addForm.last_name,
-      name: `${addForm.first_name} ${addForm.last_name}`.trim(),
-      email: addForm.email,
-      role: addForm.role,
-      created_at: new Date().toISOString(),
-    });
-    if (dbError) {
-      toast.error(dbError.message || "Failed to save user");
-      return;
-    }
+    // Optimistically add to UI (optional, or you can refetch users)
     setUsers((prev) => [
       {
         id: signUpData.user.id,
@@ -297,14 +294,33 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
                   Save
                 </Button>
                 {role === "admin" && (
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    onClick={() => handleDelete(editingUser.id)}
-                    className="w-full md:w-auto border-red-600 bg-red-600 hover:bg-red-700 text-white shadow-md"
-                  >
-                    Delete
-                  </Button>
+                  <>
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      onClick={() => handleDelete(editingUser.id)}
+                      className="w-full md:w-auto border-red-600 bg-red-600 hover:bg-red-700 text-white shadow-md"
+                    >
+                      Delete
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={async () => {
+                        const { error } = await supabase.auth.admin.generateLink({
+                          type: "recovery",
+                          email: editForm.email,
+                        });
+                        if (error) {
+                          toast.error("Failed to send reset link");
+                        } else {
+                          toast.success("Password reset link generated and sent (if email provider is configured)");
+                        }
+                      }}
+                      className="w-full md:w-auto border-green-400 text-green-700 dark:text-green-200 bg-white/60 dark:bg-green-900/20 hover:bg-green-50 dark:hover:bg-green-900/40"
+                    >
+                      Send Password Reset Link
+                    </Button>
+                  </>
                 )}
                 <Button
                   type="button"
@@ -406,6 +422,7 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
           </form>
         </DialogContent>
       </Dialog>
+      {role === "admin" && <FloatingAddUserButton onClick={openAddDialog} />}
     </div>
   );
 }
