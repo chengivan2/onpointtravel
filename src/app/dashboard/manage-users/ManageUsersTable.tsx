@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { format } from "date-fns";
 import { toast } from "sonner";
-import FloatingAddUserButton from "./components/FloatingAddUserButton";
 
 export default function ManageUsersTable({ initialUsers, role }: { initialUsers: any[]; role: string }) {
   const [users, setUsers] = useState(initialUsers);
@@ -422,7 +421,6 @@ export default function ManageUsersTable({ initialUsers, role }: { initialUsers:
           </form>
         </DialogContent>
       </Dialog>
-      {role === "admin" && <FloatingAddUserButton onClick={openAddDialog} />}
     </div>
   );
 }
