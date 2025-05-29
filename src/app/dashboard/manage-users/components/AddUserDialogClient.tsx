@@ -37,18 +37,15 @@ export default function AddUserDialogClient() {
       return;
     }
     setLoading(true);
-    const { error, data } = await supabase.auth.admin.createUser({
-      email: form.email,
-      password: form.password,
-      user_metadata: {
-        first_name: form.first_name,
-        last_name: form.last_name,
-        role: form.role,
-      },
+    const res = await fetch("/api/admin/add-user", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
     });
+    const result = await res.json();
     setLoading(false);
-    if (error || !data?.user) {
-      toast.error(error?.message || "Failed to create user");
+    if (!res.ok) {
+      toast.error(result.error || "Failed to create user");
       return;
     }
     toast.success("User created");

@@ -31,9 +31,8 @@ export function NavMain({
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
           <SidebarMenuItem className="cursor-pointer flex items-center gap-2">
-            {isAdmin ? (
-              <AddUserDialogClient />
-            ) : null}
+            {/* Only show AddUserDialogClient for admins, check role on the server and pass as prop if needed */}
+            {isAdmin ? <AddUserDialogClient /> : null}
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarMenu>

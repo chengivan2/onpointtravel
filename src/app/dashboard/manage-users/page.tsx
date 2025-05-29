@@ -6,7 +6,6 @@ import { createClient } from "@/utils/supabase/server";
 import { fetchUsersServer } from "./fetchUsersServer";
 import ManageUsersTable from "./ManageUsersTable";
 import { Metadata } from "next";
-import AddUserButtonClient from "./components/AddUserButtonClient";
 
 export const metadata: Metadata = {
   title: "Manage Users - OnPoint Dashboard",
@@ -60,7 +59,7 @@ export default async function ManageUsersPage() {
             </div>
           </div>
         </div>
-        {isAdmin && <AddUserButtonClient />}
+        {/* Remove legacy floating AddUserButtonClient button */}
       </SidebarInset>
     </SidebarProvider>
   );
