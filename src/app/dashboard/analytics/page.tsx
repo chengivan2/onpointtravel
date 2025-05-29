@@ -6,6 +6,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PlusIcon } from "lucide-react";
 import { DashboardSidebar } from "../components/sidebar/DashboardSideBar";
+import AdminAnalyticsData from "./components/AdminAnalyticsData";
+import { format, subDays } from "date-fns";
 
 export const metadata: Metadata = {
   title: "OnPoint Admin Analytics",
@@ -31,6 +33,11 @@ export default async function OnPointAdminAnalytics() {
   const firstName = `${profile?.first_name || ""}`;
   const isAdmin = profile?.role === "admin";
 
+  // Default: last 28 days vs previous 28 days
+  const endDate = format(new Date(), "yyyy-MM-dd");
+  const startDate = format(subDays(new Date(), 28), "yyyy-MM-dd");
+  const compareEndDate = format(subDays(new Date(), 28), "yyyy-MM-dd");
+  const compareStartDate = format(subDays(new Date(), 56), "yyyy-MM-dd");
 
   return (
     <SidebarProvider
@@ -53,7 +60,8 @@ export default async function OnPointAdminAnalytics() {
                     Hello, {firstName} 👋
                   </h2>
                   <p className="text-sm md:text-md lg:text-lg text-gray-800 dark:text-gray-200">
-                    You can view OnPoint analytics for bookings, revenue, and users on this page.
+                    You can view OnPoint analytics for bookings, revenue, and users
+                    on this page.
                   </p>
                 </div>
                 {isAdmin && (
@@ -66,7 +74,15 @@ export default async function OnPointAdminAnalytics() {
                   </Link>
                 )}
               </div>
-              
+              {/* Admin analytics data grid */}
+              {isAdmin && (
+                <AdminAnalyticsData
+                  startDate={startDate}
+                  endDate={endDate}
+                  compareStartDate={compareStartDate}
+                  compareEndDate={compareEndDate}
+                />
+              )}
             </div>
           </div>
         </div>
