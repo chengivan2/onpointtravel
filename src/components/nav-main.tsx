@@ -1,8 +1,9 @@
 "use client";
 
 import { IconCirclePlusFilled, type Icon } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+import { createClient } from "@/utils/supabase/client";
 
-import { Button } from "@/components/ui/button";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -15,7 +16,6 @@ import AddUserDialogClient from "@/app/dashboard/manage-users/components/AddUser
 
 export function NavMain({
   items,
-  isAdmin = false,
   onAddUserClick,
 }: {
   items: {
@@ -23,16 +23,33 @@ export function NavMain({
     url: string;
     icon?: Icon;
   }[];
-  isAdmin?: boolean;
   onAddUserClick?: () => void;
 }) {
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    async function checkRole() {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return;
+      const { data: profile } = await supabase
+        .from("users")
+        .select("role")
+        .eq("id", user.id)
+        .single();
+      setIsAdmin(profile?.role === "admin");
+    }
+    checkRole();
+  }, []);
+
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
           <SidebarMenuItem className="cursor-pointer flex items-center gap-2">
             {/* Only show AddUserDialogClient for admins, check role on the server and pass as prop if needed */}
-            {isAdmin ? <AddUserDialogClient /> : null}
+            {isAdmin && <AddUserDialogClient />}
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarMenu>
