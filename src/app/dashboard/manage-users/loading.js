@@ -3,7 +3,6 @@ import { Users } from "lucide-react";
 export default function Loading() {
   return (
     <div className="flex h-screen">
-      {/* Sidebar Skeleton */}
       <div className="hidden md:block w-64 bg-gray-200 dark:bg-green-900/30 animate-pulse m-2 rounded-lg">
         <div className="h-16 bg-gray-300 dark:bg-green-800/50 rounded-tl-lg rounded-tr-lg"></div>
         <div className="space-y-4 p-4">
@@ -14,7 +13,6 @@ export default function Loading() {
         </div>
       </div>
 
-      {/* Main Content Skeleton */}
       <div className="flex-1 bg-gray-100 dark:bg-green-900/20 p-6 animate-pulse flex flex-col items-center justify-center">
         <Users className="w-16 h-16 text-gray-300 dark:text-green-800 animate-bounce mb-6" />
         <div className="h-8 bg-gray-300 dark:bg-green-800/50 rounded w-1/2 mb-4"></div>
