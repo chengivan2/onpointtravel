@@ -58,7 +58,7 @@ export default function TripHeroSection({
             {selectedTrip.short_description}
           </p>{" "}
           <Link
-            href={`/trips/${selectedTrip.id}`}
+            href={`/trips/${selectedTrip.slug}`}
             className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full shadow-lg transition-colors duration-200"
           >
             View Trip Details
