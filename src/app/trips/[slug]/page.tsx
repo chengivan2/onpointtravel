@@ -78,7 +78,7 @@ export default async function TripPage({
     .single()
     .returns<Trip>();
 
-  const mainImage = trip?.main_featured_image_url;
+  const mainImage = trip.main_featured_image_url;
 
   if (!trip) return notFound();
 
