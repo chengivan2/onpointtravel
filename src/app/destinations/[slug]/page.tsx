@@ -69,7 +69,10 @@ export default async function DestinationPage({
 
             {/* Image */}
             <div
-              className={`relative h-full w-full md:w-[60%] rounded-br-lg rounded-bl-lg md:rounded-bl-none md:rounded-tr-lg bg-cover bg-center bg-[url(${destination.main_image_url})] shadow-lg`}
+              className={`relative h-full w-full md:w-[60%] rounded-br-lg rounded-bl-lg md:rounded-bl-none md:rounded-tr-lg bg-cover bg-center shadow-lg`}
+              style={{
+                backgroundImage: `url(${destination.featured_image_url})`,
+              }}
             ></div>
           </div>
         </section>
