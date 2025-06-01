@@ -1,24 +1,38 @@
-export default function LoadingMyBookings() {
+import { Calendar, CheckCircle, Car, XCircle } from "lucide-react";
+
+export default function Loading() {
   return (
-    <div className="flex flex-1 flex-col gap-2 px-3 py-6">
-      <div className="rounded-2xl shadow-xl bg-white/40 dark:bg-green-900/30 backdrop-blur-md border border-green-100/30 dark:border-green-900/30 min-h-[220px] w-full max-w-4xl mx-auto">
-        <div className="flex flex-col divide-y divide-green-100/40 dark:divide-green-900/40">
-          <div className="flex px-6 py-3 gap-4">
-            <div className="h-6 w-32 bg-green-200/60 rounded animate-pulse" />
-            <div className="h-6 w-24 bg-green-100/60 rounded animate-pulse" />
-            <div className="h-6 w-24 bg-green-100/60 rounded animate-pulse" />
-            <div className="h-6 w-20 bg-green-100/60 rounded animate-pulse" />
-            <div className="h-6 w-16 bg-green-200/60 rounded animate-pulse" />
+    <div className="flex h-screen">
+      {/* Sidebar Skeleton */}
+      <div className="hidden md:block w-64 bg-gray-200 dark:bg-green-900/30 animate-pulse m-2 rounded-lg">
+        <div className="h-16 bg-gray-300 dark:bg-green-800/50 rounded-tl-lg rounded-tr-lg"></div>
+        <div className="space-y-4 p-4">
+          <div className="h-4 bg-gray-300 dark:bg-green-800/50 rounded"></div>
+          <div className="h-4 bg-gray-300 dark:bg-green-800/50 rounded"></div>
+          <div className="h-4 bg-gray-300 dark:bg-green-800/50 rounded"></div>
+          <div className="h-4 bg-gray-300 dark:bg-green-800/50 rounded"></div>
+        </div>
+      </div>
+
+      {/* Main Content Skeleton */}
+      <div className="flex-1 bg-gray-100 dark:bg-green-900/20 p-6 animate-pulse flex flex-col items-center justify-center">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl">
+          {/* Calendar Icon */}
+          <div className="flex flex-col items-center justify-center h-40 bg-gray-300 dark:bg-green-800/50 rounded">
+            <Calendar className="w-12 h-12 text-gray-400 dark:text-green-300" />
           </div>
-          {[...Array(3)].map((_, i) => (
-            <div key={i} className="flex px-6 py-4 gap-4 items-center">
-              <div className="h-5 w-32 bg-green-200/60 rounded animate-pulse" />
-              <div className="h-5 w-24 bg-green-100/60 rounded animate-pulse" />
-              <div className="h-5 w-24 bg-green-100/60 rounded animate-pulse" />
-              <div className="h-5 w-20 bg-green-100/60 rounded animate-pulse" />
-              <div className="h-5 w-16 bg-green-200/60 rounded animate-pulse" />
-            </div>
-          ))}
+          {/* Tick Icon */}
+          <div className="flex flex-col items-center justify-center h-40 bg-gray-300 dark:bg-green-800/50 rounded">
+            <CheckCircle className="w-12 h-12 text-gray-400 dark:text-green-300" />
+          </div>
+          {/* Car Icon */}
+          <div className="flex flex-col items-center justify-center h-40 bg-gray-300 dark:bg-green-800/50 rounded">
+            <Car className="w-12 h-12 text-gray-400 dark:text-green-300" />
+          </div>
+          {/* X Icon */}
+          <div className="flex flex-col items-center justify-center h-40 bg-gray-300 dark:bg-green-800/50 rounded">
+            <XCircle className="w-12 h-12 text-gray-400 dark:text-green-300" />
+          </div>
         </div>
       </div>
     </div>
