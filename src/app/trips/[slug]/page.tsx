@@ -186,11 +186,11 @@ export default async function TripPage({
           ) : (
             <div>
               <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 mb-6">
-                Please login to book this trip
+                Please sign in to book this trip
               </h2>
-              <Link href="/login">
+              <Link href="/signin">
                 <button className="bg-green-600 text-white px-4 py-2 rounded-lg">
-                  Login
+                  Sign in
                 </button>
               </Link>
             </div>
