@@ -173,6 +173,7 @@ export default async function TripPage({
           </h2>
           <div className="aspect-video rounded-xl overflow-hidden">
             <iframe
+              title={`Location of ${trip.destination.name} on Google Maps`}
               src={`https://maps.google.com/maps?q=${trip.destination.name}&output=embed`}
               className="w-full h-full"
               loading="lazy"
