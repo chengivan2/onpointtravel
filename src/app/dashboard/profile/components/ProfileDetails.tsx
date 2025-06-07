@@ -13,7 +13,7 @@ export default function ProfileDetails({ profile }: { profile: any }) {
         currentLogoUrl={profile?.logo_url || null}
       />
 
-      <ul className="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
+      <ul className="mt-4 flex-col md:flex-row space-y-2 text-gray-700 dark:text-gray-300">
         <li>
           <strong>First Name:</strong> <span className="text-lightmode-text-color dark:text-darkmode-text-color">
             {profile?.first_name || "Not provided"}</span>
