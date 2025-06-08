@@ -1,4 +1,5 @@
 import { inter, alegreyaSans } from "./fonts";
+import { GoogleTagManager } from '@next/third-parties/google'
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import ScrollToTop from "./rootcomponents/ScrollToTop";
