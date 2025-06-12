@@ -3,10 +3,8 @@ import { Globe, Plane, MapPin } from "lucide-react";
 export default function Loading() {
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-gray-100 dark:bg-green-900/20 animate-pulse">
-      {/* Header Skeleton */}
       <div className="w-full h-16 bg-gray-300 dark:bg-green-800/50"></div>
 
-      {/* Spinning Globe Icon */}
       <div className="flex flex-col items-center justify-center flex-1">
         <div className="relative">
           <Globe className="w-20 h-20 text-gray-400 dark:text-green-300 animate-spin-slow" />
@@ -17,7 +15,6 @@ export default function Loading() {
         <div className="mt-4 h-4 bg-gray-300 dark:bg-green-800/50 rounded w-32"></div>
       </div>
 
-      {/* Main Content Skeleton */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl px-4 mb-8">
         {Array.from({ length: 6 }).map((_, index) => (
           <div
@@ -27,7 +24,6 @@ export default function Loading() {
         ))}
       </div>
 
-      {/* Footer Skeleton */}
       <div className="w-full h-16 bg-gray-300 dark:bg-green-800/50"></div>
     </div>
   );
