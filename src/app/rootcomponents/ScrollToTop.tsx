@@ -37,7 +37,7 @@ export default function ScrollToTop() {
           className="fixed z-[998] hover:cursor-pointer bottom-4 right-4 p-3 rounded-full bg-lightmode-scrolltotop-bg-color hover:bg-primary/90 dark:bg-darkmode-scrolltotop-bg-color hover:dark:bg-secondary/90 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110"
         >
           <svg
-            className="w-6 h-6 bg:lightmode-scrolltotop-bg-color dark:bg:darkmode-scrolltotop-bg-color text-lightmode-scrolltotop-color dark:text-darkmode-scrolltotop-color"
+            className="w-5 h-5 bg:lightmode-scrolltotop-bg-color dark:bg:darkmode-scrolltotop-bg-color text-lightmode-scrolltotop-color dark:text-darkmode-scrolltotop-color"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
