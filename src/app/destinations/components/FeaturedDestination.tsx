@@ -50,7 +50,7 @@ export default async function FeaturedDestination() {
           </p>
           
           <Link href={`/trips?destination=${destination.slug}`}>
-            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-6 text-lg rounded-full">
+            <Button size="lg" className="cursor-pointer bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-6 text-lg rounded-full">
               See available trips
             </Button>
           </Link>
