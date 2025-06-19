@@ -67,7 +67,6 @@ export default async function DestinationPage({
               </p>
             </div>
 
-            {/* Image */}
             <div
               className={`relative h-full w-full md:w-[60%] rounded-br-lg rounded-bl-lg md:rounded-bl-none md:rounded-tr-lg bg-cover bg-center shadow-lg`}
               style={{

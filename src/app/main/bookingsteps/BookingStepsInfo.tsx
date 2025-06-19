@@ -105,7 +105,7 @@ export default function BookingStepsInfo() {
                 <h3 className="text-xl font-semibold text-green-800 dark:text-green-100 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-green-600/80 dark:text-green-300/80">
+                <p className="text-lightmode-text-color dark:text-darkmode-text-color">
                   {step.description}
                 </p>
               </div>
