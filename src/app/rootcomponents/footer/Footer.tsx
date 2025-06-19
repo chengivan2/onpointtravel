@@ -2,6 +2,7 @@ import Link from "next/link";
 import FooterLogo from "./FooterLogo";
 import FooterMenu from "./FooterMenu";
 import Footersocials from "./FooterSocials";
+import ThemeToggler from "../ThemeToggler";
 
 export default function Footer() {
   return (
@@ -13,6 +14,7 @@ export default function Footer() {
             <Link href="/" aria-label="go home" className="block size-fit">
               <FooterLogo />
             </Link>
+            <ThemeToggler />
           </div>
 
           <FooterMenu />

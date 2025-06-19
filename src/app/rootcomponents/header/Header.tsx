@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import HeaderLogo from "./Logo";
 import Menu from "./Menu";
-import HeaderThemeToggler from "./ThemeToggler";
 import HeaderButtons from "./HeaderButtons";
 
 export default function Header() {
@@ -64,7 +63,6 @@ export default function Header() {
             }
 `}
           >
-            <HeaderThemeToggler />
           </div>
 
           <button
@@ -101,7 +99,6 @@ export default function Header() {
         <nav className="hidden lg:flex items-center space-x-8">
           <Menu />
           <div className="flex items-center space-x-4">
-            <HeaderThemeToggler />
             <div className="relative flex flex-row gap-[0.5rem]">
               <HeaderButtons />
             </div>

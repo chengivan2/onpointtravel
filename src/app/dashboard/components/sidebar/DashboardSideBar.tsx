@@ -30,7 +30,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/utils/supabase/client";
-import HeaderThemeToggler from "@/app/rootcomponents/header/ThemeToggler";
+import HeaderThemeToggler from "@/app/rootcomponents/ThemeToggler";
 
 export function DashboardSidebar({
   ...props

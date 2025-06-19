@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import { FaMoon } from "react-icons/fa6";
 import { IoSunny } from "react-icons/io5";
 
-export default function HeaderThemeToggler() {
+export default function ThemeToggler() {
   const { theme, setTheme } = useTheme();
   return (
     <Button
