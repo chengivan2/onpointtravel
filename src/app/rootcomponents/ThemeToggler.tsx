@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { FaMoon } from "react-icons/fa6";
 import { IoSunny } from "react-icons/io5";
@@ -8,13 +7,41 @@ import { IoSunny } from "react-icons/io5";
 export default function ThemeToggler() {
   const { theme, setTheme } = useTheme();
   return (
-    <Button
-      size="icon"
-      className="flex justify-center items-center duration-200 border-none bg-transparent hover:bg-transparent outline-0 rounded-full hover:cursor-pointer active:outline-0"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+    <div
+      className="flex items-center gap-1 p-1 rounded-full bg-white/30 backdrop-blur-md shadow-inner border border-white/30 w-[90px]"
+      role="radiogroup"
+      aria-label="Theme selector"
     >
-      <FaMoon className="absolute h-12 w-12 -rotate-21 duration-300 scale-100 text-darkmode-bg-color dark:-rotate-0 dark:scale-0" />
-      <IoSunny className="absolute h-12 w-12 -rotate-90 scale-0 dark:text-lightmode-bg-color dark:-rotate-22 duration-300 dark:scale-100" />
-    </Button>
+      <button
+        className={`flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
+          theme === "light"
+            ? "bg-white text-green-700 shadow"
+            : "bg-transparent text-white/90 hover:bg-white/20"
+        }`}
+        aria-label="Light mode"
+        aria-checked={theme === "light" ? "true" : "false"}
+        role="radio"
+        tabIndex={0}
+        onClick={() => setTheme("light")}
+        type="button"
+      >
+        <IoSunny className="w-5 h-5" />
+      </button>
+      <button
+        className={`flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
+          theme === "dark"
+            ? "bg-white text-green-700 shadow"
+            : "bg-transparent text-white/90 hover:bg-white/20"
+        }`}
+        aria-label="Dark mode"
+        aria-checked={theme === "dark" ? "true" : "false"}
+        role="radio"
+        tabIndex={0}
+        onClick={() => setTheme("dark")}
+        type="button"
+      >
+        <FaMoon className="w-5 h-5" />
+      </button>
+    </div>
   );
 }
