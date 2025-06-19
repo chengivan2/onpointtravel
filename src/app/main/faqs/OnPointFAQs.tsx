@@ -89,7 +89,7 @@ export default function OnPointFAQs() {
                   </AccordionTrigger>
                   <AccordionContent className="pb-5">
                     <div className="px-9">
-                      <p className="text-base text-green-600 dark:text-green-300">
+                      <p className="text-base text-lightmode-text-color dark:text-darkmode-text-color">
                         {item.answer}
                       </p>
                     </div>
