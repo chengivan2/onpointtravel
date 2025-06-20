@@ -25,7 +25,7 @@ export default function ThemeToggler() {
         onClick={() => setTheme("light")}
         type="button"
       >
-        <IoSunny className="w-5 h-5" />
+        <IoSunny className="w-4 h-4" />
       </button>
       <button
         className={`flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
@@ -40,7 +40,7 @@ export default function ThemeToggler() {
         onClick={() => setTheme("dark")}
         type="button"
       >
-        <FaMoon className="w-5 h-5" />
+        <FaMoon className="w-4 h-4" />
       </button>
     </div>
   );
