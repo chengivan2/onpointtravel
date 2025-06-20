@@ -8,7 +8,7 @@ export default function ThemeToggler() {
   const { theme, setTheme } = useTheme();
   return (
     <div
-      className="flex items-center gap-1 p-1 rounded-full bg-white/30 backdrop-blur-md shadow-inner border border-white/30 w-[90px]"
+      className="flex items-center gap-1 p-1 rounded-full bg-black/30 backdrop-blur-md shadow-inner border border-white/30 w-[90px]"
       role="radiogroup"
       aria-label="Theme selector"
     >
