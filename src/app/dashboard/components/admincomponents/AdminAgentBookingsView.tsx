@@ -83,13 +83,48 @@ export default function AdminAgentBookingsView({
           className="px-4 py-2 rounded-lg border border-green-200 bg-white/60 dark:bg-green-900/30 text-green-900 dark:text-green-100 shadow"
         >
           <option value="">All Statuses</option>
-          <option value="pending" className="bg-yellow-100 text-yellow-800 rounded-full px-2 py-1">Pending</option>
-                      <option value="confirmed" className="bg-green-100 text-green-800 rounded-full px-2 py-1">Confirmed</option>
-                      <option value="ongoing" className="bg-blue-100 text-blue-800 rounded-full px-2 py-1">Ongoing</option>
-                      <option value="cancelled" className="bg-red-100 text-red-800 rounded-full px-2 py-1">Cancelled</option>
-                      <option value="completed" className="bg-purple-100 text-purple-800 rounded-full px-2 py-1">Completed</option>
-                      <option value="refunded" className="bg-pink-100 text-pink-800 rounded-full px-2 py-1">Refunded</option>
-                      <option value="on_hold" className="bg-gray-100 text-gray-800 rounded-full px-2 py-1">On Hold</option>
+          <option
+            value="pending"
+            className="bg-yellow-100 text-yellow-800 rounded-full px-2 py-1"
+          >
+            Pending
+          </option>
+          <option
+            value="confirmed"
+            className="bg-green-100 text-green-800 rounded-full px-2 py-1"
+          >
+            Confirmed
+          </option>
+          <option
+            value="ongoing"
+            className="bg-blue-100 text-blue-800 rounded-full px-2 py-1"
+          >
+            Ongoing
+          </option>
+          <option
+            value="cancelled"
+            className="bg-red-100 text-red-800 rounded-full px-2 py-1"
+          >
+            Cancelled
+          </option>
+          <option
+            value="completed"
+            className="bg-purple-100 text-purple-800 rounded-full px-2 py-1"
+          >
+            Completed
+          </option>
+          <option
+            value="refunded"
+            className="bg-pink-100 text-pink-800 rounded-full px-2 py-1"
+          >
+            Refunded
+          </option>
+          <option
+            value="on_hold"
+            className="bg-gray-100 text-gray-800 rounded-full px-2 py-1"
+          >
+            On Hold
+          </option>
         </select>
       </div>
       <div className="relative rounded-2xl shadow-xl bg-white/40 dark:bg-green-900/30 backdrop-blur-md border border-green-100/30 dark:border-green-900/30 overflow-x-auto">
@@ -213,12 +248,42 @@ export default function AdminAgentBookingsView({
                         className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <option value="unpaid">Unpaid</option>
-                        <option value="partially_paid">Partially Paid</option>
-                        <option value="paid">Paid</option>
-                        <option value="refund_pending">Refund Pending</option>
-                        <option value="refunded">Refunded</option>
-                        <option value="failed">Failed</option>
+                        <option
+                          value="unpaid"
+                          className="bg-red-100 text-red-800 rounded-full px-2 py-1"
+                        >
+                          Unpaid
+                        </option>
+                        <option
+                          value="partially_paid"
+                          className="bg-yellow-100 text-yellow-800 rounded-full px-2 py-1"
+                        >
+                          Partially Paid
+                        </option>
+                        <option
+                          value="paid"
+                          className="bg-green-100 text-green-800 rounded-full px-2 py-1"
+                        >
+                          Paid
+                        </option>
+                        <option
+                          value="refund_pending"
+                          className="bg-orange-100 text-orange-800 rounded-full px-2 py-1"
+                        >
+                          Refund Pending
+                        </option>
+                        <option
+                          value="refunded"
+                          className="bg-blue-100 text-blue-800 rounded-full px-2 py-1"
+                        >
+                          Refunded
+                        </option>
+                        <option
+                          value="failed"
+                          className="bg-gray-100 text-gray-800 rounded-full px-2 py-1"
+                        >
+                          Failed
+                        </option>
                       </select>
                     </td>
                     <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
