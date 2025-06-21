@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-export default function AdminAgentBookingsView({ initialBookings, showAll = true }: { initialBookings: any[]; showAll?: boolean }) {
+export default function AdminAgentBookingsView({
+  initialBookings,
+  showAll = true,
+}: {
+  initialBookings: any[];
+  showAll?: boolean;
+}) {
   const [bookings, setBookings] = useState(initialBookings);
   // Remove paging logic
 
@@ -37,7 +43,9 @@ export default function AdminAgentBookingsView({ initialBookings, showAll = true
         body: JSON.stringify({ id, status: value }),
       });
       if (!res.ok) throw new Error("Failed to update status");
-      setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, status: value } : b)));
+      setBookings((prev) =>
+        prev.map((b) => (b.id === id ? { ...b, status: value } : b))
+      );
     } catch (err) {
       // Show error in UI (could add error state if needed)
     }
@@ -50,7 +58,9 @@ export default function AdminAgentBookingsView({ initialBookings, showAll = true
         body: JSON.stringify({ id, payment_status: value }),
       });
       if (!res.ok) throw new Error("Failed to update payment status");
-      setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, payment_status: value } : b)));
+      setBookings((prev) =>
+        prev.map((b) => (b.id === id ? { ...b, payment_status: value } : b))
+      );
     } catch (err) {
       // Show error in UI (could add error state if needed)
     }
@@ -84,22 +94,42 @@ export default function AdminAgentBookingsView({ initialBookings, showAll = true
       </div>
       <div className="relative rounded-2xl shadow-xl bg-white/40 dark:bg-green-900/30 backdrop-blur-md border border-green-100/30 dark:border-green-900/30 overflow-x-auto">
         {/* SVG backgrounds with pointer-events-none and z-index */}
-        <svg className="absolute -top-10 -right-10 w-64 h-64 opacity-10 text-green-300 pointer-events-none z-0" fill="none" viewBox="0 0 200 200">
+        <svg
+          className="absolute -top-10 -right-10 w-64 h-64 opacity-10 text-green-300 pointer-events-none z-0"
+          fill="none"
+          viewBox="0 0 200 200"
+        >
           <circle cx="100" cy="100" r="100" fill="currentColor" />
         </svg>
-        <svg className="absolute bottom-0 left-0 w-40 h-40 opacity-10 text-green-200 pointer-events-none z-0" fill="none" viewBox="0 0 160 160">
+        <svg
+          className="absolute bottom-0 left-0 w-40 h-40 opacity-10 text-green-200 pointer-events-none z-0"
+          fill="none"
+          viewBox="0 0 160 160"
+        >
           <circle cx="80" cy="80" r="80" fill="currentColor" />
         </svg>
         <div className="relative z-10">
           <table className="min-w-full bg-transparent">
             <thead>
               <tr>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Trip Name</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Client</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">People</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Status</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Payment Status</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Created At</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">
+                  Trip Name
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">
+                  Client
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">
+                  People
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">
+                  Status
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">
+                  Payment Status
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 dark:text-gray-300">
+                  Created At
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -110,16 +140,24 @@ export default function AdminAgentBookingsView({ initialBookings, showAll = true
                     className="hover:bg-green-50/30 dark:hover:bg-green-900/40 transition-colors cursor-pointer"
                     onClick={() => toggleRow(booking.id)}
                   >
-                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100 font-semibold">{booking.trip_name}</td>
-                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.client}</td>
-                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">{booking.number_of_people}</td>
+                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100 font-semibold">
+                      {booking.trip_name}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
+                      {booking.client}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
+                      {booking.number_of_people}
+                    </td>
                     <td className="px-6 py-4 text-sm text-green-900 dark:text-green-100">
                       <select
                         title="Trip Status"
                         value={booking.status}
-                        onChange={(e) => handleStatusChange(booking.id, e.target.value)}
+                        onChange={(e) =>
+                          handleStatusChange(booking.id, e.target.value)
+                        }
                         className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
-                        onClick={e => e.stopPropagation()}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <option value="pending">Pending</option>
                         <option value="confirmed">Confirmed</option>
@@ -134,9 +172,11 @@ export default function AdminAgentBookingsView({ initialBookings, showAll = true
                       <select
                         title="Payment Status"
                         value={booking.payment_status}
-                        onChange={(e) => handlePaymentStatusChange(booking.id, e.target.value)}
+                        onChange={(e) =>
+                          handlePaymentStatusChange(booking.id, e.target.value)
+                        }
                         className="w-full px-2 py-1 border rounded bg-white/30 dark:bg-green-900/30 text-green-800 dark:text-green-100 shadow-md"
-                        onClick={e => e.stopPropagation()}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <option value="unpaid">Unpaid</option>
                         <option value="partially_paid">Partially Paid</option>
@@ -152,22 +192,19 @@ export default function AdminAgentBookingsView({ initialBookings, showAll = true
                   </tr>
                   {expandedRows.includes(booking.id) && (
                     <tr className="bg-green-50/40 dark:bg-green-900/40">
-                      <td colSpan={6} className="px-6 py-4 text-green-900 dark:text-green-100 border-t border-green-100/30 dark:border-green-900/30">
-                        {/* Booking details here, customize as needed */}
-                        <div className="flex flex-col md:flex-row gap-4">
-                          <div>
-                            <div className="font-semibold">Email:</div>
-                            <div>{booking.email || "-"}</div>
-                          </div>
-                          <div>
-                            <div className="font-semibold">Phone:</div>
-                            <div>{booking.phone || "-"}</div>
-                          </div>
-                          <div>
-                            <div className="font-semibold">Notes:</div>
-                            <div>{booking.notes || "-"}</div>
-                          </div>
-                          {/* Add more details as needed */}
+                      <td
+                        colSpan={6}
+                        className="bg-white/80 dark:bg-green-900/60 border-t border-green-100/40 dark:border-green-900/40 shadow-lg text-green-900 dark:text-green-100 p-6"
+                      >
+                        <div className="mb-2 font-bold">Booking Details</div>
+                        <div>Trip: {booking.trip_name}</div>
+                        <div>Client: {booking.client}</div>
+                        <div>People: {booking.number_of_people}</div>
+                        <div>Status: {booking.status}</div>
+                        <div>Payment Status: {booking.payment_status}</div>
+                        <div>
+                          Created:{" "}
+                          {new Date(booking.created_at).toLocaleString()}
                         </div>
                       </td>
                     </tr>
