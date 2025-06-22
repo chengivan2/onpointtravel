@@ -26,7 +26,7 @@ export default function ThemeToggler() {
         onClick={() => setTheme("system")}
         type="button"
       >
-        <MdDesktopWindows className="w-3 h-3" />
+        <MdDesktopWindows className="cursor-pointer w-3 h-3" />
       </button>
       <button
         className={`flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
@@ -41,7 +41,7 @@ export default function ThemeToggler() {
         onClick={() => setTheme("light")}
         type="button"
       >
-        <IoSunny className="w-3 h-3" />
+        <IoSunny className="cursor-pointer w-3 h-3" />
       </button>
       <button
         className={`flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
@@ -56,7 +56,7 @@ export default function ThemeToggler() {
         onClick={() => setTheme("dark")}
         type="button"
       >
-        <FaMoon className="w-3 h-3" />
+        <FaMoon className="cursor-pointer w-3 h-3" />
       </button>
     </div>
   );
