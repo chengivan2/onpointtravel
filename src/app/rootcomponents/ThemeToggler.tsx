@@ -14,7 +14,7 @@ export default function ThemeToggler() {
       aria-label="Theme selector"
     >
       <button
-        className={`flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
+        className={`cursor-pointer flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
           (!theme || theme === "system")
             ? "bg-white text-green-700 shadow"
             : "bg-transparent text-white/90 hover:bg-white/20"
@@ -26,10 +26,10 @@ export default function ThemeToggler() {
         onClick={() => setTheme("system")}
         type="button"
       >
-        <MdDesktopWindows className="cursor-pointer w-3 h-3" />
+        <MdDesktopWindows className="w-3 h-3" />
       </button>
       <button
-        className={`flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
+        className={`cursor-pointer flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
           theme === "light"
             ? "bg-white text-green-700 shadow"
             : "bg-transparent text-white/90 hover:bg-white/20"
@@ -41,10 +41,10 @@ export default function ThemeToggler() {
         onClick={() => setTheme("light")}
         type="button"
       >
-        <IoSunny className="cursor-pointer w-3 h-3" />
+        <IoSunny className="w-3 h-3" />
       </button>
       <button
-        className={`flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
+        className={`cursor-pointer flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
           theme === "dark"
             ? "bg-white text-green-700 shadow"
             : "bg-transparent text-white/90 hover:bg-white/20"
@@ -56,7 +56,7 @@ export default function ThemeToggler() {
         onClick={() => setTheme("dark")}
         type="button"
       >
-        <FaMoon className="cursor-pointer w-3 h-3" />
+        <FaMoon className="w-3 h-3" />
       </button>
     </div>
   );
