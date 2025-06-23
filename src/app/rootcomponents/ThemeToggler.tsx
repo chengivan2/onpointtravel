@@ -9,18 +9,18 @@ export default function ThemeToggler() {
   const { theme, setTheme } = useTheme();
   return (
     <div
-      className="flex items-center gap-1 p-1 rounded-full bg-black/30 backdrop-blur-md shadow-inner border border-white/30 w-[135px]"
+      className="flex items-center gap-1 p-1 rounded-full bg-black/30 backdrop-blur-md shadow-inner border border-white/30 w-[max-content]"
       role="radiogroup"
       aria-label="Theme selector"
     >
       <button
-        className={`cursor-pointer flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
-          (!theme || theme === "system")
+        className={`cursor-pointer flex-1 flex items-center justify-center rounded-full transition-all p-1 focus:outline-none ${
+          (theme === "system")
             ? "bg-white text-green-700 shadow"
             : "bg-transparent text-white/90 hover:bg-white/20"
         }`}
         aria-label="System default"
-        aria-checked={!theme || theme === "system" ? "true" : "false"}
+        aria-checked={theme === "system" ? "true" : "false"}
         role="radio"
         tabIndex={0}
         onClick={() => setTheme("system")}
@@ -29,7 +29,7 @@ export default function ThemeToggler() {
         <MdDesktopWindows className="w-3 h-3" />
       </button>
       <button
-        className={`cursor-pointer flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
+        className={`cursor-pointer flex-1 flex items-center justify-center rounded-full transition-all p-1 focus:outline-none ${
           theme === "light"
             ? "bg-white text-green-700 shadow"
             : "bg-transparent text-white/90 hover:bg-white/20"
@@ -44,7 +44,7 @@ export default function ThemeToggler() {
         <IoSunny className="w-3 h-3" />
       </button>
       <button
-        className={`cursor-pointer flex-1 flex items-center justify-center rounded-full transition-all p-2 focus:outline-none ${
+        className={`cursor-pointer flex-1 flex items-center justify-center rounded-full transition-all p-1 focus:outline-none ${
           theme === "dark"
             ? "bg-white text-green-700 shadow"
             : "bg-transparent text-white/90 hover:bg-white/20"
