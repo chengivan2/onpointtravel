@@ -34,7 +34,7 @@ export default function ScrollToTop() {
         <button
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="fixed z-[998] hover:cursor-pointer bottom-4 right-4 p-3 rounded-full bg-lightmode-scrolltotop-bg-color hover:bg-primary/90 dark:bg-darkmode-scrolltotop-bg-color hover:dark:bg-secondary/90 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110"
+          className="fixed flex items-center justify-center z-[998] hover:cursor-pointer bottom-4 right-4 p-3 rounded-full bg-lightmode-scrolltotop-bg-color hover:bg-primary/90 dark:bg-darkmode-scrolltotop-bg-color hover:dark:bg-secondary/90 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110"
           style={{ width: 48, height: 48 }}
         >
           {/* Circular progress stroke */}
