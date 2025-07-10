@@ -1,5 +1,11 @@
 import Footer from "../rootcomponents/footer/Footer";
 import Header from "../rootcomponents/header/Header";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy - OnPoint Travel",
+  description: "Read our privacy policy to understand how we handle your data.",
+};
 
 export default function PrivacyPolicyPage() {
   return (
