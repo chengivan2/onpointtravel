@@ -2,8 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "../rootcomponents/footer/Footer";
 import Header from "../rootcomponents/header/Header";
+import { Metadata } from "next";
 
-export Met
+ export const metadata: Metadata = {
+  title: "Terms & Conditions - OnPoint Travel",
+  description: "Read the terms and conditions for using OnPoint Travel services.",
+};
 
 export default function TermsAndConditionsPage() {
   return (
