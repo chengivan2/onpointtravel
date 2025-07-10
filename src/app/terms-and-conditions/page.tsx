@@ -3,6 +3,8 @@ import Link from "next/link";
 import Footer from "../rootcomponents/footer/Footer";
 import Header from "../rootcomponents/header/Header";
 
+export Met
+
 export default function TermsAndConditionsPage() {
   return (
     <>
@@ -15,7 +17,7 @@ export default function TermsAndConditionsPage() {
                 <Image
                   width={100}
                   height={50}
-                  alt="OnPoint logo"
+                  alt="OnPoint Main logo"
                   src="/logos/onpointhflightmodelogo.png"
                   className="flex duration-300 dark:hidden"
                 />
