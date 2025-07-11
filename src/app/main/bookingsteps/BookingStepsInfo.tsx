@@ -73,7 +73,7 @@ export default function BookingStepsInfo() {
     },
   ];
   return (
-    <div className="flex-1 bg-[url('/images/giraffes-blob-neck-crossing-image.png')] bg-contain bg-rotate-45 space-y-8">
+    <div className="flex-1 space-y-8">
       <div className="text-center md:text-left animate-fade-in-down">
         <h2 className="text-4xl font-bold text-lightmode-heading-color dark:text-darkmode-heading-color mb-4">
           Easy and Fast
@@ -83,7 +83,7 @@ export default function BookingStepsInfo() {
         </p>
       </div>
 
-      <div className="relative space-y-6">
+      <div className="relative space-y-6 bg-[url('/images/giraffes-blob-neck-crossing-image.png')] bg-contain bg-no-repeat bg-center">
         {steps.map((step, index) => (
           <motion.div
             key={index}
