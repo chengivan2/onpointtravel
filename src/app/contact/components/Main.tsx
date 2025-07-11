@@ -57,7 +57,7 @@ export default function Main() {
               <h3 className="text-2xl text-green-800 dark:text-green-200 font-semibold">
               Reach out to our support team
               </h3>
-              <p className="mt-2 text-sm md:text-md lg:text-lg text-green-600 dark:text-green-300">
+              <p className="mt-2 text-sm md:text-md lg:text-lg text-green-600">
                 We’re eager to help so we'll get back to you ASAP!
               </p>
 
