@@ -29,7 +29,7 @@ export default function Main() {
                 <h2 className="mb-3 text-lg font-semibold">Collaborate</h2>
                 <Link
                   href="mailto:info@onpoint.vercel.app"
-                  className="text-lg text-green-600 hover:underline dark:text-green-400"
+                  className="text-lg text-lightmode-text-color dark:text-darkmode-text-color hover:underline"
                 >
                   info@onpoint.vercel.app
                 </Link>
@@ -41,7 +41,7 @@ export default function Main() {
                 <h3 className="mb-3 text-lg font-semibold">Book</h3>
                 <Link
                   href="mailto:press@tailus.io"
-                  className="text-lg text-green-600 hover:underline dark:text-green-400"
+                  className="text-lg text-lightmode-text-color dark:text-darkmode-text-color hover:underline"
                 >
                   bookings@onpoint.vercel.app
                 </Link>

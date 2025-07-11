@@ -46,7 +46,7 @@ export default function OnPointFAQs() {
                     <div className="md:w-1/3">
                         <div className="sticky top-20">
                             <h2 className="mt-4 text-3xl font-bold text-green-800 dark:text-green-100">Frequently Asked Questions</h2>
-                            <p className="text-green-600 dark:text-green-300 mt-4">
+                            <p className="text-lightmode-text-color dark:text-darkmode-text-color mt-4">
                                 Can't find what you're looking for? Contact our{' '}
                                 <Link
                                     href="/contact"
@@ -79,7 +79,7 @@ export default function OnPointFAQs() {
                                     </AccordionTrigger>
                                     <AccordionContent className="pb-5">
                                         <div className="px-9">
-                                            <p className="text-base text-green-600">{item.answer}</p>
+                                            <p className="text-base text-lightmode-text-color dark:text-darkmode-text-color">{item.answer}</p>
                                         </div>
                                     </AccordionContent>
                                 </AccordionItem>
