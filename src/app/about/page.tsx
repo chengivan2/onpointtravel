@@ -30,7 +30,7 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold text-green-800 dark:text-green-100">
                 Our Vision
               </h2>
-              <p className="mt-4 text-lightmode-text-color dark:text-lightmode-text-color">
+              <p className="mt-4 text-green-600">
                 To be the leading travel agency, inspiring people to explore the
                 world and create unforgettable memories.
               </p>
@@ -57,7 +57,7 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold text-green-800 dark:text-green-100">
                 Our Mission
               </h2>
-              <p className="mt-4 text-lightmode-text-color dark:text-lightmode-text-color">
+              <p className="mt-4 text-green-600">
                 To provide exceptional travel experiences by offering
                 personalized services, innovative solutions, and a commitment to
                 excellence.
@@ -93,19 +93,19 @@ export default function AboutPage() {
             <div className="mt-6 space-y-4">
               <div className="flex items-center space-x-4">
                 <FaPhone size={24} />
-                <p className="text-lightmode-text-color dark:text-lightmode-text-color">
+                <p className="text-green-600">
                   +1 234 567 890
                 </p>
               </div>
               <div className="flex items-center space-x-4">
                 <FaEnvelope size={24} />
-                <p className="text-lightmode-text-color dark:text-lightmode-text-color">
+                <p className="text-green-600">
                   contact@onpointtravel.com
                 </p>
               </div>
               <div className="flex items-center space-x-4">
                 <FaLocationPin size={24} />
-                <p className="text-lightmode-text-color dark:text-lightmode-text-color">
+                <p className="text-green-600">
                   123 Travel Lane, Wanderlust City
                 </p>
               </div>
