@@ -73,7 +73,7 @@ export default function BookingStepsInfo() {
     },
   ];
   return (
-    <div className="flex-1 bg-[url('/images/giraffes-blob-neck-crossing-image')] space-y-8">
+    <div className="flex-1 bg-[url('/images/giraffes-blob-neck-crossing-image.png')] space-y-8">
       <div className="text-center md:text-left animate-fade-in-down">
         <h2 className="text-4xl font-bold text-lightmode-heading-color dark:text-darkmode-heading-color mb-4">
           Easy and Fast
