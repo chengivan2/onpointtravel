@@ -23,7 +23,7 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Vision */}
           <div className="relative bg-white/30 dark:bg-green-900/30 backdrop-blur-md rounded-xl p-6 shadow-lg">
-            <h2 className="text-2xl font-bold text-lightmode-heading-color dark:text-lightmode-heading-color">Our Vision</h2>
+            <h2 className="text-2xl font-bold text-green-800 dark:text-green-100">Our Vision</h2>
             <p className="mt-4 text-lightmode-text-color dark:text-lightmode-text-color">
               To be the leading travel agency, inspiring people to explore the world and create unforgettable memories.
             </p>
@@ -47,7 +47,7 @@ export default function AboutPage() {
 
           {/* Mission */}
           <div className="relative bg-white/30 dark:bg-green-900/30 backdrop-blur-md rounded-xl p-6 shadow-lg">
-            <h2 className="text-2xl font-bold text-lightmode-heading-color dark:text-lightmode-heading-color">Our Mission</h2>
+            <h2 className="text-2xl font-bold text-green-800 dark:text-green-100">Our Mission</h2>
             <p className="mt-4 text-lightmode-text-color dark:text-lightmode-text-color">
               To provide exceptional travel experiences by offering personalized services, innovative solutions, and a commitment to excellence.
             </p>
@@ -76,7 +76,7 @@ export default function AboutPage() {
       {/* Contact Section */}
       <section className="py-12 md:py-24 px-6">
         <div className="max-w-3xl mx-auto bg-white/30 dark:bg-green-900/30 backdrop-blur-md rounded-xl p-6 shadow-lg">
-          <h2 className="text-2xl font-bold text-lightmode-heading-color dark:text-lightmode-heading-color text-center">Contact Us</h2>
+          <h2 className="text-2xl font-bold text-green-800 dark:text-green-100 text-center">Contact Us</h2>
           <div className="mt-6 space-y-4">
             <div className="flex items-center space-x-4">
               <FaPhone size={24} />
