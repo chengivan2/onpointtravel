@@ -29,7 +29,7 @@ export default function BookingStepsInfo() {
       ),
       title: "1. Book a Trip",
       description:
-        "Book a trip from our curated list of amazing trip locations and destinations",
+        "Book a trip from our curated list of amazing trip & locations",
     },
     {
       icon: (
@@ -49,7 +49,7 @@ export default function BookingStepsInfo() {
       ),
       title: "2. Make Payment",
       description:
-        "Secure and easy payment process with multiple options available",
+        "Pay using our secure and easy payment process with multiple options available",
     },
     {
       icon: (
