@@ -163,7 +163,7 @@ export default function WallOfLoveTestimonials() {
                         </Avatar>
                         <div>
                           <h3 className="text-lightmode-heading-color dark:text-darkmode-heading-color font-medium">{name}</h3>
-                          <span className="text-lightmoode-text-color/60 dark:text-darkmode-text-color/60 block text-sm tracking-wide">
+                          <span className="text-green-890/60 dark:text-green-100/60 block text-sm tracking-wide">
                             {role}
                           </span>
                           <blockquote className="mt-3">
