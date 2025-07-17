@@ -9,8 +9,7 @@ import Footer from "@/app/rootcomponents/footer/Footer";
 import { ImLocation2 } from "react-icons/im";
 import Link from "next/link";
 import { BookingForm } from "./components/BookingForm";
-import FavoriteButton from "@/app/rootcomponents/trips/FavoriteButton";
-import { toast } from "sonner";
+import TripFavoriteSection from "./components/TripFavoriteSection";
 
 export const metadata: Metadata = {
   title: "OnPoint Travel Trips",
@@ -154,14 +153,7 @@ export default async function TripPage({
             </div>
 
             <div>
-              <h2>I like this trip</h2>
-              <FavoriteButton 
-                tripId={trip.id} 
-                heartIconSize={120}
-                onToggle={isFav => {
-                  toast.success(isFav ? "Added to favorites!" : "Removed from favorites.");
-                }}
-              />
+              <TripFavoriteSection tripId={trip.id} />
             </div>
           </div>
         </section>
