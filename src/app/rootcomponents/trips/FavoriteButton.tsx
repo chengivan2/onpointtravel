@@ -6,9 +6,13 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export default function FavoriteButton(
-  { tripId, heartIconSize }: { tripId: string; heartIconSize: number }
-) {
+interface FavoriteButtonProps {
+  tripId: string;
+  heartIconSize: number;
+  onToggle?: (isFav: boolean) => void;
+}
+
+export default function FavoriteButton({ tripId, heartIconSize, onToggle }: FavoriteButtonProps) {
   const supabase = createClient();
   const [isFavorite, setIsFavorite] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -76,6 +80,7 @@ export default function FavoriteButton(
       toast.error("Failed to update favorites. Please try again.");
     } else {
       setIsFavorite(!isFavorite);
+      if (onToggle) onToggle(!isFavorite);
     }
 
     setLoading(false);

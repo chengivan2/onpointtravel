@@ -3,6 +3,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import ScrollToTop from "./rootcomponents/ScrollToTop";
+import { Toaster } from "@/components/ui/sonner"
 
 export default function RootLayout({
   children,
@@ -19,6 +20,7 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
         <ScrollToTop />
+        <Toaster />
       </body>
     </html>
   );

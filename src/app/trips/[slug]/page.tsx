@@ -10,6 +10,7 @@ import { ImLocation2 } from "react-icons/im";
 import Link from "next/link";
 import { BookingForm } from "./components/BookingForm";
 import FavoriteButton from "@/app/rootcomponents/trips/FavoriteButton";
+import { toast } from "sonner";
 
 export const metadata: Metadata = {
   title: "OnPoint Travel Trips",
@@ -154,7 +155,13 @@ export default async function TripPage({
 
             <div>
               <h2>I like this trip</h2>
-              <FavoriteButton tripId={trip.id} heartIconSize={120} />
+              <FavoriteButton 
+                tripId={trip.id} 
+                heartIconSize={120}
+                onToggle={isFav => {
+                  toast.success(isFav ? "Added to favorites!" : "Removed from favorites.");
+                }}
+              />
             </div>
           </div>
         </section>
