@@ -11,21 +11,23 @@ import ExtraTripOffer from "./extratripoffer/ExtraTripOffer";
 
 export default function Main() {
   return (
-    <>
-      <HomeHero />
-      <OurServicesSection />
-      <Destinations />
-      <LogoSeparator />
-      <BookingSteps />
-      <LogoSeparator />
-      <Trips />
-      <LogoSeparator />
-      <Stats />
-      <LogoSeparator />
-      <WallOfLoveTestimonials />
-      <LogoSeparator />
-      <OnPointFAQs />
-      <ExtraTripOffer />
-    </>
+    <main className="w-full px-4 md:px-8 lg:px-12">
+      <div className="max-w-7xl mx-auto flex flex-col gap-12">
+        <HomeHero />
+        <OurServicesSection />
+        <Destinations />
+        <LogoSeparator />
+        <BookingSteps />
+        <LogoSeparator />
+        <Trips />
+        <LogoSeparator />
+        <Stats />
+        <LogoSeparator />
+        <WallOfLoveTestimonials />
+        <LogoSeparator />
+        <OnPointFAQs />
+        <ExtraTripOffer />
+      </div>
+    </main>
   );
 }

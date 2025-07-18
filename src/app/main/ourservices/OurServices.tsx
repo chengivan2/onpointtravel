@@ -31,7 +31,7 @@ export default function OurServicesSection() {
   ];
 
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-16 bg-lightmode-bg-color dark:bg-darkmode-bg-color">
+    <section className="w-full bg-lightmode-bg-color dark:bg-darkmode-bg-color">
       {/* <div className="absolute inset-0 bg-[url('')] bg-cover bg-center opacity-20"></div> */}
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-12">

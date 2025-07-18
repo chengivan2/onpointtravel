@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function ExtraTripOffer() {
   return (
-    <section className="relative">
+    <section className="w-full relative">
       <div
         className={`absolute inset-0 bg-cover bg-center bg-[url(https://res.cloudinary.com/doqbnfais/image/upload/v1745260620/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/three-impalas_kwx3j6.jpg)] bg-fixed bg-no-repeat opacity-20`}
       ></div>

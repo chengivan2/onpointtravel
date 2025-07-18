@@ -50,7 +50,7 @@ export default function Header() {
       ${isMenuOpen ? "!translate-y-0" : ""}
     `}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 lg:px-12">
         {/* Logo */}
         <HeaderLogo />
 

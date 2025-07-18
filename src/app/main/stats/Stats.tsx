@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Stats() {
   return (
-    <section className="pt-6 md:pt-10 py-12 md:py-20">
+    <section className="w-full pt-6 md:pt-10 py-12 md:py-20">
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
         <div className="relative z-10 mx-auto max-w-xl space-y-6 text-center">
           <h2 className="text-lightmode-heading-color dark:text-darkmode-heading-color text-4xl font-semibold lg:text-5xl">

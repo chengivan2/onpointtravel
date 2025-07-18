@@ -57,7 +57,7 @@ const testimonials: Testimonial[] = [
   {
     name: "Bree Mokaya",
     role: "Travel blogger",
-    image: "https://res.cloudinary.com/doqbnfais/image/upload/v1743445046/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/testimonials%20faces/2147936152_jqwmmo.jpg",
+    image: "https://res.cloudinary.com/doqbnfais/image/upload_v1743445046/onPoint%20website%20concept/website%20assets/website%20images/website%20design%20and%20stock%20photos/testimonials%20faces/2147936152_jqwmmo.jpg",
     quote:
       "Every time I book my trips through onPoint, my content comes out top-notch 🔥. That's because they know the best places to be on a budget and my followers love that. onPoint is my number one choice any day.",
   },
@@ -116,7 +116,7 @@ const testimonialChunks = chunkArray(
 
 export default function WallOfLoveTestimonials() {
   return (
-    <section className="bg-transparent min-w-full">
+    <section className="w-full bg-transparent min-w-full">
       <div className="py-12 md:py-24 md:pt-10">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
