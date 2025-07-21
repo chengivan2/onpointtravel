@@ -36,7 +36,7 @@ export default function OnPointFAQs() {
       id: "item-3",
       icon: "truck",
       question:
-        "Do all trips to national parks and game reserves come with a gamne drive?",
+        "Do all trips to national parks and game reserves come with a game drive?",
       answer:
         "No. The animals inside government protected sanctuaries and game reseves are a beauty to behold. We would wish everyone to enjoy their sight. You can add a vehicle when booking to enjoy a game drive around the parks and reserves.",
     },
