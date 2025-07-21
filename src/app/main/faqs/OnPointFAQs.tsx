@@ -23,7 +23,7 @@ export default function OnPointFAQs() {
       icon: "clock",
       question: "What are your business hours?",
       answer:
-        "Our customer service team is available Monday through Friday from 9:00 AM to 8:00 PM EST, and weekends from 10:00 AM to 6:00 PM EST. During holidays, we are closed. However, during holidays in which we'll be open, the hours may vary and will be posted on our website.",
+        "Our customer service team is available Monday through Friday from 9:00 AM to 7:00 PM EST, and weekends from 10:00 AM to 3:00 PM EST. During holidays, we are closed. However, during holidays in which we'll be open, the hours may vary and will be posted on our website.",
     },
     {
       id: "item-2",
