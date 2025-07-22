@@ -44,7 +44,38 @@ export default function DestinationCards() {
   }, []);
 
   if (loading) {
-    return <div className="text-green-600 p-4">Loading destinations...</div>;
+    // Centered loading skeletons matching the card grid
+    return (
+      <div className="py-16 px-4 md:px-8 lg:px-16 flex items-center justify-center min-h-[400px]">
+        <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(3)].map((_, i) => (
+            <div
+              key={i}
+              className="animate-pulse flex flex-col relative overflow-hidden rounded-xl bg-white/50 dark:bg-green-900/50 border border-gray-200/40 dark:border-green-900/30 p-6 shadow-sm"
+            >
+              <div className="relative aspect-video rounded-lg overflow-hidden mb-4 bg-green-100 dark:bg-green-800">
+                <div className="absolute inset-0 bg-gradient-to-r from-green-200/40 via-green-100/60 to-green-200/40 animate-shimmer" />
+              </div>
+              <div className="h-6 w-2/3 bg-green-200 dark:bg-green-700 rounded mb-2" />
+              <div className="h-4 w-1/3 bg-green-100 dark:bg-green-800 rounded mb-4" />
+              <div className="h-4 w-full bg-green-100 dark:bg-green-800 rounded mb-1" />
+              <div className="h-4 w-5/6 bg-green-100 dark:bg-green-800 rounded mb-1" />
+              <div className="h-4 w-2/3 bg-green-100 dark:bg-green-800 rounded" />
+            </div>
+          ))}
+        </div>
+        <style jsx>{`
+          @keyframes shimmer {
+            0% { background-position: -400px 0; }
+            100% { background-position: 400px 0; }
+          }
+          .animate-shimmer {
+            background-size: 800px 100%;
+            animation: shimmer 1.5s linear infinite;
+          }
+        `}</style>
+      </div>
+    );
   }
   if (error) {
     return (
