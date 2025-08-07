@@ -129,13 +129,6 @@ export default function WallOfLoveTestimonials() {
             </p>
           </div>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 md:mt-12 lg:grid-cols-3 relative">
-            {/* SVG background shapes behind testimonials */}
-            <svg className="absolute -z-10 left-0 top-0 w-full h-full pointer-events-none" viewBox="0 0 900 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="180" cy="120" rx="120" ry="40" fill="#bbf7d0" fillOpacity="0.18" />
-              <ellipse cx="750" cy="320" rx="100" ry="30" fill="#34d399" fillOpacity="0.12" />
-              {/* Example animal silhouette (leopard) */}
-              <path d="M400 350 Q420 320 460 340 Q470 310 510 330 Q520 340 540 350 Q530 360 510 355 Q500 370 480 360 Q460 370 440 355 Q420 360 400 350 Z" fill="#047857" fillOpacity="0.08" />
-            </svg>
             {testimonialChunks.map((chunk, chunkIndex) => (
               <div
                 key={chunkIndex}
