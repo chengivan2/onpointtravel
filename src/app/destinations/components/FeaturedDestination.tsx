@@ -33,15 +33,13 @@ export default async function FeaturedDestination() {
         priority
       />
       
-      {/* Discount Banner */}
       <div className="z-[998] absolute top-6 right-6 bg-green-600/90 text-white px-6 py-3 rounded-full backdrop-blur-sm font-semibold shadow-lg">
         15% OFF on all trips for this destination
       </div>
 
-      {/* Content Overlay */}
       <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-8 md:p-12">
         <div className="max-w-3xl space-y-4">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 bg-gradient-to-br from-white via-gray-300 to-gray-300 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
             {destination.name}
           </h1>
           
