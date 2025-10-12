@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     siteName: "OnPoint Travel",
     images: [
       {
-        url: "https://onpoint-travel.vercel.app/og-image.png",
+        url: "https://res.cloudinary.com/doqbnfais/image/upload/v1760291599/onPoint%20website%20concept/OnPoint_logo_multi-use_mh0fmr.png",
         width: 800,
         height: 600,
       },
