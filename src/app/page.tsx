@@ -6,7 +6,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "OnPoint Travel",
-  description: "Travel website",
+  description: "Book trips with onPoint Travel",
 };
 
 export default function Home() {
