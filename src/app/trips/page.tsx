@@ -5,6 +5,11 @@ import Header from "../rootcomponents/header/Header";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
 
+export const metadata = {
+  title: "Trips - OnPoint Travel",
+  description: "Explore and book your next adventure with OnPoint Travel",
+};
+
 export default async function TripsPage({
   searchParams,
 }: {
