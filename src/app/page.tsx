@@ -15,8 +15,6 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://res.cloudinary.com/doqbnfais/image/upload/v1760291599/onPoint%20website%20concept/OnPoint_logo_multi-use_mh0fmr.png",
-        width: 800,
-        height: 600,
       },
     ],
     type: "website",

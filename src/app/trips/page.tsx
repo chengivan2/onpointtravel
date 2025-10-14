@@ -8,6 +8,16 @@ import Footer from "../rootcomponents/footer/Footer";
 export const metadata = {
   title: "Trips - OnPoint Travel",
   description: "Explore and book your next adventure with OnPoint Travel",
+  openGraph: {
+    title: "Terms & Conditions - OnPoint Travel",
+    description: "Read the terms and conditions for using OnPoint Travel services.",
+    url: "https://www.onpointtravel.com/terms-and-conditions",
+    images: [
+      {
+        url: "https://res.cloudinary.com/doqbnfais/image/upload/v1760291599/onPoint%20website%20concept/OnPoint_logo_multi-use_mh0fmr.png",
+      },
+    ],
+  },
 };
 
 export default async function TripsPage({
