@@ -19,7 +19,7 @@ export default async function DestinationsPage({
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const supabase = await createClient();
-  const query = ((await searchParams)?.query as string || "").toLowerCase();
+  const query = (((await searchParams)?.query as string) || "").toLowerCase();
 
   // Fetch destinations with all required fields
   const { data: destinations } = await supabase
@@ -52,12 +52,14 @@ export default async function DestinationsPage({
         </section>
 
         {/* Destinations Grid - Contained width */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">          <h2 className="text-3xl text-center font-bold text-green-800 dark:text-green-100 mb-8">
-            Explore Destinations
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl text-center font-bold text-green-800 dark:text-green-100 mb-8">
+            The Location Doesn't Matter As Long As You're Having Fun
           </h2>
           <div className="mb-8">
             <SearchBar placeholder="Search destinations by name or location..." />
-          </div>          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredDestinations?.length ? (
               filteredDestinations.map((destination) => (
                 <DestinationCard
