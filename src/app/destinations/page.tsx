@@ -11,6 +11,18 @@ import FeaturedDestination from "./components/FeaturedDestination";
 export const metadata: Metadata = {
   title: "OnPoint Travel Destinations",
   description: "Discover different destinations",
+  openGraph: {
+      title: "OnPoint Travel",
+      description: "Book trips with onPoint Travel",
+      url: "https://onpointtravel.vercel.app/destinations",
+      siteName: "OnPoint Travel",
+      images: [
+        {
+          url: "https://res.cloudinary.com/doqbnfais/image/upload/v1760291599/onPoint%20website%20concept/OnPoint_logo_multi-use_mh0fmr.png",
+        },
+      ],
+      type: "website",
+    },
 };
 
 export default async function DestinationsPage({
