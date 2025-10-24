@@ -7,7 +7,19 @@ import OnPointFAQs from "./components/faqs/OnPointFAQs";
 
 export const metadata: Metadata = {
     title: "Contact OnPoint Travel",
-    description: "Contact us through the channels on this page or reach out to our suport team through the contact form",
+    description: "Contact us through this page for any inquiries or support.",
+    openGraph: {
+      title: "Contact OnPoint Travel",
+      description: "Get in touch with OnPoint Travel for assistance.",
+      url: "https://onpointtravel.vercel.app/contact",
+      siteName: "OnPoint Travel",
+      images: [
+        {
+          url: "https://res.cloudinary.com/doqbnfais/image/upload/v1760291599/onPoint%20website%20concept/OnPoint_logo_multi-use_mh0fmr.png",
+        },
+      ],
+      type: "website",
+    },
   };
 
 export default function Home() {
