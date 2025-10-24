@@ -6,6 +6,21 @@ import LogoSeparator from "../main/separator/LogoSeparator";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
 
+export const metadata = {
+  title: "About Us - OnPoint Travel",
+  description: "Explore and book your next adventure with OnPoint Travel",
+  openGraph: {
+    title: "About Us - OnPoint Travel",
+    description: "Learn more about OnPoint Travel and our mission.",
+    url: "https://onpointtravel.com/about",
+    images: [
+      {
+        url: "https://res.cloudinary.com/doqbnfais/image/upload/v1760291599/onPoint%20website%20concept/OnPoint_logo_multi-use_mh0fmr.png",
+      },
+    ],
+  },
+};
+
 export default function AboutPage() {
   return (
     <>
