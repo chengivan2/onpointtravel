@@ -4,8 +4,9 @@ import TripCard from "./components/TripCard";
 import Header from "../rootcomponents/header/Header";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Trips - OnPoint Travel",
   description: "Explore and book your next adventure with OnPoint Travel",
   openGraph: {
