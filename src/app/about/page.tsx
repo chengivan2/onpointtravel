@@ -5,8 +5,9 @@ import Header from "../rootcomponents/header/Header";
 import LogoSeparator from "../main/separator/LogoSeparator";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "About Us - OnPoint Travel",
   description: "Explore and book your next adventure with OnPoint Travel",
   openGraph: {
