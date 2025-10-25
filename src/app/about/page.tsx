@@ -3,6 +3,7 @@ import LogoSeparator from "../main/separator/LogoSeparator";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
 import { Metadata } from "next";
+import ContactSection from "./ContactSection";
 
 export const metadata: Metadata = {
   title: "About Us - OnPoint Travel",
@@ -98,6 +99,7 @@ export default function AboutPage() {
         <LogoSeparator />
 
         {/* Contact Section */}
+        <ContactSection />
       </main>
       <FooterBefore />
       <Footer />
