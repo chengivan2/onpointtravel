@@ -10,22 +10,6 @@ import HeaderLogo from "../rootcomponents/header/Logo";
 import Header from "../rootcomponents/header/Header";
 import FooterBefore from "../rootcomponents/footerbefore/FooterBefore";
 import Footer from "../rootcomponents/footer/Footer";
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "Forgot Password - OnPoint Travel",
-  description: "Reset your password for OnPoint Travel",
-  openGraph: {
-    title: "Forgot Password - OnPoint Travel",
-    description: "Reset your password for OnPoint Travel",
-    url: "https://onpointtravel.com/forgot-password",
-    images: [
-      {
-        url: "https://res.cloudinary.com/doqbnfais/image/upload/v1760291599/onPoint%20website%20concept/OnPoint_logo_multi-use_mh0fmr.png",
-      },
-    ],
-  },
-};
 
 export default function ForgotPasswordPage() {
   const supabase = createClient();
