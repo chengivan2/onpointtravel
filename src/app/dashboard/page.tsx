@@ -18,6 +18,18 @@ import UserTopTripsDoughnut from "./components/usercomponents/UserTopTripsDoughn
 export const metadata: Metadata = {
   title: "OnPoint Dashboard",
   description: "Manage your OnPoint account",
+  openGraph: {
+    title: "Dashboard - OnPoint Travel",
+    description: "Manage your OnPoint account",
+    url: "https://onpointtravel.vercel.app/dashboard",
+    siteName: "OnPoint Travel",
+    images: [
+      {
+        url: "https://res.cloudinary.com/doqbnfais/image/upload/v1760291599/onPoint%20website%20concept/OnPoint_logo_multi-use_mh0fmr.png",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default async function OnPointDashboard() {
@@ -50,7 +62,12 @@ export default async function OnPointDashboard() {
     trip: booking.trip
       ? booking.trip
       : booking.trip_name
-      ? { id: booking.trip_id || '', name: booking.trip_name, destination_id: '', description: '' }
+      ? {
+          id: booking.trip_id || "",
+          name: booking.trip_name,
+          destination_id: "",
+          description: "",
+        }
       : null,
     start_date: booking.start_date,
     end_date: booking.end_date,
@@ -84,7 +101,11 @@ export default async function OnPointDashboard() {
     // Most booked trips (doughnut)
     const tripCounts: Record<string, number> = {};
     bookingsWithTripDetails.forEach((b) => {
-      if (b.trip && typeof b.trip.name === "string" && b.trip.name.trim() !== "") {
+      if (
+        b.trip &&
+        typeof b.trip.name === "string" &&
+        b.trip.name.trim() !== ""
+      ) {
         tripCounts[b.trip.name] = (tripCounts[b.trip.name] ?? 0) + 1;
       }
     });
