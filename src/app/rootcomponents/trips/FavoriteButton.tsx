@@ -67,13 +67,26 @@ export default function FavoriteButton({ tripId, heartIconSize, onToggle }: Favo
     }
 
     const favoriteTrips = data?.favorite_trips || [];
-    const updatedFavorites = isFavorite
-      ? favoriteTrips.filter((id: string) => id !== tripId)
-      : [...favoriteTrips, tripId];
+    let updatedFavorites: string[];
+
+    if (isFavorite) {
+      // Removing: Use filter to remove all instances of the tripId
+      updatedFavorites = favoriteTrips.filter((id: string) => id !== tripId);
+    } else {
+      // Adding: Check if already exists to prevent duplicates
+      if (favoriteTrips.includes(tripId)) {
+        updatedFavorites = favoriteTrips;
+      } else {
+        updatedFavorites = [...favoriteTrips, tripId];
+      }
+    }
+
+    // Defensive layer: Ensure uniqueness
+    const finalFavorites = Array.from(new Set(updatedFavorites));
 
     const { error: updateError } = await supabase
       .from("users")
-      .update({ favorite_trips: updatedFavorites })
+      .update({ favorite_trips: finalFavorites })
       .eq("id", user.id);
 
     if (updateError) {

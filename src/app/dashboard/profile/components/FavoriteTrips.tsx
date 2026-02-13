@@ -17,15 +17,44 @@ export default function FavoriteTrips({ userId }: { userId: string }) {
   useEffect(() => {
     const fetchFavoriteTrips = async () => {
       const supabase = createClient();
-      const { data, error } = await supabase
-        .from("favorite_trips")
-        .select("id, destination, description")
-        .eq("user_id", userId);
 
-      if (error) {
+      // 1. Get the favorite trip IDs from the user profile
+      const { data: profile, error: profileError } = await supabase
+        .from("users")
+        .select("favorite_trips")
+        .eq("id", userId)
+        .single();
+
+      if (profileError) {
         toast.error("Failed to load favorite trips. Please try again.");
+        setLoading(false);
+        return;
+      }
+
+      const favoriteTripIds = profile?.favorite_trips || [];
+
+      if (favoriteTripIds.length === 0) {
+        setTrips([]);
+        setLoading(false);
+        return;
+      }
+
+      // 2. Fetch the trip details for those IDs
+      const { data: tripsData, error: tripsError } = await supabase
+        .from("trips")
+        .select("id, name, description")
+        .in("id", favoriteTripIds);
+
+      if (tripsError) {
+        toast.error("Failed to load trip details. Please try again.");
       } else {
-        setTrips(data || []);
+        // Map 'name' to 'destination' if the interface requires 'destination'
+        const mappedTrips = (tripsData || []).map(t => ({
+          id: t.id,
+          destination: t.name,
+          description: t.description || ""
+        }));
+        setTrips(mappedTrips);
       }
       setLoading(false);
     };
