@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   title: "Trips - OnPoint Travel",
   description: "Explore and book your next adventure with OnPoint Travel",
   openGraph: {
-    title: "Terms & Conditions - OnPoint Travel",
-    description: "Read the terms and conditions for using OnPoint Travel services.",
+    title: "Trips - OnPoint Travel",
+    description: "Explore and book your next adventure with OnPoint Travel",
     url: "https://onpointtravel.com/trips",
     images: [
       {
@@ -43,11 +43,11 @@ export default async function TripsPage({
     <>
       <Header />
       <main className="mt-16 min-h-screen bg-green-50/20 dark:bg-green-900/10">
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
           <h1 className="text-2xl font-extrabold text-gray-900 dark:text-gray-100 mb-4">
             Where to?
           </h1>
-      </div>
+        </div>
         <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
           <div className="mb-12">
             <SearchBar placeholder="Search trips..." />
