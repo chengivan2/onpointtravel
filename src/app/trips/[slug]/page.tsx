@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { createClient } from "@/utils/supabase/server";
+import { createClient as createServerClient } from "@/utils/supabase/server";
+import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import { Gallery } from "./components/TripGallery";
 import { RatingDisplay } from "../components/RatingDisplay";
@@ -17,7 +18,10 @@ export const metadata: Metadata = {
 };
 
 export async function generateStaticParams() {
-  const supabase = await createClient();
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
   const { data: trips } = await supabase.from("trips").select("slug");
 
   return (trips ?? []).map((trip) => ({
@@ -50,7 +54,7 @@ export default async function TripPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const supabase = await createClient();
+  const supabase = await createServerClient();
 
   const { data: trip } = await supabase
     .from("trips")
